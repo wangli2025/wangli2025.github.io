@@ -1,0 +1,1394 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Linux Namespace">
+      
+      
+      
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/05/Linux-Namespace.html">
+      
+      
+        <link rel="prev" href="../04/The-oldest-line-editor-ed.html">
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>Linux Namespace 简单理解 - 王李的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-namespace" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../index.html" title="王李的博客" class="md-header__button md-logo" aria-label="王李的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            王李的博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Linux Namespace 简单理解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="red"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="white" data-md-color-primary="white" data-md-color-accent="red"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../archive/2024.html" class="md-tabs__link">
+          
+  
+    
+  
+  归档
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../category/linux.html" class="md-tabs__link">
+          
+  
+    
+  
+  分类
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="王李的博客" class="md-nav__button md-logo" aria-label="王李的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    王李的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../archive/2024.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    归档
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../category/linux.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    分类
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          王李
+                        
+                      </strong>
+                      <br>
+                      奋斗不止
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-11-05 00:00:00" class="md-ellipsis">2024年11月5日</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            分类于
+                            
+                              <a href="../../../category/linux.html">Linux</a>, 
+                              <a href="../../../category/%E5%AE%B9%E5%99%A8.html">容器</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 11 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      前置准备
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="前置准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unshare" class="md-nav__link">
+    <span class="md-ellipsis">
+      unshare工具的使用
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改提示符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      命名空间文件描述符
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nmaespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      各个Nmaespace介绍
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="各个Nmaespace介绍">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uts-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      UTS Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ipc-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      IPC Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pid-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pid Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mount-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mount Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#user-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      User Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Time Namespace
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+
+<h1 id="linux-namespace">Linux Namespace 简单理解</h1>
+<p>一提到<strong>容器</strong>技术，随之想到的便是<code>namespace</code> 是容器化的基石，本篇文章将对<code>Namespace</code>进行简单的了解。</p>
+<!-- more -->
+
+<p>本文所依赖的环境为：</p>
+<pre><code class="language-bash">root@debian:~# hostnamectl
+ Static hostname: windows11pro
+       Icon name: windowsBooks
+         Chassis: laptop 💻
+Operating System: Debian GNU/Linux 12 (bookworm)  
+          Kernel: Linux 6.1.0-26-amd64
+    Architecture: x86-64
+ Hardware Vendor: ASUSTeK COMPUTER INC.
+  Hardware Model: X441UVK
+Firmware Version: X441UVK.314
+root@debian:~#
+</code></pre>
+<p><code>Namepace</code> 也称之为命名空间，最早出现在内核<code>2.4.19</code> 上，后期逐步迭代的，它的作用是将<code>Linux</code> 的资源隔离开来，可以这样理解，<code>Nmaespace</code> 就是为了虚拟化而存在的。</p>
+<p><code>Namespace</code> 类型众多，这里列举一个表格说明。</p>
+<table>
+<thead>
+<tr>
+<th>内核版本</th>
+<th>Namespace</th>
+<th>系统调用参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2.4.19</td>
+<td>Mount Namespace</td>
+<td>CLONE_NEWNS</td>
+<td>文件系统的隔离</td>
+</tr>
+<tr>
+<td>2.6.19</td>
+<td>UTS Namespace</td>
+<td>CLONE_NEWUTS</td>
+<td>nodename和damainname的隔离</td>
+</tr>
+<tr>
+<td>2.6.19</td>
+<td>IPC Namespace</td>
+<td>CLONE_NEWIPC</td>
+<td>进程间通信资源隔离</td>
+</tr>
+<tr>
+<td>2.6.24</td>
+<td>PID Namespace</td>
+<td>CLONE_NEWPID</td>
+<td>进程ID的隔离</td>
+</tr>
+<tr>
+<td>2.6.29</td>
+<td>Network Namespace</td>
+<td>CLONE_NEWNET</td>
+<td>网络的隔离</td>
+</tr>
+<tr>
+<td>3.8</td>
+<td>User Namespace</td>
+<td>CLIONE_NEWUSER</td>
+<td>用户和组的隔离</td>
+</tr>
+<tr>
+<td>5.6</td>
+<td>Time Namespace</td>
+<td>CLONE_NEWTIME</td>
+<td>系统时钟的隔离</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_1">前置准备</h2>
+<p>陆游曾说，”纸上得来终觉浅，绝知此事要躬行。“，实践才是检验真理的唯一标准，所以，在正式了解<code>Namespace</code> 之前，得先了解下关于<code>Namespace</code> 相关的工具：<code>unshare</code>，如果要解释该工具，用<code>unshare - run program in new namespaces</code> 表达再合适不过了，它可以在新的命名空间中运行要指定的程序。</p>
+<h3 id="unshare">unshare工具的使用</h3>
+<p>创建<code>Namespace</code> 主要的参数有以下几种：</p>
+<ul>
+<li><code>-m</code> 、<code>--mount</code>：用以创建<code>Mount namespace</code>。</li>
+<li><code>-u</code>、<code>--uts</code>：用以创建 <code>Uts Namespace</code> 。</li>
+<li><code>-i</code>、<code>--ipc</code>：用以创建<code>IPC Namespace</code>。</li>
+<li><code>-p</code>、<code>--pid</code>：用以创建<code>Pid Namespace</code>。</li>
+<li><code>-n</code>、<code>--net</code>：用以创建<code>Network Namespace</code> 。</li>
+<li><code>-U</code>、<code>--user</code>：用以创建<code>User Namespace</code> 。</li>
+<li><code>-T</code>、<code>--time</code>：用以创建<code>Time Namespace</code> 。</li>
+</ul>
+<p>举一个最简单的例子，在<code>Network Namespace</code>启动一个<code>bash</code> 进程，可以使用如下命令：</p>
+<p>在此之前，我们需要先获取一下当前机器的<code>IP</code>信息，已做参考：</p>
+<pre><code class="language-bash">root@debian:~# ip link
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether 08:00:27:7c:92:af brd ff:ff:ff:ff:ff:ff
+root@debian:~#
+</code></pre>
+<p>在<code>Network Namespace</code> 中执行命令</p>
+<pre><code class="language-bash">root@debian:~# unshare -n /usr/bin/bash
+root@debian-linux:~#
+root@debian-linux:~# ip link
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+root@debian-linux:~#
+</code></pre>
+<p>使用<code>unshare -n /usr/bin/bash</code>会创建一个<code>Network Namespace</code>，并且在该<code>Namespace</code> 中执行<code>bash</code> 操作，使用<code>exit</code> 即可退出该<code>Namespace</code>。</p>
+<p>这是<code>unshare</code> 的最简单的用法。</p>
+<h3 id="_2">修改提示符</h3>
+<p><code>Linux</code> 的提示符格式都被记录到了<code>PS1</code>的内置变量中，可以使用<code>echo</code>查看其内容。</p>
+<pre><code class="language-bash">root@debian:~# echo $PS1
+${debian_chroot:+($debian_chroot)}\u@\h:\w\$
+root@debian:~#
+</code></pre>
+<p>为了方便使用<code>unshare</code>启动新进程更加直观，所以需要修改一下命令提示符，首先在<code>/root/.bashrc</code> 文件末尾添加如下代码：</p>
+<pre><code class="language-bash"># 打开调试
+set -x
+
+# 定义默认的PS1值
+export PS1=&quot;${debian_chroot:+($debian_chroot)}[\u@\h]:[\w][tty:\l]\\$ &quot;
+
+# 设置别名
+alias unshare=&quot;UNSHARE=1 unshare &quot;
+
+# 如果变量中的UNSHARE值为1，则修改PS1值
+if [ ! -e ${UNSHARE} ] &amp;&amp; [ ${UNSHARE} -eq 1 ];then
+        export PS1=&quot;(unshare) ${debian_chroot:+($debian_chroot)}[\u@\h]:[\w][tty:\l]\\$ &quot;
+fi
+
+# 关闭调试
+set +x
+</code></pre>
+<p>增加上述代码后，重新加载一下<code>/root/.bashrc</code>就可以使用<code>unshare</code> 启动<code>bash</code>进程了。</p>
+<p>首先先重新加载一下<code>/root/.bashrc</code> 文件</p>
+<pre><code class="language-bash">root@debian:~# source /root/.bashrc
+++ export 'PS1=[\u@\h]:[\w][tty:\l]\$ '
+++ PS1='[\u@\h]:[\w][tty:\l]\$ '
+++ alias 'unshare=UNSHARE=1 unshare '
+++ '[' '!' -e ']'
+++ set +x
+[root@debian]:[~][tty:1]#
+</code></pre>
+<p>使用<code>unshare</code> 启动<code>bash</code> 进程</p>
+<pre><code class="language-bash">
+[root@debian]:[~][tty:1]# unshare -n /usr/bin/bash
++ export 'PS1=[\u@\h]:[\w][tty:\l]\$ '
++ PS1='[\u@\h]:[\w][tty:\l]\$ '
++ alias 'unshare=UNSHARE=1 unshare '
++ '[' '!' -e 1 ']'
++ '[' 1 -eq 1 ']'
++ export 'PS1=(unshare) [\u@\h]:[\w][tty:\l]\$ '
++ PS1='(unshare) [\u@\h]:[\w][tty:\l]\$ '
++ set +x
+(unshare) [root@debian]:[~][tty:1]#
+</code></pre>
+<p>通过上面设置，就可以更加直观的看出当前<code>shell</code> 是否在<code>Namespace</code> 中，后续为了信息更加简洁，所以就暂时将调试给关闭了。</p>
+<h3 id="_3">命名空间文件描述符</h3>
+<p>在<code>Linux</code> 中，查看2个进程是否属于同一个命名空间，可以查看<code>/proc/进程ID/ns/*</code> 下面的文件描述符，如果文件描述符一致，则证明是处于同一命名空间的。</p>
+<p>例如，如下2个进程的<code>namespace</code>文件描述符如下：</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# readlink /proc/983/ns/*
+cgroup:[4026531835]
+ipc:[4026531839]
+mnt:[4026531841]
+net:[4026531840]
+pid:[4026531836]
+pid:[4026531836]
+time:[4026531834]
+time:[4026531834]
+user:[4026531837]
+uts:[4026531838]
+[root@debian]:[~][tty:0]# readlink /proc/998/ns/*
+cgroup:[4026531835]
+ipc:[4026531839]
+mnt:[4026531841]
+net:[4026531840]
+pid:[4026531836]
+pid:[4026531836]
+time:[4026531834]
+time:[4026531834]
+user:[4026531837]
+uts:[4026531838]
+[root@debian]:[~][tty:0]#
+</code></pre>
+<p>可以看到，其每项<code>namespace</code> 的文件描述符都是一致的，所以证明该2个进程属于同一命名空间。</p>
+<p>如果是使用<code>unshare</code> 创建的命名空间，其<code>namespace</code> 文件描述符应该不一致。</p>
+<pre><code class="language-bash"># unshare -m /usr/bin/bash
+(unshare) [root@debian]:[~][tty:0]# echo $$
+1000
+(unshare) [root@debian]:[~][tty:0]#
+(unshare) [root@debian]:[~][tty:0]# readlink /proc/1000/ns/*
+cgroup:[4026531835]
+ipc:[4026531839]
+mnt:[4026532316]
+net:[4026531840]
+pid:[4026531836]
+pid:[4026531836]
+time:[4026531834]
+time:[4026531834]
+user:[4026531837]
+uts:[4026531838]
+(unshare) [root@debian]:[~][tty:0]#
+</code></pre>
+<p>在该<code>mount namespace</code> 中，其<code>mount namespace</code> 文件描述符为<strong>4026532316</strong>。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:0]# exit
+exit
+[root@debian]:[~][tty:0]# echo $$
+983
+[root@debian]:[~][tty:0]# readlink /proc/983/ns/*
+cgroup:[4026531835]
+ipc:[4026531839]
+mnt:[4026531841]
+net:[4026531840]
+pid:[4026531836]
+pid:[4026531836]
+time:[4026531834]
+time:[4026531834]
+user:[4026531837]
+uts:[4026531838]
+[root@debian]:[~][tty:0]#
+</code></pre>
+<p>在该宿主机中，其<code>mount namespace</code> 文件描述符为<strong>4026531841</strong>。在宿主机的<code>namespace</code> ，也称之为默认<code>namespace</code> 。</p>
+<p>可以看到，2个文件描述符不一致，说明2个进程是在不同的<code>mount namespace</code> 中。</p>
+<h2 id="nmaespace">各个Nmaespace介绍</h2>
+<h3 id="uts-namespace">UTS Namespace</h3>
+<p><code>UTS Namespace</code> 是用来隔离主机名和域名的，可以使不同的<code>Namespace</code> 拥有不同的主机名。</p>
+<p>使用<code>unshare</code> 进入<code>bash</code> 后尝试修改主机名，不会影响到宿主机的，例如如下：</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:1]# unshare -u /usr/bin/bash
+(unshare) [root@debian]:[~][tty:1]#
+(unshare) [root@debian]:[~][tty:1]# echo $$
+13858
+(unshare) [root@debian]:[~][tty:1]#
+(unshare) [root@debian]:[~][tty:1]# hostname new-debian-uts
+(unshare) [root@debian]:[~][tty:1]#
+(unshare) [root@debian]:[~][tty:1]# hostname
+new-debian-uts
+(unshare) [root@debian]:[~][tty:1]#
+</code></pre>
+<p>上述命令使用<code>unshare</code> 创建了一个<code>uts namespace</code> ，并且将<code>bash</code> 放入其中执行，首先打印了其进程的<code>PID</code>为<code>13858</code> 、而后进行了主机名设置。</p>
+<p>同时在不关闭该<code>shell</code> 的前提下，打开另一个终端，获取主机名信息。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:5]# hostname
+debian
+[root@debian]:[~][tty:5]#
+[root@debian]:[~][tty:5]# echo $$
+13863
+[root@debian]:[~][tty:5]#
+[root@debian]:[~][tty:5]#
+</code></pre>
+<p>可以看到，在<code>uts namespace</code>命名空间中修改主机名，并不影响宿主机环境，同时，还可以查询一下2个进程的<code>ns</code>值：</p>
+<pre><code class="language-bash"># readlink /proc/{13858,13863}/ns/uts
+uts:[4026532256]
+uts:[4026531838]
+[root@debian]:[~][tty:5]#
+</code></pre>
+<p>可以看到，上述2个进程的<code>uts namespace</code> 文件描述符并不一致，所以是2个不同的命名空间，所以，修改主机名才不会互相影响。</p>
+<h3 id="ipc-namespace">IPC Namespace</h3>
+<p><code>ipc namespace</code> 是隔离进程间的通信资源，但不是所有的进程间通信都会被隔离，它主要隔离 消息队列、信号量、共享内存等。</p>
+<p>关于<code>IPC</code>通信，是否可以被<code>ipc namespace</code>隔离，可以查看如下表格：</p>
+<table>
+<thead>
+<tr>
+<th>IPC机制</th>
+<th>需求</th>
+<th>IPC Namespace隔离</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>管道、命名管道</td>
+<td>进程间简单数据交换</td>
+<td>不会隔离</td>
+</tr>
+<tr>
+<td>消息队列</td>
+<td>进程间异步信息交换</td>
+<td>隔离</td>
+</tr>
+<tr>
+<td>信号量</td>
+<td>进程间同步和互斥</td>
+<td>隔离</td>
+</tr>
+<tr>
+<td>共享内存</td>
+<td>进程间大块数据共享</td>
+<td>隔离</td>
+</tr>
+<tr>
+<td>套接字</td>
+<td>进程间网络通信</td>
+<td>不会隔离</td>
+</tr>
+</tbody>
+</table>
+<p>这里举个简单的例子。</p>
+<p>在宿主机上查询共享内存段信息。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# ipcs -m
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+0x00000000 3          lightdm    600        524288     2          dest
+0x00000000 4          lightdm    600        33554432   2          dest
+
+[root@debian]:[~][tty:0]#
+</code></pre>
+<p>在宿主机创建一个新的共享内存段。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# ipcmk -M 128
+Shared memory id: 6
+[root@debian]:[~][tty:0]#
+[root@debian]:[~][tty:0]# ipcs -m
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+0x00000000 3          lightdm    600        524288     2          dest
+0x00000000 4          lightdm    600        33554432   2          dest
+0x8b111882 6          root       644        128        0
+
+[root@debian]:[~][tty:0]#
+</code></pre>
+<p>而后在<code>ipc namespace</code> 中来查询共享内存段。</p>
+<pre><code class="language-bash"># unshare -i -u /usr/bin/bash
+(unshare) [root@debian]:[~][tty:0]#
+(unshare) [root@debian]:[~][tty:0]# ipcs -m
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+
+(unshare) [root@debian]:[~][tty:0]#
+</code></pre>
+<p>可以看到，在<code>ipc namespace</code> 中共享内存段都没了，同样的，在该<code>namespace</code> 中创建共享内存段，其宿主机也不可以间。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:0]# ipcmk -M 128
+Shared memory id: 0
+(unshare) [root@debian]:[~][tty:0]#
+(unshare) [root@debian]:[~][tty:0]# ipcs -m
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+0x4ec24363 0          root       644        128        0
+
+(unshare) [root@debian]:[~][tty:0]#
+</code></pre>
+<p>在上述<code>namespace</code> 不退出的情况下，在宿主机中查询共享内存段。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:1]# ipcs -m
+
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status
+0x00000000 3          lightdm    600        524288     2          dest
+0x00000000 4          lightdm    600        33554432   2          dest
+0x8b111882 6          root       644        128        0
+
+[root@debian]:[~][tty:1]#
+</code></pre>
+<p>如上例子说明，在<code>ipc namespace</code> 中，<code>IPC</code>资源已被隔离。</p>
+<h3 id="pid-namespace">Pid Namespace</h3>
+<p><code>Pid Namespace</code> 是用来隔离进程<code>ID</code> 的，在<code>Pid Namespace</code> 中的进程都有独立的<code>PID</code> 。</p>
+<p>使用<code>unshare</code> 创建<code>pid namespace</code> 并且获取当前<code>PID</code> </p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare -u -i -p --fork /usr/bin/bash
+(unshare) [root@debian]:[~][tty:2]# 
+(unshare) [root@debian]:[~][tty:2]# echo $$
+1
+(unshare) [root@debian]:[~][tty:2]# 
+(unshare) [root@debian]:[~][tty:2]# 
+</code></pre>
+<p>创建<code>pid namespace</code> 的时候，一定要加<code>--fork</code> 来<code>fork</code>一个新的进程，因为只有新的子进程才会分配<code>pid</code>，在使用<code>pid namespace</code> 后，新的命名空间中的<code>pid</code> 都会从1开始计数。</p>
+<p>实际上查询进程树信息，可以发现<code>linux</code>是做了一个转换，将宿主机的<code>pid</code> 会映射进<code>pid namespace</code> 中的进程<code>ID</code> 。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:1]# ps axjf | head -n 1
+   PPID     PID    PGID     SID TTY        TPGID STAT   UID   TIME COMMAND
+      1     756     756     756 ?             -1 SLsl     0   0:00 /usr/sbin/lightdm
+    756     777     777     777 tty7         777 Ssl+     0   0:02  \_ /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+    756    1104     756     756 ?             -1 Sl       0   0:00  \_ lightdm --session-child 15 26
+   1104    1133    1133    1133 ?             -1 Ssl      0   0:00      \_ /usr/bin/lxsession -s LXDE -e LXDE
+   1133    1228    1228    1228 ?             -1 Ss       0   0:00          \_ /usr/bin/ssh-agent x-session-manager
+   1133    1259    1133    1133 ?             -1 S        0   0:00          \_ openbox --config-file /root/.config/openbox/lxde-rc.xml
+   1133    1264    1133    1133 ?             -1 Sl       0   0:00          \_ lxpolkit
+   1133    1266    1133    1133 ?             -1 Sl       0   0:00          \_ lxpanel --profile LXDE
+   1133    1269    1133    1133 ?             -1 Sl       0   0:00          \_ pcmanfm --desktop --profile LXDE
+   1269    1431    1133    1133 ?             -1 Sl       0   0:00          |   \_ lxterminal
+   1431    1434    1434    1434 pts/2       1469 Ss       0   0:00          |       \_ bash
+   1434    1468    1468    1434 pts/2       1469 S        0   0:00          |           \_ unshare -u -i -p --fork /usr/bin/bash
+   1468    1469    1469    1434 pts/2       1469 S+       0   0:00          |               \_ /usr/bin/bash
+</code></pre>
+<p>其实该<code>bash</code> 的进程<code>id</code> 为<code>1469</code> ，但是使用了<code>pid namespace</code> ，所以在该<code>namesapce</code> 中会被映射为了<code>1</code> ，此时若在宿主机上<code>kill -9 1469</code> ，则会影响到命名空间的进程。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:1]# kill -9 1469
+[root@debian]:[~][tty:1]#
+</code></pre>
+<p>同样在命名空间中的进程会被<code>kill</code> 掉。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# unshare: sigprocmask unblock failed: Invalid argument
+[root@debian]:[~][tty:2]# 
+</code></pre>
+<h3 id="mount-namespace">Mount Namespace</h3>
+<p><code>Mount Namespace</code> 是最早出现的<code>Namespace</code> ，可以看到其系统调用参数为 <code>CLONE_NEWNS</code> ，和后续出现的<code>Namespace</code> 系统调用参数都不同，这是因为最开始的时候，大佬们认为，不会在出现其他<code>Namespace</code> 了，所以就以此为命名，后面的事情，大家就都知道了，为了兼容，所以该<code>Mount Namespace</code> 还是以<code>CLONE_NEWNS</code> 来命名的。</p>
+<p><code>Mount Namespace</code> 的作用是实现文件系统的隔离和管理。</p>
+<p>使用<code>unshare</code> 创建<code>mount namespace</code> 并且重新挂载<code>proc</code> 分区。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare -u -i -p -m --fork /usr/bin/bash
+(unshare) [root@debian]:[~][tty:2]# 
+(unshare) [root@debian]:[~][tty:2]# echo $$
+1
+(unshare) [root@debian]:[~][tty:2]# 
+(unshare) [root@debian]:[~][tty:2]# mount -t proc proc /proc 
+(unshare) [root@debian]:[~][tty:2]# 
+(unshare) [root@debian]:[~][tty:2]# ps aux 
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1   7196  3996 pts/2    S    03:40   0:00 /usr/bin/bash
+root           3  0.0  0.2  11084  4456 pts/2    R+   03:40   0:00 ps aux
+(unshare) [root@debian]:[~][tty:2]# 
+
+</code></pre>
+<p>上述使用<code>unshare</code> 创建了<code>mount namespace</code> ，并且将<code>bash</code> 放入其执行，在该<code>mount namespace</code> 中，使用<code>mount</code> 重新挂载了<code>proc</code> ，接着查询所有进程，由于<code>pid namesapce</code> 隔离，所以只能查询到当前命名空间中的进程了。</p>
+<p>默认的<code>mount namespace</code> 会继承宿主机的命名空间，若不进行重新挂载<code>proc</code> ，查看到的信息就是宿主机的信息。</p>
+<p>同样的，在该<code>namesapce</code> 中设置的挂载，在宿主机是隔离开来的，例如：</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        19G  3.9G   14G  23% /
+udev            953M     0  953M   0% /dev
+tmpfs           984M  4.0K  984M   1% /dev/shm
+tmpfs           197M 1004K  196M   1% /run
+tmpfs           5.0M  8.0K  5.0M   1% /run/lock
+tmpfs           197M   44K  197M   1% /run/user/1000
+tmpfs           197M   44K  197M   1% /run/user/0
+/dev/sda5       6.4G  348M  5.8G   6% /var
+/dev/sda8        71G  1.2G   67G   2% /home
+/dev/sda7       1.2G   68K  1.1G   1% /tmp
+(unshare) [root@debian]:[~][tty:2]# mount /dev/sda1 /data
+(unshare) [root@debian]:[~][tty:2]# mount | grep /data
+/dev/sda1 on /data type ext4 (rw,relatime,errors=remount-ro)
+(unshare) [root@debian]:[~][tty:2]# 
+</code></pre>
+<p>在不退出当前<code>mount namesapce</code>环境下，查询宿主机关于<code>/data</code>的挂载。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:1]# mount /dev/sda1 /data
+[root@debian]:[~][tty:1]#
+</code></pre>
+<p>如此，<code>mount namespace</code> 隔离了文件系统挂载。</p>
+<h3 id="network-namespace">Network Namespace</h3>
+<p><code>network namespace</code> 隔离的是网络环境，网络通信是较为复杂的操作，这里先仅仅证明<code>network namesapce</code> 隔离性。</p>
+<p>使用<code>unshare</code> 创建<code>network namespace</code> ，并且使<code>bash</code> 在其运行。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# unshare  -u -i -p -m -n --fork /usr/bin/bash
+(unshare) [root@debian]:[~][tty:2]# 
+(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+(unshare) [root@debian]:[~][tty:2]# 
+</code></pre>
+<p>创建了<code>network namespace</code> 之后，查询其<code>ip</code> 信息，只有本地回环地址，状态还是关闭的，说明 <code>network namespace</code>隔离了其网络环境。</p>
+<h3 id="user-namespace">User Namespace</h3>
+<p><code>user namespace</code> 隔离的是用户和用户组，换句话说，不同的<code>user namespace</code> 中的<code>user id</code> 和<code>group id</code> 可以是不同的。最为常用的是在宿主机以一个非<code>root</code> 用户运行创建了一个<code>user namespace</code> ，然后在该<code>user namespace</code> 中却被映射成了<code>root</code> 用户。</p>
+<p>使用<code>unshare</code> 创建<code>user namespace</code>，并且使<code>bash</code> 在其运行。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare -u -i -p -m -n -U --fork /usr/bin/bash
+(unshare) [nobody@debian]:[~][tty:2]$ 
+(unshare) [nobody@debian]:[~][tty:2]$ id
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+(unshare) [nobody@debian]:[~][tty:2]$ 
+
+</code></pre>
+<p>可以看到，增加了<code>user namespace</code> 后，其用户被映射为了<code>nobody</code>用户。</p>
+<p>如果想要修改其容器中的<code>userid</code>值，可以使用<code>newuidmap</code> 进行<code>uid</code> 映射。</p>
+<p>首先，需要找到其<code>user namespace</code> 下运行进程的<code>pid</code> 。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# ps axjf
+   PPID     PID    PGID     SID TTY        TPGID STAT   UID   TIME COMMAND
+      1     756     756     756 ?             -1 SLsl     0   0:00 /usr/sbin/lightdm
+    756    2547    2547    2547 tty7        2547 Ssl+     0   0:01  \_ /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+    756    2633     756     756 ?             -1 Sl       0   0:00  \_ lightdm --session-child 15 26
+   2633    2637    2637    2637 ?             -1 Ssl      0   0:00      \_ /usr/bin/lxsession -s LXDE -e LXDE
+   2637    2729    2729    2729 ?             -1 Ss       0   0:00          \_ /usr/bin/ssh-agent x-session-manager
+   2637    2749    2637    2637 ?             -1 S        0   0:00          \_ openbox --config-file /root/.config/openbox/lxde-rc.xml
+   2637    2750    2637    2637 ?             -1 Sl       0   0:00          \_ lxpolkit
+   2637    2752    2637    2637 ?             -1 Sl       0   0:00          \_ lxpanel --profile LXDE
+   2637    2754    2637    2637 ?             -1 Sl       0   0:00          \_ pcmanfm --desktop --profile LXDE
+   2754    2886    2637    2637 ?             -1 Sl       0   0:00          |   \_ lxterminal
+   2886    2889    2889    2889 pts/2       2916 Ss       0   0:00          |       \_ bash
+   2889    2915    2915    2889 pts/2       2916 S        0   0:00          |           \_ unshare -u -i -p -m -n -U --fork /usr/bin/bash
+   2915    2916    2916    2889 pts/2       2916 S+       0   0:00          |               \_ /usr/bin/bash
+</code></pre>
+<p>可以看到，其真实的<code>pid</code>是<code>2916</code>，则在宿主机上需要执行如下映射。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:1]# newuidmap 2916 0 0 1
+[root@debian]:[~][tty:1]#
+</code></pre>
+<p>此时，再回到<code>user namespace</code> 中，查看用户信息。</p>
+<pre><code class="language-bash">(unshare) [nobody@debian]:[~][tty:2]$ id
+uid=0(root) gid=65534(nogroup) groups=65534(nogroup)
+(unshare) [nobody@debian]:[~][tty:2]$ 
+(unshare) [nobody@debian]:[~][tty:2]$ mount -t proc proc /proc
+(unshare) [nobody@debian]:[~][tty:2]$ ps aux 
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1   7196  3876 pts/2    S    04:42   0:00 /usr/bin/bash
+root           8  0.0  0.2  11084  4328 pts/2    R+   04:49   0:00 ps aux
+(unshare) [nobody@debian]:[~][tty:2]$ 
+
+</code></pre>
+<p>其<code>uid</code> 则变为了<code>root</code> ，也可以进行磁盘挂载。</p>
+<p>当然，在普通用户下，也是同理。</p>
+<p>使用普通用户使用<code>unshare</code>创建<code>user namespace</code> 并且启动<code>bash</code> 命令。</p>
+<pre><code class="language-bash">[wangli@debian]:[~][tty:2]$ unshare -u -i -p -m -n -U --fork /usr/bin/bash
+(unshare) [nobody@debian]:[~][tty:2]$ 
+(unshare) [nobody@debian]:[~][tty:2]$ id
+uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
+(unshare) [nobody@debian]:[~][tty:2]$ 
+(unshare) [nobody@debian]:[~][tty:2]$ 
+</code></pre>
+<p>查询其真实的<code>pid</code> 。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# ps axjf
+   PPID     PID    PGID     SID TTY        TPGID STAT   UID   TIME COMMAND
+      1     756     756     756 ?             -1 SLsl     0   0:00 /usr/sbin/lightdm
+    756    2992    2992    2992 tty7        2992 Ssl+     0   0:01  \_ /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
+    756    3077     756     756 ?             -1 Sl       0   0:00  \_ lightdm --session-child 14 26
+   3077    3083    3083    3083 ?             -1 Ssl   1000   0:00      \_ /usr/bin/lxsession -s LXDE -e LXDE
+   3083    3169    3169    3169 ?             -1 Ss    1000   0:00          \_ /usr/bin/ssh-agent x-session-manager
+   3083    3185    3083    3083 ?             -1 S     1000   0:00          \_ openbox --config-file /home/wangli/.config/openbox/lxde-rc.xml
+   3083    3186    3083    3083 ?             -1 Sl    1000   0:00          \_ lxpolkit
+   3083    3189    3083    3083 ?             -1 Sl    1000   0:00          \_ lxpanel --profile LXDE
+   3083    3192    3083    3083 ?             -1 Sl    1000   0:00          \_ pcmanfm --desktop --profile LXDE
+   3192    3387    3083    3083 ?             -1 Sl    1000   0:00          |   \_ lxterminal
+   3387    3390    3390    3390 pts/2       3418 Ss    1000   0:00          |       \_ bash
+   3390    3417    3417    3390 pts/2       3418 S     1000   0:00          |           \_ unshare -u -i -p -m -n -U --fork /usr/bin/bash
+   3417    3418    3418    3390 pts/2       3418 S+    1000   0:00          |               \_ /usr/bin/bash
+</code></pre>
+<p>查询到其<code>PID</code>为3418，在另外的终端，执行<code>newuidmap</code>操作</p>
+<pre><code class="language-bash">[wangli@debian]:[/root][tty:1]$ id
+uid=1000(wangli) gid=1000(wangli) groups=1000(wangli),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),100(users),106(netdev),111(lpadmin),114(scanner)
+[wangli@debian]:[/root][tty:1]$
+[wangli@debian]:[/root][tty:1]$ newuidmap 3418 0 1000 1
+[wangli@debian]:[/root][tty:1]$
+</code></pre>
+<p>请注意，这里<code>loweruid</code>设置为了1000，这是因为<code>wangli</code>这个用户的<code>uid</code>为1000。</p>
+<p>此时再到<code>user namespace</code> 中查看<code>id</code> 信息。</p>
+<pre><code class="language-bash">(unshare) [nobody@debian]:[~][tty:2]$ id
+uid=0(root) gid=65534(nogroup) groups=65534(nogroup)
+(unshare) [nobody@debian]:[~][tty:2]$ 
+(unshare) [nobody@debian]:[~][tty:2]$ mount -t proc proc /proc
+(unshare) [nobody@debian]:[~][tty:2]$ 
+(unshare) [nobody@debian]:[~][tty:2]$ ps aux 
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.2   8008  4720 pts/2    S    04:55   0:00 /usr/bin/bash
+root           6  0.0  0.2  11084  4440 pts/2    R+   05:02   0:00 ps aux
+(unshare) [nobody@debian]:[~][tty:2]$ 
+</code></pre>
+<p>可以看到，其<code>uid</code> 已经被映射为了<code>root</code> ，此时，执行<code>mount</code>进行挂载也可以实现。</p>
+<h3 id="time-namespace">Time Namespace</h3>
+<p><code>Time Nmaespace</code> 允许进程在独立的时间上下文中运行。使用了<code>time namespace</code> 的进程可以拥有自己独立的时间视图并且和其他<code>time namespace</code> 和宿主机隔离开来。</p>
+<p>下面举一个最简单的例子：</p>
+<p>先查询系统启动的秒数</p>
+<pre><code class="language-bash">[wangli@debian]:[~][tty:2]$  cat /proc/uptime 
+11397.34 10829.19
+[wangli@debian]:[~][tty:2]$ 
+</code></pre>
+<p>使用<code>unshare</code>启动<code>time namespace</code> 命名空间，且运行<code>bash</code>进程。</p>
+<pre><code class="language-bash">[wangli@debian]:[~][tty:2]$ unshare -u -i -p -m -n -U -T --boottime -11397 --fork /usr/bin/bash
+(unshare) [nobody@debian]:[~][tty:2]$ uptime 
+ 05:36:09 up 0 min,  3 users,  load average: 0.00, 0.01, 0.00
+(unshare) [nobody@debian]:[~][tty:2]$ 
+(unshare) [nobody@debian]:[~][tty:2]$ 
+</code></pre>
+<p>在命名空间中，可以看到，其<code>uptime</code> 的启动时间已经为0了。</p>
+<p>在不退出<code>time namespace</code> 的情况下，开一个新的<code>shell</code> 来查看<code>uptime</code> 信息</p>
+<pre><code class="language-bash">[wangli@debian]:[~][tty:3]$ uptime 
+ 05:39:01 up  3:12,  3 users,  load average: 0.00, 0.01, 0.00
+[wangli@debian]:[~][tty:3]$ 
+</code></pre>
+<p>由此证明，<code>time namespace</code>对于系统时间的隔离性。</p>
+<h2 id="_4">总结</h2>
+<p>首先，在介绍<code>Linux Nmaespace</code>之前先进行了前置准备，包括 <code>unshare</code>工具的使用、修改提示符、命名空间文件描述符的基本说明等。</p>
+<p>而后就介绍了<code>Linux Namespace</code>基本信息，归纳如下：</p>
+<p><code>Linux Nmaespace</code> 是<code>Linux</code>内核一项强大的功能，是容器化的基石，至目前为止，一共有7种类别的<code>Namespace</code>，按照发布时间顺序，分别是：</p>
+<ul>
+<li><code>Mount Namespace</code> ：隔离文件系统。</li>
+<li><code>UTS Namespace</code>： 隔离主机名和域名。</li>
+<li><code>IPC Namespace</code>：隔离进程间通信。</li>
+<li><code>PID Namespace</code>：隔离进程ID。</li>
+<li><code>Network Namespace</code>：隔离网络。</li>
+<li><code>User Namespace</code>：隔离用户和组。</li>
+<li><code>Time Namespace</code>：隔离系统时钟。</li>
+</ul>
+<p>如上众多的<code>Namespace</code> 使得在同一台机器上运行多个“独立”的进程环境，称为可能，所以<code>Linux Namespace</code>才是容器化的基础。</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+  <h2 id="__comments">评论</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+  data-repo="wangli2025/giscus"
+  data-repo-id="R_kgDONJqP8Q"
+  data-category="General"
+  data-category-id="DIC_kwDONJqP8c4Cj7kO"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async>
+</script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 wangli2025.github.io
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/wangli2025" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="Subscribe to our RSS Feed" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<wl2026@hotmail.com>" target="_blank" rel="noopener" title="send me an email" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "header.autohide", "search.highlight", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
