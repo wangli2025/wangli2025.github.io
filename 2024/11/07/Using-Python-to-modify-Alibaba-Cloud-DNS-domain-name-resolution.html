@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="使用mkdocs创建一个简单的博客系统">
+        <meta name="description" content="使用python实现修改阿里云DNS域名解析">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/10/18/Create-a-simple-blog-system-using-mkdocs.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/07/Using-Python-to-modify-Alibaba-Cloud-DNS-domain-name-resolution.html">
       
       
+        <link rel="prev" href="../06/Create-a-simple-blog-system-using-mkdocs.html">
       
-        <link rel="next" href="../../11/04/The-oldest-line-editor-ed.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../feed_rss_created.xml">
@@ -25,7 +25,7 @@
     
     
       
-        <title>使用mkdocs创建一个简单的博客系统 - 王李的博客</title>
+        <title>使用python实现修改阿里云DNS域名解析 - 王李的博客</title>
       
     
     
@@ -79,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mkdocs" class="md-skip">
+        <a href="#pythondns" class="md-skip">
           跳转至
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              使用mkdocs创建一个简单的博客系统
+              使用python实现修改阿里云DNS域名解析
             
           </span>
         </div>
@@ -454,25 +454,6 @@
               </div>
             </div>
             
-              <div class="md-post__authors md-typeset">
-                
-                  <div class="md-profile md-post__profile">
-                    <span class="md-author md-author--long">
-                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
-                    </span>
-                    <span class="md-profile__description">
-                      <strong>
-                        
-                          王李
-                        
-                      </strong>
-                      <br>
-                      奋斗不止
-                    </span>
-                  </div>
-                
-              </div>
-            
             <ul class="md-post__meta md-nav__list">
               <li class="md-nav__item md-nav__item--section">
                 <div class="md-post__title">
@@ -485,7 +466,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-10-18 00:00:00" class="md-ellipsis">2024年10月18日</time>
+                        <time datetime="2024-11-07 00:00:00" class="md-ellipsis">2024年11月7日</time>
                       </div>
                     </li>
                     
@@ -496,7 +477,8 @@
                           <span class="md-ellipsis">
                             分类于
                             
-                              <a href="../../../category/%E9%9A%8F%E7%AC%94.html">随笔</a></span>
+                              <a href="../../../category/python.html">python</a>, 
+                              <a href="../../../category/%E9%98%BF%E9%87%8C%E4%BA%91.html">阿里云</a></span>
                         </div>
                       </li>
                     
@@ -507,7 +489,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 5 分钟阅读时间
+                              需要 2 分钟阅读时间
                             
                           </span>
                         </div>
@@ -537,119 +519,68 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      前言
+      安装依赖
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mkdocs_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装mkdocs
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="安装mkdocs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      创建新项目
+      部署
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      实时预览
+      使用
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="使用">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      生成网页文件
+      配置秘钥
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#blog" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置blog主题
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="配置blog主题">
+    <nav class="md-nav" aria-label="配置秘钥">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#mkdocs-material" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装mkdocs-material
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#blog_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建blog必要的目录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mkdocsyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置mkdocs.yml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      编写第一篇博客
+      使用配置文件
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="编写第一篇博客">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      新增第一篇博客
+      使用环境变量
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      博客元数据
+      脚本执行
     </span>
   </a>
   
@@ -658,91 +589,35 @@
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      实际效果展示
+      报错信息
     </span>
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#giscus" class="md-nav__link">
-    <span class="md-ellipsis">
-      新增giscus评论系统
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="新增giscus评论系统">
+    <nav class="md-nav" aria-label="报错信息">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#giscus_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装giscus
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscus_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      生成giscus配置文件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscusmkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      将giscus集成到mkdocs上
-    </span>
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      为博文开启评论框
+      秘钥配置出错
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rss" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启RSS
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="开启RSS">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      安装插件
+      找不到域名
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#rss_1" class="md-nav__link">
+  <a href="#ram" class="md-nav__link">
     <span class="md-ellipsis">
-      配置RSS
+      RAM权限配置出错
     </span>
   </a>
   
@@ -751,7 +626,7 @@
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      效果展示
+      解析记录为找到
     </span>
   </a>
   
@@ -761,13 +636,9 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      总结
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -783,426 +654,93 @@
         
 
 
-<h1 id="mkdocs">使用mkdocs创建一个简单的博客系统</h1>
-<h2 id="_1">前言</h2>
-<p>每个做技术的都希望有一个属于个人的小站点，不管是写一些随笔，还是记录技术总结，但是又不想弄得很复杂。这篇文章也许会帮到你。</p>
-<p>本博客使用的技术栈为<code>mkdocs</code> + <code>material</code> 主题，配合 <code>giscus</code> 评论系统搭配而成，听起来是不是感觉非常复杂，放心，只会涉及一些简单的命令。</p>
+<h1 id="pythondns">使用python实现修改阿里云DNS域名解析</h1>
+<p>当公网<code>IP</code>是浮动的时候，用一个域名去实时解析，才不会那么糟糕。</p>
 <!-- more -->
 
-<h2 id="mkdocs_1">安装<code>mkdocs</code></h2>
-<p>首先是安装<code>mkdocs</code> ，它是<code>python</code> 编写的一个基于<code>Markdown</code> 文档的静态站点生成器。</p>
-<p>使用<code>pip</code> 进行安装即可</p>
-<pre><code class="language-bash"># pip3 install mkdocs
+<h2 id="_1">安装依赖</h2>
+<pre><code class="language-bash">pip3 install requests
+pip3 install aliyun-python-sdk-core-v3
+pip3 install aliyun-python-sdk-alidns==2.0.6
 </code></pre>
-<blockquote>
-<p>首先需要安装<code>python</code> ： <a href="https://www.python.org/"> https://www.python.org/</a></p>
-</blockquote>
-<h3 id="_2">创建新项目</h3>
-<p>使用<code>mkdocs new new-project</code> ，即可创建一个空的<code>new-project</code> 项目 。</p>
-<pre><code class="language-bash"># mkdocs new new-project
-INFO    -  Creating project directory: new-project
-INFO    -  Writing config file: new-project/mkdocs.yml
-INFO    -  Writing initial docs: new-project/docs/index.md
-#
+<h2 id="_2">部署</h2>
+<pre><code class="language-bash">git clone https://github.com/wangli2025/aliyunDnsUpdateRecord.git
+cd aliyunDnsUpdateRecord
+chmod +x main.py
+sudo ln -s $(pwd)/main.py /usr/local/bin/aliyunDnsUpdateRecord
 </code></pre>
-<p>创建<code>new-project</code> 新项目后，目录格式如下：</p>
-<pre><code class="language-bash"># tree new-project/
-new-project/
-├── docs
-│   └── index.md
-└── mkdocs.yml
+<p>部署完成后，可以使用<code>aliyunDnsUpdateRecord --help</code> 查看帮助</p>
+<pre><code class="language-bash">$ aliyunDnsUpdateRecord --help
+usage: aliyunDnsUpdateRecord [-h] [-c CONFIGPATH] [-d DOMAINNAME] [-r RR] [-t TYPE] [-v VALUE]
 
-1 directory, 2 files
-#
+阿里云修改域名解析命令行工具
+
+options:
+  -h, --help            show this help message and exit
+  -c CONFIGPATH, --configPath CONFIGPATH
+                        配置文件
+  -d DOMAINNAME, --DomainName DOMAINNAME
+                        域名
+  -r RR, --RR RR        主机
+  -t TYPE, --Type TYPE  解析类型
+  -v VALUE, --Value VALUE
+                        解析值
+$ 
 </code></pre>
-<p>其中</p>
-<ul>
-<li><code>mkdocs.yml</code> ：主配置文件</li>
-<li><code>docs</code>：静态文档目录</li>
-</ul>
-<h3 id="_3">实时预览</h3>
-<p><code>mkdocs</code> 提供了内置<code>web</code> 服务器，以便在编写文档的时候可以实时浏览文档，在新项目目录下，使用如下命令即可启动该<code>web</code> 服务器：</p>
-<pre><code class="language-bash">$ cd new-project/
-$ mkdocs serve
-INFO    -  Building documentation...
-INFO    -  Cleaning site directory
-INFO    -  Documentation built in 0.14 seconds
-INFO    -  [15:14:07] Watching paths for changes: 'docs', 'mkdocs.yml'
-INFO    -  [15:14:07] Serving on http://127.0.0.1:8000/
+<h2 id="_3">使用</h2>
+<h3 id="_4">配置秘钥</h3>
+<h4 id="_5">使用配置文件</h4>
+<pre><code class="language-bash">cat .alidns.json
+{
+    &quot;AliDNS_AccessKey_ID&quot;: &quot;阿里云ID&quot;,
+    &quot;AliDNS_Access_Key_Secret&quot;: &quot;阿里云key&quot;,
+    &quot;AliDNS_region_id&quot;: &quot;区域&quot;
+}
 </code></pre>
-<p>此时若打开该网页，会看到默认的主页：</p>
-<p><img alt="image-20241018151523934" src="../../../blog/img/image-20241018151523934.png" /></p>
-<h3 id="_4">生成网页文件</h3>
-<p>若文档编写完后，想要部署到静态服务器上，可以将其生成静态站点，而后部署到静态服务器即可，例如：</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdocs build
-INFO    -  Cleaning site directory
-INFO    -  Building documentation to directory: /mnt/j/new-project/site
-INFO    -  Documentation built in 0.09 seconds
-#
+<h4 id="_6">使用环境变量</h4>
+<pre><code class="language-bash">export AliDNS_AccessKey_ID=阿里云ID
+export AliDNS_Access_Key_Secret=阿里云key
+export AliDNS_region_id=区域
 </code></pre>
-<p>此时会在当前目录下，生成<code>site</code> 目录，而该在目录下，是生成一系列的静态文件。</p>
-<pre><code class="language-bash"># tree site
-site
-├── 404.html
-├── css
-│   ├── base.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap.min.css.map
-│   ├── brands.min.css
-│   ├── fontawesome.min.css
-│   ├── solid.min.css
-│   └── v4-font-face.min.css
-├── img
-│   ├── favicon.ico
-│   └── grid.png
-├── index.html
-├── js
-│   ├── base.js
-│   ├── bootstrap.bundle.min.js
-│   ├── bootstrap.bundle.min.js.map
-│   └── darkmode.js
-├── search
-│   ├── lunr.js
-│   ├── main.js
-│   ├── search_index.json
-│   └── worker.js
-├── sitemap.xml
-├── sitemap.xml.gz
-└── webfonts
-    ├── fa-brands-400.ttf
-    ├── fa-brands-400.woff2
-    ├── fa-regular-400.ttf
-    ├── fa-regular-400.woff2
-    ├── fa-solid-900.ttf
-    ├── fa-solid-900.woff2
-    ├── fa-v4compatibility.ttf
-    └── fa-v4compatibility.woff2
-
-5 directories, 29 files
-#
+<p>秘钥读取顺序为：配置文件 --&gt; 环境变量。<strong>若读取到配置文件的内容了，则不会再获取环境变量配置。</strong></p>
+<h3 id="_7">脚本执行</h3>
+<p>配置秘钥后，使用如下命令即可更新解析。</p>
+<pre><code class="language-bash">$ aliyunDnsUpdateRecord -d example.com -r www -t A -v 127.0.0.10
 </code></pre>
-<h2 id="blog">配置blog主题</h2>
-<p><code>mkdocs-material</code> 是<code>mkdocs</code> 使用最多的第三方主题，其内置了<code>blog</code> 插件可供直接调用。</p>
-<h3 id="mkdocs-material">安装<code>mkdocs-material</code></h3>
-<p>使用<code>pip</code> 即可安装该主题</p>
-<pre><code class="language-bash"># pip3 install mkdocs-material
+<p>如果使用的是配置文件方式，且文件路径不是执行命令所在的<code>./.alidns.json</code>，则需要单独使用<code>-c</code> 单独指定。</p>
+<pre><code class="language-bash">$ cat c.json 
+{
+    &quot;AliDNS_AccessKey_ID&quot;: &quot;阿里云ID&quot;,
+    &quot;AliDNS_Access_Key_Secret&quot;: &quot;阿里云key&quot;,
+    &quot;AliDNS_region_id&quot;: &quot;区域&quot;
+}
+$ 
+$ aliyunDnsUpdateRecord -c c.json -d example.com -r www -t A -v 127.0.0.10
 </code></pre>
-<h3 id="blog_1">创建blog必要的目录</h3>
-<p>使用<code>mkdocs-material</code>的博客插件，需要新建<code>docs/posts</code> 目录，以便插件能够扫描该目录下所有的<code>Markdown</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p docs/posts/
-# tree docs/
-docs/
-├── index.md
-└── posts
-
-1 directory, 1 file
-#
+<p>如果正确修改，会输入如下内容：</p>
+<pre><code class="language-bash">解析修改成功 example.com www 127.0.0.10
 </code></pre>
-<h3 id="mkdocsyml">配置mkdocs.yml</h3>
-<p>该配置文件默认只有一项配置：<code>site_name</code>，也是唯一必须要有的一项。</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Docs
-#
+<p>如果想将域名解析修改为本机所在的公网地址，则不用添加<code>-v</code> 即可。</p>
+<pre><code class="language-bash">$ aliyunDnsUpdateRecord -d example.com -r www -t A
 </code></pre>
-<p>在此基础上，新增<code>theme</code> 和<code>plugins</code> 配置为<code>blog</code> 类型</p>
-<p>配置如下</p>
-<pre><code class="language-yaml"># cat mkdocs.yml
-site_name: My Blog
-
-theme:
-  name: material
-
-plugins:
-  - blog:
-      blog_dir: .
-#
+<p>如上默认会获取本机所在的公网地址，并且修改<code>example.com</code>的<code>www</code>主机上的<code>A</code>记录值。</p>
+<h3 id="_8">报错信息</h3>
+<h4 id="_9">秘钥配置出错</h4>
+<pre><code class="language-bash">ERROR:root:获取[域名]域名解析失败: HTTP Status: 404 Error:InvalidAccessKeyId.NotFound Specified access key is not found. 
 </code></pre>
-<p>上述内容是一个最基本的<code>blog</code> 配置，含义是<code>mkdocs</code> 使用了<code>mkdocs-material</code> 主题，并且启用了<code>blog</code>插件，<code>blog</code> 的根目录为当前目录。</p>
-<h2 id="_5">编写第一篇博客</h2>
-<blockquote>
-<p>关于更多的内容可以参考：<a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/"> mkdocs-material-setting-up-a-blog</a></p>
-</blockquote>
-<p>在开始之前，需要先清理掉<code>docs/index.md</code> 的内容，以免造成干扰。</p>
-<pre><code class="language-bash"># &gt; docs/index.md
+<p>请检查秘钥配置是否正确。</p>
+<h4 id="_10">找不到域名</h4>
+<pre><code class="language-bash">ERROR:root:获取[域名]域名解析失败: HTTP Status: 400 Error:InvalidDomainName.NoExist The specified domain name does not exist. Refresh the page and try again.
 </code></pre>
-<h3 id="_6">新增第一篇博客</h3>
-<p>在<code>/docs/posts/</code> 中可以编写第一篇文档了。</p>
-<pre><code class="language-bash"># cat &gt;&gt; docs/posts/hello_mkdocs.md &lt;&lt; EOF
-&gt; ---
-&gt; date: 2024-10-18
-&gt; categories:
-&gt;   - hello
-&gt; draft: false
-&gt; ---
-&gt;
-&gt; # Hello Mkdocs
-&gt;
-&gt; 这是编写的第一篇文档
-&gt;
-&gt; &lt;!-- more --&gt;
-&gt;
-&gt; 正文开始...
-&gt; EOF
-#
+<p>请检查域名配置是否正确。</p>
+<h4 id="ram">RAM权限配置出错</h4>
+<pre><code class="language-bash">ERROR:root:获取[域名]域名解析失败: HTTP Status: 403 Error:Forbidden.RAM User not authorized to operate on the specified resource, or this API doesn't support RAM. 
 </code></pre>
-<h3 id="_7">博客元数据</h3>
-<p>文档的内容如下：</p>
-<pre><code class="language-bash"># cat docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
-
-# Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
-
-正文开始...
-#
+<p>请检查RAM权限配置是否正确，如果没有配置更加细化的自定义策略，则应该添加 AliyunDNSFullAccess 系统策略。</p>
+<h4 id="_11">解析记录为找到</h4>
+<pre><code class="language-bash">未找到该域名解析记录，请检查是否被添加，[域名信息]
 </code></pre>
-<p>其中<code>---</code> 包含的是博客的元信息</p>
-<pre><code class="language-bash">---
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
-</code></pre>
-<ul>
-<li><code>date</code>： 文档的日期</li>
-<li><code>categories</code>： 文档的分类</li>
-<li><code>draft</code>： 是否是草稿</li>
-</ul>
-<p>接下来便是摘要</p>
-<pre><code class="language-bash"># Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
-</code></pre>
-<p><code>&lt;!-- more --&gt;</code> 标签之上的内容，便是摘要。</p>
-<h3 id="_8">实际效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p><img alt="image-20241018161642417" src="../../../blog/img/image-20241018161642417.png" /></p>
-<p><img alt="image-20241018161655040" src="../../../blog/img/image-20241018161655040.png" /></p>
-<h2 id="giscus">新增giscus评论系统</h2>
-<p><code>giscus</code> 是<code>github</code>的一个应用程序，由<code>GitHub Discussions</code>提供支持的评论系统。</p>
-<p>由于是基于<code>github</code> 的，所以需要先在网页上登录<code>github</code> 才能进行后续的操作。</p>
-<h3 id="giscus_1">安装giscus</h3>
-<p>使用浏览器打开<a href="https://github.com/apps/giscus">https://github.com/apps/giscus</a>打开该页面，选择<code>Install</code> 进行安装</p>
-<p><img alt="image-20241018162315511" src="../../../blog/img/image-20241018162315511.png" /></p>
-<p>点击安装后，会提示对于哪些存储库有权限，由于是给<code>mkdocs</code> 使用，所以给定一个预先创建好的仓库即可。</p>
-<p>最后点击<code>Install</code> 即可安装。</p>
-<h3 id="giscus_2">生成giscus配置文件</h3>
-<p>打开<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>即可配置该<code>giscus</code> ，输入仓库信息，选择映射关系，即可生成配置文件。</p>
-<h3 id="giscusmkdocs">将giscus集成到mkdocs上</h3>
-<p>覆盖原始<code>comments.html</code> 文件，新建<code>overrides/partials/comments.html</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p overrides/partials/
-#
-# touch  overrides/partials/comments.html
-#
-</code></pre>
-<p>编辑<code>comments.html</code> 文件，首先键入模版内容：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
-
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
-</code></pre>
-<p>接着将上述生成的<code>giscus</code> 配置文件，编辑到上述<code>comments.html</code>文件中的<code>&lt;!-- Insert generated snippet here --&gt;</code> 和<code>&lt;!-- Synchronize Giscus theme with palette --&gt;</code> 之间。</p>
-<p>完整的内容为：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
-
-&lt;!-- giscus.app/client.js 相关代码 --&gt;
-
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
-</code></pre>
-<p>同时，还需要修改<code>mkdocs.yml</code> 在<code>theme</code> 中新增<code>custom_dir</code> 参数，完整的配置参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
-
-plugins:
-  - blog:
-      blog_dir: .
-#
-</code></pre>
-<p><code>custom_dir</code> 参数的作用是覆盖原始模版文件。</p>
-<h3 id="_9">为博文开启评论框</h3>
-<p>还记得创建<code>hello_mkdocs.md</code> 的元信息吗？</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
-
-# Hello Mkdocs
-
-这是编写的第一篇文档
-#
-</code></pre>
-<p>仅需要在元信息上添加<code>comments: true</code> 即可，新增评论框。</p>
-<p>修改后的文件为：</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
-comments: true
----
-
-# Hello Mkdocs
-
-#
-</code></pre>
-<p>打开网页，便可以进行评论了。</p>
-<p><img alt="image-20241018171344553" src="../../../blog/img/image-20241018171344553.png" /></p>
-<h2 id="rss">开启RSS</h2>
-<p>关于<code>RSS</code>的文档，参考如下： <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss">https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss</a></p>
-<p><code>RSS</code> 对于博客而言，非常重要，可以方便用户订阅网站<code>RSS feed</code>，接下来便介绍如何开启<code>RSS</code> 。</p>
-<h3 id="_10">安装插件</h3>
-<pre><code class="language-bash"># pip3 install mkdocs-rss-plugin
-</code></pre>
-<h3 id="rss_1">配置RSS</h3>
-<p>在<code>mkdocs.yml</code>中新增关于<code>RSS</code> 信息的参数。</p>
-<pre><code class="language-bash">plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
-</code></pre>
-<p>其参数的作用为开启<code>rss</code> 。</p>
-<ul>
-<li><code>match_path:</code>： 匹配 指定 目录下的文档。</li>
-<li><code>categories</code> ： <code>feed</code> 类别。</li>
-<li><code>use_git</code>:  禁用<code>git</code> 。</li>
-</ul>
-<p>其完整参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
-
-plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
-#
-</code></pre>
-<h3 id="_11">效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p>在浏览器中输入<a href="http://127.0.0.1:8001/feed_rss_created.xml">127.0.0.1:8001/feed_rss_created.xml</a>便可以查看该站点的<code>RSS</code>信息了。</p>
-<p><img alt="image-20241018174359942" src="../../../blog/img/image-20241018174359942.png" /></p>
-<p>如上，则证明该<code>RSS</code> 配置成功。</p>
-<h2 id="_12">总结</h2>
-<p>一个最最最简单的使用<code>mkdocs</code> 创建博客系统的案例就结束了，简单的总结一下：</p>
-<p>首先<code>mkdocs</code> 是基于<code>python</code> 的第三方软件，所以需要依赖其<code>python</code> 环境，所以需要使用该工具，得先安装<code>python</code>。</p>
-<p><a href="https://www.python.org/">https://www.python.org/</a></p>
-<p>其次使用的博客系统是源于<code>mkdocs</code> 的第三方主题<code>material</code>，也是需要额外安装的。</p>
-<p><a href="https://github.com/squidfunk/mkdocs-material">https://github.com/squidfunk/mkdocs-material</a></p>
-<p>接着便是导入了<code>Giscus</code>评论系统，它是<code>github</code>中的一个应用软件，需要先到<code>github</code>上进行安装，而后到<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>进行配置，获取到相关的配置文件，最后通过覆盖<code>mkdocs</code> 原始文件的方式集成到<code>mkdocs</code> 中。需要注意的是，覆盖<code>mkdocs</code> 需要修改<code>mkdocs.yml</code>配置文件，在<code>theme</code> 中引入<code>custom_dir</code> 相关配置。</p>
-<p>最后便是集成了<code>RSS</code>，它也是一个第三方插件，需要进行额外安装，安装完毕后，需要在<code>plugins</code> 中进行配置<code>RSS</code> 相关信息。</p>
+<p>未找到解析记录，请检查是否已经被添加了</p>
 
 
 

@@ -6,17 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="古老的行编辑器：ed">
+        <meta name="description" content="了解POSIX 基本正则表达式">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/11/04/The-oldest-line-editor-ed.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/06/Create-a-simple-blog-system-using-mkdocs.html">
       
       
-        <link rel="prev" href="../../10/18/Create-a-simple-blog-system-using-mkdocs.html">
+        <link rel="prev" href="../05/Linux-Namespace.html">
       
       
-        <link rel="next" href="../05/Linux-Namespace.html">
+        <link rel="next" href="../07/Using-Python-to-modify-Alibaba-Cloud-DNS-domain-name-resolution.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../feed_rss_created.xml">
@@ -27,7 +27,7 @@
     
     
       
-        <title>古老的行编辑器：ed - 王李的博客</title>
+        <title>了解POSIX基本正则表达式 - 王李的博客</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ed" class="md-skip">
+        <a href="#posix" class="md-skip">
           跳转至
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              古老的行编辑器：ed
+              了解POSIX基本正则表达式
             
           </span>
         </div>
@@ -456,25 +456,6 @@
               </div>
             </div>
             
-              <div class="md-post__authors md-typeset">
-                
-                  <div class="md-profile md-post__profile">
-                    <span class="md-author md-author--long">
-                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
-                    </span>
-                    <span class="md-profile__description">
-                      <strong>
-                        
-                          王李
-                        
-                      </strong>
-                      <br>
-                      奋斗不止
-                    </span>
-                  </div>
-                
-              </div>
-            
             <ul class="md-post__meta md-nav__list">
               <li class="md-nav__item md-nav__item--section">
                 <div class="md-post__title">
@@ -487,7 +468,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-11-04 00:00:00" class="md-ellipsis">2024年11月4日</time>
+                        <time datetime="2024-11-06 00:00:00" class="md-ellipsis">2024年11月6日</time>
                       </div>
                     </li>
                     
@@ -509,7 +490,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 6 分钟阅读时间
+                              需要 3 分钟阅读时间
                             
                           </span>
                         </div>
@@ -537,28 +518,19 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#ed_1" class="md-nav__link">
+  <a href="#posix_1" class="md-nav__link">
     <span class="md-ellipsis">
-      什么是ed
+      什么是POSIX基本正则表达式
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ed_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装ed
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="安装ed">
+    <nav class="md-nav" aria-label="什么是POSIX基本正则表达式">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#ed_3" class="md-nav__link">
+  <a href="#bre" class="md-nav__link">
     <span class="md-ellipsis">
-      下载ed
+      BRE特点
     </span>
   </a>
   
@@ -567,7 +539,7 @@
           <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      编译安装
+      支持的元字符
     </span>
   </a>
   
@@ -576,31 +548,7 @@
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      查看版本
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ed_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      ed的基本使用
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ed的基本使用">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#ed_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      启动ed编辑器
+      支持的转义字符
     </span>
   </a>
   
@@ -609,7 +557,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      数据打印和遍历
+      支持的字符集
     </span>
   </a>
   
@@ -618,7 +566,7 @@
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      行定位
+      支持的字符类
     </span>
   </a>
   
@@ -627,85 +575,113 @@
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      追加文本
+      支持的分组操作
     </span>
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      删除行
+      元字符操作
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="元字符操作">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      文件的退出
+      . 可以匹配任意字符
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ed_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      ed的高级操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="ed的高级操作">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      数据准备
+      * 匹配任意个前面的字符
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ed_7" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      ed查询行数据
+      ^匹配起始行
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ed_8" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      ed 编辑行数据
+      $匹配行结尾
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ed-shell" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      在ed 中执行shell 命令
+      匹配上一个字符出现的次数
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#ed_9" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      ed 脚本化
+      匹配上一个出现的次数范围
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      转义特殊字符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符集操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符集操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配范围内的任意字符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配字符范围
     </span>
   </a>
   
@@ -715,9 +691,98 @@
     </nav>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符类操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符类操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配数字字符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配小写字母
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配大写字母
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配空白字符
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      分组操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分组操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      捕获分组
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      分组引用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_25" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -737,637 +802,349 @@
         
 
 
-<h1 id="ed">古老的行编辑器：ed</h1>
-<h3 id="ed_1">什么是ed</h3>
-<p><code>ed</code> 是<code>Unix</code>系统最早的<strong>行</strong>编辑器之一，是一个面向<strong>行</strong>的文本编辑器，用于对文件进行增喊改查操作。后续熟知的<code>vi</code> 、<code>awk</code> 、<code>sed</code> 等都借鉴了<code>ed</code> 编辑器的设计，比如，<code>vi</code> 的底层是行编辑器<code>ex</code> （<code>ed</code> 特征的扩展集）。</p>
-<p>好在<code>Gnu</code>项目将其移植到了<code>Linux</code> 中，我们才得以在<code>Linux</code> 中使用它，地址为：  <a href="https://www.gnu.org/software/ed/">https://www.gnu.org/software/ed/</a>。</p>
+<h1 id="posix">了解POSIX基本正则表达式</h1>
+<p><code>Linux</code>最常见的表达式有三种：</p>
+<ul>
+<li>
+<p><code>POSIX</code>基本正则表达式；</p>
+</li>
+<li>
+<p><code>POSIX</code>扩展正则表达式 ；</p>
+</li>
+<li>
+<p><code>Perl</code> 兼容正则表达式。</p>
+</li>
+</ul>
+<p>本文将简单介绍<code>POSIX</code>基本正则表达式。</p>
 <!-- more -->
 
-<blockquote>
-<p>当前文档使用的<code>ed</code>版本为： <code>GNU ed 1.20</code>  </p>
-</blockquote>
-<h3 id="ed_2">安装ed</h3>
-<p>目前最新的版本是<code>1.20</code> 版本</p>
-<blockquote>
-<p>当前时间：2024年10月31日</p>
-</blockquote>
-<h4 id="ed_3">下载<code>ed</code></h4>
-<pre><code class="language-bash"># wget https://ftp.gnu.org/gnu/ed/ed-1.20.tar.lz
-</code></pre>
-<p>解压</p>
-<pre><code class="language-bash"># lzip -d ed-1.20.tar.lz
-# tar xf ed-1.20.tar
-</code></pre>
-<h4 id="_1">编译安装</h4>
-<pre><code class="language-bash"># cd ed-1.20
-# ./configure
-# make
-# make install
-</code></pre>
-<h4 id="_2">查看版本</h4>
-<pre><code class="language-bash"># ed --version
-</code></pre>
-<p>若安装完成，会输出以下信息</p>
-<pre><code class="language-bash">GNU ed 1.20
-Copyright (C) 1994 Andrew L. Moore.
-Copyright (C) 2024 Antonio Diaz Diaz.
-License GPLv2+: GNU GPL version 2 or later &lt;http://gnu.org/licenses/gpl.html&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-</code></pre>
-<h3 id="ed_4">ed的基本使用</h3>
-<h4 id="ed_5"><strong>启动ed编辑器</strong></h4>
-<p>使用<code>ed filename</code>，该命令会尝试打开<code>filename</code> 文件，若当该文件不存在时，则会报错<code>filename: No such file or directory</code>，<code>ed</code>则会进入到编辑模式，直到手动保存，该文件才会被创建，并且写入内容。</p>
-<p>文件存在：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-q
-#
-</code></pre>
-<p>当文件存在的时候，使用<code>ed</code>即可打开该文件，并且输出字符数，输入q退出。</p>
-<p>文件不存在：</p>
-<pre><code class="language-bash"># ls -lhta filename_2
-ls: cannot access filename_2: No such file or directory
-#
-# ed filename_2
-filename_2: No such file or directory
-a
-hello filename_2
-.
-w
-17
-q
-# cat filename_2
-hello filename_2
-#
-</code></pre>
-<p>当文件不存在的时候，使用<code>ed</code> 尝试打开该文件的时候，会报错<code>No such file or directory</code> ，但是还是会进入到编辑模式，此时若输入<code>a</code>命令，接着输入需要追加的行<code>hello filename_2</code> ，输入<code>.</code> 进行结束输入，命令<code>w</code> 则进行保存，保存完成后，会输出字符数，最后输入<code>q</code> 进行退出<code>ed</code> 编辑器。</p>
-<h4 id="_3"><strong>数据打印和遍历</strong></h4>
-<p>进入<code>ed</code> 编辑器打开文件后，可以通过如下命令打印和定位行信息。</p>
-<p>数据准备</p>
-<pre><code class="language-bash"># echo -e '123\n456\n789' &gt;&gt; filename_1
-#
-# cat filename_1
-hello world
+<h2 id="posix_1">什么是<code>POSIX</code>基本正则表达式</h2>
+<p><code>POSIX</code>基本正则表达式，也称<code>BRE</code> (Basic Regular Expression) ，是<code>POSIX</code>标准中的一种正则表达式，在<code>Linux</code> 中，<code>grep</code>、<code>sed</code>、<code>awk</code>等工具都支持该基本正则表达式。</p>
+<h3 id="bre">BRE特点</h3>
+<p>基本正则表达式语法相对而言较为简单，适用于大多数基本的文本匹配。</p>
+<h3 id="_1">支持的元字符</h3>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>匹配除换行符以外的任意单个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配任意个（包括0个）前面的字符</td>
+</tr>
+<tr>
+<td>[...]</td>
+<td>匹配方括号中的字符集中的任何一个</td>
+</tr>
+<tr>
+<td>[^...]</td>
+<td>如果方括号中第一个字符是<code>^</code>，则表示否定匹配</td>
+</tr>
+<tr>
+<td>^</td>
+<td>如果作为正则第一个字符，则表示匹配行起始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>如果作为正则最后一个字符，则表示匹配行的结尾</td>
+</tr>
+<tr>
+<td>\{n\}</td>
+<td>将匹配n次出现</td>
+</tr>
+<tr>
+<td>\{n,m\}</td>
+<td>匹配它前一个范围内单个字符出现的次数，匹配n次m次之前的任意次数</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义特殊字符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">支持的转义字符</h3>
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\.</td>
+<td>匹配字面意思的点<code>.</code></td>
+</tr>
+<tr>
+<td>\\</td>
+<td>匹配字面意思的反斜杠<code>\</code></td>
+</tr>
+<tr>
+<td>\*</td>
+<td>匹配字面意思的星号<code>*</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">支持的字符集</h3>
+<table>
+<thead>
+<tr>
+<th>字符集</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[abc]</td>
+<td>匹配<code>a</code>、<code>b</code>、<code>c</code> 中的任意字符</td>
+</tr>
+<tr>
+<td>[0-9]</td>
+<td>匹配任意数字，同理<code>[a-z]</code>匹配任意小写字符、<code>[A-Z]</code>匹配任意大写字符</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>匹配不包含<code>a</code>、<code>b</code>、<code>c</code> 的任意字符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">支持的字符类</h3>
+<table>
+<thead>
+<tr>
+<th>字符类</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[:alnum:]</td>
+<td>可打印的字符</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>字母字符</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td>空格和制表符</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td>控制字符</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>数字字符</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td>可打印的和可见的字符</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>小写字符</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td>可打印的字符</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td>标点符号字符</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td>空白字符</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td>大写字符</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td>十六进制数字</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">支持的分组操作</h3>
+<table>
+<thead>
+<tr>
+<th>分组</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(\)</td>
+<td>捕获字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">元字符操作</h2>
+<h4 id="_7"><code>.</code> 可以匹配任意字符</h4>
+<pre><code class="language-bash">root@debian:~# echo '123' | grep '1.3'
 123
-456
-789
-#
+root@debian:~#
 </code></pre>
-<p>使用<code>p</code> 显示当前的行：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-p
-789
-
+<p><code>.</code> 可以匹配任何字符，但是不包括换行符<code>\n</code>。</p>
+<p>但是无法匹配换行符</p>
+<pre><code class="language-bash">root@debian:~# echo -e '1\n2\n3' &gt; hello
+root@debian:~#
+root@debian:~# cat hello -A
+1$
+2$
+3$
+root@debian:~#
+root@debian:~# grep '1.2' hello
+root@debian:~#
 </code></pre>
-<p>使用<code>ed</code> 默认打开文件后，会进入到最后一行。使用<code>p</code> 命令可以显示当前行。</p>
-<p>使用<code>,p</code> 打印所有行：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-,p
-hello world
-123
-456
-789
-
+<h4 id="_8"><code>*</code> 匹配任意个前面的字符</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abbbbbbbbbd&quot; | grep 'a*d'
+abbbbbbbbbd
+root@debian:~#
 </code></pre>
-<p>使用<code>ed</code> 默认打开文件后，使用<code>,p</code> 会打印所有行。</p>
-<p>若想打印固定的行的话，可以使用<code>{startN},{endN}p</code> 命令，这才是<code>,p</code> 的完整写法，如，打印2到4行，则命令如下：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-2,4p
-123
-456
-789
-
-</code></pre>
-<p>使用<code>=</code> 打印当前文件的行号</p>
-<pre><code class="language-bash"># ed filename_1
-24
-=
-4
-
-</code></pre>
-<p>除此之外，还能使用<code>n</code> 来打印所在行的行号和内容</p>
-<pre><code class="language-bash"># ed filename_1
-24
-n
-4       789
-
-</code></pre>
-<p>若想输出固定行，和<code>p</code> 命令类似，如，打印2到4行的内容，包括行号，则命令如下：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-2,4n
-2       123
-3       456
-4       789
-
-</code></pre>
-<h4 id="_4">行定位</h4>
-<p><code>ed</code> 打开文件后，默认会定位到最后一行，如下命令，可以快速进行行定位。</p>
-<p>准备数据：</p>
-<pre><code class="language-bash"># echo -e &quot;a\nb\nc\nd\ne\nf&quot;  &gt; filename_1
-</code></pre>
-<p>在<code>ed</code> 中，输入<code>1</code> 可以定位到第一行，<code>$</code> 则定位到最后一行。</p>
-<pre><code class="language-bash"># ed filename_1
-12
+<p><code>*</code> 匹配上面任意字符<code>0</code> 次或者无数次。</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;1&quot; | grep ' *'
 1
+root@debian:~#
+</code></pre>
+<p>上面案例之所以能够被匹配到是因为</p>
+<p>可以和<code>*</code>一起使用，表示匹配任意字符</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep 'a.*e'
+abced
+root@debian:~#
+</code></pre>
+<h4 id="_9"><code>^</code>匹配起始行</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep '^a'
+abced
+root@debian:~#
+root@debian:~# echo &quot;baced&quot; | grep '^a'
+root@debian:~#
+</code></pre>
+<h4 id="_10"><code>$</code>匹配行结尾</h4>
+<pre><code class="language-bash">root@debian:~# echo 'abced' | grep 'd$'
+abced
+root@debian:~# echo 'abcede' | grep 'd$'
+root@debian:~#
+</code></pre>
+<p>可以和<code>^</code> 搭配使用，表示匹配空行</p>
+<pre><code class="language-bash">root@debian:~# echo '' | grep '^$'
+
+root@debian:~#
+</code></pre>
+<h4 id="_11">匹配上一个字符出现的次数</h4>
+<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab\{3\}c'
+abbbc
+root@debian:~#
+</code></pre>
+<p>注意，在基本正则表达式中，<code>{}</code> 必须使用<code>\</code> 进行转义，如直接使用时不行的。</p>
+<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab{3}c'
+root@debian:~#
+</code></pre>
+<p>如果不加<code>\</code>进行转义，是直接匹配<code>{}</code>字符，而非正则表达式。</p>
+<pre><code class="language-bash">root@debian:~# echo 'ab{3}c' | grep 'ab{3}c'
+ab{3}c
+root@debian:~#
+</code></pre>
+<h4 id="_12">匹配上一个出现的次数范围</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{3,5\}c'
+abbbc
+root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{4,5\}c'
+root@debian:~#
+</code></pre>
+<h4 id="_13">转义特殊字符</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;a\.e&quot; | grep 'a\\.e'
+a\.e
+root@debian:~#
+</code></pre>
+<p><code>.</code> 、<code>*</code> 、<code>^</code>、<code>$</code>都需要进行转义。</p>
+<h3 id="_14">字符集操作</h3>
+<h4 id="_15">匹配范围内的任意字符</h4>
+<pre><code class="language-bash">root@debian:~# echo 'a2c' | grep 'a[123]c'
+a2c
+root@debian:~#
+</code></pre>
+<h4 id="_16">匹配字符范围</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;3&quot; | grep '[1-9]'
+3
+root@debian:~#
+root@debian:~# echo &quot;a&quot; | grep '[a-z]'
 a
-$
-f
-
-</code></pre>
-<p>不仅如此，还能基于当前行进行快速定位，比如定位到当前行的后2行。</p>
-<pre><code class="language-bash"># ed filename_1
-12
-1
+root@debian:~#
+root@debian:~# echo &quot;a&quot; | grep '[a-z]'
 a
-+2
-c
+root@debian:~#
+root@debian:~# echo &quot;Z&quot; | grep '[a-Z]'
+Z
+root@debian:~#
+</code></pre>
+<h3 id="_17">字符类操作</h3>
+<h4 id="_18">匹配数字字符</h4>
+<pre><code class="language-bash">root@debian:~# echo '13579' | grep '[[:digit:]]'
+13579
+root@debian:~#
+</code></pre>
+<h4 id="_19">匹配小写字母</h4>
+<pre><code class="language-bash">root@debian:~# echo 'abcde' | grep '[[:lower:]]'
+abcde
+root@debian:~#
+</code></pre>
+<h4 id="_20">匹配大写字母</h4>
+<pre><code class="language-bash">root@debian:~# echo 'ABCDE' | grep '[[:upper:]]'
+ABCDE
+root@debian:~#
+</code></pre>
+<h4 id="_21">匹配空白字符</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;   &quot; | grep '[[:space:]]'
 
+root@debian:~#
 </code></pre>
-<p>定位到当前行的前2行。</p>
-<pre><code class="language-bash"># ed filename_1
-12
-$
-f
--2
-d
-
+<h3 id="_22">分组操作</h3>
+<p>分组是指使用小括号将表达式括起来，创建子模式，该子模式会被保存，方便之后的引用和处理，同样的，<code>()</code> 也需要使用<code>\</code>转义，否则会被当成普通字符处理。</p>
+<h4 id="_23">捕获分组</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abcabcabcabc&quot; | grep '\(abc\)\+'
+abcabcabcabc
+root@debian:~#
 </code></pre>
-<h4 id="_5"><strong>追加文本</strong></h4>
-<p>在<code>ed</code> 中，有2个命令，分别是<code>a</code> 和<code>i</code> ，其含义如下：</p>
-<ul>
-<li><code>a</code>：在当前行后追加行</li>
-<li><code>i</code> ：在当前行前插入行</li>
-</ul>
-<p>使用<code>a</code> 进行追加行</p>
-<pre><code class="language-bash"># ed filename_1
-24
-a
-a append to data
-.
-w
-41
-q
-#
+<h4 id="_24">分组引用</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\([[:digit:]]\{3\}\)-\([[:digit:]]\{4\}\)-\([[:digit:]]\{4\}\)/+86 \1 \2 \3/'
++86 180 1234 1234
+root@debian:~#
 </code></pre>
-<p>在<code>ed</code> 中，使用<code>a</code> 命令后会进入到插入模式，可以输入多行的内容，输入完成后，输入<code>.</code> 进行结束输入，<code>w</code> 会保存内容到磁盘，<code>q</code>则退出<code>ed</code> 编辑器。</p>
-<p>查看文件内容</p>
-<pre><code class="language-bash"># cat filename_1
-hello world
-123
-456
-789
-a append to data
-#
+<p><code>grep</code> 主要是用以匹配和查找，所以它不具备捕获分组和引用分组的功能，所以这里使用<code>sed</code> 进行替代，若是太难了，可以看如下案例：</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/180/182/'
+182-1234-1234
+root@debian:~#
 </code></pre>
-<p>使用<code>i</code> 插入行</p>
-<pre><code class="language-bash"># ed filename_1
-41
-1
-hello world
-n
-1       hello world
-i
-hello insert data
-ooooooo
-.
-w
-67
-q
-#
+<p>如上是一个简单的替换，<code>sed 's/old/new/'</code>。</p>
+<p>如果引用了分组</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\(180\)-\(1234\)-\(1234\)/\1 \2 \3/'
+180 1234 1234
+root@debian:~#
 </code></pre>
-<p>上述命令中，在<code>ed</code> 打开<code>filename_1</code> 后，使用<code>1</code> 先切到到第1行，并且使用<code>n</code> 输出当前行的行号和内容，随后输入<code>i</code> 指令，插入了2行内容，输入<code>.</code>进行结束输入，随后保存到磁盘，接着退出。</p>
-<p>查看文件</p>
-<pre><code class="language-bash"># cat filename_1
-hello insert data
-ooooooo
-hello world
-123
-456
-789
-a append to data
-#
+<p>这里将<code>180</code>捕获为分组1、<code>1234</code>捕获为分组2、最后的<code>1234</code>捕获为分组3，在进行替换的时候，可以直接使用<code>\1</code>、<code>\2</code>等直接引用分组内容。分组最多为1到9共9个。</p>
+<h2 id="_25">总结</h2>
+<p>基本正则表达相对而言，比较简单，需要注意的是，在基本正则表达式中，大括号<code>{}</code> 和小括号<code>()</code>都必须要使用<code>\</code> 进行转义，否则将表示字符本身。而<code>.</code> 、<code>*</code>、<code>^</code>、<code>$</code> 等，默认就是正则，如果需要使用其字符本身，则需要使用<code>\</code>进行转义。</p>
+<p>哦，对了，在<code>shell</code>中，我们查询文件，可能会用到类似的写法：</p>
+<pre><code class="language-bash">root@debian:~# ls -d ns[123]
+ns1  ns2
+root@debian:~# ls -d *
+BRE  Desktop  Documents  Downloads  hello  Music  ns1  ns2  Pictures  Public  Templates  Videos
+root@debian:~# ls -d .*
+.bash_history  .cache   .dmrc     .local    .ssh                                 .viminfo    .Xauthority       .xsession-errors.old
+.bashrc        .config  .lesshst  .profile  .vboxclient-vmsvga-session-tty7.pid  .wget-hsts  .xsession-errors
+root@debian:~#
 </code></pre>
-<p>需要插入的内容，已经被插入到最前面了。</p>
-<p>如果在追加内容中，恰好需要在单行输入<code>.</code> ，该<code>.</code> 将作为字符，而非结束标志符，应该在该<code>.</code> 后再追加一个空格，例如<code>.</code> ，实际操作如下：</p>
-<pre><code class="language-bash"># &gt; filename_1
-#
-# ed filename_1
-0
-i
-insert into data
-. 
-123456
-.
-w
-27
-q
-</code></pre>
-<p>请注意，在<code>insert...</code> 和<code>123456</code> 之间的<code>.</code> ，是<code>.</code>  + 空格，否则会被当成是结束符。</p>
-<p>使用<code>cat -A</code> 来查询一下：</p>
-<pre><code class="language-bash"># cat -A filename_1
-insert into data$
-. $
-123456$
-#
-</code></pre>
-<h4 id="_6">删除行</h4>
-<p>在<code>ed</code> 中，使用<code>d</code> 可以进行删除行操作，首先进行数据准备：</p>
-<pre><code class="language-bash"># echo -e &quot;a\nb\nc\nd\ne\nf&quot;  &gt; filename_1
-# cat filename_1
-a
-b
-c
-d
-e
-f
-#
-</code></pre>
-<p>使用<code>d</code> 可以删除当前行：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-d
-,p
-a
-b
-c
-d
-e
-
-</code></pre>
-<p>进入<code>ed</code> 后，默认会定位到最后一行，使用<code>d</code> 指令，将删除最后一行，即<code>f</code> 被删除了。</p>
-<p>不仅如此，还能指定行进行删除，比如2到4行进行删除：</p>
-<pre><code class="language-bash"># ed filename_1
-10
-2,4d
-,p
-a
-e
-
-</code></pre>
-<p>进入<code>ed</code> 后，使用<code>2,4d</code> 指令，将删除2到4行，即<code>b</code> 、<code>c</code> 被删除了。</p>
-<p>如果想删除全部行，则直接执行<code>,d</code> 即可删除所有行：</p>
-<pre><code class="language-bash"># ed filename_1
-4
-,d
-
-</code></pre>
-<h4 id="_7">文件的退出</h4>
-<p>使用<code>q</code> 指令会尝试退出<code>ed</code> 编辑器，当内存数据没有写入到磁盘的时候，会报错<code>?</code> 。</p>
-<pre><code class="language-bash"># ed filename_1
-0
-a
-123
-.
-q
-?
-
-</code></pre>
-<p>此时若想退出<code>ed</code> 编辑器，可以使用<code>Q</code> 指令进行强制退出，内存的数据将会丢弃，不会写入到磁盘中。</p>
-<pre><code class="language-bash"># cat filename_1
-# ed filename_1
-0
-a
-123
-.
-q
-?
-Q
-# cat filename_1
-#
-</code></pre>
-<p>若想保存后退出<code>ed</code> 编辑器，可以使用<code>w</code> 先进行写入到磁盘，而后使用<code>q</code> 进行退出。</p>
-<pre><code class="language-bash"># ed filename_1
-0
-a
-123
-.
-w
-4
-q
-# cat filename_1
-123
-#
-</code></pre>
-<h3 id="ed_6">ed的高级操作</h3>
-<h4 id="_8">数据准备</h4>
-<p>在开始之前，需要准备一份数据</p>
-<pre><code class="language-bash"># cat &gt;&gt; test.txt &lt;&lt; EOF
-name    age     sex
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-EOF
-#
-</code></pre>
-<p>查看数据</p>
-<pre><code class="language-bash"># cat test.txt
-name    age     sex
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-#
-</code></pre>
-<p>查看数据基本信息</p>
-<pre><code class="language-bash"># wc test.txt
- 11  33 200 test.txt
-#
-</code></pre>
-<p>其中<code>test.txt</code> 的信息为：</p>
-<ul>
-<li>11行</li>
-<li>33个单词</li>
-<li>200个字符</li>
-</ul>
-<h4 id="ed_7">ed查询行数据</h4>
-<p><strong>准备工作</strong></p>
-<p>使用<code>ed</code> 跟上文件名，即可打开文件。</p>
-<blockquote>
-<p>该操作是将文件的内容放到内存缓冲区中，当编辑完成后，需要手动保存，此时才会将内存中的数据写入磁盘中。</p>
-</blockquote>
-<pre><code class="language-bash"># ed test.txt
-200
-
-</code></pre>
-<p>默认使用<code>ed</code> 打开文件后，会输出<strong>文件字符数</strong>，并且将位置定位到最后一行。</p>
-<p><strong>简单查询</strong></p>
-<p>此时使用<code>p</code> 会打印当前行的内容，即最后一行。</p>
-<pre><code class="language-bash"># ed test.txt
-200
-p
-Julia   24      F
-
-</code></pre>
-<p>若想查询所有的内容，可<code>,p</code> 即可。</p>
-<pre><code class="language-bash">,p
-name    age     sex
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-
-</code></pre>
-<p><strong>复杂搜索</strong></p>
-<p>若想查询符合规范的行，比如<code>sex</code> 是<code>M</code> 的行。</p>
-<pre><code class="language-bash">g/M/p
-Bob     32      M
-Charlie 25      M
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Isaac   33      M
-
-
-</code></pre>
-<p>其中<code>g</code> 表示全局、<code>M</code> 表示搜索关键字为<code>M</code>，<code>p</code> 是打印匹配行，每个指令由<code>/</code> 分割开来，若不包含<code>g</code> 则默认只匹配一行。</p>
-<pre><code class="language-bash">/M/p
-Bob     32      M
-
-
-</code></pre>
-<p>若想更为精确的匹配，如 1-8行中出现<code>M</code>的行信息。</p>
-<pre><code class="language-bash">1,8g/M/p
-Bob     32      M
-Charlie 25      M
-Ethan   30      M
-Fiona   27      M
-George  31      M
-
-
-</code></pre>
-<p><strong>利用正则表达式搜索</strong></p>
-<p>除此之外，<code>ed</code> 还支持正则表达式，比如查询<code>name</code> 以<code>e</code> 结尾的行信息。</p>
-<pre><code class="language-bash">g/.*e\s/p
-name    age     sex
-Alice   28      F
-Charlie 25      M
-George  31      M
-
-
-</code></pre>
-<p>其正则表达式<code>.*e\s</code> 的意思是匹配以<code>e</code> 紧接着空格的行。</p>
-<h4 id="ed_8">ed 编辑行数据</h4>
-<p><strong>数据准备</strong></p>
-<p>要编辑行内容，首先要先将文件加载到内存缓冲区中，即使用<code>ed</code> 打开文件。</p>
-<pre><code class="language-bash"># ed test.txt
-200
-
-
-</code></pre>
-<p><strong>进行简单的替换</strong></p>
-<p>现在将第一行的<code>a</code> 替换为<code>A</code> </p>
-<pre><code class="language-bash">1
-name    age     sex
-s/a/A/
-1
-nAme    age     sex
-
-
-</code></pre>
-<p>首先，需要切换到第一行，然后使用 <code>s/a/A/</code> 将小写的 <code>a</code> 替换为大写的 <code>A</code>。不过，查看后发现该命令只修改了第一个出现的 <code>a</code>，而后续的 <code>a</code> 并未替换。</p>
-<p>这是因为在默认情况下，<code>ed</code> 只会修改首次匹配到的内容。若想替换整行中的所有匹配项，需要在命令后添加参数 <code>g</code>，表示全局替换。</p>
-<p>接下来，将第一行中的 <code>e</code> 替换为 <code>E</code>，并对所有匹配项进行替换。</p>
-<pre><code class="language-bash">1
-nAme    age     sex
-s/e/E/g
-1
-nAmE    agE     sEx
-
-
-</code></pre>
-<p>从上面的结果可以看出，替换已成功完成。</p>
-<p><strong>进行全局替换</strong></p>
-<p>如果想要将文本中所有的 <code>e</code> 替换为 <code>E</code>，则需要使用以下参数。</p>
-<pre><code class="language-bash">g/.*/s/e/E/g
-,p
-nAmE    agE     sEx
-AlicE   28      F
-Bob     32      M
-CharliE 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-GEorgE  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-
-
-</code></pre>
-<p><code>g/.*/s/e/E/g</code> 的含义如下：</p>
-<ul>
-<li>第一个 <code>g</code>：表示全局操作。</li>
-<li><code>.*</code>：表示匹配所有行。</li>
-<li><code>s/e/E/</code>：表示将 <code>e</code> 替换为 <code>E</code>。</li>
-<li>最后一个 <code>g</code>：表示全局替换。</li>
-</ul>
-<p><strong>进行特定行区间数据替换</strong></p>
-<p>若只想修改特定行区间的内容，可以更改 <code>.*</code> 的参数值，例如：</p>
-<pre><code class="language-bash">,p
-nAmE    agE     sEx
-AlicE   28      F
-Bob     32      M
-CharliE 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-GEorgE  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-2,$s/E/e/g
-,p
-nAmE    agE     sEx
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-
-
-</code></pre>
-<p><code>2,$s/E/e/g</code> 的含义是：在第二行到最后一行的范围内匹配包含 <code>E</code> 的内容，并将其替换为 <code>e</code>。</p>
-<h4 id="ed-shell">在<code>ed</code> 中执行<code>shell</code> 命令</h4>
-<p>在<code>ed</code> 中可以执行简单的命令，比如： 获取一下当前的服务器时间。</p>
-<pre><code class="language-bash"># ed
-! date
-Mon Nov  4 14:25:23 CST 2024
-!
-
-</code></pre>
-<p>注意，<code>ed</code> 只能识别最简单的命令，如有特殊字符，比如<code>date +"%F %T"</code> 则不行，因为<code>%</code> 是特殊字符，用于引用文件和行，<code>%</code> 正确的用法为：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-! ls %
- ls filename_1
-filename_1
-!
-
-</code></pre>
-<p>而如果直接使用<code>date +"%F %T"</code>，会达不到预期效果：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-! date +&quot;%F %T&quot;
- date +&quot;filename_1F filename_1T&quot;
-filename_1F filename_1T
-!
-
-</code></pre>
-<p>好在可以将该命令写入外部文件中，在<code>ed</code> 中进行调用即可：</p>
-<p>首先，需要先准备好脚本</p>
-<pre><code class="language-bash"># echo 'date +&quot;%F %T&quot;' &gt;&gt; getDate.sh
-# sh getDate.sh
-2024-11-04 14:36:34
-#
-</code></pre>
-<p>而后在<code>ed</code> 中调用该脚本即可</p>
-<pre><code class="language-bash"># ed
-! sh getDate.sh
-2024-11-04 14:37:30
-!
-
-</code></pre>
-<p>不仅如此，<code>ed</code> 还支持将执行的结果插入到当前文本中，例如：</p>
-<pre><code class="language-bash"># ed
-r ! sh getDate.sh
-20
-,p
-2024-11-04 14:40:38
-
-
-</code></pre>
-<p>只需要<code>r !</code>加上执行的命令，即可将命令执行的结果插入到当前文本中。</p>
-<h4 id="ed_9">ed 脚本化</h4>
-<p>可以将<code>ed</code> 的编辑命令放在独立的文件中，并且将他们作为<code>ed</code>行编辑器的输入，这样的话<code>ed</code>就具备了脚本化的能力。</p>
-<p>例如： 将一些列的<code>ed</code> 语句放入到<code>ed.script</code> 的文件中，可以利用下面的命令，对文件执行该<code>ed</code> 脚本：</p>
-<pre><code class="language-bash">ed filename &lt; ed.script
-</code></pre>
-<p>可以来尝试一下：</p>
-<p>首先，来编写<code>ed.script</code>(可以任意命名该文件)</p>
-<pre><code class="language-bash"># cat ed.script
-0,r ! date
-$,a
-the end.
-ed url site: https://www.gnu.org/software/ed
-.
-g/.*/s/a/A/g
-g/.*/s/c/C/g
-w
-q
-#
-</code></pre>
-<p>解析一下每个语句的含义：</p>
-<ul>
-<li><code>0,r ! date</code> ：在首行插入<code>date</code> 命令执行的结果。</li>
-<li><code>$,a</code> ：在尾行追加2行字符，第一行为：<code>the end.</code>，第二行为：<code>ed url site: https://www.gnu.org/software/ed</code> ，第三行的<code>.</code> 是<code>a</code>命令的结束符。</li>
-<li><code>g/.*/s/a/A/g</code>：进行全文全局替换，将<code>a</code>替换为<code>A</code>。</li>
-<li><code>g/.*/s/c/C/g</code>：进行全文全局替换，将<code>c</code>替换为<code>C</code>。</li>
-<li><code>w</code>：保存。</li>
-<li><code>q</code>：退出。</li>
-</ul>
-<p>接着，使用<code>ed filename &lt; ed.script</code> 的形式来执行该脚本。</p>
-<p>首先，先查看<code>filename_1</code> 的内容。</p>
-<pre><code class="language-bash"># cat filename_1
-a
-b
-c
-d
-e
-f
-#
-</code></pre>
-<p>接着，便对该文件执行<code>ed.script</code> 命令。</p>
-<pre><code class="language-bash"># ed filename_1 &lt; ed.script
-12
-29
-95
-#
-</code></pre>
-<p>最后再次查看<code>filename_1</code> 文件。</p>
-<pre><code class="language-bash"># cat filename_1
-Mon Nov  4 15:14:21 CST 2024
-A
-b
-C
-d
-e
-f
-the end.
-ed url site: https://www.gnu.org/softwAre/ed
-#
-</code></pre>
-<h3 id="_9">总结</h3>
-<p><code>ed</code> 是<code>Uinx</code>下的上古行编辑器，在目前的主流<code>Linux</code>版本中，都没有了它的身影，但是它影响了<code>sed</code> 、<code>grep</code>、<code>vi</code> 等一众软件，甚至于在上述软件使用中都能看到<code>ed</code> 的身影。</p>
-<p>如果你正在学习<code>sed</code>、<code>grep</code>、<code>vi</code> 等，不妨花几分钟了解一下<code>ed</code> 这个“老前辈”。</p>
+<p>这个其实是<code>bash</code>中的通配符匹配，不是正则表达式哦，不要弄混了。</p>
 
 
 
