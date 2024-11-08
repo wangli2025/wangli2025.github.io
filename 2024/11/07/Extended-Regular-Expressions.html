@@ -1,33 +1,31 @@
 
 <!doctype html>
-<html lang="zh" class="no-js">
+<html lang="en" class="no-js">
   <head>
     
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="了解POSIX 基本正则表达式">
+        <meta name="description" content="了解POSIX扩展正则表达式">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/11/06/Create-a-simple-blog-system-using-mkdocs.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/07/Extended-Regular-Expressions.html">
       
       
-        <link rel="prev" href="../05/Linux-Namespace.html">
+        <link rel="prev" href="Using-Python-to-modify-Alibaba-Cloud-DNS-domain-name-resolution.html">
       
       
-        <link rel="next" href="../07/Using-Python-to-modify-Alibaba-Cloud-DNS-domain-name-resolution.html">
       
-      
-        <link rel="alternate" type="application/rss+xml" title="RSS 订阅" href="../../../feed_rss_created.xml">
-        <link rel="alternate" type="application/rss+xml" title="已更新内容的 RSS 订阅" href="../../../feed_rss_updated.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../feed_rss_updated.xml">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
     
     
       
-        <title>了解POSIX基本正则表达式 - 王李的博客</title>
+        <title>了解POSIX扩展正则表达式 - 王李的博客</title>
       
     
     
@@ -82,7 +80,7 @@
       
         
         <a href="#posix" class="md-skip">
-          跳转至
+          Skip to content
         </a>
       
     </div>
@@ -91,36 +89,65 @@
     </div>
     
     
-      
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
 
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+
+<!-- Header -->
 <header class="md-header" data-md-component="header">
-  <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../../index.html" title="王李的博客" class="md-header__button md-logo" aria-label="王李的博客" data-md-component="logo">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
 
-    </a>
+    <!-- Button to open drawer -->
     <label class="md-header__button md-icon" for="__drawer">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
     </label>
+
+    <!-- Header title -->
     <div class="md-header__title" data-md-component="header-title">
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            王李的博客
+            
+            <a href="">王李的博客</a>
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              了解POSIX基本正则表达式
+              了解POSIX扩展正则表达式
             
           </span>
         </div>
       </div>
     </div>
+
+    <!-- Color palette toggle -->
     
       
         <form class="md-header__option" data-md-component="palette">
@@ -148,29 +175,37 @@
 </form>
       
     
+
+    <!-- User preference: color palette -->
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
     
+
+    <!-- Site language selector -->
     
+
+    <!-- Button to open search modal -->
     
       <label class="md-header__button md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
       </label>
+
+      <!-- Search interface -->
       <div class="md-search" data-md-component="search" role="dialog">
   <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
       <label class="md-search__icon md-icon" for="__search">
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
         
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
       </label>
-      <nav class="md-search__options" aria-label="查找">
+      <nav class="md-search__options" aria-label="Search">
         
-        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
@@ -181,7 +216,7 @@
       <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            正在初始化搜索引擎
+            Initializing search
           </div>
           <ol class="md-search-result__list" role="presentation"></ol>
         </div>
@@ -190,8 +225,12 @@
   </div>
 </div>
     
+
+    <!-- Repository information -->
     
   </nav>
+
+  <!-- Navigation tabs (sticky) -->
   
 </header>
     
@@ -201,7 +240,7 @@
         
           
             
-<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
       
@@ -236,7 +275,7 @@
   
     
   
-  归档
+  Archive
 
         </a>
       </li>
@@ -256,7 +295,7 @@
   
     
   
-  分类
+  Categories
 
         </a>
       </li>
@@ -288,7 +327,7 @@
 
   
 
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../../index.html" title="王李的博客" class="md-nav__button md-logo" aria-label="王李的博客" data-md-component="logo">
       
@@ -358,7 +397,7 @@
       
   
   <span class="md-ellipsis">
-    归档
+    Archive
   </span>
   
 
@@ -381,6 +420,8 @@
   
     
     
+      
+        
       
         
       
@@ -416,7 +457,7 @@
       
   
   <span class="md-ellipsis">
-    分类
+    Categories
   </span>
   
 
@@ -450,17 +491,36 @@
                 <a href="../../../index.html" class="md-nav__link">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
                   <span class="md-ellipsis">
-                    回到主页
+                    Back to index
                   </span>
                 </a>
               </div>
             </div>
             
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          王李
+                        
+                      </strong>
+                      <br>
+                      奋斗不止
+                    </span>
+                  </div>
+                
+              </div>
+            
             <ul class="md-post__meta md-nav__list">
               <li class="md-nav__item md-nav__item--section">
                 <div class="md-post__title">
                   <span class="md-ellipsis">
-                    元数据
+                    Metadata
                   </span>
                 </div>
                 <nav class="md-nav">
@@ -468,7 +528,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-11-06 00:00:00" class="md-ellipsis">2024年11月6日</time>
+                        <time datetime="2024-11-07 00:00:00" class="md-ellipsis">2024/11/07</time>
                       </div>
                     </li>
                     
@@ -477,9 +537,10 @@
                         <div class="md-nav__link">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
                           <span class="md-ellipsis">
-                            分类于
+                            in
                             
-                              <a href="../../../category/%E7%BC%96%E8%BE%91%E5%99%A8.html">编辑器</a></span>
+                              <a href="../../../category/%E7%BC%96%E8%BE%91%E5%99%A8.html">编辑器</a>, 
+                              <a href="../../../category/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">正则表达式</a></span>
                         </div>
                       </li>
                     
@@ -490,7 +551,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              需要 3 分钟阅读时间
+                              3 min read
                             
                           </span>
                         </div>
@@ -504,7 +565,7 @@
           
             
 
-<nav class="md-nav md-nav--secondary" aria-label="目录">
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
   
@@ -513,42 +574,33 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
-      目录
+      Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
   <a href="#posix_1" class="md-nav__link">
     <span class="md-ellipsis">
-      什么是POSIX基本正则表达式
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="什么是POSIX基本正则表达式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bre" class="md-nav__link">
-    <span class="md-ellipsis">
-      BRE特点
+      什么是POSIX扩展正则表达式
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      支持的元字符
+      新增、修改的点
     </span>
   </a>
   
-</li>
+    <nav class="md-nav" aria-label="新增、修改的点">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      支持的转义字符
+      取消了转义符
     </span>
   </a>
   
@@ -557,25 +609,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      支持的字符集
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的字符类
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的分组操作
+      新增的元字符
     </span>
   </a>
   
@@ -587,28 +621,52 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      元字符操作
+      操作
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="元字符操作">
+    <nav class="md-nav" aria-label="操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      . 可以匹配任意字符
+      直接引用不需要转义
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      新增的元字符
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些关于正则表达式的例子
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些关于正则表达式的例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      * 匹配任意个前面的字符
+      剔除多余的空格
     </span>
   </a>
   
@@ -617,7 +675,7 @@
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      ^匹配起始行
+      删除注释
     </span>
   </a>
   
@@ -626,153 +684,27 @@
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      $匹配行结尾
+      提取并且交换字符串中的两个数字
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#ip" class="md-nav__link">
     <span class="md-ellipsis">
-      匹配上一个字符出现的次数
+      获取机器的IP地址
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#url" class="md-nav__link">
     <span class="md-ellipsis">
-      匹配上一个出现的次数范围
+      提取URL中的协议、域名和路径
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      转义特殊字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      字符集操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="字符集操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配范围内的任意字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配字符范围
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      字符类操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="字符类操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配数字字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配小写字母
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配大写字母
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配空白字符
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      分组操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="分组操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      捕获分组
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
-    <span class="md-ellipsis">
-      分组引用
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -782,7 +714,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -799,352 +731,231 @@
     </div>
     <article class="md-content__inner md-typeset">
       
-        
+        <style>
+  .underline {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;  /* 设置为 0，避免影响边框 */
+    border-top: 1px dashed #D3D3D3;
+    /* margin-top: 1px; */
+  }
+</style>
 
 
-<h1 id="posix">了解POSIX基本正则表达式</h1>
-<p><code>Linux</code>最常见的表达式有三种：</p>
-<ul>
-<li>
-<p><code>POSIX</code>基本正则表达式；</p>
-</li>
-<li>
-<p><code>POSIX</code>扩展正则表达式 ；</p>
-</li>
-<li>
-<p><code>Perl</code> 兼容正则表达式。</p>
-</li>
-</ul>
-<p>本文将简单介绍<code>POSIX</code>基本正则表达式。</p>
+
+
+<h1 id="posix">了解POSIX扩展正则表达式</h1>
+<p>本文将简单介绍<code>POSIX</code>扩展正则表达式。</p>
 <!-- more -->
 
-<h2 id="posix_1">什么是<code>POSIX</code>基本正则表达式</h2>
-<p><code>POSIX</code>基本正则表达式，也称<code>BRE</code> (Basic Regular Expression) ，是<code>POSIX</code>标准中的一种正则表达式，在<code>Linux</code> 中，<code>grep</code>、<code>sed</code>、<code>awk</code>等工具都支持该基本正则表达式。</p>
-<h3 id="bre">BRE特点</h3>
-<p>基本正则表达式语法相对而言较为简单，适用于大多数基本的文本匹配。</p>
-<h3 id="_1">支持的元字符</h3>
-<table>
-<thead>
-<tr>
-<th>元字符</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td>匹配除换行符以外的任意单个字符</td>
-</tr>
-<tr>
-<td>*</td>
-<td>匹配任意个（包括0个）前面的字符</td>
-</tr>
-<tr>
-<td>[...]</td>
-<td>匹配方括号中的字符集中的任何一个</td>
-</tr>
-<tr>
-<td>[^...]</td>
-<td>如果方括号中第一个字符是<code>^</code>，则表示否定匹配</td>
-</tr>
-<tr>
-<td>^</td>
-<td>如果作为正则第一个字符，则表示匹配行起始</td>
-</tr>
-<tr>
-<td>$</td>
-<td>如果作为正则最后一个字符，则表示匹配行的结尾</td>
-</tr>
-<tr>
-<td>\{n\}</td>
-<td>将匹配n次出现</td>
-</tr>
-<tr>
-<td>\{n,m\}</td>
-<td>匹配它前一个范围内单个字符出现的次数，匹配n次m次之前的任意次数</td>
-</tr>
-<tr>
-<td>\</td>
-<td>转义特殊字符</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_2">支持的转义字符</h3>
-<table>
-<thead>
-<tr>
-<th>转义字符</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\.</td>
-<td>匹配字面意思的点<code>.</code></td>
-</tr>
-<tr>
-<td>\\</td>
-<td>匹配字面意思的反斜杠<code>\</code></td>
-</tr>
-<tr>
-<td>\*</td>
-<td>匹配字面意思的星号<code>*</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="_3">支持的字符集</h3>
-<table>
-<thead>
-<tr>
-<th>字符集</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[abc]</td>
-<td>匹配<code>a</code>、<code>b</code>、<code>c</code> 中的任意字符</td>
-</tr>
-<tr>
-<td>[0-9]</td>
-<td>匹配任意数字，同理<code>[a-z]</code>匹配任意小写字符、<code>[A-Z]</code>匹配任意大写字符</td>
-</tr>
-<tr>
-<td>[^abc]</td>
-<td>匹配不包含<code>a</code>、<code>b</code>、<code>c</code> 的任意字符</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">支持的字符类</h3>
-<table>
-<thead>
-<tr>
-<th>字符类</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[:alnum:]</td>
-<td>可打印的字符</td>
-</tr>
-<tr>
-<td>[:alpha:]</td>
-<td>字母字符</td>
-</tr>
-<tr>
-<td>[:blank:]</td>
-<td>空格和制表符</td>
-</tr>
-<tr>
-<td>[:cntrl:]</td>
-<td>控制字符</td>
-</tr>
-<tr>
-<td>[:digit:]</td>
-<td>数字字符</td>
-</tr>
-<tr>
-<td>[:graph:]</td>
-<td>可打印的和可见的字符</td>
-</tr>
-<tr>
-<td>[:lower:]</td>
-<td>小写字符</td>
-</tr>
-<tr>
-<td>[:print:]</td>
-<td>可打印的字符</td>
-</tr>
-<tr>
-<td>[:punct:]</td>
-<td>标点符号字符</td>
-</tr>
-<tr>
-<td>[:space:]</td>
-<td>空白字符</td>
-</tr>
-<tr>
-<td>[:upper:]</td>
-<td>大写字符</td>
-</tr>
-<tr>
-<td>[:xdigit:]</td>
-<td>十六进制数字</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_5">支持的分组操作</h3>
-<table>
-<thead>
-<tr>
-<th>分组</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\(\)</td>
-<td>捕获字符</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_6">元字符操作</h2>
-<h4 id="_7"><code>.</code> 可以匹配任意字符</h4>
-<pre><code class="language-bash">root@debian:~# echo '123' | grep '1.3'
-123
-root@debian:~#
+<h2 id="posix_1">什么是POSIX扩展正则表达式</h2>
+<p><code>POSIX</code>扩展正则表达式，也称<code>ERE</code>（Extended Regular Expressions）是基于<code>BRE</code>的扩展功能，目的是为正则表达式提供更加丰富的功能，和更加简洁的写法。</p>
+<p>如何启用扩展正则表达式呢？</p>
+<p>在<code>grep</code> 中，需要使用<code>-E</code> 选项来启用扩展功能，<code>sed</code> 也是同理，需要添加<code>-E</code>来启用扩展，而<code>awk</code> 默认就支持该扩展功能。</p>
+<h2 id="_1">新增、修改的点</h2>
+<h3 id="_2">取消了转义符</h3>
+<p>在<code>ERE</code>中，<code>BRE</code>需要转义的元字符，在<code>ERE</code>中不需要再进行转义了，比如<code>()</code> 、<code>{}</code> 等。</p>
+<h3 id="_3">新增的元字符</h3>
+<p>在<code>ERE</code>中，新增了<code>+</code> 和<code>?</code>的元字符，其含义是：</p>
+<ul>
+<li><code>+</code>： 匹配前面的元素1次或者多次。</li>
+<li><code>?</code>： 匹配前面的元素0次或者1次。</li>
+</ul>
+<h2 id="_4">操作</h2>
+<h3 id="_5">直接引用不需要转义</h3>
+<p>在<code>ERE</code>中，可以直接引用<code>{}</code> 、<code>()</code> 中，而不需要进行转义，简化了写法，如：</p>
+<pre><code class="language-bash">wangli@debian:~$ echo &quot;worrrrld&quot; | grep -E 'r{1,3}'
+worrrrld
+wangli@debian:~$
 </code></pre>
-<p><code>.</code> 可以匹配任何字符，但是不包括换行符<code>\n</code>。</p>
-<p>但是无法匹配换行符</p>
-<pre><code class="language-bash">root@debian:~# echo -e '1\n2\n3' &gt; hello
-root@debian:~#
-root@debian:~# cat hello -A
-1$
-2$
-3$
-root@debian:~#
-root@debian:~# grep '1.2' hello
-root@debian:~#
+<pre><code class="language-bash">wangli@debian:~$ echo &quot;worrrld&quot; | sed -E 's/(r{3})/-\1-/'
+wo-rrr-ld
+wangli@debian:~$
 </code></pre>
-<h4 id="_8"><code>*</code> 匹配任意个前面的字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abbbbbbbbbd&quot; | grep 'a*d'
-abbbbbbbbbd
-root@debian:~#
+<p>在<code>BRE</code> 中，需要将<code>{}</code> 和<code>()</code> 进行转义后，才能使用，写出来，可读性大大降低，在<code>ERE</code>中，直接调用即可，可读性增强了。</p>
+<p>同样的，如果只想表示<code>{}</code> 、<code>()</code> 本身的含义，需要用<code>\</code> 进行转义，如：</p>
+<pre><code class="language-bash">wangli@debian:~$ echo &quot;2{35}&quot; | grep -E '2{35}'
+wangli@debian:~$
+wangli@debian:~$ echo &quot;2{35}&quot; | grep -E '2\{35\}'
+2{35}
+wangli@debian:~$
 </code></pre>
-<p><code>*</code> 匹配上面任意字符<code>0</code> 次或者无数次。</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;1&quot; | grep ' *'
-1
-root@debian:~#
+<h3 id="_6">新增的元字符</h3>
+<p>在<code>ERE</code>中，新增了<code>?</code> 和<code>+</code> 2个元字符，前者表示匹配前面的字符0次或者1次，后者表示匹配前面的字符1次或多次，这其实也是简化了<code>BRE</code>的写法，案例如下：</p>
+<pre><code class="language-bash">wangli@debian:~$ echo &quot;1123&quot; | grep -E '111?'
+1123
+wangli@debian:~$
+wangli@debian:~$ echo &quot;1123&quot; | grep &quot;111\{0,1\}&quot;
+1123
+wangli@debian:~$
 </code></pre>
-<p>上面案例之所以能够被匹配到是因为</p>
-<p>可以和<code>*</code>一起使用，表示匹配任意字符</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep 'a.*e'
-abced
-root@debian:~#
+<p>这里需要介绍下，为什么<code>1123</code> 可以使用<code>111?</code> 来获取到呢？首先<code>?</code> 的含义是表示匹配前面的字符0次或者1次，所以<code>111?</code> 会有2中情况：</p>
+<ul>
+<li><code>11</code> ，再匹配一个<code>1</code> ，结果是<code>111</code></li>
+<li><code>11</code>，不匹配后面的<code>1</code> ，结果是<code>11</code> </li>
+</ul>
+<p>所以最后会被匹配到，同样的，使用<code>BRE</code>来写的话，表达式为 <code>111\{0,1\}</code>，然后功能完全一样，但是非常不直观。</p>
+<p>再来看看<code>+</code> 呢。</p>
+<pre><code class="language-bash">wangli@debian:~$ echo &quot;1111111123&quot; | sed -E 's/(1+)/\1-/'
+11111111-23
+wangli@debian:~$
+wangli@debian:~$ echo &quot;1111111123&quot; | sed 's/\(1\{1,\}\)/\1-/'
+11111111-23
+wangli@debian:~$
 </code></pre>
-<h4 id="_9"><code>^</code>匹配起始行</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep '^a'
-abced
-root@debian:~#
-root@debian:~# echo &quot;baced&quot; | grep '^a'
-root@debian:~#
-</code></pre>
-<h4 id="_10"><code>$</code>匹配行结尾</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abced' | grep 'd$'
-abced
-root@debian:~# echo 'abcede' | grep 'd$'
-root@debian:~#
-</code></pre>
-<p>可以和<code>^</code> 搭配使用，表示匹配空行</p>
-<pre><code class="language-bash">root@debian:~# echo '' | grep '^$'
+<p>通过上面2个语句，可以发现虽然<code>s/(1+)/\1-/</code> 和<code>s/\(1\{1,\}\)/\1-/</code> 效果都是一样的，但是第一种要简单、直观很多，可读性要比第二种好。</p>
+<h2 id="_7">一些关于正则表达式的例子</h2>
+<h3 id="_8">剔除多余的空格</h3>
+<p>有以下文本：</p>
+<pre><code class="language-bash">wangli@debian:~$ cat test.txt
+            grep    prints
 
-root@debian:~#
+ lines   that    contain   a    match  for one or more            patterns.
+wangli@debian:~$
 </code></pre>
-<h4 id="_11">匹配上一个字符出现的次数</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab\{3\}c'
-abbbc
-root@debian:~#
-</code></pre>
-<p>注意，在基本正则表达式中，<code>{}</code> 必须使用<code>\</code> 进行转义，如直接使用时不行的。</p>
-<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab{3}c'
-root@debian:~#
-</code></pre>
-<p>如果不加<code>\</code>进行转义，是直接匹配<code>{}</code>字符，而非正则表达式。</p>
-<pre><code class="language-bash">root@debian:~# echo 'ab{3}c' | grep 'ab{3}c'
-ab{3}c
-root@debian:~#
-</code></pre>
-<h4 id="_12">匹配上一个出现的次数范围</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{3,5\}c'
-abbbc
-root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{4,5\}c'
-root@debian:~#
-</code></pre>
-<h4 id="_13">转义特殊字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;a\.e&quot; | grep 'a\\.e'
-a\.e
-root@debian:~#
-</code></pre>
-<p><code>.</code> 、<code>*</code> 、<code>^</code>、<code>$</code>都需要进行转义。</p>
-<h3 id="_14">字符集操作</h3>
-<h4 id="_15">匹配范围内的任意字符</h4>
-<pre><code class="language-bash">root@debian:~# echo 'a2c' | grep 'a[123]c'
-a2c
-root@debian:~#
-</code></pre>
-<h4 id="_16">匹配字符范围</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;3&quot; | grep '[1-9]'
-3
-root@debian:~#
-root@debian:~# echo &quot;a&quot; | grep '[a-z]'
-a
-root@debian:~#
-root@debian:~# echo &quot;a&quot; | grep '[a-z]'
-a
-root@debian:~#
-root@debian:~# echo &quot;Z&quot; | grep '[a-Z]'
-Z
-root@debian:~#
-</code></pre>
-<h3 id="_17">字符类操作</h3>
-<h4 id="_18">匹配数字字符</h4>
-<pre><code class="language-bash">root@debian:~# echo '13579' | grep '[[:digit:]]'
-13579
-root@debian:~#
-</code></pre>
-<h4 id="_19">匹配小写字母</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abcde' | grep '[[:lower:]]'
-abcde
-root@debian:~#
-</code></pre>
-<h4 id="_20">匹配大写字母</h4>
-<pre><code class="language-bash">root@debian:~# echo 'ABCDE' | grep '[[:upper:]]'
-ABCDE
-root@debian:~#
-</code></pre>
-<h4 id="_21">匹配空白字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;   &quot; | grep '[[:space:]]'
+<p>需要将多余的空格给剔除掉。</p>
+<pre><code class="language-bash">wangli@debian:~$ cat test.txt | sed -E -e 's/ +/ /g' -e 's/^ +//g'
+grep prints
 
-root@debian:~#
+lines that contain a match for one or more patterns.
+wangli@debian:~$
 </code></pre>
-<h3 id="_22">分组操作</h3>
-<p>分组是指使用小括号将表达式括起来，创建子模式，该子模式会被保存，方便之后的引用和处理，同样的，<code>()</code> 也需要使用<code>\</code>转义，否则会被当成普通字符处理。</p>
-<h4 id="_23">捕获分组</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abcabcabcabc&quot; | grep '\(abc\)\+'
-abcabcabcabc
-root@debian:~#
+<p>使用<code>sed -e</code> 可以执行多条命令，<code>s/ +/ /g</code> 表示将包含了多个连续空格都替换为1个空格，<code>s/^ +//g</code> 表示将以空格开头的连续空格都替换为空，即删除以空格开头的连续空格。</p>
+<h3 id="_9">删除注释</h3>
+<p>定义注释的含义</p>
+<pre><code># 这也是注释
+# 这也是一种注释 #
+# 这也是一种注释 # 这是正常的内容
 </code></pre>
-<h4 id="_24">分组引用</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\([[:digit:]]\{3\}\)-\([[:digit:]]\{4\}\)-\([[:digit:]]\{4\}\)/+86 \1 \2 \3/'
-+86 180 1234 1234
-root@debian:~#
+<p>有如下内容：</p>
+<pre><code class="language-bash">wangli@debian:~$ cat test.txt
+# 这也是注释
+# 这也是一种注释 #
+# 这也是一种注释 # 这是正常的内容
+
+a b e d # 含义是 a b c d
+c d e f # 这是注释 # g h i j k
+
+a # 注释 # b
+
+# 这也是注释
+# 这还是注释 # ccccc
+ddd
+aa
+wangli@debian:~$
 </code></pre>
-<p><code>grep</code> 主要是用以匹配和查找，所以它不具备捕获分组和引用分组的功能，所以这里使用<code>sed</code> 进行替代，若是太难了，可以看如下案例：</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/180/182/'
-182-1234-1234
-root@debian:~#
+<p>去除掉注释</p>
+<pre><code class="language-bash">wangli@debian:~$ cat  test.txt | sed -E -e 's/#.*#//' -e 's/#.*//'
+
+
+ 这是正常的内容
+
+a b e d
+c d e f  g h i j k
+
+a  b
+
+
+ ccccc
+ddd
+aa
+wangli@debian:~$
 </code></pre>
-<p>如上是一个简单的替换，<code>sed 's/old/new/'</code>。</p>
-<p>如果引用了分组</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\(180\)-\(1234\)-\(1234\)/\1 \2 \3/'
-180 1234 1234
-root@debian:~#
+<h3 id="_10">提取并且交换字符串中的两个数字</h3>
+<p>有以下文本：</p>
+<pre><code class="language-bash">wangli@debian:~$ cat test.txt
+
+
+
+a 123 b c d e 456 f
+wangli@debian:~$
 </code></pre>
-<p>这里将<code>180</code>捕获为分组1、<code>1234</code>捕获为分组2、最后的<code>1234</code>捕获为分组3，在进行替换的时候，可以直接使用<code>\1</code>、<code>\2</code>等直接引用分组内容。分组最多为1到9共9个。</p>
-<h2 id="_25">总结</h2>
-<p>基本正则表达相对而言，比较简单，需要注意的是，在基本正则表达式中，大括号<code>{}</code> 和小括号<code>()</code>都必须要使用<code>\</code> 进行转义，否则将表示字符本身。而<code>.</code> 、<code>*</code>、<code>^</code>、<code>$</code> 等，默认就是正则，如果需要使用其字符本身，则需要使用<code>\</code>进行转义。</p>
-<p>哦，对了，在<code>shell</code>中，我们查询文件，可能会用到类似的写法：</p>
-<pre><code class="language-bash">root@debian:~# ls -d ns[123]
-ns1  ns2
-root@debian:~# ls -d *
-BRE  Desktop  Documents  Downloads  hello  Music  ns1  ns2  Pictures  Public  Templates  Videos
-root@debian:~# ls -d .*
-.bash_history  .cache   .dmrc     .local    .ssh                                 .viminfo    .Xauthority       .xsession-errors.old
-.bashrc        .config  .lesshst  .profile  .vboxclient-vmsvga-session-tty7.pid  .wget-hsts  .xsession-errors
-root@debian:~#
+<p>需要将<code>123</code>和<code>456</code>顺序交换。</p>
+<pre><code class="language-bash">wangli@debian:~$ cat test.txt | sed -E -n 's/(.* )([0-9]{1,5})( .* )([0-9]{1,5})/\1\4\3\2/p'
+a 456 b c d e 123 f
+wangli@debian:~$
 </code></pre>
-<p>这个其实是<code>bash</code>中的通配符匹配，不是正则表达式哦，不要弄混了。</p>
+<p>上面正则含义为：</p>
+<ul>
+<li><code>(.* )</code>： 表示匹配以任何字符开头且任何长度的字符，并且以空格结束，并且设为分组1。</li>
+<li><code>([0-9]{1,5})</code>： 表示匹配1-5为数字，并且设置为分组2。</li>
+<li><code>( .* )</code>：表示匹配以空格开头和空格结尾的任何字符，并且设为分组3。</li>
+<li><code>([0-9]{1,5})</code>：表示匹配1-5为数字，并且设置为分组4。</li>
+</ul>
+<p>有了如上的规则，就可以将<code>a 123 b c d e 456 f</code> 分为4组，分别为：</p>
+<ul>
+<li><code>a</code></li>
+<li><code>123</code></li>
+<li><code>b c d e</code></li>
+<li><code>456</code></li>
+</ul>
+<p>此时，在引用分组的时候，只需要将<code>4</code> 和<code>2</code>进行对调，则可以满足<code>123</code> 和<code>456</code>交换。</p>
+<h3 id="ip">获取机器的IP地址</h3>
+<pre><code class="language-bash">wangli@debian:~$ ip a | sed -E -n 's/.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*/\1/p'
+127.0.0.1
+192.168.1.135
+wangli@debian:~$
+</code></pre>
+<p>使用<code>ip a</code> 可以查询所有的IP信息</p>
+<pre><code class="language-bash">wangli@debian:~$ ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:7c:92:af brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.135/24 brd 192.168.1.255 scope global dynamic noprefixroute enp0s3
+       valid_lft 4631sec preferred_lft 4631sec
+    inet6 fe80::a00:27ff:fe7c:92af/64 scope link noprefixroute
+       valid_lft forever preferred_lft forever
+wangli@debian:~$
+</code></pre>
+<p>使用的正则如下：</p>
+<pre><code class="language-bash">sed -E -n 's/.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*/\1/p'
+</code></pre>
+<p>使用<code>sed -E</code> 表示启用正则，而<code>sed -n</code> 表示只输出匹配的部分。</p>
+<p>而正则表达式如下：</p>
+<pre><code class="language-bash">.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*
+</code></pre>
+<p>意思为提取包含所有<code>IP</code>地址和子网掩码的内容，并且只提取<code>IP</code>部分，忽略子网掩码，其中<code>IP</code> 部分又规定了获取的是<code>IPv4</code>格式。</p>
+<p>所以，该正则表达式含义为：</p>
+<ul>
+<li><code>.*</code> ：匹配任何长度的字符，并且以空格<code></code>结束。</li>
+<li><code>([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})</code>： 匹配<code>IPv4</code>地址，并且使用分组捕获。</li>
+<li><code>\/[0-9]{1,3}.*</code> ：匹配斜杠<code>/</code>和子网掩码部分。</li>
+<li><code>.*</code>：最后的匹配后面的所有字符。</li>
+</ul>
+<h3 id="url">提取URL中的协议、域名和路径</h3>
+<pre><code>wangli@debian:~$ echo 'https://1.3.3.4/hello/world.txt' | sed -E -n &quot;s|(.*)://([^/]+)/(.*)|s1:\1 s2:\2 s3:\3|p&quot;
+s1:https s2:1.3.3.4 s3:hello/world.txt
+wangli@debian:~$
+</code></pre>
+<p>其中正则表达式为：</p>
+<pre><code class="language-bash">sed -E -n &quot;s|(.*)://([^/]+)/(.*)|s1:\1 s2:\2 s3:\3|p&quot;
+</code></pre>
+<p>其中<code>[^/]+</code> 的含义如下：</p>
+<p><code>[]</code> 表示一个字符集，<code>[^/]</code> 则表示除了<code>/</code> 以外的所有字符，后面的<code>+</code> 表示上一个字符至少出现1次，这里如果使用<code>(.*)/</code>的话，会出现贪婪匹配。</p>
+<h2 id="_11">总结</h2>
+<p>扩展正则表达式相对基础正则表达式而言，简化了写法，如<code>{}</code>、<code>()</code> 不需要在额外转义了，还新增了<code>+</code> 和<code>?</code> 元字符。</p>
+<p>有关正则表达式历史可以看下：<a href="https://zh.wikipedia.org/wiki/正则表达式">正则表达式 - 维基百科，自由的百科全书 (wikipedia.org)</a>。</p>
+
+
+
+<br />
+<br />
+<br />
+
+<p class="underline"></p>
+<div>
+  <p><b>了解POSIX扩展正则表达式</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/11/07/Extended-Regular-Expressions.html</a></p>
+  <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
+</div>
+<p class="underline"></p>
+
 
 
 
@@ -1166,7 +977,7 @@ root@debian:~#
 
 
 
-  <h2 id="__comments">评论</h2>
+  <h2 id="__comments">Comments</h2>
   <!-- Insert generated snippet here -->
   <script src="https://giscus.app/client.js"
   data-repo="wangli2025/giscus"
@@ -1230,7 +1041,7 @@ root@debian:~#
           <button type="button" class="md-top md-icon" data-md-component="top" hidden>
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
-  回到页面顶部
+  Back to top
 </button>
         
       </main>
@@ -1289,7 +1100,7 @@ root@debian:~#
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "header.autohide", "search.highlight", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "header.autohide", "search.highlight", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>

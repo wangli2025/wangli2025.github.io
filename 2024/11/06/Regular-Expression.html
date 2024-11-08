@@ -6,15 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="使用mkdocs创建一个简单的博客系统">
+        <meta name="description" content="了解POSIX 基本正则表达式">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/10/18/Create-a-simple-blog-system-using-mkdocs.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/06/Regular-Expression.html">
       
       
+        <link rel="prev" href="../05/Linux-Namespace.html">
       
-        <link rel="next" href="../../11/04/The-oldest-line-editor-ed.html">
+      
+        <link rel="next" href="../07/Using-Python-to-modify-Alibaba-Cloud-DNS-domain-name-resolution.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -25,7 +27,7 @@
     
     
       
-        <title>使用mkdocs创建一个简单的博客系统 - 王李的博客</title>
+        <title>了解POSIX基本正则表达式 - 王李的博客</title>
       
     
     
@@ -79,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mkdocs" class="md-skip">
+        <a href="#posix" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              使用mkdocs创建一个简单的博客系统
+              了解POSIX基本正则表达式
             
           </span>
         </div>
@@ -497,25 +499,6 @@
               </div>
             </div>
             
-              <div class="md-post__authors md-typeset">
-                
-                  <div class="md-profile md-post__profile">
-                    <span class="md-author md-author--long">
-                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
-                    </span>
-                    <span class="md-profile__description">
-                      <strong>
-                        
-                          王李
-                        
-                      </strong>
-                      <br>
-                      奋斗不止
-                    </span>
-                  </div>
-                
-              </div>
-            
             <ul class="md-post__meta md-nav__list">
               <li class="md-nav__item md-nav__item--section">
                 <div class="md-post__title">
@@ -528,7 +511,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-10-18 00:00:00" class="md-ellipsis">2024/10/18</time>
+                        <time datetime="2024-11-06 00:00:00" class="md-ellipsis">2024/11/06</time>
                       </div>
                     </li>
                     
@@ -539,7 +522,7 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/%E9%9A%8F%E7%AC%94.html">随笔</a></span>
+                              <a href="../../../category/%E7%BC%96%E8%BE%91%E5%99%A8.html">编辑器</a></span>
                         </div>
                       </li>
                     
@@ -550,7 +533,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              5 min read
+                              3 min read
                             
                           </span>
                         </div>
@@ -578,28 +561,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#posix_1" class="md-nav__link">
     <span class="md-ellipsis">
-      前言
+      什么是POSIX基本正则表达式
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="什么是POSIX基本正则表达式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bre" class="md-nav__link">
+    <span class="md-ellipsis">
+      BRE特点
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#mkdocs_1" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      安装mkdocs
+      支持的元字符
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="安装mkdocs">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      创建新项目
+      支持的转义字符
     </span>
   </a>
   
@@ -608,7 +600,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      实时预览
+      支持的字符集
     </span>
   </a>
   
@@ -617,82 +609,40 @@
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      生成网页文件
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#blog" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置blog主题
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="配置blog主题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mkdocs-material" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装mkdocs-material
+      支持的字符类
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#blog_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建blog必要的目录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mkdocsyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置mkdocs.yml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      编写第一篇博客
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="编写第一篇博客">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      新增第一篇博客
+      支持的分组操作
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      元字符操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="元字符操作">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      博客元数据
+      . 可以匹配任意字符
     </span>
   </a>
   
@@ -701,49 +651,7 @@
           <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      实际效果展示
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#giscus" class="md-nav__link">
-    <span class="md-ellipsis">
-      新增giscus评论系统
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="新增giscus评论系统">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#giscus_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装giscus
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscus_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      生成giscus配置文件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscusmkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      将giscus集成到mkdocs上
+      * 匹配任意个前面的字符
     </span>
   </a>
   
@@ -752,40 +660,16 @@
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      为博文开启评论框
+      ^匹配起始行
     </span>
   </a>
   
 </li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rss" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启RSS
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="开启RSS">
-      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      安装插件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rss_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置RSS
+      $匹配行结尾
     </span>
   </a>
   
@@ -794,7 +678,53 @@
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      效果展示
+      匹配上一个字符出现的次数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配上一个出现的次数范围
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      转义特殊字符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符集操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符集操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配范围内的任意字符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配字符范围
     </span>
   </a>
   
@@ -804,9 +734,98 @@
     </nav>
   
 </li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      字符类操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="字符类操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配数字字符
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配小写字母
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配大写字母
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      匹配空白字符
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      分组操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分组操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      捕获分组
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      分组引用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_25" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -837,427 +856,350 @@
 
 
 
-<h1 id="mkdocs">使用mkdocs创建一个简单的博客系统</h1>
-<p>本文将介绍如何使用<code>mkdocs</code>创建静态博客。</p>
+<h1 id="posix">了解POSIX基本正则表达式</h1>
+<p>本文将介绍基本正则表达式。</p>
 <!-- more -->
 
-<h2 id="_1">前言</h2>
-<p>每个做技术的都希望有一个属于个人的小站点，不管是写一些随笔，还是记录技术总结，但是又不想弄得很复杂。这篇文章也许会帮到你。</p>
-<p>本博客使用的技术栈为<code>mkdocs</code> + <code>material</code> 主题，配合 <code>giscus</code> 评论系统搭配而成，听起来是不是感觉非常复杂，放心，只会涉及一些简单的命令。</p>
-<h2 id="mkdocs_1">安装<code>mkdocs</code></h2>
-<p>首先是安装<code>mkdocs</code> ，它是<code>python</code> 编写的一个基于<code>Markdown</code> 文档的静态站点生成器。</p>
-<p>使用<code>pip</code> 进行安装即可</p>
-<pre><code class="language-bash"># pip3 install mkdocs
-</code></pre>
-<blockquote>
-<p>首先需要安装<code>python</code> ： <a href="https://www.python.org/"> https://www.python.org/</a></p>
-</blockquote>
-<h3 id="_2">创建新项目</h3>
-<p>使用<code>mkdocs new new-project</code> ，即可创建一个空的<code>new-project</code> 项目 。</p>
-<pre><code class="language-bash"># mkdocs new new-project
-INFO    -  Creating project directory: new-project
-INFO    -  Writing config file: new-project/mkdocs.yml
-INFO    -  Writing initial docs: new-project/docs/index.md
-#
-</code></pre>
-<p>创建<code>new-project</code> 新项目后，目录格式如下：</p>
-<pre><code class="language-bash"># tree new-project/
-new-project/
-├── docs
-│   └── index.md
-└── mkdocs.yml
-
-1 directory, 2 files
-#
-</code></pre>
-<p>其中</p>
+<p><code>Linux</code>最常见的表达式有三种：</p>
 <ul>
-<li><code>mkdocs.yml</code> ：主配置文件</li>
-<li><code>docs</code>：静态文档目录</li>
+<li>
+<p><code>POSIX</code>基本正则表达式；</p>
+</li>
+<li>
+<p><code>POSIX</code>扩展正则表达式 ；</p>
+</li>
+<li>
+<p><code>Perl</code> 兼容正则表达式。</p>
+</li>
 </ul>
-<h3 id="_3">实时预览</h3>
-<p><code>mkdocs</code> 提供了内置<code>web</code> 服务器，以便在编写文档的时候可以实时浏览文档，在新项目目录下，使用如下命令即可启动该<code>web</code> 服务器：</p>
-<pre><code class="language-bash">$ cd new-project/
-$ mkdocs serve
-INFO    -  Building documentation...
-INFO    -  Cleaning site directory
-INFO    -  Documentation built in 0.14 seconds
-INFO    -  [15:14:07] Watching paths for changes: 'docs', 'mkdocs.yml'
-INFO    -  [15:14:07] Serving on http://127.0.0.1:8000/
+<p>本文将简单介绍<code>POSIX</code>基本正则表达式。</p>
+<h2 id="posix_1">什么是<code>POSIX</code>基本正则表达式</h2>
+<p><code>POSIX</code>基本正则表达式，也称<code>BRE</code> (Basic Regular Expression) ，是<code>POSIX</code>标准中的一种正则表达式，在<code>Linux</code> 中，<code>grep</code>、<code>sed</code>、<code>awk</code>等工具都支持该基本正则表达式。</p>
+<h3 id="bre">BRE特点</h3>
+<p>基本正则表达式语法相对而言较为简单，适用于大多数基本的文本匹配。</p>
+<h3 id="_1">支持的元字符</h3>
+<table>
+<thead>
+<tr>
+<th>元字符</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>.</td>
+<td>匹配除换行符以外的任意单个字符</td>
+</tr>
+<tr>
+<td>*</td>
+<td>匹配任意个（包括0个）前面的字符</td>
+</tr>
+<tr>
+<td>[...]</td>
+<td>匹配方括号中的字符集中的任何一个</td>
+</tr>
+<tr>
+<td>[^...]</td>
+<td>如果方括号中第一个字符是<code>^</code>，则表示否定匹配</td>
+</tr>
+<tr>
+<td>^</td>
+<td>如果作为正则第一个字符，则表示匹配行起始</td>
+</tr>
+<tr>
+<td>$</td>
+<td>如果作为正则最后一个字符，则表示匹配行的结尾</td>
+</tr>
+<tr>
+<td>\{n\}</td>
+<td>将匹配n次出现</td>
+</tr>
+<tr>
+<td>\{n,m\}</td>
+<td>匹配它前一个范围内单个字符出现的次数，匹配n次m次之前的任意次数</td>
+</tr>
+<tr>
+<td>\</td>
+<td>转义特殊字符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_2">支持的转义字符</h3>
+<table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\.</td>
+<td>匹配字面意思的点<code>.</code></td>
+</tr>
+<tr>
+<td>\\</td>
+<td>匹配字面意思的反斜杠<code>\</code></td>
+</tr>
+<tr>
+<td>\*</td>
+<td>匹配字面意思的星号<code>*</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">支持的字符集</h3>
+<table>
+<thead>
+<tr>
+<th>字符集</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[abc]</td>
+<td>匹配<code>a</code>、<code>b</code>、<code>c</code> 中的任意字符</td>
+</tr>
+<tr>
+<td>[0-9]</td>
+<td>匹配任意数字，同理<code>[a-z]</code>匹配任意小写字符、<code>[A-Z]</code>匹配任意大写字符</td>
+</tr>
+<tr>
+<td>[^abc]</td>
+<td>匹配不包含<code>a</code>、<code>b</code>、<code>c</code> 的任意字符</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">支持的字符类</h3>
+<table>
+<thead>
+<tr>
+<th>字符类</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[:alnum:]</td>
+<td>可打印的字符</td>
+</tr>
+<tr>
+<td>[:alpha:]</td>
+<td>字母字符</td>
+</tr>
+<tr>
+<td>[:blank:]</td>
+<td>空格和制表符</td>
+</tr>
+<tr>
+<td>[:cntrl:]</td>
+<td>控制字符</td>
+</tr>
+<tr>
+<td>[:digit:]</td>
+<td>数字字符</td>
+</tr>
+<tr>
+<td>[:graph:]</td>
+<td>可打印的和可见的字符</td>
+</tr>
+<tr>
+<td>[:lower:]</td>
+<td>小写字符</td>
+</tr>
+<tr>
+<td>[:print:]</td>
+<td>可打印的字符</td>
+</tr>
+<tr>
+<td>[:punct:]</td>
+<td>标点符号字符</td>
+</tr>
+<tr>
+<td>[:space:]</td>
+<td>空白字符</td>
+</tr>
+<tr>
+<td>[:upper:]</td>
+<td>大写字符</td>
+</tr>
+<tr>
+<td>[:xdigit:]</td>
+<td>十六进制数字</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">支持的分组操作</h3>
+<table>
+<thead>
+<tr>
+<th>分组</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(\)</td>
+<td>捕获字符</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_6">元字符操作</h2>
+<h4 id="_7"><code>.</code> 可以匹配任意字符</h4>
+<pre><code class="language-bash">root@debian:~# echo '123' | grep '1.3'
+123
+root@debian:~#
 </code></pre>
-<p>此时若打开该网页，会看到默认的主页：</p>
-<p><img alt="image-20241018151523934" src="../../../blog/img/image-20241018151523934.png" /></p>
-<h3 id="_4">生成网页文件</h3>
-<p>若文档编写完后，想要部署到静态服务器上，可以将其生成静态站点，而后部署到静态服务器即可，例如：</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdocs build
-INFO    -  Cleaning site directory
-INFO    -  Building documentation to directory: /mnt/j/new-project/site
-INFO    -  Documentation built in 0.09 seconds
-#
+<p><code>.</code> 可以匹配任何字符，但是不包括换行符<code>\n</code>。</p>
+<p>但是无法匹配换行符</p>
+<pre><code class="language-bash">root@debian:~# echo -e '1\n2\n3' &gt; hello
+root@debian:~#
+root@debian:~# cat hello -A
+1$
+2$
+3$
+root@debian:~#
+root@debian:~# grep '1.2' hello
+root@debian:~#
 </code></pre>
-<p>此时会在当前目录下，生成<code>site</code> 目录，而该在目录下，是生成一系列的静态文件。</p>
-<pre><code class="language-bash"># tree site
-site
-├── 404.html
-├── css
-│   ├── base.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap.min.css.map
-│   ├── brands.min.css
-│   ├── fontawesome.min.css
-│   ├── solid.min.css
-│   └── v4-font-face.min.css
-├── img
-│   ├── favicon.ico
-│   └── grid.png
-├── index.html
-├── js
-│   ├── base.js
-│   ├── bootstrap.bundle.min.js
-│   ├── bootstrap.bundle.min.js.map
-│   └── darkmode.js
-├── search
-│   ├── lunr.js
-│   ├── main.js
-│   ├── search_index.json
-│   └── worker.js
-├── sitemap.xml
-├── sitemap.xml.gz
-└── webfonts
-    ├── fa-brands-400.ttf
-    ├── fa-brands-400.woff2
-    ├── fa-regular-400.ttf
-    ├── fa-regular-400.woff2
-    ├── fa-solid-900.ttf
-    ├── fa-solid-900.woff2
-    ├── fa-v4compatibility.ttf
-    └── fa-v4compatibility.woff2
-
-5 directories, 29 files
-#
+<h4 id="_8"><code>*</code> 匹配任意个前面的字符</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abbbbbbbbbd&quot; | grep 'a*d'
+abbbbbbbbbd
+root@debian:~#
 </code></pre>
-<h2 id="blog">配置blog主题</h2>
-<p><code>mkdocs-material</code> 是<code>mkdocs</code> 使用最多的第三方主题，其内置了<code>blog</code> 插件可供直接调用。</p>
-<h3 id="mkdocs-material">安装<code>mkdocs-material</code></h3>
-<p>使用<code>pip</code> 即可安装该主题</p>
-<pre><code class="language-bash"># pip3 install mkdocs-material
+<p><code>*</code> 匹配上面任意字符<code>0</code> 次或者无数次。</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;1&quot; | grep ' *'
+1
+root@debian:~#
 </code></pre>
-<h3 id="blog_1">创建blog必要的目录</h3>
-<p>使用<code>mkdocs-material</code>的博客插件，需要新建<code>docs/posts</code> 目录，以便插件能够扫描该目录下所有的<code>Markdown</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p docs/posts/
-# tree docs/
-docs/
-├── index.md
-└── posts
-
-1 directory, 1 file
-#
+<p>上面案例之所以能够被匹配到是因为</p>
+<p>可以和<code>*</code>一起使用，表示匹配任意字符</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep 'a.*e'
+abced
+root@debian:~#
 </code></pre>
-<h3 id="mkdocsyml">配置mkdocs.yml</h3>
-<p>该配置文件默认只有一项配置：<code>site_name</code>，也是唯一必须要有的一项。</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Docs
-#
+<h4 id="_9"><code>^</code>匹配起始行</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep '^a'
+abced
+root@debian:~#
+root@debian:~# echo &quot;baced&quot; | grep '^a'
+root@debian:~#
 </code></pre>
-<p>在此基础上，新增<code>theme</code> 和<code>plugins</code> 配置为<code>blog</code> 类型</p>
-<p>配置如下</p>
-<pre><code class="language-yaml"># cat mkdocs.yml
-site_name: My Blog
-
-theme:
-  name: material
-
-plugins:
-  - blog:
-      blog_dir: .
-#
+<h4 id="_10"><code>$</code>匹配行结尾</h4>
+<pre><code class="language-bash">root@debian:~# echo 'abced' | grep 'd$'
+abced
+root@debian:~# echo 'abcede' | grep 'd$'
+root@debian:~#
 </code></pre>
-<p>上述内容是一个最基本的<code>blog</code> 配置，含义是<code>mkdocs</code> 使用了<code>mkdocs-material</code> 主题，并且启用了<code>blog</code>插件，<code>blog</code> 的根目录为当前目录。</p>
-<h2 id="_5">编写第一篇博客</h2>
-<blockquote>
-<p>关于更多的内容可以参考：<a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/"> mkdocs-material-setting-up-a-blog</a></p>
-</blockquote>
-<p>在开始之前，需要先清理掉<code>docs/index.md</code> 的内容，以免造成干扰。</p>
-<pre><code class="language-bash"># &gt; docs/index.md
+<p>可以和<code>^</code> 搭配使用，表示匹配空行</p>
+<pre><code class="language-bash">root@debian:~# echo '' | grep '^$'
+
+root@debian:~#
 </code></pre>
-<h3 id="_6">新增第一篇博客</h3>
-<p>在<code>/docs/posts/</code> 中可以编写第一篇文档了。</p>
-<pre><code class="language-bash"># cat &gt;&gt; docs/posts/hello_mkdocs.md &lt;&lt; EOF
-&gt; ---
-&gt; date: 2024-10-18
-&gt; categories:
-&gt;   - hello
-&gt; draft: false
-&gt; ---
-&gt;
-&gt; # Hello Mkdocs
-&gt;
-&gt; 这是编写的第一篇文档
-&gt;
-&gt; &lt;!-- more --&gt;
-&gt;
-&gt; 正文开始...
-&gt; EOF
-#
+<h4 id="_11">匹配上一个字符出现的次数</h4>
+<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab\{3\}c'
+abbbc
+root@debian:~#
 </code></pre>
-<h3 id="_7">博客元数据</h3>
-<p>文档的内容如下：</p>
-<pre><code class="language-bash"># cat docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
-
-# Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
-
-正文开始...
-#
+<p>注意，在基本正则表达式中，<code>{}</code> 必须使用<code>\</code> 进行转义，如直接使用时不行的。</p>
+<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab{3}c'
+root@debian:~#
 </code></pre>
-<p>其中<code>---</code> 包含的是博客的元信息</p>
-<pre><code class="language-bash">---
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
+<p>如果不加<code>\</code>进行转义，是直接匹配<code>{}</code>字符，而非正则表达式。</p>
+<pre><code class="language-bash">root@debian:~# echo 'ab{3}c' | grep 'ab{3}c'
+ab{3}c
+root@debian:~#
 </code></pre>
-<ul>
-<li><code>date</code>： 文档的日期</li>
-<li><code>categories</code>： 文档的分类</li>
-<li><code>draft</code>： 是否是草稿</li>
-</ul>
-<p>接下来便是摘要</p>
-<pre><code class="language-bash"># Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
+<h4 id="_12">匹配上一个出现的次数范围</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{3,5\}c'
+abbbc
+root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{4,5\}c'
+root@debian:~#
 </code></pre>
-<p><code>&lt;!-- more --&gt;</code> 标签之上的内容，便是摘要。</p>
-<h3 id="_8">实际效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p><img alt="image-20241018161642417" src="../../../blog/img/image-20241018161642417.png" /></p>
-<p><img alt="image-20241018161655040" src="../../../blog/img/image-20241018161655040.png" /></p>
-<h2 id="giscus">新增giscus评论系统</h2>
-<p><code>giscus</code> 是<code>github</code>的一个应用程序，由<code>GitHub Discussions</code>提供支持的评论系统。</p>
-<p>由于是基于<code>github</code> 的，所以需要先在网页上登录<code>github</code> 才能进行后续的操作。</p>
-<h3 id="giscus_1">安装giscus</h3>
-<p>使用浏览器打开<a href="https://github.com/apps/giscus">https://github.com/apps/giscus</a>打开该页面，选择<code>Install</code> 进行安装</p>
-<p><img alt="image-20241018162315511" src="../../../blog/img/image-20241018162315511.png" /></p>
-<p>点击安装后，会提示对于哪些存储库有权限，由于是给<code>mkdocs</code> 使用，所以给定一个预先创建好的仓库即可。</p>
-<p>最后点击<code>Install</code> 即可安装。</p>
-<h3 id="giscus_2">生成giscus配置文件</h3>
-<p>打开<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>即可配置该<code>giscus</code> ，输入仓库信息，选择映射关系，即可生成配置文件。</p>
-<h3 id="giscusmkdocs">将giscus集成到mkdocs上</h3>
-<p>覆盖原始<code>comments.html</code> 文件，新建<code>overrides/partials/comments.html</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p overrides/partials/
-#
-# touch  overrides/partials/comments.html
-#
+<h4 id="_13">转义特殊字符</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;a\.e&quot; | grep 'a\\.e'
+a\.e
+root@debian:~#
 </code></pre>
-<p>编辑<code>comments.html</code> 文件，首先键入模版内容：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
-
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
+<p><code>.</code> 、<code>*</code> 、<code>^</code>、<code>$</code>都需要进行转义。</p>
+<h3 id="_14">字符集操作</h3>
+<h4 id="_15">匹配范围内的任意字符</h4>
+<pre><code class="language-bash">root@debian:~# echo 'a2c' | grep 'a[123]c'
+a2c
+root@debian:~#
 </code></pre>
-<p>接着将上述生成的<code>giscus</code> 配置文件，编辑到上述<code>comments.html</code>文件中的<code>&lt;!-- Insert generated snippet here --&gt;</code> 和<code>&lt;!-- Synchronize Giscus theme with palette --&gt;</code> 之间。</p>
-<p>完整的内容为：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
-
-&lt;!-- giscus.app/client.js 相关代码 --&gt;
-
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
+<h4 id="_16">匹配字符范围</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;3&quot; | grep '[1-9]'
+3
+root@debian:~#
+root@debian:~# echo &quot;a&quot; | grep '[a-z]'
+a
+root@debian:~#
+root@debian:~# echo &quot;a&quot; | grep '[a-z]'
+a
+root@debian:~#
+root@debian:~# echo &quot;Z&quot; | grep '[a-Z]'
+Z
+root@debian:~#
 </code></pre>
-<p>同时，还需要修改<code>mkdocs.yml</code> 在<code>theme</code> 中新增<code>custom_dir</code> 参数，完整的配置参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
-
-plugins:
-  - blog:
-      blog_dir: .
-#
+<h3 id="_17">字符类操作</h3>
+<h4 id="_18">匹配数字字符</h4>
+<pre><code class="language-bash">root@debian:~# echo '13579' | grep '[[:digit:]]'
+13579
+root@debian:~#
 </code></pre>
-<p><code>custom_dir</code> 参数的作用是覆盖原始模版文件。</p>
-<h3 id="_9">为博文开启评论框</h3>
-<p>还记得创建<code>hello_mkdocs.md</code> 的元信息吗？</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
-
-# Hello Mkdocs
-
-这是编写的第一篇文档
-#
+<h4 id="_19">匹配小写字母</h4>
+<pre><code class="language-bash">root@debian:~# echo 'abcde' | grep '[[:lower:]]'
+abcde
+root@debian:~#
 </code></pre>
-<p>仅需要在元信息上添加<code>comments: true</code> 即可，新增评论框。</p>
-<p>修改后的文件为：</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
-comments: true
----
+<h4 id="_20">匹配大写字母</h4>
+<pre><code class="language-bash">root@debian:~# echo 'ABCDE' | grep '[[:upper:]]'
+ABCDE
+root@debian:~#
+</code></pre>
+<h4 id="_21">匹配空白字符</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;   &quot; | grep '[[:space:]]'
 
-# Hello Mkdocs
-
-#
+root@debian:~#
 </code></pre>
-<p>打开网页，便可以进行评论了。</p>
-<p><img alt="image-20241018171344553" src="../../../blog/img/image-20241018171344553.png" /></p>
-<h2 id="rss">开启RSS</h2>
-<p>关于<code>RSS</code>的文档，参考如下： <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss">https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss</a></p>
-<p><code>RSS</code> 对于博客而言，非常重要，可以方便用户订阅网站<code>RSS feed</code>，接下来便介绍如何开启<code>RSS</code> 。</p>
-<h3 id="_10">安装插件</h3>
-<pre><code class="language-bash"># pip3 install mkdocs-rss-plugin
+<h3 id="_22">分组操作</h3>
+<p>分组是指使用小括号将表达式括起来，创建子模式，该子模式会被保存，方便之后的引用和处理，同样的，<code>()</code> 也需要使用<code>\</code>转义，否则会被当成普通字符处理。</p>
+<h4 id="_23">捕获分组</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;abcabcabcabc&quot; | grep '\(abc\)\+'
+abcabcabcabc
+root@debian:~#
 </code></pre>
-<h3 id="rss_1">配置RSS</h3>
-<p>在<code>mkdocs.yml</code>中新增关于<code>RSS</code> 信息的参数。</p>
-<pre><code class="language-bash">plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
+<h4 id="_24">分组引用</h4>
+<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\([[:digit:]]\{3\}\)-\([[:digit:]]\{4\}\)-\([[:digit:]]\{4\}\)/+86 \1 \2 \3/'
++86 180 1234 1234
+root@debian:~#
 </code></pre>
-<p>其参数的作用为开启<code>rss</code> 。</p>
-<ul>
-<li><code>match_path:</code>： 匹配 指定 目录下的文档。</li>
-<li><code>categories</code> ： <code>feed</code> 类别。</li>
-<li><code>use_git</code>:  禁用<code>git</code> 。</li>
-</ul>
-<p>其完整参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
-
-plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
-#
+<p><code>grep</code> 主要是用以匹配和查找，所以它不具备捕获分组和引用分组的功能，所以这里使用<code>sed</code> 进行替代，若是太难了，可以看如下案例：</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/180/182/'
+182-1234-1234
+root@debian:~#
 </code></pre>
-<h3 id="_11">效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p>在浏览器中输入<a href="http://127.0.0.1:8001/feed_rss_created.xml">127.0.0.1:8001/feed_rss_created.xml</a>便可以查看该站点的<code>RSS</code>信息了。</p>
-<p><img alt="image-20241018174359942" src="../../../blog/img/image-20241018174359942.png" /></p>
-<p>如上，则证明该<code>RSS</code> 配置成功。</p>
-<h2 id="_12">总结</h2>
-<p>一个最最最简单的使用<code>mkdocs</code> 创建博客系统的案例就结束了，简单的总结一下：</p>
-<p>首先<code>mkdocs</code> 是基于<code>python</code> 的第三方软件，所以需要依赖其<code>python</code> 环境，所以需要使用该工具，得先安装<code>python</code>。</p>
-<p><a href="https://www.python.org/">https://www.python.org/</a></p>
-<p>其次使用的博客系统是源于<code>mkdocs</code> 的第三方主题<code>material</code>，也是需要额外安装的。</p>
-<p><a href="https://github.com/squidfunk/mkdocs-material">https://github.com/squidfunk/mkdocs-material</a></p>
-<p>接着便是导入了<code>Giscus</code>评论系统，它是<code>github</code>中的一个应用软件，需要先到<code>github</code>上进行安装，而后到<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>进行配置，获取到相关的配置文件，最后通过覆盖<code>mkdocs</code> 原始文件的方式集成到<code>mkdocs</code> 中。需要注意的是，覆盖<code>mkdocs</code> 需要修改<code>mkdocs.yml</code>配置文件，在<code>theme</code> 中引入<code>custom_dir</code> 相关配置。</p>
-<p>最后便是集成了<code>RSS</code>，它也是一个第三方插件，需要进行额外安装，安装完毕后，需要在<code>plugins</code> 中进行配置<code>RSS</code> 相关信息。</p>
+<p>如上是一个简单的替换，<code>sed 's/old/new/'</code>。</p>
+<p>如果引用了分组</p>
+<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\(180\)-\(1234\)-\(1234\)/\1 \2 \3/'
+180 1234 1234
+root@debian:~#
+</code></pre>
+<p>这里将<code>180</code>捕获为分组1、<code>1234</code>捕获为分组2、最后的<code>1234</code>捕获为分组3，在进行替换的时候，可以直接使用<code>\1</code>、<code>\2</code>等直接引用分组内容。分组最多为1到9共9个。</p>
+<h2 id="_25">总结</h2>
+<p>基本正则表达相对而言，比较简单，需要注意的是，在基本正则表达式中，大括号<code>{}</code> 和小括号<code>()</code>都必须要使用<code>\</code> 进行转义，否则将表示字符本身。而<code>.</code> 、<code>*</code>、<code>^</code>、<code>$</code> 等，默认就是正则，如果需要使用其字符本身，则需要使用<code>\</code>进行转义。</p>
+<p>哦，对了，在<code>shell</code>中，我们查询文件，可能会用到类似的写法：</p>
+<pre><code class="language-bash">root@debian:~# ls -d ns[123]
+ns1  ns2
+root@debian:~# ls -d *
+BRE  Desktop  Documents  Downloads  hello  Music  ns1  ns2  Pictures  Public  Templates  Videos
+root@debian:~# ls -d .*
+.bash_history  .cache   .dmrc     .local    .ssh                                 .viminfo    .Xauthority       .xsession-errors.old
+.bashrc        .config  .lesshst  .profile  .vboxclient-vmsvga-session-tty7.pid  .wget-hsts  .xsession-errors
+root@debian:~#
+</code></pre>
+<p>这个其实是<code>bash</code>中的通配符匹配，不是正则表达式哦，不要弄混了。</p>
 
 
 
@@ -1267,8 +1209,8 @@ plugins:
 
 <p class="underline"></p>
 <div>
-  <p><b>使用mkdocs创建一个简单的博客系统</b></p>
-  <p><a href="">https://wangli2025.github.io/2024/10/18/Create-a-simple-blog-system-using-mkdocs.html</a></p>
+  <p><b>了解POSIX基本正则表达式</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/11/06/Regular-Expression.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
