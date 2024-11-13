@@ -1,0 +1,1228 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="在容器中如何挂载rootfs">
+      
+      
+      
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/13/How_to_mount_rootfs_in_a_container.html">
+      
+      
+        <link rel="prev" href="../08/Extended-Regular-Expressions.html">
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>在容器中如何挂载rootfs - 王李的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#rootfs" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            
+            <a href="">王李的博客</a>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              在容器中如何挂载rootfs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="red"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+
+      <!-- Search interface -->
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../archive/2024.html" class="md-tabs__link">
+          
+  
+    
+  
+  Archive
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../category/linux.html" class="md-tabs__link">
+          
+  
+    
+  
+  Categories
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="王李的博客" class="md-nav__button md-logo" aria-label="王李的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    王李的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../archive/2024.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../category/linux.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          王李
+                        
+                      </strong>
+                      <br>
+                      奋斗不止
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-11-13 00:00:00" class="md-ellipsis">2024/11/13</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../category/linux.html">Linux</a>, 
+                              <a href="../../../category/%E5%AE%B9%E5%99%A8.html">容器</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              8 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#rootfs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      获取rootfs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="获取rootfs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rootfs_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是rootfs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dockerrootfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      利用docker获取rootfs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      更改根文件系统
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="更改根文件系统">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pivot_root" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用pivot_root更改根文件系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      卸载老的根文件系统
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      映射挂载点
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overlayrootfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用overlay来重复利用rootfs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用overlay来重复利用rootfs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overlay" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用overlay进行简单的挂载
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overlayrootfs_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用overlay挂载rootfs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        <style>
+  .underline {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;  /* 设置为 0，避免影响边框 */
+    border-top: 1px dashed #D3D3D3;
+    /* margin-top: 1px; */
+  }
+</style>
+
+
+
+
+<h1 id="rootfs">在容器中如何挂载rootfs</h1>
+<p>本篇文章将介绍如何在容器中更改文件根目录。</p>
+<!-- more -->
+
+<p>本篇文章使用的环境为：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# hostnamectl
+ Static hostname: ubuntu
+       Icon name: computer-vm
+         Chassis: vm 🖴
+    Product UUID: d7a79327-c7b6-4c40-a8d2-abf3244c3abc
+  Virtualization: oracle
+Operating System: Ubuntu 24.10
+          Kernel: Linux 6.11.0-9-generic
+    Architecture: x86-64
+ Hardware Vendor: innotek GmbH
+  Hardware Model: VirtualBox
+ Hardware Serial: 0
+Firmware Version: VirtualBox
+   Firmware Date: Fri 2006-12-01
+    Firmware Age: 17y 11month 1w 6d
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<blockquote>
+<p>debian 12 默认内核不支持<code>pivot_root</code>命令，在重新编译内核的时候失败了，把机器系统搞坏了，所以用<code>ubuntu</code>演示。</p>
+</blockquote>
+<p>此前已经介绍了<code>Linux</code>中的相关<code>namespace</code>，这里简单回顾一下。</p>
+<p>使用<code>unshare</code>可以将命令挪到相应的<code>namespace</code>中执行，案例如下：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -p -u -n -i -f /usr/bin/bash
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# mount -t proc proc /proc
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1   7696  4460 pts/0    S    08:45   0:00 /usr/bin/bash
+root           9  0.0  0.1   8428  4012 pts/0    R+   08:45   0:00 ps aux
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda4        92G  6.6G   81G   8% /
+tmpfs           1.7G     0  1.7G   0% /dev/shm
+...
+tmpfs           1.7G     0  1.7G   0% /tmp
+/dev/sda2       4.9G  172M  4.5G   4% /boot
+(unshare) [root@ubuntu]:[~][tty:0]# exit
+exit
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>上面例子，虽然成功在相应的<code>namespace</code>的运行进程了，但是在该容器中，文件系统还是使用的宿主机的，本篇文章就简单来讲一下，如何在容器中挂载<code>rootfs</code>。</p>
+<h2 id="rootfs_1">获取rootfs</h2>
+<h3 id="rootfs_2">什么是rootfs</h3>
+<p>也称为根文件系统，它是系统启动的时候加载的第一个文件系统，包含了系统的基本目录结构和所必要的文件系统。</p>
+<h3 id="dockerrootfs">利用docker获取rootfs</h3>
+<p>这里使用<code>docker pull</code> 拉取一个镜像，解压开来便是<code>rootfs</code>了。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# docker pull busybox
+Using default tag: latest
+latest: Pulling from library/busybox
+a46fbb00284b: Pull complete
+Digest: sha256:768e5c6f5cb6db0794eec98dc7a967f40631746c32232b78a3105fb946f3ab83
+Status: Downloaded newer image for busybox:latest
+docker.io/library/busybox:latest
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>使用<code>docker pull</code>拉取一个最简单的<code>busybox</code>镜像。</p>
+<p>使用<code>docker export</code>可以将其导出。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# docker run -d busybox
+7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982
+[root@ubuntu]:[~][tty:0]# docker export -o rootfs.tar 7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>解压开来，便是完整的<code>rootfs</code>了。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mkdir rootfs
+[root@ubuntu]:[~][tty:0]# tar xf rootfs.tar -C rootfs
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>查看<code>busybox</code>完整的<code>rootfs</code>。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# cd rootfs
+[root@ubuntu]:[~/rootfs][tty:0]# ls
+bin  dev  etc  home  lib  lib64  proc  root  sys  tmp  usr  var
+[root@ubuntu]:[~/rootfs][tty:0]#
+</code></pre>
+<h2 id="_1">更改根文件系统</h2>
+<h3 id="pivot_root">使用pivot_root更改根文件系统</h3>
+<p>如上，已经获取了<code>rootfs</code>根文件系统，接下来将使用<code>pivot_root</code>进行更改根文件系统。</p>
+<p><code>pivot_root</code>是一个系统调用，用于更改文件系统的根目录，用法如下：</p>
+<pre><code class="language-bash">pivot_root new_root put_old
+</code></pre>
+<p>其中<code>new_root</code>是指新的根文件系统，<code>put_old</code>则是指老的根文件系统。</p>
+<p>命令执行后，会将<code>new_root</code>目录挂载为新的根文件系统，而老的根文件系统则会挂载到<code>put_old</code>上。</p>
+<p><code>new_root</code>和<code>put_old</code>都要是独立的文件系统才可以，若不是的话，需要使用<code>mount</code>进行声明式挂载。</p>
+<p>注意，这里一定要在<code>mount namespace</code>中执行<code>pivot_root</code>操作。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# cd
+[root@ubuntu]:[~][tty:0]# mkdir -p rootfs/put_old
+[root@ubuntu]:[~][tty:0]#
+[root@ubuntu]:[~][tty:0]# unshare -m -u -i -p -n -f /bin/bash
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs /root/rootfs
+(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs/put_old /root/rootfs/put_old
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/rootfs /root/rootfs/put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# cd
+(unshare) [root@ubuntu]:[~][tty:tty]# ls -l
+total 0
+(unshare) [root@ubuntu]:[~][tty:tty]# ls -l /
+total 56
+drwxr-xr-x    2 root     root         12288 Sep 26 21:31 bin
+drwxr-xr-x    4 root     root          4096 Nov 13 09:04 dev
+drwxr-xr-x    3 root     root          4096 Nov 13 09:04 etc
+drwxr-xr-x    2 nobody   nobody        4096 Sep 26 21:31 home
+drwxr-xr-x    2 root     root          4096 Sep 26 21:31 lib
+lrwxrwxrwx    1 root     root             3 Sep 26 21:31 lib64 -&gt; lib
+drwxr-xr-x    2 root     root          4096 Nov 13 09:04 proc
+drwxr-xr-x   20 root     root          4096 Nov 13 08:34 put_old
+drwx------    2 root     root          4096 Nov 13 09:16 root
+drwxr-xr-x    2 root     root          4096 Nov 13 09:04 sys
+drwxrwxrwt    2 root     root          4096 Sep 26 21:31 tmp
+drwxr-xr-x    4 root     root          4096 Sep 26 21:31 usr
+drwxr-xr-x    4 root     root          4096 Sep 26 21:31 var
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
+Filesystem                Size      Used Available Use% Mounted on
+/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
+udev                      1.6G         0      1.6G   0% /put_old/dev
+tmpfs                     1.7G         0      1.7G   0% /put_old/dev/shm
+tmpfs                   340.2M      1.1M    339.1M   0% /put_old/run
+tmpfs                     5.0M         0      5.0M   0% /put_old/run/lock
+...
+tmpfs                     1.7G         0      1.7G   0% /put_old/tmp
+/dev/sda2                 4.8G    171.7M      4.4G   4% /put_old/boot
+overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
+overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
+/dev/sda4                92.0G      6.9G     80.3G   8% /
+/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+</code></pre>
+<p>如上，在<code>rootfs</code>目录下创建了<code>put_old</code>目录，用以存放老的根文件系统。</p>
+<p>使用<code>unshare</code>进入<code>namespace</code>后，对<code>/root/rootfs</code>和<code>/root/rootfs/put_old</code>进行声明式挂载。</p>
+<p>而后使用<code>pivot_root</code>进行切换目录，重新挂载<code>proc</code>虚拟文件系统，使用<code>df -h</code>查看文件挂载点，不难看出，老的文件系统已经被挂载到<code>/put_old</code>目录中了。</p>
+<h3 id="_2">卸载老的根文件系统</h3>
+<p>虽然切换为了新的根文件系统，但是挂载点都还在，也能操作<code>/put_old</code>中的目录和文件，这里介绍将其卸载掉。</p>
+<p>只需要使用<code>umount -l</code>卸载掉即可，如下：</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
+Filesystem                Size      Used Available Use% Mounted on
+/dev/sda4                92.0G      6.9G     80.3G   8% /
+/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount
+/dev/sda4 on / type ext4 (rw,relatime)
+/dev/sda4 on /put_old type ext4 (rw,relatime)
+proc on /proc type proc (rw,relatime)
+(unshare) [root@ubuntu]:[~][tty:tty]#
+</code></pre>
+<p><code>umount -l</code>是惰性卸载，惰性卸载是指将挂载点标记为待卸载状态，但是不会立即进行卸载，惰性卸载后，从表面来看，都会卸载干净，但是它会等文件系统不再被使用的时候，才会真正卸载掉。</p>
+<h3 id="_3">映射挂载点</h3>
+<p>若想卸载掉老文件系统，又想映射部分目录到该<code>namespace</code>中，可以在惰性卸载前，进行声明式挂载即可，例如：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -u -i -p -n -f /bin/bash
+(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs /root/rootfs
+(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs/put_old /root/rootfs/put_old
+(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/rootfs /root/rootfs/put_old
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# df -h
+Filesystem                Size      Used Available Use% Mounted on
+/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
+udev                      1.6G         0      1.6G   0% /put_old/dev
+tmpfs                     1.7G         0      1.7G   0% /put_old/dev/shm
+tmpfs                   340.2M      1.1M    339.1M   0% /put_old/run
+tmpfs                     5.0M         0      5.0M   0% /put_old/run/lock
+...
+tmpfs                   340.2M     12.0K    340.2M   0% /put_old/run/user/1000
+tmpfs                     1.7G         0      1.7G   0% /put_old/tmp
+/dev/sda2                 4.8G    171.7M      4.4G   4% /put_old/boot
+overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
+overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
+/dev/sda4                92.0G      6.9G     80.3G   8% /
+/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# mkdir /put_old/root/
+.bash_history  .bashrc        .dockerenv     .lesshst       .profile       rootfs/        rootfs.tar     .ssh/          .viminfo
+(unshare) [root@ubuntu]:[~][tty:tty]# mkdir /put_old/root/dir1
+(unshare) [root@ubuntu]:[~][tty:tty]# mkdir ~/dir2
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount --bind /put_old/root/dir1 /root/dir2
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# df -h
+Filesystem                Size      Used Available Use% Mounted on
+/dev/sda4                92.0G      6.9G     80.3G   8% /
+/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
+/dev/sda4                92.0G      6.9G     80.3G   8% /root/dir2
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]#
+</code></pre>
+<p>如上操作和上述操作一致，只不过在惰性挂载之前，创建了2个目录，<code>/put_old/root/dir1</code> 和<code>~/dir2</code>，而后进行声明式挂载，最后惰性卸载掉<code>/put_old</code>，就可以看到宿主机的挂载点了。</p>
+<p>实际写入也是可以的，如下：</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# echo 'hello' &gt; /root/dir2/123.ttx
+(unshare) [root@ubuntu]:[~][tty:tty]#
+</code></pre>
+<p>在<code>namespace</code>中，创建了<code>/root/dir2/123.ttx</code>，并且写入值<code>hello</code>，而在宿主机中同样查看该文件。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# cat dir1/123.ttx
+hello
+[root@ubuntu]:[~][tty:1]#
+</code></pre>
+<h2 id="overlayrootfs">使用overlay来重复利用rootfs</h2>
+<p>上述有一个问题，若开启了多个容器，是需要为每一个容器都拷贝一份<code>rootfs</code>，实际上<code>rootfs</code>大多数情况下不会存在太多的修改，如果是这样的话，则非常浪费存储空间，好在<code>overlay</code>可以解决该问题。</p>
+<p><code>overlay</code>是一个特殊的文件系统，它允许将一个文件系统的视图叠加到另一个文件系统上，可以简单的分为基础层和可写层，当使用该文件系统的时候，需要指定这2个层次，当文件有修改的时候，会从基础层拷贝一份，到可写层，修改可写层的数据，不会影响最底层的原始数据。</p>
+<p>这样的话，多个容器可以使用同一<code>rootfs</code>，只需要为每个容器都指定不同的可行层即可。</p>
+<h3 id="overlay">使用<code>overlay</code>进行简单的挂载</h3>
+<p><code>overlay</code>有以下层次：</p>
+<ul>
+<li><code>lower directory</code> ：基础只读文件系统层</li>
+<li><code>upper directory</code>：可写层</li>
+<li><code>work directory</code>：内部工作目录</li>
+</ul>
+<p>下面将演示使用<code>overlay</code>进行简单的挂载。</p>
+<p>准备工作：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# mkdir overlay
+[root@ubuntu]:[~][tty:1]# cd overlay/
+[root@ubuntu]:[~/overlay][tty:1]#
+[root@ubuntu]:[~/overlay][tty:1]# mkdir lower_directory
+[root@ubuntu]:[~/overlay][tty:1]# mkdir upper_directory
+[root@ubuntu]:[~/overlay][tty:1]# mkdir work_directory
+[root@ubuntu]:[~/overlay][tty:1]# mkdir work
+[root@ubuntu]:[~/overlay][tty:1]#
+[root@ubuntu]:[~/overlay][tty:1]# echo &quot;123456&quot; &gt; lower_directory/text.txt
+[root@ubuntu]:[~/overlay][tty:1]# echo &quot;hello&quot; &gt; lower_directory/test
+[root@ubuntu]:[~/overlay][tty:1]#
+</code></pre>
+<p>如上创建了3个目录，分别为<code>lower_directory</code>、<code>upper_directory</code>、<code>work_directory</code>以及<code>work</code>目录。</p>
+<p>并且在<code>lower_directory</code>目录下创建了2个文件：<code>text.txt</code>和<code>test</code>分别写入了内容。</p>
+<p>使用<code>overlay</code>进行挂载：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# mount -t overlay overlay -o lowerdir=lower_directory,upperdir=upper_directory,workdir=work_directory ./work
+[root@ubuntu]:[~/overlay][tty:1]#
+</code></pre>
+<p>挂载<code>overlay</code>指定了基础只读文件系统层目录、可写层目录以及内部工作目录，最后是将<code>overlay</code>挂载到了<code>./work</code>中。</p>
+<p>查看挂载信息：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# df -h
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           341M  1.2M  340M   1% /run
+/dev/sda4        92G  7.0G   81G   8% /
+tmpfs           1.7G     0  1.7G   0% /dev/shm
+...
+overlay          92G  7.0G   81G   8% /var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
+overlay          92G  7.0G   81G   8% /var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
+overlay          92G  7.0G   81G   8% /root/overlay/work
+[root@ubuntu]:[~/overlay][tty:1]#
+</code></pre>
+<p>可以看到，文件类型是<code>overlay</code>，已经挂载到<code>/root/overlay/work</code>目录中了。</p>
+<p>查看各个目录的文件：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# tree
+.
+├── lower_directory
+│   ├── test
+│   └── text.txt
+├── upper_directory
+├── work
+│   ├── test
+│   └── text.txt
+└── work_directory
+    └── work
+
+6 directories, 4 files
+[root@ubuntu]:[~/overlay][tty:1]# md5sum lower_directory/* work/*
+b1946ac92492d2347c6235b4d2611184  lower_directory/test
+f447b20a7fcbf53a5d5be013ea0b15af  lower_directory/text.txt
+b1946ac92492d2347c6235b4d2611184  work/test
+f447b20a7fcbf53a5d5be013ea0b15af  work/text.txt
+[root@ubuntu]:[~/overlay][tty:1]#
+</code></pre>
+<p>可以看到，其<code>work</code>目录和<code>lower_directory</code>目录中的文件都是一样的，其<code>md5</code>也是一样的，说明<code>overlay</code>已经将基础系统层的文件映射进来了。</p>
+<p>此时若修改<code>work</code>目录下的某个文件，再查看文件信息：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# echo &quot;123&quot; &gt;&gt; work/text.txt
+[root@ubuntu]:[~/overlay][tty:1]#
+[root@ubuntu]:[~/overlay][tty:1]# tree
+.
+├── lower_directory
+│   ├── test
+│   └── text.txt
+├── upper_directory
+│   └── text.txt
+├── work
+│   ├── test
+│   └── text.txt
+└── work_directory
+    └── work
+
+6 directories, 5 files
+[root@ubuntu]:[~/overlay][tty:1]#
+</code></pre>
+<p>可以看到，可写层也增加了一个<code>text.txt</code>，具体的逻辑是当我们视图修改<code>work/text.txt</code>内容是，<code>overlay</code>会先将只读文件系统层的<code>text.txt</code>拷贝到<code>upper_directory</code>中，然后再修改其内容，当我们读取<code>work</code>目录下内容的时候，当<code>upper_directory</code>目录中有文件的时候，会读取该目录下内容，没有才会在<code>lower_directory</code>进行尝试读取。</p>
+<p>校验一下各个文件的<code>md5</code>：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# md5sum lower_directory/text.txt work/text.txt upper_directory/text.txt
+f447b20a7fcbf53a5d5be013ea0b15af  lower_directory/text.txt
+6104fbccc189d29b24969b514bb7de5a  work/text.txt
+6104fbccc189d29b24969b514bb7de5a  upper_directory/text.txt
+[root@ubuntu]:[~/overlay][tty:1]#
+</code></pre>
+<p>通过上述三个目录中的<code>`text.txt</code>的<code>md5</code>值可以判断，其修改的值被存入到了<code>upper_directory</code>中。</p>
+<p>​   </p>
+<h3 id="overlayrootfs_1">使用<code>overlay</code>挂载<code>rootfs</code></h3>
+<p>想要每个容器都获取“独立”的<code>rootfs</code>，那在创建<code>namespace</code>之前，就需要先进行挂载，需要指定不同的<code>lowerdir</code>、<code>upperdir</code>以及<code>workdir</code>。</p>
+<p>每个容器启动之前，都需要进行<code>overlay</code>的挂载。</p>
+<p>在此之前，需要为容器创建相应的<code>overlay</code>目录。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mkdir {upper,work,busybox_container_01}
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p><code>busybox_container_01</code>就是为即将启动的容器，创建的根目录，其他的，则和上节是一样的。</p>
+<p>将<code>rootfs</code>挂载到<code>busybox_container_01</code>中。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mount -t overlay overlay -o lowerdir=rootfs,upperdir=upper,workdir=work busybox_container_01
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>这里的<code>lowerdir</code>需要修改为<code>rootfs</code>。</p>
+<p>使用<code>unshare</code>创建<code>namespace</code>。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -p -u -n -i -f /bin/bash
+(unshare) [root@ubuntu]:[~][tty:0]# mkdir -p busybox_container_01/put_old
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/busybox_container_01 /root/busybox_container_01
+(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/busybox_container_01/put_old /root/busybox_container_01/put_old
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/busybox_container_01 /root/busybox_container_01/put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# cd
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
+Filesystem                Size      Used Available Use% Mounted on
+overlay                  92.0G      6.9G     80.3G   8% /
+overlay                  92.0G      6.9G     80.3G   8% /put_old
+(unshare) [root@ubuntu]:[~][tty:tty]#
+</code></pre>
+<p>如上便成功了。</p>
+<p>如果容器中有修改，会相应的修改到<code>/root/upper</code>内容，例如：</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# echo 'busybox' &gt; 123.txt
+(unshare) [root@ubuntu]:[~][tty:tty]#
+</code></pre>
+<p>会同步修改到<code>upper</code>目录中，而不会影响到原始的<code>rootfs</code>。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# cat upper/root/123.txt
+busybox
+[root@ubuntu]:[~][tty:1]#
+[root@ubuntu]:[~][tty:1]# ls rootfs/root/123.txt
+ls: cannot access 'rootfs/root/123.txt': No such file or directory
+[root@ubuntu]:[~][tty:1]#
+</code></pre>
+<p>可以看到，在宿主机中，<code>rootfs/root/123.txt</code>并没有存在该文件，而<code>upper/root/123.txt</code>则存在，所以使用<code>overlay</code>可以重复利用<code>rootfs</code>，节省磁盘存储空间。</p>
+<h2 id="_4">总结</h2>
+<p>若一个进程使用<code>mount namespace</code>后，会使用和宿主机相同的<code>rootfs</code>，为了将容器和宿主机<code>rootfs</code>分离开来，可以使用<code>pivot_root</code>进行更改容器中的根文件系统。</p>
+<p>在此基础上上，若要运行多个容器的话，需要拷贝多个<code>rootfs</code>才行，好在可以使用<code>overlay</code>文件系统，可以有效的利用<code>rootfs</code>，又达到了文件系统的隔离性。</p>
+
+
+
+<br />
+<br />
+<br />
+
+<p class="underline"></p>
+<div>
+  <p><b>在容器中如何挂载rootfs</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/11/13/How_to_mount_rootfs_in_a_container.html</a></p>
+  <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
+</div>
+<p class="underline"></p>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+  data-repo="wangli2025/giscus"
+  data-repo-id="R_kgDONJqP8Q"
+  data-category="General"
+  data-category-id="DIC_kwDONJqP8c4Cj7kO"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async>
+</script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 wangli2025.github.io
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/wangli2025" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="Subscribe to our RSS Feed" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<wl2026@hotmail.com>" target="_blank" rel="noopener" title="send me an email" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "header.autohide", "search.highlight", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
