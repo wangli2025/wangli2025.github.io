@@ -6,17 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="在容器中如何挂载rootfs">
+        <meta name="description" content="容器中的网络-veth">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/11/13/How_to_mount_rootfs_in_a_container.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/14/container-network.html">
       
       
-        <link rel="prev" href="../08/Extended-Regular-Expressions.html">
+        <link rel="prev" href="../13/How_to_mount_rootfs_in_a_container.html">
       
-      
-        <link rel="next" href="../14/container-network.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -27,7 +25,7 @@
     
     
       
-        <title>在容器中如何挂载rootfs - 王李的博客</title>
+        <title>容器中的网络-veth - 王李的博客</title>
       
     
     
@@ -81,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#rootfs" class="md-skip">
+        <a href="#-veth" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              在容器中如何挂载rootfs
+              容器中的网络-veth
             
           </span>
         </div>
@@ -516,7 +514,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-11-13 00:00:00" class="md-ellipsis">2024/11/13</time>
+                        <time datetime="2024-11-14 00:00:00" class="md-ellipsis">2024/11/14</time>
                       </div>
                     </li>
                     
@@ -539,7 +537,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              8 min read
+                              12 min read
                             
                           </span>
                         </div>
@@ -567,61 +565,47 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#rootfs_1" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      获取rootfs
+      前置铺垫
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="获取rootfs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#rootfs_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      什么是rootfs
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#dockerrootfs" class="md-nav__link">
-    <span class="md-ellipsis">
-      利用docker获取rootfs
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      更改根文件系统
+      启用容器中的网络
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="更改根文件系统">
+    <nav class="md-nav" aria-label="启用容器中的网络">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#pivot_root" class="md-nav__link">
+  <a href="#lo" class="md-nav__link">
     <span class="md-ellipsis">
-      使用pivot_root更改根文件系统
+      启用lo网卡
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#veth" class="md-nav__link">
     <span class="md-ellipsis">
-      卸载老的根文件系统
+      添加veth虚拟网卡
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="添加veth虚拟网卡">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#veth_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是veth虚拟网卡
     </span>
   </a>
   
@@ -630,7 +614,25 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      映射挂载点
+      将虚拟网卡移到容器中
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      为虚拟网卡分配IP地址
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      检验虚拟网卡连通性
     </span>
   </a>
   
@@ -640,30 +642,26 @@
     </nav>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#overlayrootfs" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      使用overlay来重复利用rootfs
+      让容器连上外网
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="使用overlay来重复利用rootfs">
+    <nav class="md-nav" aria-label="让容器连上外网">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#overlay" class="md-nav__link">
+  <a href="#veth_2" class="md-nav__link">
     <span class="md-ellipsis">
-      使用overlay进行简单的挂载
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#overlayrootfs_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用overlay挂载rootfs
+      使用veth进行简单的联网
     </span>
   </a>
   
@@ -675,7 +673,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -706,11 +704,11 @@
 
 
 
-<h1 id="rootfs">在容器中如何挂载rootfs</h1>
-<p>本篇文章将介绍如何在容器中更改文件根目录。</p>
+<h1 id="-veth">容器中的网络-veth</h1>
+<p>本文将简单介绍容器中的网络通信。</p>
 <!-- more -->
 
-<p>本篇文章使用的环境为：</p>
+<p>本篇文章所使用的环境为：</p>
 <pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# hostnamectl
  Static hostname: ubuntu
        Icon name: computer-vm
@@ -725,342 +723,375 @@ Operating System: Ubuntu 24.10
  Hardware Serial: 0
 Firmware Version: VirtualBox
    Firmware Date: Fri 2006-12-01
-    Firmware Age: 17y 11month 1w 6d
+    Firmware Age: 17y 11month 2w
 [root@ubuntu]:[~][tty:0]#
 </code></pre>
-<blockquote>
-<p>debian 12 默认内核不支持<code>pivot_root</code>命令，在重新编译内核的时候失败了，把机器系统搞坏了，所以用<code>ubuntu</code>演示。</p>
-</blockquote>
-<p>此前已经介绍了<code>Linux</code>中的相关<code>namespace</code>，这里简单回顾一下。</p>
-<p>使用<code>unshare</code>可以将命令挪到相应的<code>namespace</code>中执行，案例如下：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -p -u -n -i -f /usr/bin/bash
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# ps aux
-USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root           1  0.0  0.1   7696  4460 pts/0    S    08:45   0:00 /usr/bin/bash
-root           9  0.0  0.1   8428  4012 pts/0    R+   08:45   0:00 ps aux
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# df -h
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda4        92G  6.6G   81G   8% /
-tmpfs           1.7G     0  1.7G   0% /dev/shm
-...
-tmpfs           1.7G     0  1.7G   0% /tmp
-/dev/sda2       4.9G  172M  4.5G   4% /boot
-(unshare) [root@ubuntu]:[~][tty:0]# exit
-exit
+<h2 id="_1">前置铺垫</h2>
+<p>上篇文章已经介绍了容器是如何挂载<code>rootfs</code>的，本篇将来介绍容器中的网络通信。</p>
+<p>容器中的网络隔离，得益于<code>network namespace</code>，请看下面的<code>unshare</code>例子：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:25:86:57 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.141/24 metric 100 brd 192.168.1.255 scope global dynamic enp0s3
+       valid_lft 7178sec preferred_lft 7178sec
+    inet6 fe80::a00:27ff:fe24:8657/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
 [root@ubuntu]:[~][tty:0]#
-</code></pre>
-<p>上面例子，虽然成功在相应的<code>namespace</code>的运行进程了，但是在该容器中，文件系统还是使用的宿主机的，本篇文章就简单来讲一下，如何在容器中挂载<code>rootfs</code>。</p>
-<h2 id="rootfs_1">获取rootfs</h2>
-<h3 id="rootfs_2">什么是rootfs</h3>
-<p>也称为根文件系统，它是系统启动的时候加载的第一个文件系统，包含了系统的基本目录结构和所必要的文件系统。</p>
-<h3 id="dockerrootfs">利用docker获取rootfs</h3>
-<p>这里使用<code>docker pull</code> 拉取一个镜像，解压开来便是<code>rootfs</code>了。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# docker pull busybox
-Using default tag: latest
-latest: Pulling from library/busybox
-a46fbb00284b: Pull complete
-Digest: sha256:768e5c6f5cb6db0794eec98dc7a967f40631746c32232b78a3105fb946f3ab83
-Status: Downloaded newer image for busybox:latest
-docker.io/library/busybox:latest
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
-<p>使用<code>docker pull</code>拉取一个最简单的<code>busybox</code>镜像。</p>
-<p>使用<code>docker export</code>可以将其导出。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# docker run -d busybox
-7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982
-[root@ubuntu]:[~][tty:0]# docker export -o rootfs.tar 7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
-<p>解压开来，便是完整的<code>rootfs</code>了。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mkdir rootfs
-[root@ubuntu]:[~][tty:0]# tar xf rootfs.tar -C rootfs
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
-<p>查看<code>busybox</code>完整的<code>rootfs</code>。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# cd rootfs
-[root@ubuntu]:[~/rootfs][tty:0]# ls
-bin  dev  etc  home  lib  lib64  proc  root  sys  tmp  usr  var
-[root@ubuntu]:[~/rootfs][tty:0]#
-</code></pre>
-<h2 id="_1">更改根文件系统</h2>
-<h3 id="pivot_root">使用pivot_root更改根文件系统</h3>
-<p>如上，已经获取了<code>rootfs</code>根文件系统，接下来将使用<code>pivot_root</code>进行更改根文件系统。</p>
-<p><code>pivot_root</code>是一个系统调用，用于更改文件系统的根目录，用法如下：</p>
-<pre><code class="language-bash">pivot_root new_root put_old
-</code></pre>
-<p>其中<code>new_root</code>是指新的根文件系统，<code>put_old</code>则是指老的根文件系统。</p>
-<p>命令执行后，会将<code>new_root</code>目录挂载为新的根文件系统，而老的根文件系统则会挂载到<code>put_old</code>上。</p>
-<p><code>new_root</code>和<code>put_old</code>都要是独立的文件系统才可以，若不是的话，需要使用<code>mount</code>进行声明式挂载。</p>
-<p>注意，这里一定要在<code>mount namespace</code>中执行<code>pivot_root</code>操作。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# cd
-[root@ubuntu]:[~][tty:0]# mkdir -p rootfs/put_old
-[root@ubuntu]:[~][tty:0]#
-[root@ubuntu]:[~][tty:0]# unshare -m -u -i -p -n -f /bin/bash
+[root@ubuntu]:[~][tty:0]# unshare -n --fork /bin/bash
 (unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs /root/rootfs
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs/put_old /root/rootfs/put_old
+(unshare) [root@ubuntu]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 (unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/rootfs /root/rootfs/put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# cd
-(unshare) [root@ubuntu]:[~][tty:tty]# ls -l
-total 0
-(unshare) [root@ubuntu]:[~][tty:tty]# ls -l /
-total 56
-drwxr-xr-x    2 root     root         12288 Sep 26 21:31 bin
-drwxr-xr-x    4 root     root          4096 Nov 13 09:04 dev
-drwxr-xr-x    3 root     root          4096 Nov 13 09:04 etc
-drwxr-xr-x    2 nobody   nobody        4096 Sep 26 21:31 home
-drwxr-xr-x    2 root     root          4096 Sep 26 21:31 lib
-lrwxrwxrwx    1 root     root             3 Sep 26 21:31 lib64 -&gt; lib
-drwxr-xr-x    2 root     root          4096 Nov 13 09:04 proc
-drwxr-xr-x   20 root     root          4096 Nov 13 08:34 put_old
-drwx------    2 root     root          4096 Nov 13 09:16 root
-drwxr-xr-x    2 root     root          4096 Nov 13 09:04 sys
-drwxrwxrwt    2 root     root          4096 Sep 26 21:31 tmp
-drwxr-xr-x    4 root     root          4096 Sep 26 21:31 usr
-drwxr-xr-x    4 root     root          4096 Sep 26 21:31 var
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-udev                      1.6G         0      1.6G   0% /put_old/dev
-tmpfs                     1.7G         0      1.7G   0% /put_old/dev/shm
-tmpfs                   340.2M      1.1M    339.1M   0% /put_old/run
-tmpfs                     5.0M         0      5.0M   0% /put_old/run/lock
-...
-tmpfs                     1.7G         0      1.7G   0% /put_old/tmp
-/dev/sda2                 4.8G    171.7M      4.4G   4% /put_old/boot
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
+(unshare) [root@ubuntu]:[~][tty:0]#
 </code></pre>
-<p>如上，在<code>rootfs</code>目录下创建了<code>put_old</code>目录，用以存放老的根文件系统。</p>
-<p>使用<code>unshare</code>进入<code>namespace</code>后，对<code>/root/rootfs</code>和<code>/root/rootfs/put_old</code>进行声明式挂载。</p>
-<p>而后使用<code>pivot_root</code>进行切换目录，重新挂载<code>proc</code>虚拟文件系统，使用<code>df -h</code>查看文件挂载点，不难看出，老的文件系统已经被挂载到<code>/put_old</code>目录中了。</p>
-<h3 id="_2">卸载老的根文件系统</h3>
-<p>虽然切换为了新的根文件系统，但是挂载点都还在，也能操作<code>/put_old</code>中的目录和文件，这里介绍将其卸载掉。</p>
-<p>只需要使用<code>umount -l</code>卸载掉即可，如下：</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount
-/dev/sda4 on / type ext4 (rw,relatime)
-/dev/sda4 on /put_old type ext4 (rw,relatime)
-proc on /proc type proc (rw,relatime)
-(unshare) [root@ubuntu]:[~][tty:tty]#
+<p>当前机器是实际网卡信息是有<code>lo</code>和<code>enp0s3</code>的，且分配了<code>ip</code>地址，但是使用<code>unshare</code>将<code>bash</code>放入到独立的<code>network namespace</code>中后，网络就被隔离了，所以只能看到一个回环地址，且状态还是关闭的(<code>DOWN</code>)。</p>
+<h2 id="_2">启用容器中的网络</h2>
+<h3 id="lo">启用lo网卡</h3>
+<p>在使用了<code>network namespace</code>的容器中，网络有且只有一个，就是<code>lo</code>网卡，先暂时将其启用，并且尝试<code>ping</code>本地回环地址。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -p -i -u -n --fork /bin/bash
+(unshare) [root@ubuntu]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# ping 127.0.0.1
+ping: connect: Network is unreachable
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]#
 </code></pre>
-<p><code>umount -l</code>是惰性卸载，惰性卸载是指将挂载点标记为待卸载状态，但是不会立即进行卸载，惰性卸载后，从表面来看，都会卸载干净，但是它会等文件系统不再被使用的时候，才会真正卸载掉。</p>
-<h3 id="_3">映射挂载点</h3>
-<p>若想卸载掉老文件系统，又想映射部分目录到该<code>namespace</code>中，可以在惰性卸载前，进行声明式挂载即可，例如：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -u -i -p -n -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs /root/rootfs
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs/put_old /root/rootfs/put_old
-(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/rootfs /root/rootfs/put_old
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-udev                      1.6G         0      1.6G   0% /put_old/dev
-tmpfs                     1.7G         0      1.7G   0% /put_old/dev/shm
-tmpfs                   340.2M      1.1M    339.1M   0% /put_old/run
-tmpfs                     5.0M         0      5.0M   0% /put_old/run/lock
-...
-tmpfs                   340.2M     12.0K    340.2M   0% /put_old/run/user/1000
-tmpfs                     1.7G         0      1.7G   0% /put_old/tmp
-/dev/sda2                 4.8G    171.7M      4.4G   4% /put_old/boot
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# mkdir /put_old/root/
-.bash_history  .bashrc        .dockerenv     .lesshst       .profile       rootfs/        rootfs.tar     .ssh/          .viminfo
-(unshare) [root@ubuntu]:[~][tty:tty]# mkdir /put_old/root/dir1
-(unshare) [root@ubuntu]:[~][tty:tty]# mkdir ~/dir2
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount --bind /put_old/root/dir1 /root/dir2
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-/dev/sda4                92.0G      6.9G     80.3G   8% /root/dir2
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]#
+<p>默认情况下，<code>lo</code>网卡是关闭状态的，所以<code>ping</code>回环地址并不可行，要想<code>ping</code>通，首先需要给启动起来。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip link set lo up
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host proto kernel_lo
+       valid_lft forever preferred_lft forever
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# ping 127.0.0.1 -c 4
+PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
+64 bytes from 127.0.0.1: icmp_seq=1 ttl=64 time=0.016 ms
+64 bytes from 127.0.0.1: icmp_seq=2 ttl=64 time=0.024 ms
+64 bytes from 127.0.0.1: icmp_seq=3 ttl=64 time=0.025 ms
+64 bytes from 127.0.0.1: icmp_seq=4 ttl=64 time=0.024 ms
+
+--- 127.0.0.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3052ms
+rtt min/avg/max/mdev = 0.016/0.022/0.0
 </code></pre>
-<p>如上操作和上述操作一致，只不过在惰性挂载之前，创建了2个目录，<code>/put_old/root/dir1</code> 和<code>~/dir2</code>，而后进行声明式挂载，最后惰性卸载掉<code>/put_old</code>，就可以看到宿主机的挂载点了。</p>
-<p>实际写入也是可以的，如下：</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# echo 'hello' &gt; /root/dir2/123.ttx
-(unshare) [root@ubuntu]:[~][tty:tty]#
+<p>使用<code>ip link set lo up</code>可以将网卡给启动起来，启动后，状态由<code>DOWN</code>变为了<code>UNKNOWN</code>，且也能看到<code>ip</code>地址了，尝试<code>ping 127.0.0.1</code>，也可以进行<code>ping</code>通。</p>
+<h3 id="veth">添加<code>veth</code>虚拟网卡</h3>
+<h4 id="veth_1">什么是<code>veth</code>虚拟网卡</h4>
+<p><code>veth</code>是<code>linux</code>中的虚拟网卡（<code>Virtual Ethernet Device</code>），<code>veth</code>设备总是成对出现的，当使用<code>veth</code>的两端分别连接2个设备后，在对中的一个设备传输数据包时，另一个设备会立即收到。<code>veth</code> 最大的作用便是作为网络命名空间（<code>network namespace</code>）之间的隧道传输。</p>
+<p><code>veth</code>的创建方法为：</p>
+<pre><code class="language-bash"># ip link add &lt;p1-name&gt; type veth peer name &lt;p2-name&gt;
 </code></pre>
-<p>在<code>namespace</code>中，创建了<code>/root/dir2/123.ttx</code>，并且写入值<code>hello</code>，而在宿主机中同样查看该文件。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# cat dir1/123.ttx
-hello
+<p>其中<code>p1-name</code> 和<code>p2-name</code>分别是<code>veth</code>2端的名称。</p>
+<p>在宿主机创建一对<code>veth</code>网卡：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# ip link add veth0 type veth peer name veth1
+[root@ubuntu]:[~][tty:1]#
+[root@ubuntu]:[~][tty:1]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:25:86:57 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.141/24 metric 100 brd 192.168.1.255 scope global dynamic enp0s3
+       valid_lft 7178sec preferred_lft 7178sec
+    inet6 fe80::a00:27ff:fe24:8657/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+3: veth1@veth0: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff
+4: veth0@veth1: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff
 [root@ubuntu]:[~][tty:1]#
 </code></pre>
-<h2 id="overlayrootfs">使用overlay来重复利用rootfs</h2>
-<p>上述有一个问题，若开启了多个容器，是需要为每一个容器都拷贝一份<code>rootfs</code>，实际上<code>rootfs</code>大多数情况下不会存在太多的修改，如果是这样的话，则非常浪费存储空间，好在<code>overlay</code>可以解决该问题。</p>
-<p><code>overlay</code>是一个特殊的文件系统，它允许将一个文件系统的视图叠加到另一个文件系统上，可以简单的分为基础层和可写层，当使用该文件系统的时候，需要指定这2个层次，当文件有修改的时候，会从基础层拷贝一份，到可写层，修改可写层的数据，不会影响最底层的原始数据。</p>
-<p>这样的话，多个容器可以使用同一<code>rootfs</code>，只需要为每个容器都指定不同的可行层即可。</p>
-<h3 id="overlay">使用<code>overlay</code>进行简单的挂载</h3>
-<p><code>overlay</code>有以下层次：</p>
+<p>上面使用<code>ip link add veth0 type veth peer name veth1</code>创建了一对<code>veth</code>网卡，分别为<code>veth0</code>和<code>veth1</code>，再次查看网卡信息，增加了<code>veth0</code>和<code>veth1</code>，只不过默认状态都是关闭的（<code>DOWN</code>）。</p>
+<p>在宿主机的确创建了2个网卡，但是在容器中没有，所以需要将创建的<code>veth</code>其中一个移到容器中去，首先，需要查询需要转移到的容器真实的<code>pid</code>（针对使用了<code>pid namespace</code>而言）。</p>
+<h4 id="_3">将虚拟网卡移到容器中</h4>
+<p>通过下面的命令来查询<code>unshare</code>启动的子命令的<code>pid</code>。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ps axjf | head -n 1 ;ps axjf | grep unshare -A 1 | grep -v grep
+   PPID     PID    PGID     SID TTY        TPGID STAT   UID   TIME COMMAND
+   1083    1128    1128    1071 pts/0       1129 S        0   0:00  |                   \_ unshare -m -p -i -u -n --fork /bin/bash
+   1128    1129    1129    1071 pts/0       1129 S+       0   0:00  |                       \_ /bin/bash
+--
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<p>可以看到，通过<code>unshare</code>创建的<code>bash</code>进程的<code>pid</code>为<code>1129</code>。</p>
+<p>使用如下命令，可以将<code>veth1</code>移入到<code>pid</code>为<code>1129</code>所在的<code>network namespace</code>中，即该容器中。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ip link set veth0 netns 1129
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<p>此时，再次查询宿主机网卡，会发现<code>veth0</code>已经没了，只有<code>veth1</code>。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:25:86:57 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.1.141/24 metric 100 brd 192.168.1.255 scope global dynamic enp0s3
+       valid_lft 7178sec preferred_lft 7178sec
+    inet6 fe80::a00:27ff:fe24:8657/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+3: veth1@if4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<p>再次回到容器中，查看网卡信息。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host proto kernel_lo
+       valid_lft forever preferred_lft forever
+4: veth0@if3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
+(unshare) [root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>会发现<code>veth0</code>已经成功挪到了容器中，但是此时因为2个网卡还没有<code>ip</code>地址，所以无法进行通信，我们可以为其设置一个<code>ip</code>地址，这样的话，就可以通信了。</p>
+<h4 id="ip">为虚拟网卡分配<code>IP</code>地址</h4>
+<p>规划如下：</p>
 <ul>
-<li><code>lower directory</code> ：基础只读文件系统层</li>
-<li><code>upper directory</code>：可写层</li>
-<li><code>work directory</code>：内部工作目录</li>
+<li>宿主机<code>veth1</code>：<code>10.0.3.1/24</code></li>
+<li>容器<code>veth0</code>：<code>10.0.3.3/24</code></li>
 </ul>
-<p>下面将演示使用<code>overlay</code>进行简单的挂载。</p>
-<p>准备工作：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# mkdir overlay
-[root@ubuntu]:[~][tty:1]# cd overlay/
-[root@ubuntu]:[~/overlay][tty:1]#
-[root@ubuntu]:[~/overlay][tty:1]# mkdir lower_directory
-[root@ubuntu]:[~/overlay][tty:1]# mkdir upper_directory
-[root@ubuntu]:[~/overlay][tty:1]# mkdir work_directory
-[root@ubuntu]:[~/overlay][tty:1]# mkdir work
-[root@ubuntu]:[~/overlay][tty:1]#
-[root@ubuntu]:[~/overlay][tty:1]# echo &quot;123456&quot; &gt; lower_directory/text.txt
-[root@ubuntu]:[~/overlay][tty:1]# echo &quot;hello&quot; &gt; lower_directory/test
-[root@ubuntu]:[~/overlay][tty:1]#
+<p>在宿主机设置<code>veth1</code>网卡<code>ip</code>地址。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ip addr add 10.0.3.1/24 dev veth1
+[root@ubuntu]:[~][tty:2]#
 </code></pre>
-<p>如上创建了3个目录，分别为<code>lower_directory</code>、<code>upper_directory</code>、<code>work_directory</code>以及<code>work</code>目录。</p>
-<p>并且在<code>lower_directory</code>目录下创建了2个文件：<code>text.txt</code>和<code>test</code>分别写入了内容。</p>
-<p>使用<code>overlay</code>进行挂载：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# mount -t overlay overlay -o lowerdir=lower_directory,upperdir=upper_directory,workdir=work_directory ./work
-[root@ubuntu]:[~/overlay][tty:1]#
+<p>查看网卡信息。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ip a show veth1
+3: veth1@if4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.1/24 scope global veth1
+       valid_lft forever preferred_lft forever
+[root@ubuntu]:[~][tty:2]#
 </code></pre>
-<p>挂载<code>overlay</code>指定了基础只读文件系统层目录、可写层目录以及内部工作目录，最后是将<code>overlay</code>挂载到了<code>./work</code>中。</p>
-<p>查看挂载信息：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# df -h
-Filesystem      Size  Used Avail Use% Mounted on
-tmpfs           341M  1.2M  340M   1% /run
-/dev/sda4        92G  7.0G   81G   8% /
-tmpfs           1.7G     0  1.7G   0% /dev/shm
-...
-overlay          92G  7.0G   81G   8% /var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
-overlay          92G  7.0G   81G   8% /var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
-overlay          92G  7.0G   81G   8% /root/overlay/work
-[root@ubuntu]:[~/overlay][tty:1]#
+<p>此时网卡还是关闭状态的，需要将其给打开。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ip link set veth1 up
+[root@ubuntu]:[~][tty:2]# ip a show veth1
+3: veth1@if4: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state LOWERLAYERDOWN group default qlen 1000
+    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.1/24 scope global veth1
+       valid_lft forever preferred_lft forever
+[root@ubuntu]:[~][tty:2]#
 </code></pre>
-<p>可以看到，文件类型是<code>overlay</code>，已经挂载到<code>/root/overlay/work</code>目录中了。</p>
-<p>查看各个目录的文件：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# tree
-.
-├── lower_directory
-│   ├── test
-│   └── text.txt
-├── upper_directory
-├── work
-│   ├── test
-│   └── text.txt
-└── work_directory
-    └── work
-
-6 directories, 4 files
-[root@ubuntu]:[~/overlay][tty:1]# md5sum lower_directory/* work/*
-b1946ac92492d2347c6235b4d2611184  lower_directory/test
-f447b20a7fcbf53a5d5be013ea0b15af  lower_directory/text.txt
-b1946ac92492d2347c6235b4d2611184  work/test
-f447b20a7fcbf53a5d5be013ea0b15af  work/text.txt
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
-<p>可以看到，其<code>work</code>目录和<code>lower_directory</code>目录中的文件都是一样的，其<code>md5</code>也是一样的，说明<code>overlay</code>已经将基础系统层的文件映射进来了。</p>
-<p>此时若修改<code>work</code>目录下的某个文件，再查看文件信息：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# echo &quot;123&quot; &gt;&gt; work/text.txt
-[root@ubuntu]:[~/overlay][tty:1]#
-[root@ubuntu]:[~/overlay][tty:1]# tree
-.
-├── lower_directory
-│   ├── test
-│   └── text.txt
-├── upper_directory
-│   └── text.txt
-├── work
-│   ├── test
-│   └── text.txt
-└── work_directory
-    └── work
-
-6 directories, 5 files
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
-<p>可以看到，可写层也增加了一个<code>text.txt</code>，具体的逻辑是当我们视图修改<code>work/text.txt</code>内容是，<code>overlay</code>会先将只读文件系统层的<code>text.txt</code>拷贝到<code>upper_directory</code>中，然后再修改其内容，当我们读取<code>work</code>目录下内容的时候，当<code>upper_directory</code>目录中有文件的时候，会读取该目录下内容，没有才会在<code>lower_directory</code>进行尝试读取。</p>
-<p>校验一下各个文件的<code>md5</code>：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# md5sum lower_directory/text.txt work/text.txt upper_directory/text.txt
-f447b20a7fcbf53a5d5be013ea0b15af  lower_directory/text.txt
-6104fbccc189d29b24969b514bb7de5a  work/text.txt
-6104fbccc189d29b24969b514bb7de5a  upper_directory/text.txt
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
-<p>通过上述三个目录中的<code>`text.txt</code>的<code>md5</code>值可以判断，其修改的值被存入到了<code>upper_directory</code>中。</p>
-<p>​   </p>
-<h3 id="overlayrootfs_1">使用<code>overlay</code>挂载<code>rootfs</code></h3>
-<p>想要每个容器都获取“独立”的<code>rootfs</code>，那在创建<code>namespace</code>之前，就需要先进行挂载，需要指定不同的<code>lowerdir</code>、<code>upperdir</code>以及<code>workdir</code>。</p>
-<p>每个容器启动之前，都需要进行<code>overlay</code>的挂载。</p>
-<p>在此之前，需要为容器创建相应的<code>overlay</code>目录。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mkdir {upper,work,busybox_container_01}
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
-<p><code>busybox_container_01</code>就是为即将启动的容器，创建的根目录，其他的，则和上节是一样的。</p>
-<p>将<code>rootfs</code>挂载到<code>busybox_container_01</code>中。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mount -t overlay overlay -o lowerdir=rootfs,upperdir=upper,workdir=work busybox_container_01
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
-<p>这里的<code>lowerdir</code>需要修改为<code>rootfs</code>。</p>
-<p>使用<code>unshare</code>创建<code>namespace</code>。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -p -u -n -i -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:0]# mkdir -p busybox_container_01/put_old
+<p>状态从<code>DOWN</code>变更为了<code>LOWERLAYERDOWN</code>，这是由于容器中的<code>veth0</code>网卡并未打开而引起的。</p>
+<p>接着，需要在容器中对<code>veth0</code>网卡做同样的操作。</p>
+<p>在容器中设置<code>veth0</code>网卡的<code>ip</code>地址。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip addr add 10.0.3.3/24 dev veth0
 (unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/busybox_container_01 /root/busybox_container_01
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/busybox_container_01/put_old /root/busybox_container_01/put_old
+</code></pre>
+<p>查看网卡信息。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip a show veth0
+4: veth0@if3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.3/24 scope global veth0
+       valid_lft forever preferred_lft forever
 (unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/busybox_container_01 /root/busybox_container_01/put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# cd
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
-Filesystem                Size      Used Available Use% Mounted on
-overlay                  92.0G      6.9G     80.3G   8% /
-overlay                  92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
 </code></pre>
-<p>如上便成功了。</p>
-<p>如果容器中有修改，会相应的修改到<code>/root/upper</code>内容，例如：</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# echo 'busybox' &gt; 123.txt
-(unshare) [root@ubuntu]:[~][tty:tty]#
+<p>还是将网卡给打开。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip link set veth0 up
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# ip a show veth0
+4: veth0@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.3/24 scope global veth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::6477:10ff:fe54:810e/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+(unshare) [root@ubuntu]:[~][tty:0]#
 </code></pre>
-<p>会同步修改到<code>upper</code>目录中，而不会影响到原始的<code>rootfs</code>。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# cat upper/root/123.txt
-busybox
-[root@ubuntu]:[~][tty:1]#
-[root@ubuntu]:[~][tty:1]# ls rootfs/root/123.txt
-ls: cannot access 'rootfs/root/123.txt': No such file or directory
+<p>当<code>veth0</code>的网卡开启后，其状态已经变更为了<code>UP</code>。此时若再次查看宿主机<code>veth1</code>状态，其状态也应该为<code>UP</code>。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ip a show veth1
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.1/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::acdd:f7ff:fe9d:9bf8/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<h4 id="_4">检验虚拟网卡连通性</h4>
+<p>如果<code>veth</code>虚拟网卡都分配了<code>ip</code>地址，且都开启，状态都为<code>UP</code>的情况下，此时网卡就创建好了，可以尝试在各自的环境中<code>ping</code>一下对方。</p>
+<p>在宿主机中<code>ping</code>容器<code>veth0</code>的<code>ip</code>。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# ip a show veth1
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.1/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::acdd:f7ff:fe9d:9bf8/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+[root@ubuntu]:[~][tty:2]#
+[root@ubuntu]:[~][tty:2]# ping -c 4 10.0.3.3
+PING 10.0.3.3 (10.0.3.3) 56(84) bytes of data.
+64 bytes from 10.0.3.3: icmp_seq=1 ttl=64 time=0.030 ms
+64 bytes from 10.0.3.3: icmp_seq=2 ttl=64 time=0.028 ms
+64 bytes from 10.0.3.3: icmp_seq=3 ttl=64 time=0.028 ms
+64 bytes from 10.0.3.3: icmp_seq=4 ttl=64 time=0.032 ms
+
+--- 10.0.3.3 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3057ms
+rtt min/avg/max/mdev = 0.028/0.029/0.032/0.001 ms
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<p>在容器中<code>ping</code>宿主机<code>veth1</code>的<code>ip</code>。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip a show veth0
+4: veth0@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.3/24 scope global veth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::6477:10ff:fe54:810e/64 scope link proto kernel_ll
+       valid_lft forever preferred_lft forever
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# ping -c 4 10.0.3.1
+PING 10.0.3.1 (10.0.3.1) 56(84) bytes of data.
+64 bytes from 10.0.3.1: icmp_seq=1 ttl=64 time=0.019 ms
+64 bytes from 10.0.3.1: icmp_seq=2 ttl=64 time=0.029 ms
+64 bytes from 10.0.3.1: icmp_seq=3 ttl=64 time=0.032 ms
+64 bytes from 10.0.3.1: icmp_seq=4 ttl=64 time=0.033 ms
+
+--- 10.0.3.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3099ms
+rtt min/avg/max/mdev = 0.019/0.028/0.033/0.005 ms
+(unshare) [root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>如果能够像上述一样，能够互相<code>ping</code>通，就说明<code>veth</code>创建分配正常了。</p>
+<h2 id="_5">让容器连上外网</h2>
+<h3 id="veth_2">使用veth进行简单的联网</h3>
+<p>虽然上面例子已经使宿主机和容器能够互相通信了，但是容器内还是无法上网，例如<code>ping 8.8.8.8</code>。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ping 8.8.8.8
+ping: connect: Network is unreachable
+(unshare) [root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>发现是无法<code>ping</code>通的，但是在宿主机是可以<code>ping</code>通的，例如：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# ping -c 4 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=34.3 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=33.8 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=55 time=45.7 ms
+64 bytes from 8.8.8.8: icmp_seq=4 ttl=55 time=33.8 ms
+
+--- 8.8.8.8 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+rtt min/avg/max/mdev = 33.774/36.884/45.674/5.078 ms
 [root@ubuntu]:[~][tty:1]#
 </code></pre>
-<p>可以看到，在宿主机中，<code>rootfs/root/123.txt</code>并没有存在该文件，而<code>upper/root/123.txt</code>则存在，所以使用<code>overlay</code>可以重复利用<code>rootfs</code>，节省磁盘存储空间。</p>
-<h2 id="_4">总结</h2>
-<p>若一个进程使用<code>mount namespace</code>后，会使用和宿主机相同的<code>rootfs</code>，为了将容器和宿主机<code>rootfs</code>分离开来，可以使用<code>pivot_root</code>进行更改容器中的根文件系统。</p>
-<p>在此基础上上，若要运行多个容器的话，需要拷贝多个<code>rootfs</code>才行，好在可以使用<code>overlay</code>文件系统，可以有效的利用<code>rootfs</code>，又达到了文件系统的隔离性。</p>
+<p>因为宿主机上的<code>veth1</code>是可以上网的，那想要容器实现上网，可以现将流量发送到<code>veth1</code>上，再由<code>veth1</code>转发出去，当有数据回来的时候，再返给容器中的<code>veth0</code>不就可以了吗？</p>
+<p>基于此，可以来做下如下实验。</p>
+<p>首先来查看容器的路由信息表。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip route
+10.0.3.0/24 dev veth0 proto kernel scope link src 10.0.3.3
+(unshare) [root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>这只有一条内网的路由信息，所以当我们尝试<code>ping 8.8.8.8</code>的时候，会提示网络不可达。</p>
+<p>添加一条默认的路由信息，将路由流量指向宿主机的<code>veth1</code>，即<code>10.0.3.1</code>。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ip route add default via 10.0.3.1 dev veth0
+(unshare) [root@ubuntu]:[~][tty:0]#
+(unshare) [root@ubuntu]:[~][tty:0]# ip route
+default via 10.0.3.1 dev veth0
+10.0.3.0/24 dev veth0 proto kernel scope link src 10.0.3.3
+(unshare) [root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>在添加完毕后，尝试在容器中<code>ping</code>一下<code>10.0.3.1</code>和<code>8.8.8.8</code>。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ping 10.0.3.1 -c 4
+PING 10.0.3.1 (10.0.3.1) 56(84) bytes of data.
+64 bytes from 10.0.3.1: icmp_seq=1 ttl=64 time=0.018 ms
+64 bytes from 10.0.3.1: icmp_seq=2 ttl=64 time=0.030 ms
+64 bytes from 10.0.3.1: icmp_seq=3 ttl=64 time=0.053 ms
+64 bytes from 10.0.3.1: icmp_seq=4 ttl=64 time=0.033 ms
+
+--- 10.0.3.1 ping statistics ---
+4 packets transmitted, 4 received, 0% packet loss, time 3079ms
+rtt min/avg/max/mdev = 0.018/0.033/0.053/0.012 ms
+(unshare) [root@ubuntu]:[~][tty:0]# ping 8.8.8.8 -c 3
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2082ms
+
+(unshare) [root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>在<code>ping 8.8.8.8</code>的时候发现不会提示网络不可达了，而是有在尝试的发送<code>ping</code>数据包，只是都没回来而已。</p>
+<p>此时，若在宿主机抓取<code>veth1</code>的报文包，只能收到出去的包，收不到回复的包，报文如下：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# tcpdump -i veth1 -S -s0
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on veth1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+07:50:05.432638 IP 10.0.3.3 &gt; dns.google: ICMP echo request, id 33, seq 1, length 64
+07:50:06.445881 IP 10.0.3.3 &gt; dns.google: ICMP echo request, id 33, seq 2, length 64
+07:50:07.469864 IP 10.0.3.3 &gt; dns.google: ICMP echo request, id 33, seq 3, length 64
+
+</code></pre>
+<p>这是因为宿主机并未开启转发，需要来设置一下宿主机转发。</p>
+<p>在宿主机上，先允许内核进行<code>IP</code>转发：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# sysctl net.ipv4.conf.all.forwarding=1
+net.ipv4.conf.all.forwarding = 1
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<p>而后需要定义一个<code>nat</code>规则，将容器上来的数据包，修改为宿主机自身的，从而进行请求，报文回复后，再进行<code>nat</code>转发，并且发送给容器，规则如下：</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# iptables -t nat -A POSTROUTING -s 10.0.3.0/24 -j MASQUERADE
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<p>上面规则的含义是将地址范围为<code>10.0.3.0/24</code>且为出站流量进行转发，并且进行地址转换。</p>
+<p>添加后，可以使用如下命令进行查看。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# iptables -t nat -L -n
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination
+MASQUERADE  0    --  10.0.3.0/24          0.0.0.0/0
+[root@ubuntu]:[~][tty:2]#
+</code></pre>
+<p>再次切换到容器中，尝试<code>ping 8.8.8.8</code>。</p>
+<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:0]# ping 8.8.8.8 -c 3
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=54 time=34.1 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=54 time=33.6 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=54 time=33.7 ms
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2002ms
+rtt min/avg/max/mdev = 33.565/33.763/34.075/0.222 ms
+(unshare) [root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>若在宿主机对<code>veth1</code>进行抓包的话，可以看到如下报文。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# tcpdump -i veth1 -S -s0
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on veth1, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+08:14:59.339542 IP 10.0.3.3 &gt; dns.google: ICMP echo request, id 34, seq 1, length 64
+08:14:59.373604 IP dns.google &gt; 10.0.3.3: ICMP echo reply, id 34, seq 1, length 64
+08:15:00.340879 IP 10.0.3.3 &gt; dns.google: ICMP echo request, id 34, seq 2, length 64
+08:15:00.374420 IP dns.google &gt; 10.0.3.3: ICMP echo reply, id 34, seq 2, length 64
+08:15:01.341874 IP 10.0.3.3 &gt; dns.google: ICMP echo request, id 34, seq 3, length 64
+08:15:01.375502 IP dns.google &gt; 10.0.3.3: ICMP echo reply, id 34, seq 3, length 64
+</code></pre>
+<p>至此，让容器连上网就达成了。</p>
+<h2 id="_6">总结</h2>
+<p><code>veth</code>是<code>Linux</code>中的虚拟网卡，是成对出现的，你可以将其理解为“网线”，将<code>veth</code>的2端分别接入2个容器的话，当前可以实现容器的互相通信，也可以将其一端放在宿主机上，一端接入一个容器中，在宿主机上进行<code>nat</code>转发设置，让容器能够和外部网络进行通信。</p>
+<p><code>veth</code>的弊端也有，只能简单的连接2个设备，当需要一个多设备的网络的时候，<code>veth</code>处理起来会变得异常棘，好在<code>Linux</code>提供了虚拟网桥<code>bridge</code>，当然这是后话了。</p>
+<p>想要继续写<code>bridge</code>，但是实现太晚了，就这样吧，以后有时间再说。</p>
 
 
 
@@ -1070,8 +1101,8 @@ ls: cannot access 'rootfs/root/123.txt': No such file or directory
 
 <p class="underline"></p>
 <div>
-  <p><b>在容器中如何挂载rootfs</b></p>
-  <p><a href="">https://wangli2025.github.io/2024/11/13/How_to_mount_rootfs_in_a_container.html</a></p>
+  <p><b>容器中的网络-veth</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/11/14/container-network.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
