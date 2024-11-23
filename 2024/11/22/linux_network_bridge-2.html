@@ -6,15 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="使用mkdocs创建一个简单的博客系统">
+        <meta name="description" content="linux 虚拟网桥接入实体网卡">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/10/18/Create-a-simple-blog-system-using-mkdocs.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/22/linux_network_bridge-2.html">
       
       
+        <link rel="prev" href="../21/vmware-install-tools.html">
       
-        <link rel="next" href="../../11/04/The-oldest-line-editor-ed.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -25,7 +25,7 @@
     
     
       
-        <title>使用mkdocs创建一个简单的博客系统 - 王李的博客</title>
+        <title>linux虚拟网桥接入实体网卡 - 王李的博客</title>
       
     
     
@@ -79,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mkdocs" class="md-skip">
+        <a href="#linux" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              使用mkdocs创建一个简单的博客系统
+              linux虚拟网桥接入实体网卡
             
           </span>
         </div>
@@ -518,7 +518,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-10-18 00:00:00" class="md-ellipsis">2024/10/18</time>
+                        <time datetime="2024-11-22 00:00:00" class="md-ellipsis">2024/11/22</time>
                       </div>
                     </li>
                     
@@ -529,7 +529,8 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/%E9%9A%8F%E7%AC%94.html">随笔</a></span>
+                              <a href="../../../category/linux.html">Linux</a>, 
+                              <a href="../../../category/%E5%AE%B9%E5%99%A8.html">容器</a></span>
                         </div>
                       </li>
                     
@@ -540,7 +541,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              5 min read
+                              9 min read
                             
                           </span>
                         </div>
@@ -570,233 +571,41 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      前言
+      关闭网络服务
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mkdocs_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装mkdocs
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="安装mkdocs">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      创建新项目
+      创建虚拟桥接
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      实时预览
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      生成网页文件
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#blog" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      配置blog主题
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="配置blog主题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mkdocs-material" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装mkdocs-material
+      创建虚拟网卡
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
-  <a href="#blog_1" class="md-nav__link">
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      创建blog必要的目录
+      配置虚拟网卡地址
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mkdocsyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置mkdocs.yml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      编写第一篇博客
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="编写第一篇博客">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      新增第一篇博客
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      博客元数据
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      实际效果展示
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#giscus" class="md-nav__link">
-    <span class="md-ellipsis">
-      新增giscus评论系统
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="新增giscus评论系统">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#giscus_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装giscus
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscus_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      生成giscus配置文件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscusmkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      将giscus集成到mkdocs上
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      为博文开启评论框
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#rss" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启RSS
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="开启RSS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装插件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rss_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置RSS
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      效果展示
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -827,427 +636,303 @@
 
 
 
-<h1 id="mkdocs">使用mkdocs创建一个简单的博客系统</h1>
-<p>本文将介绍如何使用<code>mkdocs</code>创建静态博客。</p>
+<h1 id="linux">linux虚拟网桥接入实体网卡</h1>
+<p>本文将介绍虚拟网桥（<code>bridge</code>）接入实体网卡。</p>
 <!-- more -->
 
-<h2 id="_1">前言</h2>
-<p>每个做技术的都希望有一个属于个人的小站点，不管是写一些随笔，还是记录技术总结，但是又不想弄得很复杂。这篇文章也许会帮到你。</p>
-<p>本博客使用的技术栈为<code>mkdocs</code> + <code>material</code> 主题，配合 <code>giscus</code> 评论系统搭配而成，听起来是不是感觉非常复杂，放心，只会涉及一些简单的命令。</p>
-<h2 id="mkdocs_1">安装<code>mkdocs</code></h2>
-<p>首先是安装<code>mkdocs</code> ，它是<code>python</code> 编写的一个基于<code>Markdown</code> 文档的静态站点生成器。</p>
-<p>使用<code>pip</code> 进行安装即可</p>
-<pre><code class="language-bash"># pip3 install mkdocs
+<p>此前已经介绍过<code>linux</code>虚拟网桥（<code>bridge</code>）在容器中的作用，本次将来介绍将网桥接入实体网卡。</p>
+<p>本文所依赖的环境为：</p>
+<pre><code class="language-bash">root@debian:~# hostnamectl
+ Static hostname: windows11pro
+       Icon name: windowsBooks
+         Chassis: laptop 💻
+Operating System: Debian GNU/Linux 12 (bookworm)  
+          Kernel: Linux 6.1.0-26-amd64
+    Architecture: x86-64
+ Hardware Vendor: ASUSTeK COMPUTER INC.
+  Hardware Model: X441UVK
+Firmware Version: X441UVK.314
+root@debian:~#
 </code></pre>
-<blockquote>
-<p>首先需要安装<code>python</code> ： <a href="https://www.python.org/"> https://www.python.org/</a></p>
-</blockquote>
-<h3 id="_2">创建新项目</h3>
-<p>使用<code>mkdocs new new-project</code> ，即可创建一个空的<code>new-project</code> 项目 。</p>
-<pre><code class="language-bash"># mkdocs new new-project
-INFO    -  Creating project directory: new-project
-INFO    -  Writing config file: new-project/mkdocs.yml
-INFO    -  Writing initial docs: new-project/docs/index.md
-#
+<p>操作的是切记不要使用虚拟机如，<code>vmware</code>和<code>virtualbox</code>等。</p>
+<p>默认网卡混杂模式，在虚拟机中是没有开启的：<a href="https://docs.vmware.com/cn/VMware-vSphere/6.7/com.vmware.vsphere.security.doc/GUID-92F3AB1F-B4C5-4F25-A010-8820D7250350.html">https://docs.vmware.com/cn/VMware-vSphere/6.7/com.vmware.vsphere.security.doc/GUID-92F3AB1F-B4C5-4F25-A010-8820D7250350.html</a></p>
+<h2 id="_1">关闭网络服务</h2>
+<p>默认情况下，<code>NetworkManager.service</code>是<code>Linux</code>系统中的网络管理工具，负责自动分配<code>ip</code>地址等。由于要操作<code>bridge</code>，所以需要暂时将其给关闭掉。否则，后续单独开启网卡，又会拉取到<code>ip</code>地址等。</p>
+<p>将<code>NetworkManager.service</code>给停用掉，并且禁止开机自启。然后重启机器。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# systemctl disable NetworkManager.service
+[root@localhost]:[~][tty:0]# systemctl stop NetworkManager.service
+[root@localhost]:[~][tty:0]# reboot
 </code></pre>
-<p>创建<code>new-project</code> 新项目后，目录格式如下：</p>
-<pre><code class="language-bash"># tree new-project/
-new-project/
-├── docs
-│   └── index.md
-└── mkdocs.yml
-
-1 directory, 2 files
-#
+<p>重启完毕后，查看网络，应该是无<code>ip</code>地址，且网卡状态为<code>DOWN</code>的。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<p>其中</p>
-<ul>
-<li><code>mkdocs.yml</code> ：主配置文件</li>
-<li><code>docs</code>：静态文档目录</li>
-</ul>
-<h3 id="_3">实时预览</h3>
-<p><code>mkdocs</code> 提供了内置<code>web</code> 服务器，以便在编写文档的时候可以实时浏览文档，在新项目目录下，使用如下命令即可启动该<code>web</code> 服务器：</p>
-<pre><code class="language-bash">$ cd new-project/
-$ mkdocs serve
-INFO    -  Building documentation...
-INFO    -  Cleaning site directory
-INFO    -  Documentation built in 0.14 seconds
-INFO    -  [15:14:07] Watching paths for changes: 'docs', 'mkdocs.yml'
-INFO    -  [15:14:07] Serving on http://127.0.0.1:8000/
+<p>网卡关闭后，我们需要手动配置一下<code>ip</code>，确保机器能够上网。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip addr add 192.168.100.136/24 dev enp4s0
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ip link set enp4s0 up
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ping 192.168.100.1 -c 3
+PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=1.06 ms
+64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.651 ms
+64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=0.654 ms
+
+--- 192.168.100.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2023ms
+rtt min/avg/max/mdev = 0.651/0.789/1.062/0.193 ms
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<p>此时若打开该网页，会看到默认的主页：</p>
-<p><img alt="image-20241018151523934" src="../../../blog/img/image-20241018151523934.png" /></p>
-<h3 id="_4">生成网页文件</h3>
-<p>若文档编写完后，想要部署到静态服务器上，可以将其生成静态站点，而后部署到静态服务器即可，例如：</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdocs build
-INFO    -  Cleaning site directory
-INFO    -  Building documentation to directory: /mnt/j/new-project/site
-INFO    -  Documentation built in 0.09 seconds
-#
+<p>配置<code>ip</code>后，并且手动启动网卡，<code>ping</code>网关没问题。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ping 8.8.8.8 -c 3
+ping: connect: Network is unreachable
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<p>此时会在当前目录下，生成<code>site</code> 目录，而该在目录下，是生成一系列的静态文件。</p>
-<pre><code class="language-bash"># tree site
-site
-├── 404.html
-├── css
-│   ├── base.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap.min.css.map
-│   ├── brands.min.css
-│   ├── fontawesome.min.css
-│   ├── solid.min.css
-│   └── v4-font-face.min.css
-├── img
-│   ├── favicon.ico
-│   └── grid.png
-├── index.html
-├── js
-│   ├── base.js
-│   ├── bootstrap.bundle.min.js
-│   ├── bootstrap.bundle.min.js.map
-│   └── darkmode.js
-├── search
-│   ├── lunr.js
-│   ├── main.js
-│   ├── search_index.json
-│   └── worker.js
-├── sitemap.xml
-├── sitemap.xml.gz
-└── webfonts
-    ├── fa-brands-400.ttf
-    ├── fa-brands-400.woff2
-    ├── fa-regular-400.ttf
-    ├── fa-regular-400.woff2
-    ├── fa-solid-900.ttf
-    ├── fa-solid-900.woff2
-    ├── fa-v4compatibility.ttf
-    └── fa-v4compatibility.woff2
+<p>但是<code>ping</code>外网会显示网络不可达，这是因为是手动添加的<code>ip</code>地址，路由信息需要配置，需要添加一条默认路由，指向网关即可。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip route
+192.168.100.0/24 dev enp4s0 proto kernel scope link src 192.168.100.136
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ip route add default via 192.168.100.1
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ping -c 3 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=33.7 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=34.0 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=55 time=34.7 ms
 
-5 directories, 29 files
-#
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 33.735/34.158/34.742/0.426 ms
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<h2 id="blog">配置blog主题</h2>
-<p><code>mkdocs-material</code> 是<code>mkdocs</code> 使用最多的第三方主题，其内置了<code>blog</code> 插件可供直接调用。</p>
-<h3 id="mkdocs-material">安装<code>mkdocs-material</code></h3>
-<p>使用<code>pip</code> 即可安装该主题</p>
-<pre><code class="language-bash"># pip3 install mkdocs-material
+<p>如上，手动配置的<code>ip</code>也可以进行上网。需要清除该网卡上的<code>ip</code>信息，并且给关闭掉网络。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set enp4s0 down
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ip addr flush dev enp4s0
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
+    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<h3 id="blog_1">创建blog必要的目录</h3>
-<p>使用<code>mkdocs-material</code>的博客插件，需要新建<code>docs/posts</code> 目录，以便插件能够扫描该目录下所有的<code>Markdown</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p docs/posts/
-# tree docs/
-docs/
-├── index.md
-└── posts
-
-1 directory, 1 file
-#
+<h2 id="_2">创建虚拟桥接</h2>
+<p>创建一个桥接<code>bridge</code>。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link add name br0 type bridge
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ip link
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 1000
+    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
+3: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<h3 id="mkdocsyml">配置mkdocs.yml</h3>
-<p>该配置文件默认只有一项配置：<code>site_name</code>，也是唯一必须要有的一项。</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Docs
-#
+<p>将<code>enp4s0</code>实体网卡加入到该虚拟桥接设备<code>br0</code>中。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set enp4s0 master br0
 </code></pre>
-<p>在此基础上，新增<code>theme</code> 和<code>plugins</code> 配置为<code>blog</code> 类型</p>
-<p>配置如下</p>
-<pre><code class="language-yaml"># cat mkdocs.yml
-site_name: My Blog
-
-theme:
-  name: material
-
-plugins:
-  - blog:
-      blog_dir: .
-#
+<p>为<code>br0</code>配置<code>ip</code>地址，注意这里是为桥接配置<code>ip</code>地址，而非<code>enp4s0</code>实体网络哦，因为接入到了<code>bridge</code>中，可以将<code>enp4s0</code>看做是一根网线。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip addr add 192.168.100.136/24 dev br0
+[root@localhost]:[~][tty:0]#
+[root@localhost]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc fq_codel master br0 state DOWN group default qlen 1000
+    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
+3: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.136/24 scope global br0
+       valid_lft forever preferred_lft forever
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<p>上述内容是一个最基本的<code>blog</code> 配置，含义是<code>mkdocs</code> 使用了<code>mkdocs-material</code> 主题，并且启用了<code>blog</code>插件，<code>blog</code> 的根目录为当前目录。</p>
-<h2 id="_5">编写第一篇博客</h2>
-<blockquote>
-<p>关于更多的内容可以参考：<a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/"> mkdocs-material-setting-up-a-blog</a></p>
-</blockquote>
-<p>在开始之前，需要先清理掉<code>docs/index.md</code> 的内容，以免造成干扰。</p>
-<pre><code class="language-bash"># &gt; docs/index.md
+<p>配置完成后，需要启动<code>br0</code>和<code>enp4s0</code>网卡，</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set br0 up
+[root@localhost]:[~][tty:0]# ip link set enp4s0 up
+[root@localhost]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp4s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel master br0 state UP group default qlen 1000
+    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::56e1:adff:fee7:de8d/64 scope link
+       valid_lft forever preferred_lft forever
+3: br0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.136/24 scope global br0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::827:75ff:feb4:3069/64 scope link
+       valid_lft forever preferred_lft forever
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<h3 id="_6">新增第一篇博客</h3>
-<p>在<code>/docs/posts/</code> 中可以编写第一篇文档了。</p>
-<pre><code class="language-bash"># cat &gt;&gt; docs/posts/hello_mkdocs.md &lt;&lt; EOF
-&gt; ---
-&gt; date: 2024-10-18
-&gt; categories:
-&gt;   - hello
-&gt; draft: false
-&gt; ---
-&gt;
-&gt; # Hello Mkdocs
-&gt;
-&gt; 这是编写的第一篇文档
-&gt;
-&gt; &lt;!-- more --&gt;
-&gt;
-&gt; 正文开始...
-&gt; EOF
-#
+<p>可以看到，此时2个网卡的状态都是<code>UP</code>。</p>
+<p>尝试<code>ping</code>一下网关。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ping -c 3 192.168.100.1
+PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=1.53 ms
+64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.663 ms
+64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=0.666 ms
+
+--- 192.168.100.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2009ms
+rtt min/avg/max/mdev = 0.663/0.954/1.534/0.409 ms
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<h3 id="_7">博客元数据</h3>
-<p>文档的内容如下：</p>
-<pre><code class="language-bash"># cat docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
+<p>再次添加默认路由后，<code>ping</code>外网。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip route add default via 192.168.100.1
+[root@localhost]:[~][tty:0]# ping -c 3 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=40.6 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=36.2 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=55 time=40.2 ms
 
-# Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
-
-正文开始...
-#
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2005ms
+rtt min/avg/max/mdev = 36.152/38.988/40.643/2.014 ms
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<p>其中<code>---</code> 包含的是博客的元信息</p>
-<pre><code class="language-bash">---
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
+<p>可见，将实体网卡给到虚拟网桥，是行得通的。</p>
+<h2 id="_3">创建虚拟网卡</h2>
+<p>现在需要操作的是，创建一对虚拟网卡，并且将其中一端放入<code>net namespace</code>中，另外一端加入刚刚创建好的<code>bridge</code>，并且为<code>net namespace</code>中的网卡配置<code>ip</code>地址，看是否能够和外部直接通信。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link add name veth0 type veth peer name veth1
+[root@localhost]:[~][tty:0]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: enp4s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel master br0 state UP group default qlen 1000
+    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
+    inet6 fe80::56e1:adff:fee7:de8d/64 scope link
+       valid_lft forever preferred_lft forever
+3: br0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.100.136/24 scope global br0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::827:75ff:feb4:3069/64 scope link
+       valid_lft forever preferred_lft forever
+4: veth1@veth0: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff
+5: veth0@veth1: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether a6:27:b0:61:da:eb brd ff:ff:ff:ff:ff:ff
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<ul>
-<li><code>date</code>： 文档的日期</li>
-<li><code>categories</code>： 文档的分类</li>
-<li><code>draft</code>： 是否是草稿</li>
-</ul>
-<p>接下来便是摘要</p>
-<pre><code class="language-bash"># Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
+<p>如上，创建了一对虚拟网卡，名称分别为<code>veth0</code>和<code>veth1</code>。</p>
+<p>现在需要新开一个终端，创建一个全新的<code>net namespace</code>。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:1]# unshare -m -i -u -n -f /bin/bash
+(unshare) [root@localhost]:[~][tty:1]#
+(unshare) [root@localhost]:[~][tty:1]# echo $$
+1283
+(unshare) [root@localhost]:[~][tty:1]#
+(unshare) [root@localhost]:[~][tty:1]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+(unshare) [root@localhost]:[~][tty:1]#
 </code></pre>
-<p><code>&lt;!-- more --&gt;</code> 标签之上的内容，便是摘要。</p>
-<h3 id="_8">实际效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p><img alt="image-20241018161642417" src="../../../blog/img/image-20241018161642417.png" /></p>
-<p><img alt="image-20241018161655040" src="../../../blog/img/image-20241018161655040.png" /></p>
-<h2 id="giscus">新增giscus评论系统</h2>
-<p><code>giscus</code> 是<code>github</code>的一个应用程序，由<code>GitHub Discussions</code>提供支持的评论系统。</p>
-<p>由于是基于<code>github</code> 的，所以需要先在网页上登录<code>github</code> 才能进行后续的操作。</p>
-<h3 id="giscus_1">安装giscus</h3>
-<p>使用浏览器打开<a href="https://github.com/apps/giscus">https://github.com/apps/giscus</a>打开该页面，选择<code>Install</code> 进行安装</p>
-<p><img alt="image-20241018162315511" src="../../../blog/img/image-20241018162315511.png" /></p>
-<p>点击安装后，会提示对于哪些存储库有权限，由于是给<code>mkdocs</code> 使用，所以给定一个预先创建好的仓库即可。</p>
-<p>最后点击<code>Install</code> 即可安装。</p>
-<h3 id="giscus_2">生成giscus配置文件</h3>
-<p>打开<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>即可配置该<code>giscus</code> ，输入仓库信息，选择映射关系，即可生成配置文件。</p>
-<h3 id="giscusmkdocs">将giscus集成到mkdocs上</h3>
-<p>覆盖原始<code>comments.html</code> 文件，新建<code>overrides/partials/comments.html</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p overrides/partials/
-#
-# touch  overrides/partials/comments.html
-#
+<p>如上，创建了一个一个<code>net namespace</code>，查看<code>ip</code>，只有本地回环地址<code>lo</code>。</p>
+<p>切回原来的终端，将<code>veth1</code>移入到刚刚创建的<code>net namespace</code>中。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set veth1 netns 1283
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<p>编辑<code>comments.html</code> 文件，首先键入模版内容：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
-
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
+<p>回到<code>net namespace</code>后，可以看到已经移入过来的网卡地址。</p>
+<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+4: veth1@if6: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff link-netnsid 0
+(unshare) [root@localhost]:[~][tty:1]#
 </code></pre>
-<p>接着将上述生成的<code>giscus</code> 配置文件，编辑到上述<code>comments.html</code>文件中的<code>&lt;!-- Insert generated snippet here --&gt;</code> 和<code>&lt;!-- Synchronize Giscus theme with palette --&gt;</code> 之间。</p>
-<p>完整的内容为：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
-
-&lt;!-- giscus.app/client.js 相关代码 --&gt;
-
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
+<h2 id="_4">配置虚拟网卡地址</h2>
+<p>上述已经将<code>veth1</code>移入到了<code>net namespace</code>中，现在需要将外面的<code>veth0</code>给加入到<code>bridge</code>虚拟设备<code>br0</code>中，并且将网卡给打开。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set veth0 master br0
+[root@localhost]:[~][tty:0]# ip link set veth0 up
+[root@localhost]:[~][tty:0]#
 </code></pre>
-<p>同时，还需要修改<code>mkdocs.yml</code> 在<code>theme</code> 中新增<code>custom_dir</code> 参数，完整的配置参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
-
-plugins:
-  - blog:
-      blog_dir: .
-#
+<p>在<code>net namespace</code>中，需要为刚刚移入的<code>veth1</code>配置<code>ip</code>地址。</p>
+<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip addr add 192.168.100.137/24 dev veth1
+(unshare) [root@localhost]:[~][tty:1]#
+(unshare) [root@localhost]:[~][tty:1]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+4: veth1@if6: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 192.168.100.137/24 scope global veth1
+       valid_lft forever preferred_lft forever
+(unshare) [root@localhost]:[~][tty:1]#
 </code></pre>
-<p><code>custom_dir</code> 参数的作用是覆盖原始模版文件。</p>
-<h3 id="_9">为博文开启评论框</h3>
-<p>还记得创建<code>hello_mkdocs.md</code> 的元信息吗？</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
-
-# Hello Mkdocs
-
-这是编写的第一篇文档
-#
+<p>并且将网卡给打开。</p>
+<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip link set veth1 up
+(unshare) [root@localhost]:[~][tty:1]#
+(unshare) [root@localhost]:[~][tty:1]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+5: veth1@if6: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 192.168.100.137/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::b800:10ff:fe0e:f2df/64 scope link tentative
+       valid_lft forever preferred_lft forever
+(unshare) [root@localhost]:[~][tty:1]#
 </code></pre>
-<p>仅需要在元信息上添加<code>comments: true</code> 即可，新增评论框。</p>
-<p>修改后的文件为：</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
-comments: true
----
+<p>尝试<code>ping</code>一下网关。</p>
+<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ping 192.168.100.1 -c 3
+PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
+64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=1.28 ms
+64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.704 ms
+64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=0.690 ms
 
-# Hello Mkdocs
+--- 192.168.100.1 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2030ms
+rtt min/avg/max/mdev = 0.690/0.890/1.278/0.273 ms
+(unshare) [root@localhost]:[~][tty:1]#
+</code></pre>
+<p>但是<code>ping</code>外网，依然会报错网络不可达。</p>
+<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ping 8.8.8.8 -c 3
+ping: connect: Network is unreachable
+(unshare) [root@localhost]:[~][tty:1]#
+</code></pre>
+<p>这是因为在<code>net namespace</code>中，没有添加默认路由，需要添加上去即可。</p>
+<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip route add default via 192.168.100.1
+(unshare) [root@localhost]:[~][tty:1]#
+(unshare) [root@localhost]:[~][tty:1]# ping 8.8.8.8 -c 3
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=36.9 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=34.6 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=55 time=33.5 ms
 
-#
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2004ms
+rtt min/avg/max/mdev = 33.493/35.014/36.908/1.418 ms
+(unshare) [root@localhost]:[~][tty:1]#
 </code></pre>
-<p>打开网页，便可以进行评论了。</p>
-<p><img alt="image-20241018171344553" src="../../../blog/img/image-20241018171344553.png" /></p>
-<h2 id="rss">开启RSS</h2>
-<p>关于<code>RSS</code>的文档，参考如下： <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss">https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss</a></p>
-<p><code>RSS</code> 对于博客而言，非常重要，可以方便用户订阅网站<code>RSS feed</code>，接下来便介绍如何开启<code>RSS</code> 。</p>
-<h3 id="_10">安装插件</h3>
-<pre><code class="language-bash"># pip3 install mkdocs-rss-plugin
+<h2 id="_5">总结</h2>
+<p>如果是桥接的真实网卡，且不做<code>nat</code>的话，则不需要进行<code>ip</code>转发，<code>ip</code>转发一般在不同网络之间通信才需要开启，比如，这台机器的转发就没有开，不影响它桥接虚拟网卡，和外部进行通信。</p>
+<pre><code class="language-bash">[root@localhost]:[~][tty:3]# cat /proc/sys/net/ipv4/ip_forward
+0
+[root@localhost]:[~][tty:3]#
 </code></pre>
-<h3 id="rss_1">配置RSS</h3>
-<p>在<code>mkdocs.yml</code>中新增关于<code>RSS</code> 信息的参数。</p>
-<pre><code class="language-bash">plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
-</code></pre>
-<p>其参数的作用为开启<code>rss</code> 。</p>
-<ul>
-<li><code>match_path:</code>： 匹配 指定 目录下的文档。</li>
-<li><code>categories</code> ： <code>feed</code> 类别。</li>
-<li><code>use_git</code>:  禁用<code>git</code> 。</li>
-</ul>
-<p>其完整参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
-
-plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
-#
-</code></pre>
-<h3 id="_11">效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p>在浏览器中输入<a href="http://127.0.0.1:8001/feed_rss_created.xml">127.0.0.1:8001/feed_rss_created.xml</a>便可以查看该站点的<code>RSS</code>信息了。</p>
-<p><img alt="image-20241018174359942" src="../../../blog/img/image-20241018174359942.png" /></p>
-<p>如上，则证明该<code>RSS</code> 配置成功。</p>
-<h2 id="_12">总结</h2>
-<p>一个最最最简单的使用<code>mkdocs</code> 创建博客系统的案例就结束了，简单的总结一下：</p>
-<p>首先<code>mkdocs</code> 是基于<code>python</code> 的第三方软件，所以需要依赖其<code>python</code> 环境，所以需要使用该工具，得先安装<code>python</code>。</p>
-<p><a href="https://www.python.org/">https://www.python.org/</a></p>
-<p>其次使用的博客系统是源于<code>mkdocs</code> 的第三方主题<code>material</code>，也是需要额外安装的。</p>
-<p><a href="https://github.com/squidfunk/mkdocs-material">https://github.com/squidfunk/mkdocs-material</a></p>
-<p>接着便是导入了<code>Giscus</code>评论系统，它是<code>github</code>中的一个应用软件，需要先到<code>github</code>上进行安装，而后到<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>进行配置，获取到相关的配置文件，最后通过覆盖<code>mkdocs</code> 原始文件的方式集成到<code>mkdocs</code> 中。需要注意的是，覆盖<code>mkdocs</code> 需要修改<code>mkdocs.yml</code>配置文件，在<code>theme</code> 中引入<code>custom_dir</code> 相关配置。</p>
-<p>最后便是集成了<code>RSS</code>，它也是一个第三方插件，需要进行额外安装，安装完毕后，需要在<code>plugins</code> 中进行配置<code>RSS</code> 相关信息。</p>
+<p>还有，一定在真实的机器下操作，我操作了<code>vmware</code>等虚拟机，即使在<code>linux</code>中，开启了混合模式的情况下，外部<code>ping veth</code>的数据包最多只能达到<code>br0</code>，就丢了，应该是和虚拟机有关系。</p>
 
 
 
@@ -1257,8 +942,8 @@ plugins:
 
 <p class="underline"></p>
 <div>
-  <p><b>使用mkdocs创建一个简单的博客系统</b></p>
-  <p><a href="">https://wangli2025.github.io/2024/10/18/Create-a-simple-blog-system-using-mkdocs.html</a></p>
+  <p><b>linux虚拟网桥接入实体网卡</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/11/22/linux_network_bridge-2.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>

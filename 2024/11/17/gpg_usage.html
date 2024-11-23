@@ -6,15 +6,17 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="使用mkdocs创建一个简单的博客系统">
+        <meta name="description" content="gpg简单用法">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/10/18/Create-a-simple-blog-system-using-mkdocs.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/17/gpg_usage.html">
       
       
+        <link rel="prev" href="../14/container-network.html">
       
-        <link rel="next" href="../../11/04/The-oldest-line-editor-ed.html">
+      
+        <link rel="next" href="../19/docker_network_bridge.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -25,7 +27,7 @@
     
     
       
-        <title>使用mkdocs创建一个简单的博客系统 - 王李的博客</title>
+        <title>gpg简单用法 - 王李的博客</title>
       
     
     
@@ -79,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#mkdocs" class="md-skip">
+        <a href="#gpg" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +142,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              使用mkdocs创建一个简单的博客系统
+              gpg简单用法
             
           </span>
         </div>
@@ -518,7 +520,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-10-18 00:00:00" class="md-ellipsis">2024/10/18</time>
+                        <time datetime="2024-11-17 00:00:00" class="md-ellipsis">2024/11/17</time>
                       </div>
                     </li>
                     
@@ -529,7 +531,7 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/%E9%9A%8F%E7%AC%94.html">随笔</a></span>
+                              <a href="../../../category/gpg.html">gpg</a></span>
                         </div>
                       </li>
                     
@@ -540,7 +542,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              5 min read
+                              7 min read
                             
                           </span>
                         </div>
@@ -568,28 +570,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#gpg_1" class="md-nav__link">
     <span class="md-ellipsis">
-      前言
+      什么是GPG
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#mkdocs_1" class="md-nav__link">
+  <a href="#gpg2" class="md-nav__link">
     <span class="md-ellipsis">
-      安装mkdocs
+      安装gpg2
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="安装mkdocs">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      秘钥的基本操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="秘钥的基本操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      创建新项目
+      生成秘钥
     </span>
   </a>
   
@@ -598,7 +609,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      实时预览
+      查看秘钥
     </span>
   </a>
   
@@ -607,91 +618,25 @@
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      生成网页文件
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#blog" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置blog主题
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="配置blog主题">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#mkdocs-material" class="md-nav__link">
-    <span class="md-ellipsis">
-      安装mkdocs-material
+      导出秘钥
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#blog_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      创建blog必要的目录
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mkdocsyml" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置mkdocs.yml
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      编写第一篇博客
+      导入秘钥
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="编写第一篇博客">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      新增第一篇博客
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      博客元数据
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      实际效果展示
+      删除密钥
     </span>
   </a>
   
@@ -703,37 +648,19 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#giscus" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      新增giscus评论系统
+      内容的加密和解密
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="新增giscus评论系统">
+    <nav class="md-nav" aria-label="内容的加密和解密">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#giscus_1" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      安装giscus
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscus_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      生成giscus配置文件
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#giscusmkdocs" class="md-nav__link">
-    <span class="md-ellipsis">
-      将giscus集成到mkdocs上
+      使用公钥进行加密文件
     </span>
   </a>
   
@@ -742,7 +669,7 @@
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      为博文开启评论框
+      使用私钥进行解密文件
     </span>
   </a>
   
@@ -754,37 +681,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#rss" class="md-nav__link">
-    <span class="md-ellipsis">
-      开启RSS
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="开启RSS">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      安装插件
+      签名与验证
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#rss_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      配置RSS
-    </span>
-  </a>
-  
-</li>
+    <nav class="md-nav" aria-label="签名与验证">
+      <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      效果展示
+      对文件进行签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      对消息进行签名
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      对文件进行签名验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      对消息进行签名验证
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      对签名输出的解读
     </span>
   </a>
   
@@ -796,7 +741,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -827,427 +772,330 @@
 
 
 
-<h1 id="mkdocs">使用mkdocs创建一个简单的博客系统</h1>
-<p>本文将介绍如何使用<code>mkdocs</code>创建静态博客。</p>
+<h1 id="gpg"><code>gpg</code>简单用法</h1>
+<p>本文将简单介绍<code>gpg</code>简单用法。</p>
 <!-- more -->
 
-<h2 id="_1">前言</h2>
-<p>每个做技术的都希望有一个属于个人的小站点，不管是写一些随笔，还是记录技术总结，但是又不想弄得很复杂。这篇文章也许会帮到你。</p>
-<p>本博客使用的技术栈为<code>mkdocs</code> + <code>material</code> 主题，配合 <code>giscus</code> 评论系统搭配而成，听起来是不是感觉非常复杂，放心，只会涉及一些简单的命令。</p>
-<h2 id="mkdocs_1">安装<code>mkdocs</code></h2>
-<p>首先是安装<code>mkdocs</code> ，它是<code>python</code> 编写的一个基于<code>Markdown</code> 文档的静态站点生成器。</p>
-<p>使用<code>pip</code> 进行安装即可</p>
-<pre><code class="language-bash"># pip3 install mkdocs
-</code></pre>
+<h2 id="gpg_1">什么是<code>GPG</code></h2>
 <blockquote>
-<p>首先需要安装<code>python</code> ： <a href="https://www.python.org/"> https://www.python.org/</a></p>
+<p>用一句话总结的话，就是<code>GPG</code>是<code>GNU</code>众多项目中的一项，作用是为<code>PGP</code>提供一个免费的开源替代，并且完全兼容<code>PGP</code>（<code>PGP</code>是一款商业软件）。</p>
 </blockquote>
-<h3 id="_2">创建新项目</h3>
-<p>使用<code>mkdocs new new-project</code> ，即可创建一个空的<code>new-project</code> 项目 。</p>
-<pre><code class="language-bash"># mkdocs new new-project
-INFO    -  Creating project directory: new-project
-INFO    -  Writing config file: new-project/mkdocs.yml
-INFO    -  Writing initial docs: new-project/docs/index.md
-#
-</code></pre>
-<p>创建<code>new-project</code> 新项目后，目录格式如下：</p>
-<pre><code class="language-bash"># tree new-project/
-new-project/
-├── docs
-│   └── index.md
-└── mkdocs.yml
-
-1 directory, 2 files
-#
-</code></pre>
-<p>其中</p>
+<p><code>GPG</code>是一个开源的加密软件，提供了加密、解密、签名等众多功能，用于确保数据安全、完整性以及身份认证。</p>
+<p>在<code>GPG</code>使用的时候，需要生成一对秘钥，分别是公钥和私钥。</p>
 <ul>
-<li><code>mkdocs.yml</code> ：主配置文件</li>
-<li><code>docs</code>：静态文档目录</li>
+<li>公钥用于 加密数据 以及 签名验证，公钥可以公开，并且分发出去。</li>
+<li>私钥用于 解密数据 以及 签名，私钥需要妥善保管。</li>
 </ul>
-<h3 id="_3">实时预览</h3>
-<p><code>mkdocs</code> 提供了内置<code>web</code> 服务器，以便在编写文档的时候可以实时浏览文档，在新项目目录下，使用如下命令即可启动该<code>web</code> 服务器：</p>
-<pre><code class="language-bash">$ cd new-project/
-$ mkdocs serve
-INFO    -  Building documentation...
-INFO    -  Cleaning site directory
-INFO    -  Documentation built in 0.14 seconds
-INFO    -  [15:14:07] Watching paths for changes: 'docs', 'mkdocs.yml'
-INFO    -  [15:14:07] Serving on http://127.0.0.1:8000/
+<p>对于加密和解密的情况，使用对应的公钥进行加密，对于加密后的数据，只能使用对应私钥进行解密。</p>
+<p>对于签名和验证，使用私钥来进行签名，使用公钥来进行签名验证，确保消息并无修改。</p>
+<p>目前<code>gpg</code>已经有了<code>2.*</code>版本，在<code>1.*</code>的基础上进行重大改进，但是完全建议<code>1.*</code>。</p>
+<h2 id="gpg2">安装<code>gpg2</code></h2>
+<p>在<code>ubuntu</code>系统中，直接使用<code>apt</code>安装即可。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# apt-get install gnupg2
 </code></pre>
-<p>此时若打开该网页，会看到默认的主页：</p>
-<p><img alt="image-20241018151523934" src="../../../blog/img/image-20241018151523934.png" /></p>
-<h3 id="_4">生成网页文件</h3>
-<p>若文档编写完后，想要部署到静态服务器上，可以将其生成静态站点，而后部署到静态服务器即可，例如：</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdocs build
-INFO    -  Cleaning site directory
-INFO    -  Building documentation to directory: /mnt/j/new-project/site
-INFO    -  Documentation built in 0.09 seconds
-#
+<p>在<code>centos</code>系统重，直接使用<code>yum</code>或者<code>dnf</code>安装即可。</p>
+<pre><code class="language-bash">[root@centosServer ~]# yum install gnupg2
 </code></pre>
-<p>此时会在当前目录下，生成<code>site</code> 目录，而该在目录下，是生成一系列的静态文件。</p>
-<pre><code class="language-bash"># tree site
-site
-├── 404.html
-├── css
-│   ├── base.css
-│   ├── bootstrap.min.css
-│   ├── bootstrap.min.css.map
-│   ├── brands.min.css
-│   ├── fontawesome.min.css
-│   ├── solid.min.css
-│   └── v4-font-face.min.css
-├── img
-│   ├── favicon.ico
-│   └── grid.png
-├── index.html
-├── js
-│   ├── base.js
-│   ├── bootstrap.bundle.min.js
-│   ├── bootstrap.bundle.min.js.map
-│   └── darkmode.js
-├── search
-│   ├── lunr.js
-│   ├── main.js
-│   ├── search_index.json
-│   └── worker.js
-├── sitemap.xml
-├── sitemap.xml.gz
-└── webfonts
-    ├── fa-brands-400.ttf
-    ├── fa-brands-400.woff2
-    ├── fa-regular-400.ttf
-    ├── fa-regular-400.woff2
-    ├── fa-solid-900.ttf
-    ├── fa-solid-900.woff2
-    ├── fa-v4compatibility.ttf
-    └── fa-v4compatibility.woff2
+<h2 id="_1">秘钥的基本操作</h2>
+<h3 id="_2">生成秘钥</h3>
+<p>使用<code>gpg2 --full-generate-key</code>即可开始生成<code>key</code></p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]#  gpg2 --full-generate-key
+gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
 
-5 directories, 29 files
-#
-</code></pre>
-<h2 id="blog">配置blog主题</h2>
-<p><code>mkdocs-material</code> 是<code>mkdocs</code> 使用最多的第三方主题，其内置了<code>blog</code> 插件可供直接调用。</p>
-<h3 id="mkdocs-material">安装<code>mkdocs-material</code></h3>
-<p>使用<code>pip</code> 即可安装该主题</p>
-<pre><code class="language-bash"># pip3 install mkdocs-material
-</code></pre>
-<h3 id="blog_1">创建blog必要的目录</h3>
-<p>使用<code>mkdocs-material</code>的博客插件，需要新建<code>docs/posts</code> 目录，以便插件能够扫描该目录下所有的<code>Markdown</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p docs/posts/
-# tree docs/
-docs/
-├── index.md
-└── posts
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+  (14) Existing key from card
+Your selection? 1
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (3072) 4096
+Requested keysize is 4096 bits
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 1y
+Key expires at Sun 16 Nov 2025 08:03:27 PM CST
+Is this correct? (y/N) y
 
-1 directory, 1 file
-#
-</code></pre>
-<h3 id="mkdocsyml">配置mkdocs.yml</h3>
-<p>该配置文件默认只有一项配置：<code>site_name</code>，也是唯一必须要有的一项。</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Docs
-#
-</code></pre>
-<p>在此基础上，新增<code>theme</code> 和<code>plugins</code> 配置为<code>blog</code> 类型</p>
-<p>配置如下</p>
-<pre><code class="language-yaml"># cat mkdocs.yml
-site_name: My Blog
+GnuPG needs to construct a user ID to identify your key.
 
-theme:
-  name: material
+Real name: gpguser
+Email address: gpguser@localhost.com
+Comment: gpg test 
+You selected this USER-ID:
+    &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;
 
-plugins:
-  - blog:
-      blog_dir: .
-#
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o
 </code></pre>
-<p>上述内容是一个最基本的<code>blog</code> 配置，含义是<code>mkdocs</code> 使用了<code>mkdocs-material</code> 主题，并且启用了<code>blog</code>插件，<code>blog</code> 的根目录为当前目录。</p>
-<h2 id="_5">编写第一篇博客</h2>
+<p>具体生成的流程如下：</p>
+<ul>
+<li><code>gpg</code>提供了多种秘钥类型，选择选择，默认为<code>RSA and RSA</code>，如果需要选择其他的，直接输入对应的序号即可。</li>
+<li>选择秘钥大小，秘钥越长，会越安全，相应的，解密时间也会越长，推荐选择<code>4096</code>位。</li>
+<li>选择过期的时间，如果永不过期，则输入0，反正可以输入 天、周、月、年 等。这里输入的是1年，即，<code>1y</code>，输入完毕后，需要进行二次确认。</li>
+<li>输入用户的信息，包括名字、邮箱 已经备注等同样需要二次确认。</li>
+<li>最后会提示输入秘钥的密码，该密码是用于保护秘钥的安全性的。</li>
+</ul>
 <blockquote>
-<p>关于更多的内容可以参考：<a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/"> mkdocs-material-setting-up-a-blog</a></p>
+<p>如果输入密码后，终端有问题，可以使用<code>reset</code>命令进行重置。</p>
 </blockquote>
-<p>在开始之前，需要先清理掉<code>docs/index.md</code> 的内容，以免造成干扰。</p>
-<pre><code class="language-bash"># &gt; docs/index.md
+<p>创建完成后，会输出类似如下创建成功的信息提示，并且会标注创建的<code>key</code>。</p>
+<pre><code class="language-bash">We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+gpg: revocation certificate stored as '/root/.gnupg/openpgp-revocs.d/3678F2332D0A0475A47125050ABA3F7577773A8F.rev'
+public and secret key created and signed.
+
+pub   rsa4096 2024-11-16 [SC] [expires: 2025-11-16]
+      3678F2332D0A0475A47125050ABA3F7577773A8F
+uid                      gpguser (gpg test) &lt;gpguser@localhost.com&gt;
+sub   rsa4096 2024-11-16 [E] [expires: 2025-11-16]
 </code></pre>
-<h3 id="_6">新增第一篇博客</h3>
-<p>在<code>/docs/posts/</code> 中可以编写第一篇文档了。</p>
-<pre><code class="language-bash"># cat &gt;&gt; docs/posts/hello_mkdocs.md &lt;&lt; EOF
-&gt; ---
-&gt; date: 2024-10-18
-&gt; categories:
-&gt;   - hello
-&gt; draft: false
-&gt; ---
-&gt;
-&gt; # Hello Mkdocs
-&gt;
-&gt; 这是编写的第一篇文档
-&gt;
-&gt; &lt;!-- more --&gt;
-&gt;
-&gt; 正文开始...
-&gt; EOF
+<p>如何，该<code>gpg</code>签名为<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>。</p>
+<h3 id="_3">查看秘钥</h3>
+<p>使用<code>--list-keys</code>参数可以查看公钥的信息。</p>
+<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# gpg2 --list-keys
+gpg: checking the trustdb
+gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+gpg: next trustdb check due at 2025-11-16
+/root/.gnupg/pubring.kbx
+------------------------
+pub   rsa2048 2024-11-16 [SC] [expires: 2025-11-16]
+      3678F2332D0A0475A47125050ABA3F7577773A8F
+uid           [ultimate] gpguser (gpg test) &lt;gpguser@localhost.com&gt;
+sub   rsa2048 2024-11-16 [E] [expires: 2025-11-16]
+
+[root@ubuntu]:[~][tty:0]#
+</code></pre>
+<p>其中<code>C57CF88588C503F6B6BFD0802A75FE471D0D8313</code>就是我们的签名。</p>
+<p>同样的，使用<code>--list-secert-keys</code>参数也可以查看私钥的信息。</p>
+<p>其中，<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>也是私钥的签名哦。</p>
+<h3 id="_4">导出秘钥</h3>
+<p>导出公钥：</p>
+<p>在查询到秘钥的<code>id</code>后，可以使用<code>--export</code>导出公钥，其中<code>--armor</code>是以<code>ascii</code>格式导出，方便共享。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --armor --export 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; public.key
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p>如上，会将<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>的公钥重定向到<code>public.key</code>文件中。</p>
+<p>导出私钥：</p>
+<p>在查询到秘钥<code>id</code>后，可以使用<code>--export-secret-keys</code>导出私钥，导出时会要求输入密码，私钥要非常妥善保管。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --armor --export-secret-keys 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; private.key
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p>如上，会将<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>的私钥导出到<code>private.key</code>文件中，如果私钥设置有密码，再导入的时候会提示验证密码。</p>
+<h3 id="_5">导入秘钥</h3>
+<p>导入公钥 和 导入私钥 的方法都是一样的，都是使用<code>gpg2 --import</code>进行导入即可。</p>
+<p>首先查看本地的公钥。</p>
+<pre><code class="language-bash"># gpg2 --list-keys
 #
 </code></pre>
-<h3 id="_7">博客元数据</h3>
-<p>文档的内容如下：</p>
-<pre><code class="language-bash"># cat docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
-
-# Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
-
-正文开始...
-#
+<p>导入公钥，公钥记录在本地的<code>public-key.asc</code>中。</p>
+<pre><code class="language-bash"># gpg2 --import public.key 
+gpg: key 0ABA3F7577773A8F: public key &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; imported
+gpg: Total number processed: 1
+gpg:               imported: 1
+# 
 </code></pre>
-<p>其中<code>---</code> 包含的是博客的元信息</p>
-<pre><code class="language-bash">---
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
+<p>此时再查询一下本地的公钥。</p>
+<pre><code class="language-bash"># gpg2 --list-keys
+gpg: checking the trustdb
+gpg: no ultimately trusted keys found
+/root/.gnupg/pubring.kbx
+------------------------
+pub   rsa4096 2024-11-16 [SC] [expires: 2025-11-16]
+      3678F2332D0A0475A47125050ABA3F7577773A8F
+uid           [ unknown] gpguser (gpg test) &lt;gpguser@localhost.com&gt;
+sub   rsa4096 2024-11-16 [E] [expires: 2025-11-16]
+
+# 
 </code></pre>
-<ul>
-<li><code>date</code>： 文档的日期</li>
-<li><code>categories</code>： 文档的分类</li>
-<li><code>draft</code>： 是否是草稿</li>
-</ul>
-<p>接下来便是摘要</p>
-<pre><code class="language-bash"># Hello Mkdocs
-
-这是编写的第一篇文档
-
-&lt;!-- more --&gt;
+<p>再来查看下本地的私钥。</p>
+<pre><code class="language-bash">root@DESKTOP-CU66GL1:~# gpg2 --list-secret-keys
+root@DESKTOP-CU66GL1:~#
 </code></pre>
-<p><code>&lt;!-- more --&gt;</code> 标签之上的内容，便是摘要。</p>
-<h3 id="_8">实际效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p><img alt="image-20241018161642417" src="../../../blog/img/image-20241018161642417.png" /></p>
-<p><img alt="image-20241018161655040" src="../../../blog/img/image-20241018161655040.png" /></p>
-<h2 id="giscus">新增giscus评论系统</h2>
-<p><code>giscus</code> 是<code>github</code>的一个应用程序，由<code>GitHub Discussions</code>提供支持的评论系统。</p>
-<p>由于是基于<code>github</code> 的，所以需要先在网页上登录<code>github</code> 才能进行后续的操作。</p>
-<h3 id="giscus_1">安装giscus</h3>
-<p>使用浏览器打开<a href="https://github.com/apps/giscus">https://github.com/apps/giscus</a>打开该页面，选择<code>Install</code> 进行安装</p>
-<p><img alt="image-20241018162315511" src="../../../blog/img/image-20241018162315511.png" /></p>
-<p>点击安装后，会提示对于哪些存储库有权限，由于是给<code>mkdocs</code> 使用，所以给定一个预先创建好的仓库即可。</p>
-<p>最后点击<code>Install</code> 即可安装。</p>
-<h3 id="giscus_2">生成giscus配置文件</h3>
-<p>打开<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>即可配置该<code>giscus</code> ，输入仓库信息，选择映射关系，即可生成配置文件。</p>
-<h3 id="giscusmkdocs">将giscus集成到mkdocs上</h3>
-<p>覆盖原始<code>comments.html</code> 文件，新建<code>overrides/partials/comments.html</code> 文件。</p>
-<pre><code class="language-bash"># cd ..
-# cd new-project/
-# mkdir -p overrides/partials/
-#
-# touch  overrides/partials/comments.html
-#
+<p>导入私钥，私钥记录在本地的<code>private-key.asc</code>中。</p>
+<pre><code class="language-bash"># gpg2 --import private.key 
+gpg: key 0ABA3F7577773A8F: &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; not changed
+gpg: key 0ABA3F7577773A8F: secret key imported
+gpg: Total number processed: 1
+gpg:              unchanged: 1
+gpg:       secret keys read: 1
+gpg:   secret keys imported: 1
+# 
 </code></pre>
-<p>编辑<code>comments.html</code> 文件，首先键入模版内容：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
+<p>同样的，在导入过程中，会让我们验证私钥的密码，密码正确后，才可被导入。</p>
+<p>再次查看私钥。</p>
+<pre><code class="language-bash"># gpg2 --list-secret-keys
+/root/.gnupg/pubring.kbx
+------------------------
+sec   rsa4096 2024-11-16 [SC] [expires: 2025-11-16]
+      3678F2332D0A0475A47125050ABA3F7577773A8F
+uid           [ unknown] gpguser (gpg test) &lt;gpguser@localhost.com&gt;
+ssb   rsa4096 2024-11-16 [E] [expires: 2025-11-16]
 
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
+# 
 </code></pre>
-<p>接着将上述生成的<code>giscus</code> 配置文件，编辑到上述<code>comments.html</code>文件中的<code>&lt;!-- Insert generated snippet here --&gt;</code> 和<code>&lt;!-- Synchronize Giscus theme with palette --&gt;</code> 之间。</p>
-<p>完整的内容为：</p>
-<pre><code class="language-bash"># cat overrides/partials/comments.html
-{% if page.meta.comments %}
-  &lt;h2 id=&quot;__comments&quot;&gt;{{ lang.t(&quot;meta.comments&quot;) }}&lt;/h2&gt;
-  &lt;!-- Insert generated snippet here --&gt;
+<h3 id="_6">删除密钥</h3>
+<p>使用<code>--delete-keys</code>可以删除公钥，请注意，当你视图删除掉的公钥仍有对应的私钥的时候，需要先删除私钥，才能删除公钥。</p>
+<p>删除公钥报错，提示有对应的私钥。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --delete-keys 3678F2332D0A0475A47125050ABA3F7577773A8F
+gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
 
-&lt;!-- giscus.app/client.js 相关代码 --&gt;
-
-  &lt;!-- Synchronize Giscus theme with palette --&gt;
-  &lt;script&gt;
-    var giscus = document.querySelector(&quot;script[src*=giscus]&quot;)
-
-    // Set palette on initial load
-    var palette = __md_get(&quot;__palette&quot;)
-    if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-      var theme = palette.color.scheme === &quot;slate&quot;
-        ? &quot;transparent_dark&quot;
-        : &quot;light&quot;
-
-      // Instruct Giscus to set theme
-      giscus.setAttribute(&quot;data-theme&quot;, theme)
-    }
-
-    // Register event handlers after documented loaded
-    document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
-      var ref = document.querySelector(&quot;[data-md-component=palette]&quot;)
-      ref.addEventListener(&quot;change&quot;, function() {
-        var palette = __md_get(&quot;__palette&quot;)
-        if (palette &amp;&amp; typeof palette.color === &quot;object&quot;) {
-          var theme = palette.color.scheme === &quot;slate&quot;
-            ? &quot;transparent_dark&quot;
-            : &quot;light&quot;
-
-          // Instruct Giscus to change theme
-          var frame = document.querySelector(&quot;.giscus-frame&quot;)
-          frame.contentWindow.postMessage(
-            { giscus: { setConfig: { theme } } },
-            &quot;https://giscus.app&quot;
-          )
-        }
-      })
-    })
-  &lt;/script&gt;
-{% endif %}
-#
+gpg: there is a secret key for public key &quot;3678F2332D0A0475A47125050ABA3F7577773A8F&quot;!
+gpg: use option &quot;--delete-secret-keys&quot; to delete it first.
+[root@debian]:[~][tty:0]# 
 </code></pre>
-<p>同时，还需要修改<code>mkdocs.yml</code> 在<code>theme</code> 中新增<code>custom_dir</code> 参数，完整的配置参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
+<p>删除私钥。</p>
+<p>可以使用<code>--delete-secret-keys</code>删除私钥。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --delete-secret-keys 3678F2332D0A0475A47125050ABA3F7577773A8F
+gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
 
-plugins:
-  - blog:
-      blog_dir: .
-#
-</code></pre>
-<p><code>custom_dir</code> 参数的作用是覆盖原始模版文件。</p>
-<h3 id="_9">为博文开启评论框</h3>
-<p>还记得创建<code>hello_mkdocs.md</code> 的元信息吗？</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
----
 
-# Hello Mkdocs
+sec  rsa4096/0ABA3F7577773A8F 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
 
-这是编写的第一篇文档
-#
+Delete this key from the keyring? (y/N) y
+This is a secret key! - really delete? (y/N) y
+[root@debian]:[~][tty:0]# 
 </code></pre>
-<p>仅需要在元信息上添加<code>comments: true</code> 即可，新增评论框。</p>
-<p>修改后的文件为：</p>
-<pre><code class="language-bash"># head docs/posts/hello_mkdocs.md
----
-date: 2024-10-18
-categories:
-  - hello
-draft: false
-comments: true
----
+<p>在删除私钥的时候，会二次确认是否进行删除。</p>
+<p>在删除私钥后，就可以删除公钥了。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --delete-keys 3678F2332D0A0475A47125050ABA3F7577773A8F
+gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
 
-# Hello Mkdocs
 
-#
-</code></pre>
-<p>打开网页，便可以进行评论了。</p>
-<p><img alt="image-20241018171344553" src="../../../blog/img/image-20241018171344553.png" /></p>
-<h2 id="rss">开启RSS</h2>
-<p>关于<code>RSS</code>的文档，参考如下： <a href="https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss">https://squidfunk.github.io/mkdocs-material/setup/setting-up-a-blog/#rss</a></p>
-<p><code>RSS</code> 对于博客而言，非常重要，可以方便用户订阅网站<code>RSS feed</code>，接下来便介绍如何开启<code>RSS</code> 。</p>
-<h3 id="_10">安装插件</h3>
-<pre><code class="language-bash"># pip3 install mkdocs-rss-plugin
-</code></pre>
-<h3 id="rss_1">配置RSS</h3>
-<p>在<code>mkdocs.yml</code>中新增关于<code>RSS</code> 信息的参数。</p>
-<pre><code class="language-bash">plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
-</code></pre>
-<p>其参数的作用为开启<code>rss</code> 。</p>
-<ul>
-<li><code>match_path:</code>： 匹配 指定 目录下的文档。</li>
-<li><code>categories</code> ： <code>feed</code> 类别。</li>
-<li><code>use_git</code>:  禁用<code>git</code> 。</li>
-</ul>
-<p>其完整参数为：</p>
-<pre><code class="language-bash"># cat mkdocs.yml
-site_name: My Blog
-theme:
-  name: material
-  custom_dir: 'overrides'
+pub  rsa4096/0ABA3F7577773A8F 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
 
-plugins:
-  - blog:
-      blog_dir: .
-  - rss:
-      match_path: /*
-      categories:
-        - categories
-        - tags
-      use_git: false
-#
+Delete this key from the keyring? (y/N) y
+[root@debian]:[~][tty:0]# 
 </code></pre>
-<h3 id="_11">效果展示</h3>
-<p>完成后，便可以使用<code>mkdocs serve</code> 查看实际的效果了。</p>
-<p>在浏览器中输入<a href="http://127.0.0.1:8001/feed_rss_created.xml">127.0.0.1:8001/feed_rss_created.xml</a>便可以查看该站点的<code>RSS</code>信息了。</p>
-<p><img alt="image-20241018174359942" src="../../../blog/img/image-20241018174359942.png" /></p>
-<p>如上，则证明该<code>RSS</code> 配置成功。</p>
-<h2 id="_12">总结</h2>
-<p>一个最最最简单的使用<code>mkdocs</code> 创建博客系统的案例就结束了，简单的总结一下：</p>
-<p>首先<code>mkdocs</code> 是基于<code>python</code> 的第三方软件，所以需要依赖其<code>python</code> 环境，所以需要使用该工具，得先安装<code>python</code>。</p>
-<p><a href="https://www.python.org/">https://www.python.org/</a></p>
-<p>其次使用的博客系统是源于<code>mkdocs</code> 的第三方主题<code>material</code>，也是需要额外安装的。</p>
-<p><a href="https://github.com/squidfunk/mkdocs-material">https://github.com/squidfunk/mkdocs-material</a></p>
-<p>接着便是导入了<code>Giscus</code>评论系统，它是<code>github</code>中的一个应用软件，需要先到<code>github</code>上进行安装，而后到<a href="https://giscus.app/zh-CN">https://giscus.app/zh-CN</a>进行配置，获取到相关的配置文件，最后通过覆盖<code>mkdocs</code> 原始文件的方式集成到<code>mkdocs</code> 中。需要注意的是，覆盖<code>mkdocs</code> 需要修改<code>mkdocs.yml</code>配置文件，在<code>theme</code> 中引入<code>custom_dir</code> 相关配置。</p>
-<p>最后便是集成了<code>RSS</code>，它也是一个第三方插件，需要进行额外安装，安装完毕后，需要在<code>plugins</code> 中进行配置<code>RSS</code> 相关信息。</p>
+<p>此时，再来查看公钥和私钥。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --list-keys
+[root@debian]:[~][tty:0]# 
+[root@debian]:[~][tty:0]# gpg2 --list-secret-keys
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p>当然，为了下面的测试，最好是将秘钥重新导入回去。</p>
+<h2 id="_7">内容的加密和解密</h2>
+<h3 id="_8">使用公钥进行加密文件</h3>
+<p>使用公钥加密文件或者内容。</p>
+<p>直接加密字符。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo &quot;hello world&quot; | gpg2 --armor --encrypt --recipient 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; encrypt_msg.asc
+gpg: D67F66F29079D8A1: There is no assurance this key belongs to the named user
+
+sub  rsa4096/D67F66F29079D8A1 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
+ Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
+      Subkey fingerprint: CFBD 3066 E074 10FC EBA1  FF50 D67F 66F2 9079 D8A1
+
+It is NOT certain that the key belongs to the person named
+in the user ID.  If you *really* know what you are doing,
+you may answer the next question with yes.
+
+Use this key anyway? (y/N) y
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p>上述命令，使用<code>echo</code>输出<code>hello world</code>，并且通过管道，使用<code>gpg2</code>进行加密，其中<code>--armor</code>表示使用<code>ascii</code>码输出、<code>--encrypt</code>表示加密操作，<code>--recipient keyid</code>表示使用哪公钥进行加密，最后重定向到<code>encrypt_msg.asc</code>中。</p>
+<p>同样的，如果是文件的话，直接在后面跟文件即可，例如：</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo &quot;hello world2&quot; &gt;&gt; file.txt
+[root@debian]:[~][tty:0]# gpg2 --armor --encrypt --recipient 3678F2332D0A0475A47125050ABA3F7577773A8F file.txt
+gpg: D67F66F29079D8A1: There is no assurance this key belongs to the named user
+
+sub  rsa4096/D67F66F29079D8A1 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
+ Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
+      Subkey fingerprint: CFBD 3066 E074 10FC EBA1  FF50 D67F 66F2 9079 D8A1
+
+It is NOT certain that the key belongs to the person named
+in the user ID.  If you *really* know what you are doing,
+you may answer the next question with yes.
+
+Use this key anyway? (y/N) y
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p>加密的文件会以<code>&lt;filename&gt;.asc</code>存在。</p>
+<h3 id="_9">使用私钥进行解密文件</h3>
+<p>使用<code>--decrypt</code>选项即可解密文件，还可以输出到相应的文件中。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --output file.out --decrypt file.txt.asc
+gpg: encrypted with 4096-bit RSA key, ID D67F66F29079D8A1, created 2024-11-16
+      &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;
+[root@debian]:[~][tty:0]# 
+[root@debian]:[~][tty:0]# cat file.out
+hello world2
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p>使用<code>--decrypt 加密内容</code>可以解密文件，使用<code>--output</code>可以将文件保存到文件中。</p>
+<h2 id="_10">签名与验证</h2>
+<p><code>gpg</code>可以对文件和消息进行签名，以确保文件或者消息的完整性。</p>
+<h3 id="_11">对文件进行签名</h3>
+<p>对文件进行签名，使用<code>sign</code>即可。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo 'sign_message' &gt; siginMessage
+[root@debian]:[~][tty:0]# gpg2 --armor --detach-sign siginMessage
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p><code>--detach-sign</code>：表示对文件分离前面。<code>--armor</code>：表示生成<code>ascii</code>字符。</p>
+<p>默认生成的签名文件会被记录到<code>&lt;filename&gt;.asc</code>中。</p>
+<h3 id="_12">对消息进行签名</h3>
+<p>如果相对消息进行签名，使用<code>--clearsign</code>即可。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo &quot;hello sign_message&quot; | gpg2 --armor --clearsign &gt; siginMessageHello.txt
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<p><code>--clearsign</code>表示在不加密的情况下，将签名嵌入到消息内容中。</p>
+<h3 id="_13">对文件进行签名验证</h3>
+<p>对于分离签名，使用<code>--verify 签名文件 原始文件</code> 进行校验即可，例如：</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --verify siginMessage.asc siginMessage
+gpg: Signature made Sat 16 Nov 2024 08:17:54 PM CST
+gpg:                using RSA key 3678F2332D0A0475A47125050ABA3F7577773A8F
+gpg: Good signature from &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<h3 id="_14">对消息进行签名验证</h3>
+<p>对于消息签名，直接进行校验即可，例如：</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --verify siginMessageHello.txt
+gpg: Signature made Sat 16 Nov 2024 08:19:08 PM CST
+gpg:                using RSA key 3678F2332D0A0475A47125050ABA3F7577773A8F
+gpg: Good signature from &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; [unknown]
+gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
+[root@debian]:[~][tty:0]# 
+</code></pre>
+<h3 id="_15">对签名输出的解读</h3>
+<p>上面前面的意思分解一下，可以整理为如下内容：</p>
+<pre><code class="language-bash">gpg: Signature made Sat 16 Nov 2024 08:19:08 PM CST
+gpg:                using RSA key 3678F2332D0A0475A47125050ABA3F7577773A8F
+</code></pre>
+<p>表明是在什么时候进行签名，并且通过哪个秘钥进行签名的。</p>
+<pre><code class="language-bash">gpg: Good signature from &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; [unknown]
+</code></pre>
+<p>表明识别到了签名者的信息，后面的<code>unknown</code>表示<code>GPG</code>不知道是否信任这个公钥。</p>
+<pre><code class="language-bash">gpg: WARNING: This key is not certified with a trusted signature!
+gpg:          There is no indication that the signature belongs to the owner.
+</code></pre>
+<p>这是一条警告信息，表示<code>GPG</code>没有收到关于如上公钥的信任认证，</p>
+<pre><code class="language-bash">Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
+</code></pre>
+<p>表示签名者的秘钥指纹。</p>
+<h2 id="_16">总结</h2>
+<p><code>gpg2</code>是<code>gpg</code>的升级版本，是<code>pgp</code>的开源替代。提供了加密、签名等功能。在使用<code>gpg</code>的时候，需要先生成公钥和私钥，将公钥开放出去，用于数据加密，私钥则需要妥善保管，用以数据解密。</p>
 
 
 
@@ -1257,8 +1105,8 @@ plugins:
 
 <p class="underline"></p>
 <div>
-  <p><b>使用mkdocs创建一个简单的博客系统</b></p>
-  <p><a href="">https://wangli2025.github.io/2024/10/18/Create-a-simple-blog-system-using-mkdocs.html</a></p>
+  <p><b>gpg简单用法</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/11/17/gpg_usage.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
