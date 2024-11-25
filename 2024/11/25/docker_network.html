@@ -1,0 +1,1367 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="docker的几种网络模式">
+      
+      
+      
+        <link rel="canonical" href="https://wangli2025.github.io/2024/11/25/docker_network.html">
+      
+      
+        <link rel="prev" href="../22/linux_network_bridge-2.html">
+      
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../../../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
+    
+    
+      
+        <title>docker的几种网络模式 - 王李的博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="red">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      <!--
+  Copyright (c) 2016-2024 Martin Donath <martin.donath@squidfunk.com>
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to
+  deal in the Software without restriction, including without limitation the
+  rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+  sell copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+  IN THE SOFTWARE.
+-->
+
+<!-- Determine classes -->
+
+
+
+<!-- Header -->
+<header class="md-header" data-md-component="header">
+  <nav
+    class="md-header__inner md-grid"
+    aria-label="Header"
+  >
+
+    <!-- Button to open drawer -->
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+
+    <!-- Header title -->
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            
+            <a href="">王李的博客</a>
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              docker的几种网络模式
+            
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Color palette toggle -->
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="red"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+
+    <!-- User preference: color palette -->
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+
+    <!-- Site language selector -->
+    
+
+    <!-- Button to open search modal -->
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+
+      <!-- Search interface -->
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    <!-- Repository information -->
+    
+  </nav>
+
+  <!-- Navigation tabs (sticky) -->
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../index.html" class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../archive/2024.html" class="md-tabs__link">
+          
+  
+    
+  
+  Archive
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../category/linux.html" class="md-tabs__link">
+          
+  
+    
+  
+  Categories
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../index.html" title="王李的博客" class="md-nav__button md-logo" aria-label="王李的博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    王李的博客
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../archive/2024.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Archive
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../category/linux.html" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Categories
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          王李
+                        
+                      </strong>
+                      <br>
+                      奋斗不止
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-11-25 00:00:00" class="md-ellipsis">2024/11/25</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../category/linux.html">Linux</a>, 
+                              <a href="../../../category/%E5%AE%B9%E5%99%A8.html">容器</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              15 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
+          
+            
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#none" class="md-nav__link">
+    <span class="md-ellipsis">
+      None模式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#host" class="md-nav__link">
+    <span class="md-ellipsis">
+      Host模式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bridge" class="md-nav__link">
+    <span class="md-ellipsis">
+      bridge模式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container模式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        <style>
+  .underline {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 0;  /* 设置为 0，避免影响边框 */
+    border-top: 1px dashed #D3D3D3;
+    /* margin-top: 1px; */
+  }
+</style>
+
+
+
+
+<h1 id="docker">docker的几种网络模式</h1>
+<p>本文将介绍<code>docker</code>的几种网络模式是如何实现的，只介绍如何实现，不会涉及到任何的<code>docker</code>操作。</p>
+<!-- more -->
+
+<p>本文所依赖的环境为：</p>
+<pre><code class="language-bash">root@debian:~# hostnamectl 
+ Static hostname: windows11pro
+       Icon name: windowsBooks
+         Chassis: laptop 💻
+Operating System: Debian GNU/Linux 12 (bookworm)  
+          Kernel: Linux 6.1.0-26-amd64
+    Architecture: x86-64
+ Hardware Vendor: ASUSTeK COMPUTER INC.
+  Hardware Model: X441UVK
+Firmware Version: X441UVK.314
+root@debian:~#
+
+</code></pre>
+<p><code>docker</code>的网络模式可以分为如下四类。</p>
+<ul>
+<li><code>bridge</code>模式，此模式是<code>docker</code>的默认模式，通过创建虚拟网桥<code>bridge</code>、<code>veth</code>的方式配合<code>iptables nat</code>做网络转发。</li>
+<li><code>Host</code>模式，该模式使用宿主机的网络配置。</li>
+<li><code>Container</code>模式，该模式使用其他容器的网络配置。</li>
+<li><code>None</code>模式，该模式不使用任何网络功能。</li>
+</ul>
+<h2 id="none"><code>None</code>模式</h2>
+<p>所谓的<code>None</code>模式，也是最简单的模式，它在创建进程的时候，会为其分配<code>net namespace</code>，但是在<code>net namespace</code>中，不会为其分配<code>ip</code>地址，让其完全不具备网络互通能力。</p>
+<p>请看下面的例子：</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare --mount --ipc --pid --net --uts --fork /bin/bash
+(unshare) [root@debian]:[~][tty:2]# mount -t proc proc /proc
+(unshare) [root@debian]:[~][tty:2]# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1   7196  3780 pts/2    S    22:06   0:00 /bin/bash
+root           3  0.0  0.2  11084  4456 pts/2    R+   22:06   0:00 ps aux
+(unshare) [root@debian]:[~][tty:2]#
+(unshare) [root@debian]:[~][tty:2]# echo $$
+1
+(unshare) [root@debian]:[~][tty:2]#
+(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+(unshare) [root@debian]:[~][tty:2]#
+(unshare) [root@debian]:[~][tty:2]# ping 127.0.0.1 -c 4
+ping: connect: Network is unreachable
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>上述命令使用<code>unshare</code>将<code>/bin/bash</code>放入新的<code>namespace</code>中执行，其中就指定了<code>net namespace</code>，但是并未为其分配<code>ip</code>地址，所以该容器下操作不了任何网络。默认情况下，本地回环地址也是关闭的，甚至<code>ping</code>不通<code>127.0.0.1</code>。这就是容器的<code>None</code>模式。</p>
+<p>这里再次介绍下<code>unshare</code>命令的含义：</p>
+<ul>
+<li><code>--mount</code>：启用<code>mount namespace</code>。</li>
+<li><code>--ipc</code>：启用<code>ipc namespace</code>。</li>
+<li><code>--pid</code>：启用<code>pid namespace</code>。</li>
+<li><code>--net</code>：启用<code>net namespace</code>。</li>
+<li><code>--uts</code>：启用<code>uts namespace</code>。</li>
+<li><code>--fork</code>：<code>unshare</code>将会<code>fork</code>一个子进程来启动进程。</li>
+<li><code>/bin/bash</code>：待启动的进程。</li>
+</ul>
+<p>具体<code>namespace</code>相关信息，可以查看这里关于<code>namespace</code>的简单介绍。</p>
+<p><a href="https://wangli2025.github.io/2024/11/05/Linux-Namespace.html">https://wangli2025.github.io/2024/11/05/Linux-Namespace.html</a></p>
+<h2 id="host"><code>Host</code>模式</h2>
+<p>所谓的<code>host</code>模式，即创建进程的时候不使用<code>net namespace</code>，不做网络隔离，让其和宿主机的一致，即使用宿主机的网络信息。</p>
+<p>请看下面的例子。</p>
+<p>首先查看宿主机的网络信息。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:36:bb:82 brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    inet 192.168.11.135/24 scope global ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe36:bb82/64 scope link
+       valid_lft forever preferred_lft forever
+[root@debian]:[~][tty:2]#
+[root@debian]:[~][tty:2]# ping 8.8.8.8 -c 2
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=34.0 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=34.5 ms
+
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1003ms
+rtt min/avg/max/mdev = 33.992/34.226/34.461/0.234 ms
+[root@debian]:[~][tty:2]#
+</code></pre>
+<p>其次使用<code>unshare</code>启动<code>bash</code>进程并且为其分配相关的<code>namespace</code>，但是不要配置<code>net namespace</code>，因为不需要做网络隔离。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare --mount --ipc --pid --uts --fork /bin/bash
+(unshare) [root@debian]:[~][tty:2]# mount -t proc proc /proc
+(unshare) [root@debian]:[~][tty:2]# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.1   7196  3868 pts/2    S    22:19   0:00 /bin/bash
+root           3  0.0  0.2  11084  4412 pts/2    R+   22:20   0:00 ps aux
+(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host noprefixroute
+       valid_lft forever preferred_lft forever
+2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:36:bb:82 brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    inet 192.168.11.135/24 scope global ens33
+       valid_lft forever preferred_lft forever
+    inet6 fe80::20c:29ff:fe36:bb82/64 scope link
+       valid_lft forever preferred_lft forever
+(unshare) [root@debian]:[~][tty:2]# ping -c 2 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=33.8 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=34.5 ms
+
+--- 8.8.8.8 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 33.767/34.149/34.531/0.382 ms
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>上述容器创建完成后，使用<code>mount</code>挂载<code>proc</code>，使用<code>ps aux</code>查看其运行的进程信息，证明该容器已经生效了，而后查询网络，可以看到，容器中的网络和宿主机的网络是一模一样的，</p>
+<h2 id="bridge"><code>bridge</code>模式</h2>
+<p><code>bridge</code>也是<code>Docker</code>默认的模式，实际上底层的逻辑是虚拟网桥<code>bridge</code>配合<code>veth</code>虚拟设备，然后再宿主机上做<code>nat</code>调整来实现的，即只要多个容器的<code>veth</code>的一端连接在一个虚拟网桥<code>bridge</code>上，这些容器就是互相通信的。</p>
+<p><code>bridge</code>模式的网络相对而言较为复杂，需要先在宿主机上创建虚拟网桥<code>bridge</code>。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# ip link add name br0 type bridge
+[root@debian]:[~][tty:2]#
+</code></pre>
+<p>创建完毕后，可以查看其网络设备。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# ip addr show br0
+3: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ee:8c:54:c2:94:34 brd ff:ff:ff:ff:ff:ff
+[root@debian]:[~][tty:2]#
+</code></pre>
+<p>然后再为每一个容器都创建一对<code>veth</code>虚拟接口，将其一端接入到需要加入的虚拟网桥中<code>bridge</code>。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# ip link add name veth0 type veth peer name veth1
+[root@debian]:[~][tty:2]# ip link set veth0 master br0
+[root@debian]:[~][tty:2]#
+</code></pre>
+<p>创建完毕后，可以查看其<code>veth</code>设备。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# ip addr show veth0
+5: veth0@veth1: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop master br0 state DOWN group default qlen 1000
+    link/ether 06:71:18:de:a8:97 brd ff:ff:ff:ff:ff:ff
+[root@debian]:[~][tty:2]# ip addr show veth1
+4: veth1@veth0: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff
+[root@debian]:[~][tty:2]#
+</code></pre>
+<p>创建一个新的容器，并且将<code>veth1</code>移入进去。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare --mount --uts --ipc --net --fork /bin/bash
+(unshare) [root@debian]:[~][tty:2]# echo $$
+2945
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>创建容器后，可以查看其默认的网卡信息。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>在宿主机上将<code>veth1</code>网卡移入到<code>2945</code>进程中。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip link set veth1 netns 2945
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>移入完成后，可以在容器中查看其<code>ip</code>信息。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+4: veth1@if5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>当链路都创建完毕后，需要为其分配<code>ip</code>地址，在容器内指定默认路由，配置<code>ip</code>转发等。</p>
+<p>在宿主机配置<code>br0</code>地址。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip addr add 10.0.3.2/24 dev br0
+[root@debian]:[~][tty:3]# ip addr show br0
+3: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ee:8c:54:c2:94:34 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.3.2/24 scope global br0
+       valid_lft forever preferred_lft forever
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>在容器内为<code>veth1</code>分配<code>ip</code>地址。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip addr add 10.0.3.3/24 dev veth1
+(unshare) [root@debian]:[~][tty:2]# ip addr
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+4: veth1@if5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.3/24 scope global veth1
+       valid_lft forever preferred_lft forever
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>启动<code>br0</code>、<code>veth0</code>以及<code>veth1</code>网卡。</p>
+<p>在宿主机启动<code>br0</code>和<code>veth0</code>。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip link set br0 up
+[root@debian]:[~][tty:3]# ip link set veth0 up
+[root@debian]:[~][tty:3]#
+[root@debian]:[~][tty:3]# ip addr show br0
+3: br0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether ee:8c:54:c2:94:34 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.3.2/24 scope global br0
+       valid_lft forever preferred_lft forever
+[root@debian]:[~][tty:3]#
+[root@debian]:[~][tty:3]# ip addr show veth0
+5: veth0@if4: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue master br0 state LOWERLAYERDOWN group default qlen 1000
+    link/ether 06:71:18:de:a8:97 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+[root@debian]:[~][tty:3]#
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>这里需要注意，<code>veth0</code>已经接入了虚拟网桥<code>br0</code>中，所以就不需要再为其分配<code>ip</code>地址了。</p>
+<p>在容器中启动<code>veth1</code>网卡。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip link set veth1 up
+(unshare) [root@debian]:[~][tty:2]# ip addr
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+4: veth1@if5: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.3/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cc57:9dff:fe8f:3d49/64 scope link
+       valid_lft forever preferred_lft forever
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>在容器中添加默认路由。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip route
+10.0.3.0/24 dev veth1 proto kernel scope link src 10.0.3.3
+(unshare) [root@debian]:[~][tty:2]# ip route add default via 10.0.3.2
+(unshare) [root@debian]:[~][tty:2]# ip route
+default via 10.0.3.2 dev veth1
+10.0.3.0/24 dev veth1 proto kernel scope link src 10.0.3.3
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>容器和宿主机相互<code>ping</code>。</p>
+<p>在宿主机<code>ping</code>容器。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ping 10.0.3.3 -c 3
+PING 10.0.3.3 (10.0.3.3) 56(84) bytes of data.
+64 bytes from 10.0.3.3: icmp_seq=1 ttl=64 time=0.035 ms
+64 bytes from 10.0.3.3: icmp_seq=2 ttl=64 time=0.049 ms
+64 bytes from 10.0.3.3: icmp_seq=3 ttl=64 time=0.043 ms
+
+--- 10.0.3.3 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2036ms
+rtt min/avg/max/mdev = 0.035/0.042/0.049/0.005 ms
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>在容器<code>ping</code>宿主机。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ping -c 3 10.0.3.2
+PING 10.0.3.2 (10.0.3.2) 56(84) bytes of data.
+64 bytes from 10.0.3.2: icmp_seq=1 ttl=64 time=0.019 ms
+64 bytes from 10.0.3.2: icmp_seq=2 ttl=64 time=0.031 ms
+64 bytes from 10.0.3.2: icmp_seq=3 ttl=64 time=0.044 ms
+
+--- 10.0.3.2 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2045ms
+rtt min/avg/max/mdev = 0.019/0.031/0.044/0.010 ms
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>此时在容器中是无法上网的，需要在宿主机上设置<code>ip</code>转发才行。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ping -c 3 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 0 received, 100% packet loss, time 2041ms
+
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>在宿主机上开启<code>ip</code>转发。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# /usr/sbin/sysctl net.ipv4.conf.all.forwarding=1
+net.ipv4.conf.all.forwarding = 1
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>并且使用<code>iptables</code>做一个<code>nat</code>转发规则。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# /usr/sbin/iptables -t nat -A POSTROUTING -s 10.0.3.0/24 -j MASQUERADE
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>此时在容器中，就可以<code>ping</code>通外网了。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ping -c 3 8.8.8.8
+PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=54 time=34.1 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=54 time=33.9 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=54 time=34.3 ms
+
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2006ms
+rtt min/avg/max/mdev = 33.945/34.125/34.321/0.153 ms
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<h2 id="container"><code>Container</code>模式</h2>
+<p>所谓的<code>Container</code>模式，其实是指2个容器的都使用同一个<code>net namespace</code>即可。</p>
+<p>这里来实操一下，先使用<code>unshare</code>创建一个容器。</p>
+<p>首先，先在宿主机创建一对<code>veth</code>。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# ip link add name veth0 type veth peer name veth1
+[root@debian]:[~][tty:2]# ip addr show veth0
+4: veth0@veth1: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether 06:71:18:de:a8:97 brd ff:ff:ff:ff:ff:ff
+[root@debian]:[~][tty:2]#
+[root@debian]:[~][tty:2]# ip addr show veth1
+3: veth1@veth0: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff
+[root@debian]:[~][tty:2]#
+[root@debian]:[~][tty:2]#
+</code></pre>
+<p>接着，便使用<code>unshare</code>创建一个容器。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare --mount --ipc --uts --net --fork /bin/bash
+(unshare) [root@debian]:[~][tty:2]#
+(unshare) [root@debian]:[~][tty:2]# echo $$
+2942
+(unshare) [root@debian]:[~][tty:2]#
+(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>上述创建容器的时候，没有指定<code>pid namespace</code>，是为了更加方便的查看其<code>pid</code>。</p>
+<p>在宿主机上，将<code>veth1</code>移如到容器中。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip link set veth1 netns 2942
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>回到容器，查看其<code>ip</code>地址。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>并且在容器中设置<code>veth1</code>的地址。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip addr add 10.0.3.2/24 dev veth1
+(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.2/24 scope global veth1
+       valid_lft forever preferred_lft forever
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>在宿主机设置<code>veth0</code>的地址。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip addr add 10.0.3.3/24 dev veth0
+[root@debian]:[~][tty:3]# ip addr show veth0
+4: veth0@if3: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 06:71:18:de:a8:97 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.3/24 scope global veth0
+       valid_lft forever preferred_lft forever
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>分别启动2个网卡。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip link set veth1 up
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip link set veth0 up
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>尝试相互<code>ping</code>。</p>
+<p>宿主机<code>ping</code>容器。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ping -c 2 10.0.3.2
+PING 10.0.3.2 (10.0.3.2) 56(84) bytes of data.
+64 bytes from 10.0.3.2: icmp_seq=1 ttl=64 time=0.029 ms
+64 bytes from 10.0.3.2: icmp_seq=2 ttl=64 time=0.042 ms
+
+--- 10.0.3.2 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1021ms
+rtt min/avg/max/mdev = 0.029/0.035/0.042/0.006 ms
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>容器<code>ping</code>宿主机</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ping -c 2 10.0.3.3
+PING 10.0.3.3 (10.0.3.3) 56(84) bytes of data.
+64 bytes from 10.0.3.3: icmp_seq=1 ttl=64 time=0.015 ms
+64 bytes from 10.0.3.3: icmp_seq=2 ttl=64 time=0.076 ms
+
+--- 10.0.3.3 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1024ms
+rtt min/avg/max/mdev = 0.015/0.045/0.076/0.030 ms
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<p>至此，我们基础环境已经搭建好了，现在要额外启动一个进程，并且该进程只有<code>net namesapce</code>使用上述<code>pid</code>为<code>2942</code>进程的。</p>
+<p>为此，我已经写好了一个简单的<code>c</code>程序，内容如下：</p>
+<pre><code class="language-c"># define _GNU_SOURCE
+# include &lt;stdio.h&gt;
+# include &lt;stdlib.h&gt;
+# include &lt;sched.h&gt;
+# include &lt;fcntl.h&gt;
+# include &lt;unistd.h&gt;
+
+// 进入指定PID的net namespace
+int enterNetworkNamespace(char *pid) {
+    char buffer[1024];
+
+    // net namespace文件路径
+    snprintf(buffer,1024,&quot;/proc/%s/ns/net&quot;,pid);
+
+    int fd = open(buffer,O_RDONLY);
+    if (-1 == fd) {
+        printf(&quot;open net namespace fd error\n&quot;);
+        fflush(stdout);
+        return -1;
+    }
+
+    // 使用setns进入namespace
+    if (-1 == setns(fd,0)){
+        printf(&quot;enter net namespace error\n&quot;);
+        fflush(stdout);
+        return -1;
+    }
+
+    printf(&quot;enter net namespace successful...\n&quot;);
+    fflush(stdout);
+    close(fd);
+    return 0;
+}
+
+int main() {
+
+    // mount namespace
+    // ipc namespace
+    // pid namespace
+    // uts namespace
+    int cloneFlags = CLONE_NEWNS | CLONE_NEWIPC | CLONE_NEWPID | CLONE_NEWUTS;
+
+    // 创建新的namesapce
+    if (unshare(cloneFlags) &lt; 0) {
+        perror(&quot;unshare&quot;);
+        exit(EXIT_FAILURE);
+    }
+
+    // 进入已有的net namespace
+    if ( -1 == enterNetworkNamespace(&quot;2942&quot;)){
+        printf(&quot;enter namesapce error&quot;);
+    }
+
+    system(&quot;/bin/bash&quot;);
+
+    return 0;
+}
+</code></pre>
+<p>上述代码非常简单，首先使用<code>unshare</code>创建<code>mount namespace</code>、<code>ipc namespace</code>、<code>pid namespace</code>以及<code>uts namespace</code>。</p>
+<p>然后读取进程为<code>2942</code>的<code>net namespace</code>描述符，</p>
+<p>编译该<code>c</code>程序，并且执行，查看其<code>ip</code>地址。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# gcc testNetNamespace.c
+[root@debian]:[~][tty:3]#
+[root@debian]:[~][tty:3]# ./a.out
+enter net namespace successful...
+[root@debian]:[~][tty:3]#
+[root@debian]:[~][tty:3]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.2/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cc57:9dff:fe8f:3d49/64 scope link
+       valid_lft forever preferred_lft forever
+[root@debian]:[~][tty:3]#
+[root@debian]:[~][tty:3]# mount -t proc proc /proc
+[root@debian]:[~][tty:3]#
+[root@debian]:[~][tty:3]# ps aux
+USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root           1  0.0  0.0   2576   900 pts/3    S    02:36   0:00 sh -c /bin/bash
+root           2  0.0  0.1   7196  3896 pts/3    S    02:36   0:00 /bin/bash
+root           5  0.0  0.2  11084  4408 pts/3    R+   02:37   0:00 ps aux
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p>现在2个容器，都使用同一个<code>net namespace</code>，那如果2个容器都监听各自的<code>80</code>端口，那么当请求来的时候，是否2者都可以收到呢？</p>
+<p>先在2个容器中使用<code>nc</code>监听<code>tcp</code>的<code>80</code>端口。</p>
+<p>使用<code>unshare</code>启动的容器，监听<code>80</code>端口。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.2/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cc57:9dff:fe8f:3d49/64 scope link
+       valid_lft forever preferred_lft forever
+(unshare) [root@debian]:[~][tty:2]# nc -lp 80
+
+</code></pre>
+<p>使用<code>c</code>程序启动的容器，监听<code>80</code>端口。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.2/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cc57:9dff:fe8f:3d49/64 scope link
+       valid_lft forever preferred_lft forever
+[root@debian]:[~][tty:3]# nc -lp 80
+
+</code></pre>
+<p>此时，再启动一个终端，执行 <code>telnet 10.0.3.2 80</code>。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:4]# telnet 10.0.3.2 80
+Trying 10.0.3.2...
+Connected to 10.0.3.2.
+Escape character is '^]'.
+hello namespaces;
+^]
+telnet&gt; quit
+Connection closed.
+[root@debian]:[~][tty:4]#
+</code></pre>
+<p>此时，在观察2个容器的日志，只有一个容器收到了数据。</p>
+<p>使用<code>c</code>程序启动的容器。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:3]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.2/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cc57:9dff:fe8f:3d49/64 scope link
+       valid_lft forever preferred_lft forever
+[root@debian]:[~][tty:3]# nc -lp 80
+------------------------------------------
+hello namespaces;
+[root@debian]:[~][tty:3]#
+</code></pre>
+<p><code>unshare</code>程序启动的程序。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.2/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cc57:9dff:fe8f:3d49/64 scope link
+       valid_lft forever preferred_lft forever
+(unshare) [root@debian]:[~][tty:2]# nc -lp 80
+
+</code></pre>
+<p>这是因为<code>tcp</code>是数据流，消费1次就没了。若此时，再请求一次，流量就必然会打到<code>unshare</code>启动的进程了，因为<code>c</code>写的进程由于已经收到了数据，<code>nc</code>程序已经终止了。</p>
+<pre><code class="language-bash">[root@debian]:[~][tty:4]# telnet 10.0.3.2 80
+Trying 10.0.3.2...
+Connected to 10.0.3.2.
+Escape character is '^]'.
+hello ;
+^]
+telnet&gt; quit
+Connection closed.
+[root@debian]:[~][tty:4]#
+</code></pre>
+<p>此时流量，就在<code>c</code>写的程序上了。</p>
+<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# ip a
+1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: veth1@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether ce:57:9d:8f:3d:49 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet 10.0.3.2/24 scope global veth1
+       valid_lft forever preferred_lft forever
+    inet6 fe80::cc57:9dff:fe8f:3d49/64 scope link
+       valid_lft forever preferred_lft forever
+(unshare) [root@debian]:[~][tty:2]# nc -lp 80
+hello ;
+(unshare) [root@debian]:[~][tty:2]#
+</code></pre>
+<h2 id="_1">总结</h2>
+<p>所谓的<code>docker</code>几种网络模式，底层是变着花的玩<code>net namespace</code>。</p>
+<p><code>Host</code>模式，其实是在创建容器的时候，不指定<code>net namespace</code>，让其和宿主机使用同一<code>namespace</code>。</p>
+<p><code>bridge</code>模式，其实是在宿主机创建一个虚拟网桥<code>bridge</code>，并且创建一对<code>veth</code>，分别连接容器和<code>bridge</code>，且使用<code>iptables</code>做<code>nat</code>转发，让容器可以上外网。</p>
+<p><code>Conrainer</code>模式，其实是2个容器仅使用同一个<code>net namespace</code>，其他<code>namespace</code>依旧使用各自自己的，这样看起来，2个容器只有网络是一样的，其余都还是隔离隔离状态的。</p>
+<p>最后就是<code>None</code>模式，这个就更加简单了，它使用了<code>net namespace</code>，但是不分配任何的网卡给它，这样在容器中就无法进行上网了，当然网络也是被隔离了的。</p>
+<p>当了解了<code>namespace</code>之后，会意识到，原来的各种各样的模式，方法，其底层逻辑是如此的简单。</p>
+
+
+
+<br />
+<br />
+<br />
+
+<p class="underline"></p>
+<div>
+  <p><b>docker的几种网络模式</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/11/25/docker_network.html</a></p>
+  <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
+</div>
+<p class="underline"></p>
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+  <h2 id="__comments">Comments</h2>
+  <!-- Insert generated snippet here -->
+  <script src="https://giscus.app/client.js"
+  data-repo="wangli2025/giscus"
+  data-repo-id="R_kgDONJqP8Q"
+  data-category="General"
+  data-category-id="DIC_kwDONJqP8c4Cj7kO"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="zh-CN"
+  crossorigin="anonymous"
+  async>
+</script>
+  <!-- Synchronize Giscus theme with palette -->
+  <script>
+    var giscus = document.querySelector("script[src*=giscus]")
+
+    // Set palette on initial load
+    var palette = __md_get("__palette")
+    if (palette && typeof palette.color === "object") {
+      var theme = palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+
+      // Instruct Giscus to set theme
+      giscus.setAttribute("data-theme", theme) 
+    }
+
+    // Register event handlers after documented loaded
+    document.addEventListener("DOMContentLoaded", function() {
+      var ref = document.querySelector("[data-md-component=palette]")
+      ref.addEventListener("change", function() {
+        var palette = __md_get("__palette")
+        if (palette && typeof palette.color === "object") {
+          var theme = palette.color.scheme === "slate"
+            ? "transparent_dark"
+            : "light"
+
+          // Instruct Giscus to change theme
+          var frame = document.querySelector(".giscus-frame")
+          frame.contentWindow.postMessage(
+            { giscus: { setConfig: { theme } } },
+            "https://giscus.app"
+          )
+        }
+      })
+    })
+  </script>
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 wangli2025.github.io
+    </div>
+  
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/wangli2025" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="/feed_rss_created.xml" target="_blank" rel="noopener" title="Subscribe to our RSS Feed" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.18 15.64a2.18 2.18 0 0 1 2.18 2.18C8.36 19 7.38 20 6.18 20 5 20 4 19 4 17.82a2.18 2.18 0 0 1 2.18-2.18M4 4.44A15.56 15.56 0 0 1 19.56 20h-2.83A12.73 12.73 0 0 0 4 7.27zm0 5.66a9.9 9.9 0 0 1 9.9 9.9h-2.83A7.07 7.07 0 0 0 4 12.93z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<wl2026@hotmail.com>" target="_blank" rel="noopener" title="send me an email" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M64 112c-8.8 0-16 7.2-16 16v22.1l172.5 141.6c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16zM48 212.2V384c0 8.8 7.2 16 16 16h384c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0zM0 128c0-35.3 28.7-64 64-64h384c35.3 0 64 28.7 64 64v256c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "header.autohide", "search.highlight", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.path", "navigation.prune", "navigation.indexes", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
