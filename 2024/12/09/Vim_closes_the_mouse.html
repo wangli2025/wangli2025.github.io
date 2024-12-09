@@ -6,17 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="了解POSIX 基本正则表达式">
+        <meta name="description" content="vim关闭鼠标可视模式">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/11/06/Regular-Expression.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2024/12/09/Vim_closes_the_mouse.html">
       
       
-        <link rel="prev" href="../05/Linux-Namespace.html">
+        <link rel="prev" href="../../11/25/docker_network.html">
       
-      
-        <link rel="next" href="../07/Using-Python-to-modify-Alibaba-Cloud-DNS-domain-name-resolution.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -27,7 +25,7 @@
     
     
       
-        <title>了解POSIX基本正则表达式 - 王李的博客</title>
+        <title>vim关闭鼠标可视模式 - 王李的博客</title>
       
     
     
@@ -81,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#posix" class="md-skip">
+        <a href="#vim" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              了解POSIX基本正则表达式
+              vim关闭鼠标可视模式
             
           </span>
         </div>
@@ -491,6 +489,25 @@
               </div>
             </div>
             
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/187119875?s=400&u=0923491be0fb7e9f54fe94ab0575add8f5a973ab&v=4" alt="王李">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          王李
+                        
+                      </strong>
+                      <br>
+                      奋斗不止
+                    </span>
+                  </div>
+                
+              </div>
+            
             <ul class="md-post__meta md-nav__list">
               <li class="md-nav__item md-nav__item--section">
                 <div class="md-post__title">
@@ -503,7 +520,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-11-06 00:00:00" class="md-ellipsis">2024/11/06</time>
+                        <time datetime="2024-12-09 00:00:00" class="md-ellipsis">2024/12/09</time>
                       </div>
                     </li>
                     
@@ -514,8 +531,7 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/%E7%BC%96%E8%BE%91%E5%99%A8.html">编辑器</a>, 
-                              <a href="../../../category/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">正则表达式</a></span>
+                              <a href="../../../category/vim.html">Vim</a></span>
                         </div>
                       </li>
                     
@@ -526,7 +542,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              3 min read
+                              1 min read
                             
                           </span>
                         </div>
@@ -546,287 +562,6 @@
   
     
   
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#posix_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      什么是POSIX基本正则表达式
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="什么是POSIX基本正则表达式">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#bre" class="md-nav__link">
-    <span class="md-ellipsis">
-      BRE特点
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的元字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的转义字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的字符集
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的字符类
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      支持的分组操作
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      元字符操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="元字符操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      . 可以匹配任意字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      * 匹配任意个前面的字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      ^匹配起始行
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      $匹配行结尾
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配上一个字符出现的次数
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配上一个出现的次数范围
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      转义特殊字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      字符集操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="字符集操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配范围内的任意字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配字符范围
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      字符类操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="字符类操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配数字字符
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配小写字母
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配大写字母
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      匹配空白字符
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      分组操作
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="分组操作">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_23" class="md-nav__link">
-    <span class="md-ellipsis">
-      捕获分组
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_24" class="md-nav__link">
-    <span class="md-ellipsis">
-      分组引用
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_25" class="md-nav__link">
-    <span class="md-ellipsis">
-      总结
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
           
@@ -849,350 +584,51 @@
 
 
 
-<h1 id="posix">了解POSIX基本正则表达式</h1>
-<p>本文将介绍基本正则表达式。</p>
+<h1 id="vim">vim关闭鼠标可视模式</h1>
+<p>本篇文章将介绍<code>vim</code>如何关闭鼠标可视模式。</p>
 <!-- more -->
 
-<p><code>Linux</code>最常见的表达式有三种：</p>
-<ul>
-<li>
-<p><code>POSIX</code>基本正则表达式；</p>
-</li>
-<li>
-<p><code>POSIX</code>扩展正则表达式 ；</p>
-</li>
-<li>
-<p><code>Perl</code> 兼容正则表达式。</p>
-</li>
-</ul>
-<p>本文将简单介绍<code>POSIX</code>基本正则表达式。</p>
-<h2 id="posix_1">什么是<code>POSIX</code>基本正则表达式</h2>
-<p><code>POSIX</code>基本正则表达式，也称<code>BRE</code> (Basic Regular Expression) ，是<code>POSIX</code>标准中的一种正则表达式，在<code>Linux</code> 中，<code>grep</code>、<code>sed</code>、<code>awk</code>等工具都支持该基本正则表达式。</p>
-<h3 id="bre">BRE特点</h3>
-<p>基本正则表达式语法相对而言较为简单，适用于大多数基本的文本匹配。</p>
-<h3 id="_1">支持的元字符</h3>
-<table>
-<thead>
-<tr>
-<th>元字符</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>.</td>
-<td>匹配除换行符以外的任意单个字符</td>
-</tr>
-<tr>
-<td>*</td>
-<td>匹配任意个（包括0个）前面的字符</td>
-</tr>
-<tr>
-<td>[...]</td>
-<td>匹配方括号中的字符集中的任何一个</td>
-</tr>
-<tr>
-<td>[^...]</td>
-<td>如果方括号中第一个字符是<code>^</code>，则表示否定匹配</td>
-</tr>
-<tr>
-<td>^</td>
-<td>如果作为正则第一个字符，则表示匹配行起始</td>
-</tr>
-<tr>
-<td>$</td>
-<td>如果作为正则最后一个字符，则表示匹配行的结尾</td>
-</tr>
-<tr>
-<td>\{n\}</td>
-<td>将匹配n次出现</td>
-</tr>
-<tr>
-<td>\{n,m\}</td>
-<td>匹配它前一个范围内单个字符出现的次数，匹配n次m次之前的任意次数</td>
-</tr>
-<tr>
-<td>\</td>
-<td>转义特殊字符</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_2">支持的转义字符</h3>
-<table>
-<thead>
-<tr>
-<th>转义字符</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\.</td>
-<td>匹配字面意思的点<code>.</code></td>
-</tr>
-<tr>
-<td>\\</td>
-<td>匹配字面意思的反斜杠<code>\</code></td>
-</tr>
-<tr>
-<td>\*</td>
-<td>匹配字面意思的星号<code>*</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="_3">支持的字符集</h3>
-<table>
-<thead>
-<tr>
-<th>字符集</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[abc]</td>
-<td>匹配<code>a</code>、<code>b</code>、<code>c</code> 中的任意字符</td>
-</tr>
-<tr>
-<td>[0-9]</td>
-<td>匹配任意数字，同理<code>[a-z]</code>匹配任意小写字符、<code>[A-Z]</code>匹配任意大写字符</td>
-</tr>
-<tr>
-<td>[^abc]</td>
-<td>匹配不包含<code>a</code>、<code>b</code>、<code>c</code> 的任意字符</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">支持的字符类</h3>
-<table>
-<thead>
-<tr>
-<th>字符类</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>[:alnum:]</td>
-<td>可打印的字符</td>
-</tr>
-<tr>
-<td>[:alpha:]</td>
-<td>字母字符</td>
-</tr>
-<tr>
-<td>[:blank:]</td>
-<td>空格和制表符</td>
-</tr>
-<tr>
-<td>[:cntrl:]</td>
-<td>控制字符</td>
-</tr>
-<tr>
-<td>[:digit:]</td>
-<td>数字字符</td>
-</tr>
-<tr>
-<td>[:graph:]</td>
-<td>可打印的和可见的字符</td>
-</tr>
-<tr>
-<td>[:lower:]</td>
-<td>小写字符</td>
-</tr>
-<tr>
-<td>[:print:]</td>
-<td>可打印的字符</td>
-</tr>
-<tr>
-<td>[:punct:]</td>
-<td>标点符号字符</td>
-</tr>
-<tr>
-<td>[:space:]</td>
-<td>空白字符</td>
-</tr>
-<tr>
-<td>[:upper:]</td>
-<td>大写字符</td>
-</tr>
-<tr>
-<td>[:xdigit:]</td>
-<td>十六进制数字</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_5">支持的分组操作</h3>
-<table>
-<thead>
-<tr>
-<th>分组</th>
-<th>用途</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>\(\)</td>
-<td>捕获字符</td>
-</tr>
-</tbody>
-</table>
-<h2 id="_6">元字符操作</h2>
-<h4 id="_7"><code>.</code> 可以匹配任意字符</h4>
-<pre><code class="language-bash">root@debian:~# echo '123' | grep '1.3'
-123
-root@debian:~#
-</code></pre>
-<p><code>.</code> 可以匹配任何字符，但是不包括换行符<code>\n</code>。</p>
-<p>但是无法匹配换行符</p>
-<pre><code class="language-bash">root@debian:~# echo -e '1\n2\n3' &gt; hello
-root@debian:~#
-root@debian:~# cat hello -A
-1$
-2$
-3$
-root@debian:~#
-root@debian:~# grep '1.2' hello
-root@debian:~#
-</code></pre>
-<h4 id="_8"><code>*</code> 匹配任意个前面的字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abbbbbbbbbd&quot; | grep 'a*d'
-abbbbbbbbbd
-root@debian:~#
-</code></pre>
-<p><code>*</code> 匹配上面任意字符<code>0</code> 次或者无数次。</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;1&quot; | grep ' *'
-1
-root@debian:~#
-</code></pre>
-<p>上面案例之所以能够被匹配到是因为</p>
-<p>可以和<code>*</code>一起使用，表示匹配任意字符</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep 'a.*e'
-abced
-root@debian:~#
-</code></pre>
-<h4 id="_9"><code>^</code>匹配起始行</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep '^a'
-abced
-root@debian:~#
-root@debian:~# echo &quot;baced&quot; | grep '^a'
-root@debian:~#
-</code></pre>
-<h4 id="_10"><code>$</code>匹配行结尾</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abced' | grep 'd$'
-abced
-root@debian:~# echo 'abcede' | grep 'd$'
-root@debian:~#
-</code></pre>
-<p>可以和<code>^</code> 搭配使用，表示匹配空行</p>
-<pre><code class="language-bash">root@debian:~# echo '' | grep '^$'
+<p>如果你不习惯vim鼠标可视模式的话，不妨尝试来禁用它，首先需要确认<code>vim</code>的版本号。使用<code>vim --version</code>即可查询。</p>
+<pre><code class="language-bash"># vim --version
+VIM - Vi IMproved 9.0 (2022 Jun 28, 编译于 May 04 2023 10:24:44)
+包含补丁: 1-1378, 1499
+修改者 team+vim@tracker.debian.org
 
-root@debian:~#
 </code></pre>
-<h4 id="_11">匹配上一个字符出现的次数</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab\{3\}c'
-abbbc
-root@debian:~#
-</code></pre>
-<p>注意，在基本正则表达式中，<code>{}</code> 必须使用<code>\</code> 进行转义，如直接使用时不行的。</p>
-<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab{3}c'
-root@debian:~#
-</code></pre>
-<p>如果不加<code>\</code>进行转义，是直接匹配<code>{}</code>字符，而非正则表达式。</p>
-<pre><code class="language-bash">root@debian:~# echo 'ab{3}c' | grep 'ab{3}c'
-ab{3}c
-root@debian:~#
-</code></pre>
-<h4 id="_12">匹配上一个出现的次数范围</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{3,5\}c'
-abbbc
-root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{4,5\}c'
-root@debian:~#
-</code></pre>
-<h4 id="_13">转义特殊字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;a\.e&quot; | grep 'a\\.e'
-a\.e
-root@debian:~#
-</code></pre>
-<p><code>.</code> 、<code>*</code> 、<code>^</code>、<code>$</code>都需要进行转义。</p>
-<h3 id="_14">字符集操作</h3>
-<h4 id="_15">匹配范围内的任意字符</h4>
-<pre><code class="language-bash">root@debian:~# echo 'a2c' | grep 'a[123]c'
-a2c
-root@debian:~#
-</code></pre>
-<h4 id="_16">匹配字符范围</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;3&quot; | grep '[1-9]'
-3
-root@debian:~#
-root@debian:~# echo &quot;a&quot; | grep '[a-z]'
-a
-root@debian:~#
-root@debian:~# echo &quot;a&quot; | grep '[a-z]'
-a
-root@debian:~#
-root@debian:~# echo &quot;Z&quot; | grep '[a-Z]'
-Z
-root@debian:~#
-</code></pre>
-<h3 id="_17">字符类操作</h3>
-<h4 id="_18">匹配数字字符</h4>
-<pre><code class="language-bash">root@debian:~# echo '13579' | grep '[[:digit:]]'
-13579
-root@debian:~#
-</code></pre>
-<h4 id="_19">匹配小写字母</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abcde' | grep '[[:lower:]]'
-abcde
-root@debian:~#
-</code></pre>
-<h4 id="_20">匹配大写字母</h4>
-<pre><code class="language-bash">root@debian:~# echo 'ABCDE' | grep '[[:upper:]]'
-ABCDE
-root@debian:~#
-</code></pre>
-<h4 id="_21">匹配空白字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;   &quot; | grep '[[:space:]]'
+<p>可以看到该<code>vim</code>版本为<code>9.0</code>，需要编辑<code>vim</code>默认配置文件，即：<code>/usr/share/vim/vim90/defaults.vim</code>，注意，<code>9.0</code>版本的<code>vim</code>是<code>vim90</code>，如果是其他版本的，直接替换路径即可。</p>
+<p>使用<code>mouse</code>作为关键字，找到如下配置，<code>9.0</code>版本，大概位置在77行到88行之间。</p>
+<pre><code class="language-bash"># sed -n '77,88p' /usr/share/vim/vim90/defaults.vim
+&quot; In many terminal emulators the mouse works just fine.  By enabling it you
+&quot; can position the cursor, Visually select and scroll with the mouse.
+&quot; Only xterm can grab the mouse events when using the shift key, for other
+&quot; terminals use &quot;:&quot;, select text and press Esc.
+if has('mouse')
+  if &amp;term =~ 'xterm'
+    set mouse=a
+  else
+    set mouse=nvi
+  endif
+endif
 
-root@debian:~#
+#
 </code></pre>
-<h3 id="_22">分组操作</h3>
-<p>分组是指使用小括号将表达式括起来，创建子模式，该子模式会被保存，方便之后的引用和处理，同样的，<code>()</code> 也需要使用<code>\</code>转义，否则会被当成普通字符处理。</p>
-<h4 id="_23">捕获分组</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abcabcabcabc&quot; | grep '\(abc\)\+'
-abcabcabcabc
-root@debian:~#
+<p>然后只需要将这些配置给注释掉即可，注意，注释掉的语法是<code>"</code>，注释后，配置如下：</p>
+<pre><code class="language-bash"># sed -n '77,88p' /usr/share/vim/vim90/defaults.vim
+&quot; In many terminal emulators the mouse works just fine.  By enabling it you
+&quot; can position the cursor, Visually select and scroll with the mouse.
+&quot; Only xterm can grab the mouse events when using the shift key, for other
+&quot; terminals use &quot;:&quot;, select text and press Esc.
+&quot;if has('mouse')
+&quot;  if &amp;term =~ 'xterm'
+&quot;    set mouse=a
+&quot;  else
+&quot;    set mouse=nvi
+&quot;  endif
+&quot;endif
+
+#
 </code></pre>
-<h4 id="_24">分组引用</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\([[:digit:]]\{3\}\)-\([[:digit:]]\{4\}\)-\([[:digit:]]\{4\}\)/+86 \1 \2 \3/'
-+86 180 1234 1234
-root@debian:~#
-</code></pre>
-<p><code>grep</code> 主要是用以匹配和查找，所以它不具备捕获分组和引用分组的功能，所以这里使用<code>sed</code> 进行替代，若是太难了，可以看如下案例：</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/180/182/'
-182-1234-1234
-root@debian:~#
-</code></pre>
-<p>如上是一个简单的替换，<code>sed 's/old/new/'</code>。</p>
-<p>如果引用了分组</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\(180\)-\(1234\)-\(1234\)/\1 \2 \3/'
-180 1234 1234
-root@debian:~#
-</code></pre>
-<p>这里将<code>180</code>捕获为分组1、<code>1234</code>捕获为分组2、最后的<code>1234</code>捕获为分组3，在进行替换的时候，可以直接使用<code>\1</code>、<code>\2</code>等直接引用分组内容。分组最多为1到9共9个。</p>
-<h2 id="_25">总结</h2>
-<p>基本正则表达相对而言，比较简单，需要注意的是，在基本正则表达式中，大括号<code>{}</code> 和小括号<code>()</code>都必须要使用<code>\</code> 进行转义，否则将表示字符本身。而<code>.</code> 、<code>*</code>、<code>^</code>、<code>$</code> 等，默认就是正则，如果需要使用其字符本身，则需要使用<code>\</code>进行转义。</p>
-<p>哦，对了，在<code>shell</code>中，我们查询文件，可能会用到类似的写法：</p>
-<pre><code class="language-bash">root@debian:~# ls -d ns[123]
-ns1  ns2
-root@debian:~# ls -d *
-BRE  Desktop  Documents  Downloads  hello  Music  ns1  ns2  Pictures  Public  Templates  Videos
-root@debian:~# ls -d .*
-.bash_history  .cache   .dmrc     .local    .ssh                                 .viminfo    .Xauthority       .xsession-errors.old
-.bashrc        .config  .lesshst  .profile  .vboxclient-vmsvga-session-tty7.pid  .wget-hsts  .xsession-errors
-root@debian:~#
-</code></pre>
-<p>这个其实是<code>bash</code>中的通配符匹配，不是正则表达式哦，不要弄混了。</p>
+<p>都屏蔽后，再次打开文件，则不会默认进入到鼠标可视模式了。</p>
 
 
 
@@ -1202,8 +638,8 @@ root@debian:~#
 
 <p class="underline"></p>
 <div>
-  <p><b>了解POSIX基本正则表达式</b></p>
-  <p><a href="">https://wangli2025.github.io/2024/11/06/Regular-Expression.html</a></p>
+  <p><b>vim关闭鼠标可视模式</b></p>
+  <p><a href="">https://wangli2025.github.io/2024/12/09/Vim_closes_the_mouse.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
