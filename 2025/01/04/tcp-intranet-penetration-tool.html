@@ -6,17 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="debian 12.7 安装vmware-tools">
+        <meta name="description" content="使用go写一个基于tcp的内网穿透工具">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/11/21/vmware-install-tools.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2025/01/04/tcp-intranet-penetration-tool.html">
       
       
-        <link rel="prev" href="../19/docker_network_bridge.html">
+        <link rel="prev" href="../../../2024/12/20/internal_network_port_mapping.html">
       
-      
-        <link rel="next" href="../22/linux_network_bridge-2.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -27,7 +25,7 @@
     
     
       
-        <title>debian 12.7 安装vmware-tools记录 - 王李的博客</title>
+        <title>使用go写一个基于tcp的内网穿透工具 - 王李的博客</title>
       
     
     
@@ -81,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#debian-127-vmware-tools" class="md-skip">
+        <a href="#gotcp" class="md-skip">
           Skip to content
         </a>
       
@@ -142,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              debian 12.7 安装vmware-tools记录
+              使用go写一个基于tcp的内网穿透工具
             
           </span>
         </div>
@@ -526,7 +524,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-11-21 00:00:00" class="md-ellipsis">2024/11/21</time>
+                        <time datetime="2025-01-04 00:00:00" class="md-ellipsis">2025/01/04</time>
                       </div>
                     </li>
                     
@@ -537,7 +535,7 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/vmware.html">vmware</a></span>
+                              <a href="../../../category/network.html">network</a></span>
                         </div>
                       </li>
                     
@@ -578,7 +576,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      遇到的问题
+      部署图
     </span>
   </a>
   
@@ -587,7 +585,100 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      解决
+      如何获取可执行文件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="如何获取可执行文件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      从已发布的版本中获取
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      编译获取
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      如何执行
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="如何执行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      pipeServer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relayserver" class="md-nav__link">
+    <span class="md-ellipsis">
+      relayServer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relayclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      relayClient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pipeclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      pipeClient
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据加密
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      其他
     </span>
   </a>
   
@@ -616,70 +707,149 @@
 
 
 
-<h1 id="debian-127-vmware-tools">debian 12.7 安装vmware-tools记录</h1>
-<p>本文记录<code>debian 12.7</code>安装<code>vmware-tools</code>过程中找不到<code>depmod</code>之类文件的问题。</p>
+<h1 id="gotcp">使用go写一个基于tcp的内网穿透工具</h1>
+<p>本文章将介绍<code>goRelay</code>的基本使用。</p>
 <!-- more -->
 
-<p><code>debian</code>使用的环境如下：</p>
-<pre><code class="language-bash">root@debian:~# hostnamectl
- Static hostname: debian
-       Icon name: computer-vm
-         Chassis: vm 🖴
-  Virtualization: vmware
-Operating System: Debian GNU/Linux 12 (bookworm)
-          Kernel: Linux 6.1.0-25-amd64
-    Architecture: x86-64
- Hardware Vendor: VMware, Inc.
-  Hardware Model: VMware Virtual Platform
-Firmware Version: 6.00
-root@debian:~# cat /etc/debian_version
-12.7
-root@debian:~#
+<p><code>goRelay</code>是使用<code>go</code>编写的基于TCP的<strong>内网穿透</strong>工具，项目地址为：<a href="https://github.com/wangli2025/goRelay">goRelay</a>。</p>
+<p>使用背景：当需要将内网某台机器的端口映射到公网进行访问时，可以使用此工具，该工具提供端到端的通信功能。</p>
+<p>使用限制：使用该工具至少需要一台拥有公网IP的机器。</p>
+<p>最新功能：支持端口复用。</p>
+<h2 id="_1">部署图</h2>
+<p><img alt="image-20250104004758841" src="../../../blog/img/image-20250104004758841.png" /></p>
+<h2 id="_2">如何获取可执行文件</h2>
+<h3 id="_3">从已发布的版本中获取</h3>
+<p>可以从已发布版本中得到以下可执行文件：</p>
+<p><code>goRelay</code>是一个可执行文件，通过添加<code>--type</code>的方式来区分服务器类型。具体的类型可以分为：
+- <code>relayServer</code>：中转服务器用于接收和发送数据，需部署在客户端请求的内网环境中，可以部署多个，用于支持端口复用。
+- <code>pipeServer</code>：管道服务器用于数据传输，需部署具有公网<code>IP</code>的服务器上。
+- <code>pipeClient</code>：管道客户端用于用户数据传输，需部署在真实服务所在的内网环境中。
+- <code>relayClient</code>：中转客户端用于接收和发送数据，需部署在真实服务所在的内网环境中，需要配置<code>relayServer</code>信息，以支持端口复用。</p>
+<h3 id="_4">编译获取</h3>
+<p>将该仓库<code>clone</code>下来后，使用<code>bash build.sh</code> + 版本号 进行编译，例如：</p>
+<pre><code class="language-bash">➜  goRelay git:(main) ✗ bash build.sh v0.0.1
+build project
+go build -ldflags &quot;-X goRelay/pkg.Version=v0.0.1 -X goRelay/pkg.BuildAt=2025-01-04 -X goRelay/pkg.GitCommit=9002ae53fff26c433cdcde76abed1781c3cc218a&quot; -o ./bin/goRelay 
+tar zcvf pipeSourcev0.0.1.tar.gz ./bin
+./bin/
+./bin/goRelay
+➜  goRelay git:(main) ✗ 
 </code></pre>
-<p><code>vmware</code> 使用的环境如下：</p>
-<pre><code class="language-bash">VMware® Workstation 16 Pro
-16.2.4 build-20089737
+<p>编译完成之后，会在<code>./bin/</code>下生成对应的二进制文件。</p>
+<pre><code class="language-bash">➜  goRelay git:(main) ✗ ls bin/
+goRelay
+➜  goRelay git:(main) ✗ 
 </code></pre>
-<p><code>vmware tools</code>参考的安装文档：</p>
-<p><a href="https://docs.vmware.com/cn/VMware-Workstation-Pro/16.0/com.vmware.ws.using.doc/GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F.html">https://docs.vmware.com/cn/VMware-Workstation-Pro/16.0/com.vmware.ws.using.doc/GUID-08BB9465-D40A-4E16-9E15-8C016CC8166F.html</a></p>
-<h2 id="_1">遇到的问题</h2>
-<p>在使用<code>root</code>权限执行<code>./vmware-install.pl</code>的时候，提示找不到各种软件，如<code>depmod</code>、<code>modprobe</code>、<code>rmmod</code>等。</p>
-<pre><code class="language-bash"># ./vmware-install.pl
-Setup is unable to find the &quot;depmod&quot; program on your machine. Please make sure
-it is installed. Do you want to specify the location of this program by hand?
-[yes] Use of uninitialized value $gOption{&quot;default&quot;} in numeric eq (==) at ./vmware-install.pl line 866.
-yes
+<h2 id="_5">如何执行</h2>
+<h3 id="pipeserver"><code>pipeServer</code></h3>
+<p><code>pipeServer</code>是管道服务器，用于数据传输，需要部署到具有公网<code>IP</code>的服务器上。</p>
+<p>启动该服务，需要先创建配置文件，比如该文件名称为：<code>conf_pipeServer.json</code>：</p>
+<pre><code class="language-json">{
+    &quot;listen_pipe_server_addr&quot;:&quot;:8888&quot;,
+    &quot;black_ip_list&quot;:[
+        &quot;127.0.0.3&quot;
+    ],
+    &quot;white_ip_list&quot;:[
+        &quot;127.0.0.1&quot;
+    ],
+    &quot;debug_log&quot;:true
+}
+</code></pre>
+<p>其中，<code>listen_pipe_server_addr</code>是对外监听的地址，若想监听某个网卡，则指定网卡地址即可，比如：<code>192.168.2.3:8888</code>。
+<code>white_ip_list</code>是设置的白名单，只允许名单内的连接上来，为空，则不设置白名单，均可以连接。后续配置也是如此，
+<code>black_ip_list</code>是设置的黑名单，禁止名单内的IP连接上来，若为空，则不设置黑名单，若黑名单和白名单都用相同的值，则黑名单优先级高于白名单。
+<code>debug_log</code>为<code>true</code>是否输出<code>debug</code>日志。后续配置也是如此，</p>
+<p>启动<code>pipeServer</code>，只需要指定配置文件即可，例如：</p>
+<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type pipeServer --config conf/conf_pipeServer.json 
+</code></pre>
+<h3 id="relayserver"><code>relayServer</code></h3>
+<p><code>relayServer</code>是中转服务器，用于接收和发送用户的数据，需要部署在客户端请求的内网环境中。</p>
+<p><code>relayServer</code>可以开启多个，以便支持端口复用，需要为每个<code>relayServer</code>设置不同的<code>id</code>。</p>
+<p>同样的，如果需要启动该服务，需要先创建配置文件，比如该文件名称为：<code>conf_relayServer.json</code>：</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: &quot;client1&quot;,
+    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
+    &quot;listen_relay_server_addr&quot;:&quot;:10010&quot;,
+    &quot;white_ip_list&quot;:[
+        &quot;127.0.0.1&quot;
+    ],
+    &quot;debug_log&quot;:true
+}
+</code></pre>
+<p>其中，<code>id</code>是<code>relayServer</code>的唯一标识符，对其多开的时候需要注意<code>id</code>不能重复，该<code>id</code>是字符串，允许自设定，建议设置复杂一点。
+<code>pipe_server_addr</code>是<code>pipeServer</code>的地址。
+<code>listen_relay_server_addr</code>是<code>relayServer</code>监听的地址。
+<code>white_ip_list</code>是设置的白名单。</p>
+<p>同样的，可以创建第二个配置文件<code>conf_relayServer2.json</code>：</p>
+<pre><code class="language-json">{
+    &quot;id&quot;: &quot;client2&quot;,
+    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
+    &quot;listen_relay_server_addr&quot;:&quot;:10012&quot;,
+    &quot;white_ip_list&quot;:[
+        &quot;127.0.0.1&quot;
+    ],
+    &quot;debug_log&quot;:true
+}
+</code></pre>
+<p>注意，<code>id</code>不能重复，如果是在一台机器上，则<code>listen_relay_server_addr</code>对外监听的地址也不能重复。</p>
+<p>指定配置文件即可启动该服务。</p>
+<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type relayServer --config conf/conf_relayServer.json 
+</code></pre>
+<h3 id="relayclient"><code>relayClient</code></h3>
+<p><code>relayClient</code>是中转客户端，用于接收/发送来自管道客户端、真实服务的数据，需要部署在真实服务所在的内网环境中。</p>
+<p>启动该服务，需要配置<code>relayServer</code>随指定的<code>id</code>,根据<code>id</code>的不同，来指定相应的真实服务的地址，并且需要设置监听的端口，用于管道客户端的连接。</p>
+<p>要想启动该服务，需要创建配置文件，比如：<code>conf_relayClient.json</code>：</p>
+<pre><code class="language-json">{
+    &quot;listen_relay_client_addr&quot;: &quot;:10011&quot;,
+    &quot;white_ip_list&quot;:[
+        &quot;127.0.0.1&quot;
+    ],
+    &quot;debug_log&quot;: true,
+    &quot;realServerInfo&quot;: [
+        {
+            &quot;id&quot;: &quot;client1&quot;,
+            &quot;real_Server_Addr&quot;: &quot;127.0.0.1:80&quot;
+        },
+        {
+            &quot;id&quot;: &quot;client2&quot;,
+            &quot;real_Server_Addr&quot;: &quot;127.0.0.1:22&quot;
+        }
+    ]
+}
+</code></pre>
+<p>其中<code>listen_relay_client_addr</code>是对外监听的端口，用于<code>pipeClient</code>程序的连接。
+<code>realServerInfo</code>则是真实服务器信息，是一个数组，该数组以<code>id</code>和<code>real_Server_Addr</code>成对出现，用于分辨哪些<code>id</code>和哪些后端服务进行绑定。该<code>id</code>和<code>relayServer</code>的<code>id</code>必须一致，请注意<code>id</code>不要重复，否则会以最后一个<code>id</code>的信息为准。</p>
+<p>启动该服务只需要指定相应的配置文件即可。</p>
+<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type relayClient --config conf/conf_relayClient.json 
+</code></pre>
+<h3 id="pipeclient"><code>pipeClient</code></h3>
+<p><code>pipeClient</code>是管道客户端，用于传输来自管道服务器的数据，以及中转客户端的数据，该服务需要部署在真实服务所在的内网环境中。</p>
+<p>启动该服务，需要创建配置文件，比如：<code>conf_pipeClient.json</code>：</p>
+<pre><code class="language-json">{
+    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
+    &quot;relay_client_addr&quot;:&quot;127.0.0.1:10011&quot;,
+    &quot;debug_log&quot;: true
+}
+</code></pre>
+<p>其中<code>pipe_server_addr</code>表示<code>pipeServer</code>服务器的地址。
+<code>relay_client_addr</code>表示<code>relayClient</code>服务器的地址。</p>
+<p>只需要指定配置文件，即可启动该服务。</p>
+<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type pipeClient --config conf/conf_pipeClient.json 
+</code></pre>
+<h2 id="_6">数据加密</h2>
+<p>当你不是该公网服务器的所有者时，就必须要考虑到中间人攻击的风险。为了确保数据安全，建议使用数据加密，如部署图中绿色部分所示，数据传输可以加密。然而需要注意的是，目前版本并未实现数据加密功能，但已为此预留了接口。你可以通过修改<code>pipeProtocol/enDecode.go</code>文件中的<code>Encode</code>和<code>Decode</code>函数，来实现数据加密。</p>
+<p>函数如下：</p>
+<pre><code class="language-go">func Encode(s []byte) []byte {
+    return s
+}
 
-What is the location of the &quot;depmod&quot; program on your
-machine? Use of uninitialized value $gOption{&quot;default&quot;} in numeric eq (==) at ./vmware-install.pl line 866, &lt;STDIN&gt; line 1.
-
-Setup is unable to find the &quot;modprobe&quot; program on your machine. Please make
-sure it is installed. Do you want to specify the location of this program by
-hand? [yes] Use of uninitialized value $gOption{&quot;default&quot;} in numeric eq (==) at ./vmware-install.pl line 866, &lt;STDIN&gt; line 4.
-
-Setup is unable to find the &quot;rmmod&quot; program on your machine. Please make sure
-it is installed. Do you want to specify the location of this program by hand?
-[yes] Use of uninitialized value $gOption{&quot;default&quot;} in numeric eq (==) at ./vmware-install.pl line 866, &lt;STDIN&gt; line 6.
-...
+func Decode(s []byte) []byte {
+    return s
+}
 </code></pre>
-<h2 id="_2">解决</h2>
-<p>首先使用<code>find</code>搜索所有目录，是否包含<code>depmod</code>文件。</p>
-<pre><code class="language-bash"># find / -name depmod
-/usr/sbin/depmod
-#
-</code></pre>
-<p>该文件在<code>/usr/sbin</code>下，怀疑是<code>PATH</code>变量未加入<code>/usr/sbin/</code>，再次查看<code>PATH</code>变量内容。</p>
-<pre><code class="language-bash">root@debian:/home/wangli/vmware-tools-distrib# echo $PATH
-/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games
-root@debian:/home/wangli/vmware-tools-distrib#
-</code></pre>
-<p><code>PATH</code>变量确实没有该内容。</p>
-<p>手动添加<code>PATH</code>变量。</p>
-<pre><code class="language-bash"># PATH=$PATH:/usr/sbin/
-# export PATH
-#
-</code></pre>
-<p>再次执行<code>./vmware-install.pl</code>脚本，按照提示，即可安装成功。</p>
+<p>其中，<code>Encode</code>将用做加密操作，<code>Decode</code>将用作解密操作。</p>
+<h2 id="_7">其他</h2>
+<p>该项目不接受任何需求。</p>
 
 
 
@@ -689,8 +859,8 @@ root@debian:/home/wangli/vmware-tools-distrib#
 
 <p class="underline"></p>
 <div>
-  <p><b>debian 12.7 安装vmware-tools记录</b></p>
-  <p><a href="">https://wangli2025.github.io/2024/11/21/vmware-install-tools.html</a></p>
+  <p><b>使用go写一个基于tcp的内网穿透工具</b></p>
+  <p><a href="">https://wangli2025.github.io/2025/01/04/tcp-intranet-penetration-tool.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
