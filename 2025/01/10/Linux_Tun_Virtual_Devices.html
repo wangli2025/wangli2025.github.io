@@ -6,17 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="使用go写一个基于tcp的内网穿透工具">
+        <meta name="description" content="linux tun 虚拟设备的简单探寻">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2025/01/04/tcp-intranet-penetration-tool.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2025/01/10/Linux_Tun_Virtual_Devices.html">
       
       
-        <link rel="prev" href="../../../2024/12/20/internal_network_port_mapping.html">
+        <link rel="prev" href="../04/tcp-intranet-penetration-tool.html">
       
-      
-        <link rel="next" href="../10/Linux_Tun_Virtual_Devices.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -27,7 +25,7 @@
     
     
       
-        <title>goRelay的基本使用 - 王李的博客</title>
+        <title>linux tun 虚拟设备的简单探寻 - 王李的博客</title>
       
     
     
@@ -79,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#gorelay" class="md-skip">
+        <a href="#linux-tun" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              goRelay的基本使用
+              linux tun 虚拟设备的简单探寻
             
           </span>
         </div>
@@ -512,7 +510,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-01-04 00:00:00" class="md-ellipsis">2025/01/04</time>
+                        <time datetime="2025-01-10 00:00:00" class="md-ellipsis">2025/01/10</time>
                       </div>
                     </li>
                     
@@ -534,7 +532,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              2 min read
+                              7 min read
                             
                           </span>
                         </div>
@@ -562,111 +560,69 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#tun" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是tun虚拟设备
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tun_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      tun基本操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tun_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      实际体验使用tun传输数据
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实际体验使用tun传输数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      部署图
+      服务器操作
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      如何获取可执行文件
+      客户端操作
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="如何获取可执行文件">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
+  <a href="#ping" class="md-nav__link">
+    <span class="md-ellipsis">
+      尝试ping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      从已发布的版本中获取
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      编译获取
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      如何执行
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="如何执行">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pipeserver" class="md-nav__link">
-    <span class="md-ellipsis">
-      pipeServer
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#relayserver" class="md-nav__link">
-    <span class="md-ellipsis">
-      relayServer
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#relayclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      relayClient
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#pipeclient" class="md-nav__link">
-    <span class="md-ellipsis">
-      pipeClient
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      数据加密
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      其他
+      总结
     </span>
   </a>
   
@@ -695,149 +651,348 @@
 
 
 
-<h1 id="gorelay">goRelay的基本使用</h1>
-<p>本文章将介绍<code>goRelay</code>的基本使用。</p>
+<h1 id="linux-tun">linux tun 虚拟设备的简单探寻</h1>
+<p>本篇文章将简单介绍<code>tun</code>虚拟设备的简单探寻。</p>
 <!-- more -->
 
-<p><code>goRelay</code>是使用<code>go</code>编写的基于TCP的<strong>内网穿透</strong>工具，项目地址为：<a href="https://github.com/wangli2025/goRelay">goRelay</a>。</p>
-<p>使用背景：当需要将内网某台机器的端口映射到公网进行访问时，可以使用此工具，该工具提供端到端的通信功能。</p>
-<p>使用限制：使用该工具至少需要一台拥有公网IP的机器。</p>
-<p>最新功能：支持端口复用。</p>
-<h2 id="_1">部署图</h2>
-<p><img alt="image-20250104004758841" src="../../../blog/img/image-20250104004758841.png" /></p>
-<h2 id="_2">如何获取可执行文件</h2>
-<h3 id="_3">从已发布的版本中获取</h3>
-<p>可以从已发布版本中得到以下可执行文件：</p>
-<p><code>goRelay</code>是一个可执行文件，通过添加<code>--type</code>的方式来区分服务器类型。具体的类型可以分为：
-- <code>relayServer</code>：中转服务器用于接收和发送数据，需部署在客户端请求的内网环境中，可以部署多个，用于支持端口复用。
-- <code>pipeServer</code>：管道服务器用于数据传输，需部署具有公网<code>IP</code>的服务器上。
-- <code>pipeClient</code>：管道客户端用于用户数据传输，需部署在真实服务所在的内网环境中。
-- <code>relayClient</code>：中转客户端用于接收和发送数据，需部署在真实服务所在的内网环境中，需要配置<code>relayServer</code>信息，以支持端口复用。</p>
-<h3 id="_4">编译获取</h3>
-<p>将该仓库<code>clone</code>下来后，使用<code>bash build.sh</code> + 版本号 进行编译，例如：</p>
-<pre><code class="language-bash">➜  goRelay git:(main) ✗ bash build.sh v0.0.1
-build project
-go build -ldflags &quot;-X goRelay/pkg.Version=v0.0.1 -X goRelay/pkg.BuildAt=2025-01-04 -X goRelay/pkg.GitCommit=9002ae53fff26c433cdcde76abed1781c3cc218a&quot; -o ./bin/goRelay 
-tar zcvf pipeSourcev0.0.1.tar.gz ./bin
-./bin/
-./bin/goRelay
-➜  goRelay git:(main) ✗ 
+<h2 id="tun">什么是<code>tun</code>虚拟设备</h2>
+<p>在<code>Linux</code>中，谈到 <code>tun</code> 时，通常会将其与 <code>tun/tap</code> 一起讨论。这两者都是<code>Linux</code>的虚拟网络设备，但 <code>tun</code> 是一种点对点（<code>PPP</code>）设备，与 <code>tap</code> 的工作模式略有不同。本文将重点介绍<code>tun</code>虚拟设备。</p>
+<p><code>tun</code> 虚拟设备可以简单理解为一块运行在<code>L3</code>层（网络层）的虚拟网卡。它的一端连接到内核的网络协议栈，另一端则连接到用户态程序。在实际使用过程中，网络协议栈生成的网络包可以通过 <code>tun</code> 设备发送到用户态进程，由该进程进行处理，例如加密、数据压缩等操作。处理完成后，数据可以再通过网络协议栈发送出去。其工作流程可以简单用下图表示：</p>
+<p><img alt="image-20250110104555526" src="../../../blog/img/image-20250110074555526.png" /></p>
+<p><code>tun</code> 设备可以看作是<code>Linux</code>下的一个特殊文件，同时也是一块“虚拟网卡”。它具有独立的<code>IP</code>地址，并通过路由规则将 <code>app1</code> 发送的请求定向到 <code>tun0</code>。<code>tun0</code> 的另一端则连接到应用层程序 <code>tunApp1</code>。该程序可以接收来自网络层的报文，进行加密、压缩或应用层封装等操作，然后通过 <code>tunApp1</code> 将处理后的数据再次通过应用层调用网络协议栈再发送出去。</p>
+<p>因此，可以说 <code>tun</code> 实现了对网络层数据包的劫持。这些数据包会被发送到与 <code>tun</code> 相连的应用层程序进行处理，例如加密、压缩或其他自定义操作。处理完成后，数据包再通过网络协议栈发送出去，完成整个流程。</p>
+<h2 id="tun_1"><code>tun</code>基本操作</h2>
+<p>在使用<code>tun</code>虚拟设备之前，需要先设置<code>IP</code>转发。</p>
+<pre><code class="language-bash">root@3114:~# sysctl -w net.ipv4.ip_forward=1
+net.ipv4.ip_forward = 1
+root@3114:~#
 </code></pre>
-<p>编译完成之后，会在<code>./bin/</code>下生成对应的二进制文件。</p>
-<pre><code class="language-bash">➜  goRelay git:(main) ✗ ls bin/
-goRelay
-➜  goRelay git:(main) ✗ 
+<p>可以使用 <code>ip</code> 命令来创建 <code>tun</code> 虚拟网卡。例如，创建一个名为 <code>tun0</code> 的 <code>tun</code> 虚拟设备，命令如下：</p>
+<pre><code class="language-bash">root@3114:~# ip tuntap add dev tun0 mode tun
 </code></pre>
-<h2 id="_5">如何执行</h2>
-<h3 id="pipeserver"><code>pipeServer</code></h3>
-<p><code>pipeServer</code>是管道服务器，用于数据传输，需要部署到具有公网<code>IP</code>的服务器上。</p>
-<p>启动该服务，需要先创建配置文件，比如该文件名称为：<code>conf_pipeServer.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;listen_pipe_server_addr&quot;:&quot;:8888&quot;,
-    &quot;black_ip_list&quot;:[
-        &quot;127.0.0.3&quot;
-    ],
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;:true
-}
+<p>要查看已经创建好的 <code>tun</code> 设备，可以使用以下命令：</p>
+<pre><code class="language-bash">root@3114:~# ip link show tun0
+3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none
+root@3114:~#
+root@3114:~# ip addr show tun0
+3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none
+root@3114:~#
 </code></pre>
-<p>其中，<code>listen_pipe_server_addr</code>是对外监听的地址，若想监听某个网卡，则指定网卡地址即可，比如：<code>192.168.2.3:8888</code>。
-<code>white_ip_list</code>是设置的白名单，只允许名单内的连接上来，为空，则不设置白名单，均可以连接。后续配置也是如此，
-<code>black_ip_list</code>是设置的黑名单，禁止名单内的IP连接上来，若为空，则不设置黑名单，若黑名单和白名单都用相同的值，则黑名单优先级高于白名单。
-<code>debug_log</code>为<code>true</code>是否输出<code>debug</code>日志。后续配置也是如此，</p>
-<p>启动<code>pipeServer</code>，只需要指定配置文件即可，例如：</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type pipeServer --config conf/conf_pipeServer.json 
+<p>可以使用以下命令为 <code>tun</code> 虚拟设备分配<code>ip</code>地址，例如为设备 <code>tun0</code> 分配 <code>10.0.0.3/24</code>：</p>
+<pre><code class="language-bash">root@3114:~# ip addr add 10.0.0.3/24 dev tun0
+root@3114:~#
 </code></pre>
-<h3 id="relayserver"><code>relayServer</code></h3>
-<p><code>relayServer</code>是中转服务器，用于接收和发送用户的数据，需要部署在客户端请求的内网环境中。</p>
-<p><code>relayServer</code>可以开启多个，以便支持端口复用，需要为每个<code>relayServer</code>设置不同的<code>id</code>。</p>
-<p>同样的，如果需要启动该服务，需要先创建配置文件，比如该文件名称为：<code>conf_relayServer.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;client1&quot;,
-    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
-    &quot;listen_relay_server_addr&quot;:&quot;:10010&quot;,
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;:true
-}
+<p>再次查看，就有了其<code>ip</code>地址。</p>
+<pre><code class="language-bash">root@3114:~# ip addr show dev tun0
+3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN group default qlen 500
+    link/none
+    inet 10.0.0.3/24 scope global tun0
+       valid_lft forever preferred_lft forever
+root@3114:~#
 </code></pre>
-<p>其中，<code>id</code>是<code>relayServer</code>的唯一标识符，对其多开的时候需要注意<code>id</code>不能重复，该<code>id</code>是字符串，允许自设定，建议设置复杂一点。
-<code>pipe_server_addr</code>是<code>pipeServer</code>的地址。
-<code>listen_relay_server_addr</code>是<code>relayServer</code>监听的地址。
-<code>white_ip_list</code>是设置的白名单。</p>
-<p>同样的，可以创建第二个配置文件<code>conf_relayServer2.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;client2&quot;,
-    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
-    &quot;listen_relay_server_addr&quot;:&quot;:10012&quot;,
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;:true
-}
+<p>该虚拟网卡，默认为关闭状态，可以将该虚拟网卡开启。</p>
+<pre><code class="language-bash">root@3114:~# ip link set tun0 up
+root@3114:~#
 </code></pre>
-<p>注意，<code>id</code>不能重复，如果是在一台机器上，则<code>listen_relay_server_addr</code>对外监听的地址也不能重复。</p>
-<p>指定配置文件即可启动该服务。</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type relayServer --config conf/conf_relayServer.json 
+<p>当虚拟网卡<code>tun0</code>创建完毕后，系统会默认为其创建一条路由，可以使用<code>ip route</code>查看。</p>
+<pre><code class="language-bash">root@3114:~# ip route
+default via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
+1.2.4.8 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
+10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3 linkdown
+114.114.114.114 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
+192.168.3.0/24 dev eth0 proto kernel scope link src 192.168.3.114 metric 100
+192.168.3.1 dev eth0 proto dhcp scope link src 192.168.3.114 metric 100
+root@3114:~#
 </code></pre>
-<h3 id="relayclient"><code>relayClient</code></h3>
-<p><code>relayClient</code>是中转客户端，用于接收/发送来自管道客户端、真实服务的数据，需要部署在真实服务所在的内网环境中。</p>
-<p>启动该服务，需要配置<code>relayServer</code>随指定的<code>id</code>,根据<code>id</code>的不同，来指定相应的真实服务的地址，并且需要设置监听的端口，用于管道客户端的连接。</p>
-<p>要想启动该服务，需要创建配置文件，比如：<code>conf_relayClient.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;listen_relay_client_addr&quot;: &quot;:10011&quot;,
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;: true,
-    &quot;realServerInfo&quot;: [
-        {
-            &quot;id&quot;: &quot;client1&quot;,
-            &quot;real_Server_Addr&quot;: &quot;127.0.0.1:80&quot;
-        },
-        {
-            &quot;id&quot;: &quot;client2&quot;,
-            &quot;real_Server_Addr&quot;: &quot;127.0.0.1:22&quot;
-        }
-    ]
-}
+<p>可以看到，设备的状态为 <code>linkdown</code>，实际上这是因为 <code>tunApp</code> 尚未启动。当 <code>tunApp</code> 没有启动时，<code>tun</code> 设备的句柄无法被打开，因此路由中才会显示为 <code>linkdown</code> 状态。</p>
+<h2 id="tun_2">实际体验使用<code>tun</code>传输数据</h2>
+<p>在进行具体操作之前，我们已经将图给画好了，如下：</p>
+<p><img alt="image-20250110112317557" src="../../../blog/img/image-20250110072317557.png" /></p>
+<p>我们将 <code>3.115</code> 的机器称为服务端，<code>3.114</code> 的机器称为客户端。这两台机器上分别有一个 <code>tun</code> 虚拟设备，并且各自运行着 <code>tunApp</code> 程序。实现的功能是，在 <code>3.114</code> 上执行 <code>ping 10.0.0.5</code> 操作，通过 <code>tun</code> 设备让请求在 <code>3.115</code> 上执行，并将结果返回给 <code>3.114</code>。</p>
+<h3 id="_1">服务器操作</h3>
+<p>首先，需要在<code>3.115</code>上操作创建<code>tun</code>虚拟设备，并且分为地址。</p>
+<pre><code class="language-bash">root@3115:~# ip tuntap add name tun0 mode tun
+root@3115:~#
+root@3115:~# ip link show tun0
+4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
+    link/none
+root@3115:~#
+root@3115:~# ip addr add 10.0.0.5/24 dev tun0
+root@3115:~#
+root@3115:~# ip link set tun0 up
+root@3115:~#
+root@3115:~# sysctl -w net.ipv4.ip_forward=1
+net.ipv4.ip_forward = 1
+root@3115:~#
+root@3115:~# ip addr show tun0
+4: tun0: &lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 500
+    link/none
+    inet 10.0.0.5/24 scope global tun0
+       valid_lft forever preferred_lft forever
+root@3115:~#
 </code></pre>
-<p>其中<code>listen_relay_client_addr</code>是对外监听的端口，用于<code>pipeClient</code>程序的连接。
-<code>realServerInfo</code>则是真实服务器信息，是一个数组，该数组以<code>id</code>和<code>real_Server_Addr</code>成对出现，用于分辨哪些<code>id</code>和哪些后端服务进行绑定。该<code>id</code>和<code>relayServer</code>的<code>id</code>必须一致，请注意<code>id</code>不要重复，否则会以最后一个<code>id</code>的信息为准。</p>
-<p>启动该服务只需要指定相应的配置文件即可。</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type relayClient --config conf/conf_relayClient.json 
-</code></pre>
-<h3 id="pipeclient"><code>pipeClient</code></h3>
-<p><code>pipeClient</code>是管道客户端，用于传输来自管道服务器的数据，以及中转客户端的数据，该服务需要部署在真实服务所在的内网环境中。</p>
-<p>启动该服务，需要创建配置文件，比如：<code>conf_pipeClient.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
-    &quot;relay_client_addr&quot;:&quot;127.0.0.1:10011&quot;,
-    &quot;debug_log&quot;: true
-}
-</code></pre>
-<p>其中<code>pipe_server_addr</code>表示<code>pipeServer</code>服务器的地址。
-<code>relay_client_addr</code>表示<code>relayClient</code>服务器的地址。</p>
-<p>只需要指定配置文件，即可启动该服务。</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type pipeClient --config conf/conf_pipeClient.json 
-</code></pre>
-<h2 id="_6">数据加密</h2>
-<p>当你不是该公网服务器的所有者时，就必须要考虑到中间人攻击的风险。为了确保数据安全，建议使用数据加密，如部署图中绿色部分所示，数据传输可以加密。然而需要注意的是，目前版本并未实现数据加密功能，但已为此预留了接口。你可以通过修改<code>pipeProtocol/enDecode.go</code>文件中的<code>Encode</code>和<code>Decode</code>函数，来实现数据加密。</p>
-<p>函数如下：</p>
-<pre><code class="language-go">func Encode(s []byte) []byte {
-    return s
-}
+<p>我们需要为此编写一个<code>tunapp2</code>，并且监听<code>udp</code>的<code>10010</code>端口，代码如下：</p>
+<pre><code class="language-go">package main
 
-func Decode(s []byte) []byte {
-    return s
+import (
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+    &quot;syscall&quot;
+    &quot;time&quot;
+    &quot;unsafe&quot;
+)
+
+func main() {
+    fmt.Println(&quot;start server&quot;)
+    tun, err := os.OpenFile(&quot;/dev/net/tun&quot;, os.O_RDWR, 0)
+    if err != nil {
+        log.Println(&quot;open tun devices error&quot;, err)
+    }
+
+    var ifr [18]byte
+    copy(ifr[:], &quot;tun0&quot;)
+    *(*uint16)(unsafe.Pointer(&amp;ifr[16])) = uint16(syscall.IFF_TUN) | uint16(syscall.IFF_NO_PI)
+
+    syscall.Syscall(syscall.SYS_IOCTL, tun.Fd(), uintptr(syscall.TUNSETIFF), uintptr(unsafe.Pointer(&amp;ifr)))
+
+    serverAddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;:10010&quot;)
+    if err != nil {
+        log.Println(&quot;failed resolve udp addr&quot;, err)
+        return
+    }
+    conn, err := net.ListenUDP(&quot;udp&quot;, serverAddr)
+    if err != nil {
+        log.Println(&quot;listen udp error&quot;, err)
+        return
+    }
+
+    buf := make([]byte, 1500)
+    for {
+        un, udpAddr, err := conn.ReadFromUDP(buf)
+        if err != nil {
+            log.Println(&quot;read from udp error&quot;, err)
+            continue
+        }
+
+        fmt.Println(&quot;已经收到客户端udp请求了&quot;, len(buf[:un]))
+
+        tun.SetReadDeadline(time.Now().Add(1 * time.Second))
+
+        _, err = tun.Write(buf[:un])
+        if err != nil {
+            log.Println(&quot;tun write error&quot;, err)
+        }
+
+        fmt.Println(&quot;已经将请求写入到了tun虚拟设备中&quot;, len(buf[:un]))
+
+        n, err := tun.Read(buf)
+        if err != nil {
+            if os.IsTimeout(err) {
+                continue
+            }
+            log.Fatalf(&quot;Failed to read from device: %v&quot;, err)
+        }
+        fmt.Println(&quot;已经收到tun收到了信息&quot;, len(buf[:n]))
+        conn.WriteToUDP(buf[:n], udpAddr)
+        fmt.Println(&quot;将数据回复到udp客户端中&quot;, len(buf[:n]))
+    }
 }
 </code></pre>
-<p>其中，<code>Encode</code>将用做加密操作，<code>Decode</code>将用作解密操作。</p>
-<h2 id="_7">其他</h2>
-<p>该项目不接受任何需求。</p>
+<p>在运行 <code>tunApp2</code> 后，可以使用以下命令查看 <code>tun0</code> 的状态：</p>
+<pre><code class="language-bash">root@3115:~# ./server
+start server
+</code></pre>
+<p>查看<code>tun0</code>状态。</p>
+<pre><code class="language-bash">root@3115:~# ip addr show tun0
+4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 500
+    link/none
+    inet 10.0.0.5/24 scope global tun0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::f4d3:cccd:e9e2:3be6/64 scope link stable-privacy
+       valid_lft forever preferred_lft forever
+root@3115:~#
+</code></pre>
+<p>可以看到，当客户端连接并启动时，<code>tun</code> 虚拟设备的状态会从 <code>DOWN</code> 变为 <code>UP</code>。这表明设备已成功启用，并且可以开始接收和发送网络数据。此时，用户态程序<code>tunApp2</code>也与设备建立了连接。</p>
+<h3 id="_2">客户端操作</h3>
+<p>同样的，也需要在客户端上创建<code>tun</code>虚拟设备，配置<code>IP</code>信息等，具体命令如下：</p>
+<pre><code class="language-bash">root@3114:~# ip tuntap add name tun0 mode tun
+root@3114:~# ip addr add 10.0.0.3/24 dev tun0
+root@3114:~# ip link set tun0 up
+root@3114:~# sysctl -w net.ipv4.ip_forward=1
+net.ipv4.ip_forward = 1
+root@3114:~# ip addr show tun0
+3: tun0: &lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 500
+    link/none
+    inet 10.0.0.3/24 scope global tun0
+       valid_lft forever preferred_lft forever
+root@3114:~#
+root@3114:~#
+</code></pre>
+<p>并且，为此编写一个<code>tunApp1</code>程序，将作为客户端使用，代码如下：</p>
+<pre><code class="language-bash">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net&quot;
+    &quot;os&quot;
+    &quot;syscall&quot;
+    &quot;unsafe&quot;
+)
+
+func main() {
+    fmt.Println(&quot;client start...&quot;)
+    tun, err := os.OpenFile(&quot;/dev/net/tun&quot;, os.O_RDWR, 0)
+    if err != nil {
+        log.Println(&quot;open tun devices error&quot;, err)
+    }
+
+    var ifr [18]byte
+    copy(ifr[:], &quot;tun0&quot;)
+    *(*uint16)(unsafe.Pointer(&amp;ifr[16])) = uint16(syscall.IFF_TUN) | uint16(syscall.IFF_NO_PI)
+
+    syscall.Syscall(syscall.SYS_IOCTL, tun.Fd(), uintptr(syscall.TUNSETIFF), uintptr(unsafe.Pointer(&amp;ifr)))
+
+    serverAddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;192.168.3.115:10010&quot;)
+    if err != nil {
+        log.Println(&quot;resolve udp error&quot;, err)
+        return
+    }
+
+    conn, err := net.DialUDP(&quot;udp&quot;, nil, serverAddr)
+    if err != nil {
+        log.Println(&quot;dial udp error&quot;, err)
+        return
+    }
+
+    go func() {
+        buf := make([]byte, 1500)
+        for {
+            tn, err := tun.Read(buf)
+            if err != nil {
+                log.Fatalf(&quot;Failed to read from device: %v&quot;, err)
+            }
+            fmt.Println(&quot;从tun虚拟设备中收到了请求&quot;, len(buf[:tn]))
+
+            _, err = conn.Write(buf[:tn])
+            if err != nil {
+                log.Println(&quot;conn write error&quot;, err)
+                continue
+            }
+            fmt.Println(&quot;将请求发送到udp服务器中&quot;, len(buf[:tn]))
+        }
+    }()
+    buf := make([]byte, 1500)
+    for {
+        cn, _, err := conn.ReadFromUDP(buf)
+        if err != nil {
+            log.Println(&quot;read from udp error&quot;, err)
+            continue
+        }
+        fmt.Println(&quot;已经从udp服务器中获取到数据&quot;)
+        _, err = tun.Write(buf[:cn])
+        if err != nil {
+            log.Println(&quot;tn write error&quot;, err)
+        }
+        fmt.Println(&quot;将数据写入到tun设备中&quot;)
+    }
+}
+</code></pre>
+<h3 id="ping">尝试ping</h3>
+<p>首先，在没有启动 <code>tunApp</code> 的情况下，客户端尝试 <code>ping</code> <code>10.0.0.5</code> 时，当然是无法成功的。这是因为 <code>tun</code> 设备的句柄没有被打开，无法处理从客户端发送的请求，导致数据包无法传输。具体表现为无法接收到响应。</p>
+<pre><code class="language-bash">root@3114:~# ping 10.0.0.5 -c 2
+PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.
+
+--- 10.0.0.5 ping statistics ---
+2 packets transmitted, 0 received, 100% packet loss, time 1015ms
+
+root@3114:~#
+</code></pre>
+<p>当启动 <code>tunApp</code> 后，客户端再次执行 <code>ping 10.0.0.5</code> 时，根据系统预设的路由规则，流量将会通过 <code>tun0</code> 设备发送出去。例如，客户端的路由如下所示：</p>
+<pre><code class="language-bash">root@3114:~# ip route
+default via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
+1.2.4.8 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
+10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3
+114.114.114.114 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
+192.168.3.0/24 dev eth0 proto kernel scope link src 192.168.3.114 metric 100
+192.168.3.1 dev eth0 proto dhcp scope link src 192.168.3.114 metric 100
+root@3114:~#
+</code></pre>
+<p>上面有一条规则是这样的：</p>
+<pre><code class="language-bash">10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3
+</code></pre>
+<p>这将表示，当请求 <code>10.0.0.0/24</code> 网络范围内的地址时，流量将被定向到 <code>10.0.0.3</code> 网卡，而该网卡正是我们 <code>tun0</code> 设备的地址。</p>
+<p>所以，在客户端机器上直接<code>ping 10.0.0.5</code>地址，会收到回复报文，如下：</p>
+<pre><code class="language-bash">root@3114:~# ping 10.0.0.5 -c 2
+PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.
+64 bytes from 10.0.0.5: icmp_seq=1 ttl=64 time=2.40 ms
+64 bytes from 10.0.0.5: icmp_seq=2 ttl=64 time=1.62 ms
+
+--- 10.0.0.5 ping statistics ---
+2 packets transmitted, 2 received, 0% packet loss, time 1002ms
+rtt min/avg/max/mdev = 1.622/2.011/2.400/0.389 ms
+root@3114:~#
+</code></pre>
+<p>同样的，<code>client</code>日志会显示如下：</p>
+<pre><code class="language-bash">root@3114:~# ./client
+client start...
+从tun虚拟设备中收到了请求 84
+将请求发送到udp服务器中 84
+已经从udp服务器中获取到数据
+将数据写入到tun设备中
+从tun虚拟设备中收到了请求 84
+将请求发送到udp服务器中 84
+已经从udp服务器中获取到数据
+将数据写入到tun设备中
+
+</code></pre>
+<p>对于<code>client</code>的报文内容如下：</p>
+<pre><code class="language-bash">root@3114:~# tcpdump -i tun0
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
+07:50:37.061239 IP 3114 &gt; 10.0.0.5: ICMP echo request, id 24, seq 1, length 64
+07:50:37.064101 IP 10.0.0.5 &gt; 3114: ICMP echo reply, id 24, seq 1, length 64
+07:50:38.062797 IP 3114 &gt; 10.0.0.5: ICMP echo request, id 24, seq 2, length 64
+07:50:38.065070 IP 10.0.0.5 &gt; 3114: ICMP echo reply, id 24, seq 2, length 64
+^C
+4 packets captured
+4 packets received by filter
+0 packets dropped by kernel
+root@3114:~#
+</code></pre>
+<p><code>server</code>日志会显示如下：</p>
+<pre><code class="language-bash">root@3115:~# ./server
+start server
+已经收到客户端udp请求了 84
+已经将请求写入到了tun虚拟设备中 84
+已经收到tun收到了信息 84
+将数据回复到udp客户端中 84
+已经收到客户端udp请求了 84
+已经将请求写入到了tun虚拟设备中 84
+已经收到tun收到了信息 84
+将数据回复到udp客户端中 84
+
+</code></pre>
+<p>对于<code>server</code>的报文内容如下：</p>
+<pre><code class="language-bash">root@3115:~# tcpdump -i tun0
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
+07:50:37.053759 IP 10.0.0.3 &gt; 10.0.0.5: ICMP echo request, id 24, seq 1, length 64
+07:50:37.053831 IP 10.0.0.5 &gt; 10.0.0.3: ICMP echo reply, id 24, seq 1, length 64
+07:50:38.054582 IP 10.0.0.3 &gt; 10.0.0.5: ICMP echo request, id 24, seq 2, length 64
+07:50:38.054651 IP 10.0.0.5 &gt; 10.0.0.3: ICMP echo reply, id 24, seq 2, length 64
+^C
+4 packets captured
+4 packets received by filter
+0 packets dropped by kernel
+root@3115:~#
+</code></pre>
+<h2 id="_3">总结</h2>
+<p>对于 <code>tun</code> 虚拟设备，可以将其简单理解为：将 <code>A</code> 产生的报文原封不动地传输到 <code>B</code> 进行处理，待 <code>B</code> 执行完毕后，再将处理结果返回给 <code>A</code>。</p>
 
 
 
@@ -847,8 +1002,8 @@ func Decode(s []byte) []byte {
 
 <p class="underline"></p>
 <div>
-  <p><b>goRelay的基本使用</b></p>
-  <p><a href="">https://wangli2025.github.io/2025/01/04/tcp-intranet-penetration-tool.html</a></p>
+  <p><b>linux tun 虚拟设备的简单探寻</b></p>
+  <p><a href="">https://wangli2025.github.io/2025/01/10/Linux_Tun_Virtual_Devices.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
