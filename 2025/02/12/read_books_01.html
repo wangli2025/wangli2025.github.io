@@ -6,17 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="linux 虚拟网桥接入实体网卡">
+        <meta name="description" content="《蛤蟆先生去看心理医生》读书笔记">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2024/11/22/linux_network_bridge-2.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2025/02/12/read_books_01.html">
       
       
-        <link rel="prev" href="../21/vmware-install-tools.html">
+        <link rel="prev" href="../../01/10/Linux_Tun_Virtual_Devices.html">
       
-      
-        <link rel="next" href="../25/docker_network.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -27,7 +25,7 @@
     
     
       
-        <title>linux虚拟网桥接入实体网卡 - 王李的博客</title>
+        <title>《蛤蟆先生去看心理医生》读书笔记 - 王李的博客</title>
       
     
     
@@ -79,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              linux虚拟网桥接入实体网卡
+              《蛤蟆先生去看心理医生》读书笔记
             
           </span>
         </div>
@@ -514,7 +512,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2024-11-22 00:00:00" class="md-ellipsis">2024/11/22</time>
+                        <time datetime="2025-02-12 00:00:00" class="md-ellipsis">2025/02/12</time>
                       </div>
                     </li>
                     
@@ -525,8 +523,7 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/linux.html">Linux</a>, 
-                              <a href="../../../category/%E5%AE%B9%E5%99%A8.html">容器</a></span>
+                              <a href="../../../category/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0.html">读书笔记</a></span>
                         </div>
                       </li>
                     
@@ -537,7 +534,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              9 min read
+                              2 min read
                             
                           </span>
                         </div>
@@ -565,18 +562,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      关闭网络服务
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      创建虚拟桥接
+      儿童自我状态
     </span>
   </a>
   
@@ -585,7 +573,7 @@
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      创建虚拟网卡
+      父母自我状态
     </span>
   </a>
   
@@ -594,7 +582,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      配置虚拟网卡地址
+      成人自我状态
     </span>
   </a>
   
@@ -632,303 +620,96 @@
 
 
 
-<h1 id="linux">linux虚拟网桥接入实体网卡</h1>
-<p>本文将介绍虚拟网桥（<code>bridge</code>）接入实体网卡。</p>
+<h1 id="_1">《蛤蟆先生去看心理医生》读书笔记</h1>
+<p>阅读《蛤蟆先生去看心理医生》心得。</p>
 <!-- more -->
 
-<p>此前已经介绍过<code>linux</code>虚拟网桥（<code>bridge</code>）在容器中的作用，本次将来介绍将网桥接入实体网卡。</p>
-<p>本文所依赖的环境为：</p>
-<pre><code class="language-bash">root@debian:~# hostnamectl
- Static hostname: windows11pro
-       Icon name: windowsBooks
-         Chassis: laptop 💻
-Operating System: Debian GNU/Linux 12 (bookworm)  
-          Kernel: Linux 6.1.0-26-amd64
-    Architecture: x86-64
- Hardware Vendor: ASUSTeK COMPUTER INC.
-  Hardware Model: X441UVK
-Firmware Version: X441UVK.314
-root@debian:~#
-</code></pre>
-<p>操作的是切记不要使用虚拟机如，<code>vmware</code>和<code>virtualbox</code>等。</p>
-<p>默认网卡混杂模式，在虚拟机中是没有开启的：<a href="https://docs.vmware.com/cn/VMware-vSphere/6.7/com.vmware.vsphere.security.doc/GUID-92F3AB1F-B4C5-4F25-A010-8820D7250350.html">https://docs.vmware.com/cn/VMware-vSphere/6.7/com.vmware.vsphere.security.doc/GUID-92F3AB1F-B4C5-4F25-A010-8820D7250350.html</a></p>
-<h2 id="_1">关闭网络服务</h2>
-<p>默认情况下，<code>NetworkManager.service</code>是<code>Linux</code>系统中的网络管理工具，负责自动分配<code>ip</code>地址等。由于要操作<code>bridge</code>，所以需要暂时将其给关闭掉。否则，后续单独开启网卡，又会拉取到<code>ip</code>地址等。</p>
-<p>将<code>NetworkManager.service</code>给停用掉，并且禁止开机自启。然后重启机器。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# systemctl disable NetworkManager.service
-[root@localhost]:[~][tty:0]# systemctl stop NetworkManager.service
-[root@localhost]:[~][tty:0]# reboot
-</code></pre>
-<p>重启完毕后，查看网络，应该是无<code>ip</code>地址，且网卡状态为<code>DOWN</code>的。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip a
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute
-       valid_lft forever preferred_lft forever
-2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>网卡关闭后，我们需要手动配置一下<code>ip</code>，确保机器能够上网。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip addr add 192.168.100.136/24 dev enp4s0
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ip link set enp4s0 up
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ping 192.168.100.1 -c 3
-PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
-64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=1.06 ms
-64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.651 ms
-64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=0.654 ms
-
---- 192.168.100.1 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2023ms
-rtt min/avg/max/mdev = 0.651/0.789/1.062/0.193 ms
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>配置<code>ip</code>后，并且手动启动网卡，<code>ping</code>网关没问题。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ping 8.8.8.8 -c 3
-ping: connect: Network is unreachable
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>但是<code>ping</code>外网会显示网络不可达，这是因为是手动添加的<code>ip</code>地址，路由信息需要配置，需要添加一条默认路由，指向网关即可。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip route
-192.168.100.0/24 dev enp4s0 proto kernel scope link src 192.168.100.136
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ip route add default via 192.168.100.1
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ping -c 3 8.8.8.8
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=33.7 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=34.0 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=55 time=34.7 ms
-
---- 8.8.8.8 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2004ms
-rtt min/avg/max/mdev = 33.735/34.158/34.742/0.426 ms
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>如上，手动配置的<code>ip</code>也可以进行上网。需要清除该网卡上的<code>ip</code>信息，并且给关闭掉网络。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set enp4s0 down
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ip addr flush dev enp4s0
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ip a
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute
-       valid_lft forever preferred_lft forever
-2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 1000
-    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<h2 id="_2">创建虚拟桥接</h2>
-<p>创建一个桥接<code>bridge</code>。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link add name br0 type bridge
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ip link
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 1000
-    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
-3: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>将<code>enp4s0</code>实体网卡加入到该虚拟桥接设备<code>br0</code>中。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set enp4s0 master br0
-</code></pre>
-<p>为<code>br0</code>配置<code>ip</code>地址，注意这里是为桥接配置<code>ip</code>地址，而非<code>enp4s0</code>实体网络哦，因为接入到了<code>bridge</code>中，可以将<code>enp4s0</code>看做是一根网线。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip addr add 192.168.100.136/24 dev br0
-[root@localhost]:[~][tty:0]#
-[root@localhost]:[~][tty:0]# ip a
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute
-       valid_lft forever preferred_lft forever
-2: enp4s0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc fq_codel master br0 state DOWN group default qlen 1000
-    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
-3: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noqueue state DOWN group default qlen 1000
-    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.100.136/24 scope global br0
-       valid_lft forever preferred_lft forever
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>配置完成后，需要启动<code>br0</code>和<code>enp4s0</code>网卡，</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set br0 up
-[root@localhost]:[~][tty:0]# ip link set enp4s0 up
-[root@localhost]:[~][tty:0]# ip a
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute
-       valid_lft forever preferred_lft forever
-2: enp4s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel master br0 state UP group default qlen 1000
-    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::56e1:adff:fee7:de8d/64 scope link
-       valid_lft forever preferred_lft forever
-3: br0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.100.136/24 scope global br0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::827:75ff:feb4:3069/64 scope link
-       valid_lft forever preferred_lft forever
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>可以看到，此时2个网卡的状态都是<code>UP</code>。</p>
-<p>尝试<code>ping</code>一下网关。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ping -c 3 192.168.100.1
-PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
-64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=1.53 ms
-64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.663 ms
-64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=0.666 ms
-
---- 192.168.100.1 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2009ms
-rtt min/avg/max/mdev = 0.663/0.954/1.534/0.409 ms
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>再次添加默认路由后，<code>ping</code>外网。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip route add default via 192.168.100.1
-[root@localhost]:[~][tty:0]# ping -c 3 8.8.8.8
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=40.6 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=36.2 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=55 time=40.2 ms
-
---- 8.8.8.8 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2005ms
-rtt min/avg/max/mdev = 36.152/38.988/40.643/2.014 ms
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>可见，将实体网卡给到虚拟网桥，是行得通的。</p>
-<h2 id="_3">创建虚拟网卡</h2>
-<p>现在需要操作的是，创建一对虚拟网卡，并且将其中一端放入<code>net namespace</code>中，另外一端加入刚刚创建好的<code>bridge</code>，并且为<code>net namespace</code>中的网卡配置<code>ip</code>地址，看是否能够和外部直接通信。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link add name veth0 type veth peer name veth1
-[root@localhost]:[~][tty:0]# ip a
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute
-       valid_lft forever preferred_lft forever
-2: enp4s0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel master br0 state UP group default qlen 1000
-    link/ether 02:42:ac:11:65:bd brd ff:ff:ff:ff:ff:ff
-    inet6 fe80::56e1:adff:fee7:de8d/64 scope link
-       valid_lft forever preferred_lft forever
-3: br0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 0a:27:75:b4:30:69 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.100.136/24 scope global br0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::827:75ff:feb4:3069/64 scope link
-       valid_lft forever preferred_lft forever
-4: veth1@veth0: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff
-5: veth0@veth1: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether a6:27:b0:61:da:eb brd ff:ff:ff:ff:ff:ff
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>如上，创建了一对虚拟网卡，名称分别为<code>veth0</code>和<code>veth1</code>。</p>
-<p>现在需要新开一个终端，创建一个全新的<code>net namespace</code>。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:1]# unshare -m -i -u -n -f /bin/bash
-(unshare) [root@localhost]:[~][tty:1]#
-(unshare) [root@localhost]:[~][tty:1]# echo $$
-1283
-(unshare) [root@localhost]:[~][tty:1]#
-(unshare) [root@localhost]:[~][tty:1]# ip a
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-(unshare) [root@localhost]:[~][tty:1]#
-</code></pre>
-<p>如上，创建了一个一个<code>net namespace</code>，查看<code>ip</code>，只有本地回环地址<code>lo</code>。</p>
-<p>切回原来的终端，将<code>veth1</code>移入到刚刚创建的<code>net namespace</code>中。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set veth1 netns 1283
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>回到<code>net namespace</code>后，可以看到已经移入过来的网卡地址。</p>
-<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip a
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-4: veth1@if6: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff link-netnsid 0
-(unshare) [root@localhost]:[~][tty:1]#
-</code></pre>
-<h2 id="_4">配置虚拟网卡地址</h2>
-<p>上述已经将<code>veth1</code>移入到了<code>net namespace</code>中，现在需要将外面的<code>veth0</code>给加入到<code>bridge</code>虚拟设备<code>br0</code>中，并且将网卡给打开。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:0]# ip link set veth0 master br0
-[root@localhost]:[~][tty:0]# ip link set veth0 up
-[root@localhost]:[~][tty:0]#
-</code></pre>
-<p>在<code>net namespace</code>中，需要为刚刚移入的<code>veth1</code>配置<code>ip</code>地址。</p>
-<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip addr add 192.168.100.137/24 dev veth1
-(unshare) [root@localhost]:[~][tty:1]#
-(unshare) [root@localhost]:[~][tty:1]# ip a
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-4: veth1@if6: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.100.137/24 scope global veth1
-       valid_lft forever preferred_lft forever
-(unshare) [root@localhost]:[~][tty:1]#
-</code></pre>
-<p>并且将网卡给打开。</p>
-<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip link set veth1 up
-(unshare) [root@localhost]:[~][tty:1]#
-(unshare) [root@localhost]:[~][tty:1]# ip a
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-5: veth1@if6: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether ba:00:10:0e:f2:df brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.100.137/24 scope global veth1
-       valid_lft forever preferred_lft forever
-    inet6 fe80::b800:10ff:fe0e:f2df/64 scope link tentative
-       valid_lft forever preferred_lft forever
-(unshare) [root@localhost]:[~][tty:1]#
-</code></pre>
-<p>尝试<code>ping</code>一下网关。</p>
-<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ping 192.168.100.1 -c 3
-PING 192.168.100.1 (192.168.100.1) 56(84) bytes of data.
-64 bytes from 192.168.100.1: icmp_seq=1 ttl=64 time=1.28 ms
-64 bytes from 192.168.100.1: icmp_seq=2 ttl=64 time=0.704 ms
-64 bytes from 192.168.100.1: icmp_seq=3 ttl=64 time=0.690 ms
-
---- 192.168.100.1 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2030ms
-rtt min/avg/max/mdev = 0.690/0.890/1.278/0.273 ms
-(unshare) [root@localhost]:[~][tty:1]#
-</code></pre>
-<p>但是<code>ping</code>外网，依然会报错网络不可达。</p>
-<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ping 8.8.8.8 -c 3
-ping: connect: Network is unreachable
-(unshare) [root@localhost]:[~][tty:1]#
-</code></pre>
-<p>这是因为在<code>net namespace</code>中，没有添加默认路由，需要添加上去即可。</p>
-<pre><code class="language-bash">(unshare) [root@localhost]:[~][tty:1]# ip route add default via 192.168.100.1
-(unshare) [root@localhost]:[~][tty:1]#
-(unshare) [root@localhost]:[~][tty:1]# ping 8.8.8.8 -c 3
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=55 time=36.9 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=55 time=34.6 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=55 time=33.5 ms
-
---- 8.8.8.8 ping statistics ---
-3 packets transmitted, 3 received, 0% packet loss, time 2004ms
-rtt min/avg/max/mdev = 33.493/35.014/36.908/1.418 ms
-(unshare) [root@localhost]:[~][tty:1]#
-</code></pre>
+<blockquote>
+<p>《蛤蟆先生去看心理医生》通过讲述一只陷入抑郁的蛤蟆，在心理医生苍鹭的帮助下，与自己和解、成长的故事。书中提及的<strong>儿童自我状态</strong>、<strong>成人自我状态</strong>、<strong>父母自我状态</strong>以及<strong>人生幸福坐标</strong>，只有真正与自己和解，才能找到内心的平静与力量。</p>
+<p>如果和你的意见不同，那么以你为准。</p>
+</blockquote>
+<p>我们常常在面对调皮的孩子时感到焦虑和无奈，缺乏耐心，只剩下抱怨：“这孩子怎么这么不听话？”；在职场中，与同事相处时，我们或许会因意见不合而心生不满，甚至觉得彼此难以沟通；在家庭生活中，与亲人交流时，我们可能会因为一点小事就争执不休，话不投机半句多。</p>
+<p>或许，真正的问题并不在他人，而在于我们自己——我们需要学会与自己和解。</p>
+<p>要遵从自己的内心，“没有一种批判比自我批判更强烈，也没有一个法官比我们自己更加严苛”，要学会和自己和解。</p>
+<p><strong>人类在不同情景中表现出来的思维、情感和行为模式，按照交易分析（心理学理论和治疗方法），可以分为3种状态，分别为： 父母状态、成人状态 以及 儿童状态，每个人在不同时间和环境下，可能会在这些状态之间转换。</strong></p>
+<h2 id="_2">儿童自我状态</h2>
+<p>对于每个人，刚出生的时候，只具备了几种基础的情感，比如：快乐、深情、愤怒、悲伤、恐惧等。这些称之为<strong>儿童的基本情感</strong>。</p>
+<p>举个例子：婴儿会为了获得食物和关注会尖叫，尽可能多的吮吸乳汁，吃饱后心满意足睡觉。</p>
+<p>我们将其称之为<strong>自然型儿童状态</strong>，特点是人的自发、直觉、富有创造力和情感化的一面。</p>
+<p>相比如<strong>自然型儿童状态</strong>，还有<strong>适应型儿童状态</strong>。请想象这样一个场景：</p>
+<blockquote>
+<p>在一个小星球上，只住着3个人，你和其他2个人，当然这2个人比你高大很多，所有事情都必须完完全全依赖他们，不光吃喝，你的情感也得依靠他们来满足，当然他们对你非常好，但是有时候他们也会生气，让你时常感到害怕和无助，你也没办法逃离他们，只能压抑自己，讨好他们。比如去应对、顺从、迎合他们。</p>
+</blockquote>
+<p>这个就称之为<strong>适应型儿童状态</strong>，所以儿童的自我状态是由这两部分构成的：</p>
+<p><strong>自然型儿童状态</strong>：</p>
+<ul>
+<li>遵从内心</li>
+<li>活泼</li>
+<li>创造力强</li>
+</ul>
+<p><strong>适应型儿童状态</strong>：</p>
+<ul>
+<li>
+<p>讨好他人</p>
+</li>
+<li>
+<p>压抑自己</p>
+</li>
+<li>
+<p>害怕犯错</p>
+</li>
+</ul>
+<p><img alt="image-20250213144414914" src="../../../blog/img/image-20250213214414914.png" /></p>
+<p>在日常和生活中，我们要学会平衡这两种状态，比如在工作中更多使用适应型儿童，遵守规则、承担责任等，但是也要学会释放情绪，比如运动、游戏、和朋友互动等，让自然型儿童部分得到释放。</p>
+<p>最后，有一个表描述“儿童如何释放愤怒”，核心点在于当成年人出现怄气、撒泼、郁闷或者是厌烦的时候，可能行为不当，也可能是无意识地重演童年的行为模式。</p>
+<p><img alt="image-20250213143626721" src="../../../blog/img/image-20250213220326721.png" /></p>
+<h2 id="_3">父母自我状态</h2>
+<blockquote>
+<p>"父母状态"包含了自出生起，我们从父母那里学到的所有价值观和道德观，还包含了对生活的匹配标准。</p>
+</blockquote>
+<p>请想象一下如下情景：</p>
+<blockquote>
+<p>在家庭生活中，因为某次考试考砸了，家长可能会过于严厉地责骂我们，强调错误和缺点。控制欲极强的家长，常通过这种严厉的态度和苛刻的标准来“教育”我们，似乎任何行为都会被视为错的。这种方式往往让我们感到压抑和无力，容易陷入自我怀疑，甚至开始怀疑自己是否真的有能力去做对的事。</p>
+</blockquote>
+<p>如上这种，就是<strong>挑剔型父母状态</strong>，这种特点为：愤怒、严厉、不耐烦。而与之对应的时则是<strong>养育型父母状态</strong>，这种特点为：温暖、宽容、理解等。</p>
+<p>总之，<strong>父母自我状态</strong>的特点是以情感为主导，而非完全理性思考，在大多数情况下，反应的是内在情感、价值观等。</p>
+<p><img alt="image-20250213153037260" src="../../../blog/img/image-20250213213037260.png" /></p>
+<h2 id="_4">成人自我状态</h2>
+<p>相比于<strong>儿童自我状态</strong>和<strong>父母自我状态</strong>，<strong>成人自我状态</strong>是使用<strong>理性</strong>而非情绪化的方式来行事，换言之，能够<strong>计划</strong>、<strong>考虑</strong>、<strong>决定</strong>、<strong>行动</strong>等，能够理性且合理的行事。目的是为了解决问题、处理当前的挑战以及做出合适的决策。</p>
+<p>所以，成人自我状态的特点为：</p>
+<ul>
+<li>理性</li>
+<li>冷静</li>
+<li>反思</li>
+</ul>
+<p>在成人自我状态下，能够更好的静下心来分析、分析，以便更好的解决问题。</p>
 <h2 id="_5">总结</h2>
-<p>如果是桥接的真实网卡，且不做<code>nat</code>的话，则不需要进行<code>ip</code>转发，<code>ip</code>转发一般在不同网络之间通信才需要开启，比如，这台机器的转发就没有开，不影响它桥接虚拟网卡，和外部进行通信。</p>
-<pre><code class="language-bash">[root@localhost]:[~][tty:3]# cat /proc/sys/net/ipv4/ip_forward
-0
-[root@localhost]:[~][tty:3]#
-</code></pre>
-<p>还有，一定在真实的机器下操作，我操作了<code>vmware</code>等虚拟机，即使在<code>linux</code>中，开启了混合模式的情况下，外部<code>ping veth</code>的数据包最多只能达到<code>br0</code>，就丢了，应该是和虚拟机有关系。</p>
+<p>按照心理学理论而言，我们每个人都有三种自我状态，分别是：</p>
+<ul>
+<li>儿童自我状态</li>
+<li>父母自我状态</li>
+<li>成人自我状态</li>
+</ul>
+<p>这三种状态会随着情绪的变化而不停的变化，要时刻自我反思，处于哪种状态，了解当前的思维和情感状态，要控制和调节情绪，不能让情绪主导自己的行为。</p>
+<p>每个人的早期经历本质上是不同的，所以每个人看到的都是一个不同的世界，这个时间是内在的、包含着情绪和情感的内心世界。</p>
+<p>可以思考2个问题：</p>
+<ul>
+<li>如何看待自己的</li>
+<li>如何看待别人的</li>
+</ul>
+<p>可以梳理为以下人生坐标图：</p>
+<p><img alt="image-20250213155742050" src="../../../blog/img/image-20250213215742050.png" /></p>
+<p>这里说明一下第二象限和第四象限的情况。</p>
+<p><strong>我好，你不好</strong>：</p>
+<p>过低的贬低他人，甚至霸凌。</p>
+<p>比如：</p>
+<p>父母语重心长的告知你，“你为什么总让我失望？”</p>
+<p>领导<code>pua</code>你：“当初面试给你定级是高于你面试水平的，但是你进来后，只关注自己本职工作，你的价值点在哪里？是否形成了壁垒和核心竞争力？”</p>
+<p><strong>我不好，你好</strong>：</p>
+<p>这类人往往非常自卑，认为别人的任何方面都比他好，但是却能够善待别人，认为自己是生活的受害者。</p>
+<p>比如：</p>
+<p>自我否定和过度批评，往往一件小事，会在意很久，经常在深夜自我批评。</p>
+<p>过度依赖他人，在意他人的看法，非常努力的迎合别人，甚至牺牲自己的感受。</p>
 
 
 
@@ -938,8 +719,8 @@ rtt min/avg/max/mdev = 33.493/35.014/36.908/1.418 ms
 
 <p class="underline"></p>
 <div>
-  <p><b>linux虚拟网桥接入实体网卡</b></p>
-  <p><a href="">https://wangli2025.github.io/2024/11/22/linux_network_bridge-2.html</a></p>
+  <p><b>《蛤蟆先生去看心理医生》读书笔记</b></p>
+  <p><a href="">https://wangli2025.github.io/2025/02/12/read_books_01.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
