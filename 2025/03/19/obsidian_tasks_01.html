@@ -6,17 +6,15 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="linux tun 虚拟设备的简单探寻">
+        <meta name="description" content="使用 obsidian tasks 进行简单查询">
       
       
       
-        <link rel="canonical" href="https://wangli2025.github.io/2025/01/10/Linux_Tun_Virtual_Devices.html">
+        <link rel="canonical" href="https://wangli2025.github.io/2025/03/19/obsidian_tasks_01.html">
       
       
-        <link rel="prev" href="../04/tcp-intranet-penetration-tool.html">
+        <link rel="prev" href="../../02/28/Go_static_compilation.html">
       
-      
-        <link rel="next" href="../../02/12/read_books_01.html">
       
       
         <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../../../feed_rss_created.xml">
@@ -27,7 +25,7 @@
     
     
       
-        <title>linux tun 虚拟设备的简单探寻 - 王李的博客</title>
+        <title>使用 obsidian tasks 进行简单查询 - 王李的博客</title>
       
     
     
@@ -79,7 +77,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#linux-tun" class="md-skip">
+        <a href="#obsidian-tasks" class="md-skip">
           Skip to content
         </a>
       
@@ -140,7 +138,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              linux tun 虚拟设备的简单探寻
+              使用 obsidian tasks 进行简单查询
             
           </span>
         </div>
@@ -521,7 +519,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
-                        <time datetime="2025-01-10 00:00:00+00:00" class="md-ellipsis">2025/01/10</time>
+                        <time datetime="2025-03-19 00:00:00+00:00" class="md-ellipsis">2025/03/19</time>
                       </div>
                     </li>
                     
@@ -532,7 +530,7 @@
                           <span class="md-ellipsis">
                             in
                             
-                              <a href="../../../category/network.html">network</a></span>
+                              <a href="../../../category/obsidian.html">obsidian</a></span>
                         </div>
                       </li>
                     
@@ -543,7 +541,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              7 min read
+                              2 min read
                             
                           </span>
                         </div>
@@ -572,67 +570,43 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#tun" class="md-nav__link">
-    <span class="md-ellipsis">
-      什么是tun虚拟设备
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tun_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      tun基本操作
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tun_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      实际体验使用tun传输数据
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="实际体验使用tun传输数据">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      服务器操作
+      说明
     </span>
   </a>
   
 </li>
-        
-          <li class="md-nav__item">
+      
+        <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      客户端操作
+      前置说明
     </span>
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ping" class="md-nav__link">
-    <span class="md-ellipsis">
-      尝试ping
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      简单查询
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      关于时间的查询
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       总结
     </span>
@@ -663,348 +637,196 @@
 
 
 
-<h1 id="linux-tun">linux tun 虚拟设备的简单探寻</h1>
-<p>本篇文章将简单介绍<code>tun</code>虚拟设备的简单探寻。</p>
+<h1 id="obsidian-tasks">使用 obsidian tasks 进行简单查询</h1>
+<p>本文将简单介绍如何使用<code>obsidian tasks</code>进行简单查询。</p>
 <!-- more -->
 
-<h2 id="tun">什么是<code>tun</code>虚拟设备</h2>
-<p>在<code>Linux</code>中，谈到 <code>tun</code> 时，通常会将其与 <code>tun/tap</code> 一起讨论。这两者都是<code>Linux</code>的虚拟网络设备，但 <code>tun</code> 是一种点对点（<code>PPP</code>）设备，与 <code>tap</code> 的工作模式略有不同。本文将重点介绍<code>tun</code>虚拟设备。</p>
-<p><code>tun</code> 虚拟设备可以简单理解为一块运行在<code>L3</code>层（网络层）的虚拟网卡。它的一端连接到内核的网络协议栈，另一端则连接到用户态程序。在实际使用过程中，网络协议栈生成的网络包可以通过 <code>tun</code> 设备发送到用户态进程，由该进程进行处理，例如加密、数据压缩等操作。处理完成后，数据可以再通过网络协议栈发送出去。其工作流程可以简单用下图表示：</p>
-<p><img alt="image-20250110104555526" src="../../../blog/img/image-20250110074555526.png" /></p>
-<p><code>tun</code> 设备可以看作是<code>Linux</code>下的一个特殊文件，同时也是一块“虚拟网卡”。它具有独立的<code>IP</code>地址，并通过路由规则将 <code>app1</code> 发送的请求定向到 <code>tun0</code>。<code>tun0</code> 的另一端则连接到应用层程序 <code>tunApp1</code>。该程序可以接收来自网络层的报文，进行加密、压缩或应用层封装等操作，然后通过 <code>tunApp1</code> 将处理后的数据再次通过应用层调用网络协议栈再发送出去。</p>
-<p>因此，可以说 <code>tun</code> 实现了对网络层数据包的劫持。这些数据包会被发送到与 <code>tun</code> 相连的应用层程序进行处理，例如加密、压缩或其他自定义操作。处理完成后，数据包再通过网络协议栈发送出去，完成整个流程。</p>
-<h2 id="tun_1"><code>tun</code>基本操作</h2>
-<p>在使用<code>tun</code>虚拟设备之前，需要先设置<code>IP</code>转发。</p>
-<pre><code class="language-bash">root@3114:~# sysctl -w net.ipv4.ip_forward=1
-net.ipv4.ip_forward = 1
-root@3114:~#
+<h2 id="_1">说明</h2>
+<p><code>tasks</code>用户指南：https://publish.obsidian.md/tasks/Introduction</p>
+<p>本文使用的<code>tasks</code>版本为：<code>7.18.3</code></p>
+<p><code>obsidian tasks</code>允许在<code>obsidian</code>仓库中的任何地方创建任务，并且在任何地方<strong>查询任务</strong>、且更新修改等，其查询非常强大。</p>
+<p>在查询中，需要将查询语句添加到<code>```tasks</code>中，例如：</p>
+<pre><code class="language-bash">​```tasks
+查询语句
+​```
 </code></pre>
-<p>可以使用 <code>ip</code> 命令来创建 <code>tun</code> 虚拟网卡。例如，创建一个名为 <code>tun0</code> 的 <code>tun</code> 虚拟设备，命令如下：</p>
-<pre><code class="language-bash">root@3114:~# ip tuntap add dev tun0 mode tun
+<p>如果需要添加注释，则直接在前面添加#即可，例如：</p>
+<pre><code class="language-bash">​```tasks
+# 查询未被结束的任务
+not done 
+​```
 </code></pre>
-<p>要查看已经创建好的 <code>tun</code> 设备，可以使用以下命令：</p>
-<pre><code class="language-bash">root@3114:~# ip link show tun0
-3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
-    link/none
-root@3114:~#
-root@3114:~# ip addr show tun0
-3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN group default qlen 500
-    link/none
-root@3114:~#
+<h2 id="_2">前置说明</h2>
+<ul>
+<li>在看本篇文章的时候，默认已经学会了<code>tasks</code>基本操作，包括创建任务、结束任务、修改任务等等。</li>
+<li>
+<p>需要理解<code>due</code>、<code>start</code>、<code>scheduled</code>等名词含义等。</p>
+</li>
+<li>
+<p>需要知道关于<code>bool</code>运算符含义，比如<code>AND</code>、<code>OR</code>、<code>NOT</code>等。</p>
+</li>
+</ul>
+<h2 id="_3">简单查询</h2>
+<p><strong>查询所有任务</strong></p>
+<p>直接使用<code>tasks</code>便可以查看所有任务，包括已经结束、取消了的。</p>
+<pre><code class="language-bash">​```tasks
+
+​```
 </code></pre>
-<p>可以使用以下命令为 <code>tun</code> 虚拟设备分配<code>ip</code>地址，例如为设备 <code>tun0</code> 分配 <code>10.0.0.3/24</code>：</p>
-<pre><code class="language-bash">root@3114:~# ip addr add 10.0.0.3/24 dev tun0
-root@3114:~#
+<p><strong>查询未结束的任务</strong></p>
+<p>在查询语句中，加上<code>not done</code>，即可查询未被结束、取消的任务。</p>
+<pre><code class="language-bash">​```tasks
+not done
+​```
 </code></pre>
-<p>再次查看，就有了其<code>ip</code>地址。</p>
-<pre><code class="language-bash">root@3114:~# ip addr show dev tun0
-3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN group default qlen 500
-    link/none
-    inet 10.0.0.3/24 scope global tun0
-       valid_lft forever preferred_lft forever
-root@3114:~#
+<p><strong>查询已经结束的任务</strong></p>
+<p>在查询语句中，加上<code>done</code>，即可查询已经结束，或者被取消的任务。</p>
+<pre><code class="language-bash">​```tasks
+done
+​```
 </code></pre>
-<p>该虚拟网卡，默认为关闭状态，可以将该虚拟网卡开启。</p>
-<pre><code class="language-bash">root@3114:~# ip link set tun0 up
-root@3114:~#
+<p><strong>查询被取消的任务</strong></p>
+<p>在查询语句中，加上<code>has cancelled date</code>，该语句的含义是<code>cancelled</code>必须有值，该操作即可查询被取消的任务。</p>
+<pre><code class="language-bash">​```tasks
+# 查询已经被取消的任务
+has cancelled date
+​```
 </code></pre>
-<p>当虚拟网卡<code>tun0</code>创建完毕后，系统会默认为其创建一条路由，可以使用<code>ip route</code>查看。</p>
-<pre><code class="language-bash">root@3114:~# ip route
-default via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-1.2.4.8 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3 linkdown
-114.114.114.114 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-192.168.3.0/24 dev eth0 proto kernel scope link src 192.168.3.114 metric 100
-192.168.3.1 dev eth0 proto dhcp scope link src 192.168.3.114 metric 100
-root@3114:~#
+<p><strong>以树类型展示任务</strong></p>
+<p>如果有树类型任务，可加上<code>show tree</code>来展示层次关系。</p>
+<p>例如，有树类型任务如下：</p>
+<pre><code class="language-bash">- [ ] 总任务
+    - 任务1
+        - [ ] 步骤1 🛫 2025-03-23 📅 2025-03-25 
+        - [ ] 步骤2
+        - [ ] 步骤3
+    - 任务2
+        - [ ] 步骤1
+        - [ ] 步骤2
+        - [ ] 步骤3
 </code></pre>
-<p>可以看到，设备的状态为 <code>linkdown</code>，实际上这是因为 <code>tunApp</code> 尚未启动。当 <code>tunApp</code> 没有启动时，<code>tun</code> 设备的句柄无法被打开，因此路由中才会显示为 <code>linkdown</code> 状态。</p>
-<h2 id="tun_2">实际体验使用<code>tun</code>传输数据</h2>
-<p>在进行具体操作之前，我们已经将图给画好了，如下：</p>
-<p><img alt="image-20250110112317557" src="../../../blog/img/image-20250110072317557.png" /></p>
-<p>我们将 <code>3.115</code> 的机器称为服务端，<code>3.114</code> 的机器称为客户端。这两台机器上分别有一个 <code>tun</code> 虚拟设备，并且各自运行着 <code>tunApp</code> 程序。实现的功能是，在 <code>3.114</code> 上执行 <code>ping 10.0.0.5</code> 操作，通过 <code>tun</code> 设备让请求在 <code>3.115</code> 上执行，并将结果返回给 <code>3.114</code>。</p>
-<h3 id="_1">服务器操作</h3>
-<p>首先，需要在<code>3.115</code>上操作创建<code>tun</code>虚拟设备，并且分为地址。</p>
-<pre><code class="language-bash">root@3115:~# ip tuntap add name tun0 mode tun
-root@3115:~#
-root@3115:~# ip link show tun0
-4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
-    link/none
-root@3115:~#
-root@3115:~# ip addr add 10.0.0.5/24 dev tun0
-root@3115:~#
-root@3115:~# ip link set tun0 up
-root@3115:~#
-root@3115:~# sysctl -w net.ipv4.ip_forward=1
-net.ipv4.ip_forward = 1
-root@3115:~#
-root@3115:~# ip addr show tun0
-4: tun0: &lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 500
-    link/none
-    inet 10.0.0.5/24 scope global tun0
-       valid_lft forever preferred_lft forever
-root@3115:~#
+<p>使用<code>show tree</code>可以展示类型，比如：</p>
+<pre><code class="language-bash">​```tasks
+show tree
+​```
 </code></pre>
-<p>我们需要为此编写一个<code>tunapp2</code>，并且监听<code>udp</code>的<code>10010</code>端口，代码如下：</p>
-<pre><code class="language-go">package main
-
-import (
-    &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-    &quot;syscall&quot;
-    &quot;time&quot;
-    &quot;unsafe&quot;
-)
-
-func main() {
-    fmt.Println(&quot;start server&quot;)
-    tun, err := os.OpenFile(&quot;/dev/net/tun&quot;, os.O_RDWR, 0)
-    if err != nil {
-        log.Println(&quot;open tun devices error&quot;, err)
-    }
-
-    var ifr [18]byte
-    copy(ifr[:], &quot;tun0&quot;)
-    *(*uint16)(unsafe.Pointer(&amp;ifr[16])) = uint16(syscall.IFF_TUN) | uint16(syscall.IFF_NO_PI)
-
-    syscall.Syscall(syscall.SYS_IOCTL, tun.Fd(), uintptr(syscall.TUNSETIFF), uintptr(unsafe.Pointer(&amp;ifr)))
-
-    serverAddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;:10010&quot;)
-    if err != nil {
-        log.Println(&quot;failed resolve udp addr&quot;, err)
-        return
-    }
-    conn, err := net.ListenUDP(&quot;udp&quot;, serverAddr)
-    if err != nil {
-        log.Println(&quot;listen udp error&quot;, err)
-        return
-    }
-
-    buf := make([]byte, 1500)
-    for {
-        un, udpAddr, err := conn.ReadFromUDP(buf)
-        if err != nil {
-            log.Println(&quot;read from udp error&quot;, err)
-            continue
-        }
-
-        fmt.Println(&quot;已经收到客户端udp请求了&quot;, len(buf[:un]))
-
-        tun.SetReadDeadline(time.Now().Add(1 * time.Second))
-
-        _, err = tun.Write(buf[:un])
-        if err != nil {
-            log.Println(&quot;tun write error&quot;, err)
-        }
-
-        fmt.Println(&quot;已经将请求写入到了tun虚拟设备中&quot;, len(buf[:un]))
-
-        n, err := tun.Read(buf)
-        if err != nil {
-            if os.IsTimeout(err) {
-                continue
-            }
-            log.Fatalf(&quot;Failed to read from device: %v&quot;, err)
-        }
-        fmt.Println(&quot;已经收到tun收到了信息&quot;, len(buf[:n]))
-        conn.WriteToUDP(buf[:n], udpAddr)
-        fmt.Println(&quot;将数据回复到udp客户端中&quot;, len(buf[:n]))
-    }
-}
+<p>其结果为：</p>
+<p><img alt="image-20250316220331810" src="../../../blog/img/image-20250316220331810.png" /></p>
+<h2 id="_4">关于时间的查询</h2>
+<p>在<code>tasks</code>中，关于时间的查询，其中关键字如下：</p>
+<ul>
+<li><code>in x</code>：</li>
+</ul>
+<p>将匹配<code>x</code>日期。</p>
+<ul>
+<li><code>before x</code>：</li>
+</ul>
+<p>将匹配<code>x</code>日期之间的所有日期。</p>
+<ul>
+<li><code>after x</code>：</li>
+</ul>
+<p>将匹配<code>x</code>日期之后的所有日期。</p>
+<ul>
+<li><code>in or before x</code>：</li>
+</ul>
+<p>将匹配<code>x</code>日期之前的所有日期，包括<code>x</code>。</p>
+<ul>
+<li><code>in or after x</code>：</li>
+</ul>
+<p>将匹配<code>x</code>日期之后的所有日期，包括<code>x</code>。</p>
+<p>看起来确实很难理解，但是我将其做成了一张表，如下：</p>
+<p><img alt="image-20250316225510508" src="../../../blog/img/image-20250316225510508.png" /></p>
+<p>其中：</p>
+<ul>
+<li>
+<p>其中<code>in 2025-03-10</code>只能匹配到一个任务。</p>
+</li>
+<li>
+<p><code>before 2025-03-10</code>可以匹配到<code>2025-03-10</code> 之前的所有任务，但是不包含<code>2025-03-10</code>。</p>
+</li>
+<li>
+<p><code>after 2025-03-10</code>可以匹配到<code>2025-03-10</code>之后的所有任务，但是不包含<code>2025-03-10</code>。</p>
+</li>
+<li>
+<p><code>in or before 2025-03-10</code>可以匹配到<code>2025-03-10</code> 之前的所有任务，包含<code>2025-03-10</code>。</p>
+</li>
+<li>
+<p><code>in or after 2025-03-10</code>可以匹配到<code>2025-03-10</code>之后的所有任务，包含<code>2025-03-10</code>。</p>
+</li>
+</ul>
+<p><code>tasks</code>也有自己相对日期的词，如下：</p>
+<ul>
+<li><code>today</code>： 今天</li>
+<li><code>tomorrow</code>： 明天</li>
+<li><code>yesterday</code>： 昨天</li>
+<li><code>-15 days</code>：15天前</li>
+<li><code>+15 days</code>：15天后</li>
+<li><code>next week</code>：下周一</li>
+<li><code>last week</code>：上周一</li>
+<li><code>this week</code>：本周一</li>
+</ul>
+<p>有了上述铺垫，查询起来就简单多了。</p>
+<p><strong>查询本周内没有完成的任务</strong></p>
+<p>直接查询下周一之前，但是不包含下周一即可，查询语句：</p>
+<pre><code class="language-bash">​```tasks
+not done
+starts before next week 
+​```
 </code></pre>
-<p>在运行 <code>tunApp2</code> 后，可以使用以下命令查看 <code>tun0</code> 的状态：</p>
-<pre><code class="language-bash">root@3115:~# ./server
-start server
+<p>该查询语句会查询到开始时间<code>start</code>为下周一之前的所有任务，包括过去的任务，比如今天是<code>2025-03-10</code>，恰好<code>2025-03-09</code>也有任务且状态没有完成，那么也会被查询出来。</p>
+<p><strong>查询今天之前没有完成的任务</strong></p>
+<p>查询语句如下：</p>
+<pre><code class="language-bash">​```tasks
+not done
+starts before today
+​```
 </code></pre>
-<p>查看<code>tun0</code>状态。</p>
-<pre><code class="language-bash">root@3115:~# ip addr show tun0
-4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 500
-    link/none
-    inet 10.0.0.5/24 scope global tun0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::f4d3:cccd:e9e2:3be6/64 scope link stable-privacy
-       valid_lft forever preferred_lft forever
-root@3115:~#
+<p>该查询语句会查询开始时间在今天之前（不包含今天）为完成的任务。</p>
+<p>你还可以这样写：</p>
+<pre><code class="language-bash">​```tasks
+not done
+starts before +0 day
+​```
 </code></pre>
-<p>可以看到，当客户端连接并启动时，<code>tun</code> 虚拟设备的状态会从 <code>DOWN</code> 变为 <code>UP</code>。这表明设备已成功启用，并且可以开始接收和发送网络数据。此时，用户态程序<code>tunApp2</code>也与设备建立了连接。</p>
-<h3 id="_2">客户端操作</h3>
-<p>同样的，也需要在客户端上创建<code>tun</code>虚拟设备，配置<code>IP</code>信息等，具体命令如下：</p>
-<pre><code class="language-bash">root@3114:~# ip tuntap add name tun0 mode tun
-root@3114:~# ip addr add 10.0.0.3/24 dev tun0
-root@3114:~# ip link set tun0 up
-root@3114:~# sysctl -w net.ipv4.ip_forward=1
-net.ipv4.ip_forward = 1
-root@3114:~# ip addr show tun0
-3: tun0: &lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 500
-    link/none
-    inet 10.0.0.3/24 scope global tun0
-       valid_lft forever preferred_lft forever
-root@3114:~#
-root@3114:~#
+<p><strong>查询本周内完成的任务</strong></p>
+<pre><code class="language-bash">​```tasks
+done
+(starts before next week) AND (starts in or after this week)
+​```
 </code></pre>
-<p>并且，为此编写一个<code>tunApp1</code>程序，将作为客户端使用，代码如下：</p>
-<pre><code class="language-bash">package main
-
-import (
-    &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-    &quot;syscall&quot;
-    &quot;unsafe&quot;
-)
-
-func main() {
-    fmt.Println(&quot;client start...&quot;)
-    tun, err := os.OpenFile(&quot;/dev/net/tun&quot;, os.O_RDWR, 0)
-    if err != nil {
-        log.Println(&quot;open tun devices error&quot;, err)
-    }
-
-    var ifr [18]byte
-    copy(ifr[:], &quot;tun0&quot;)
-    *(*uint16)(unsafe.Pointer(&amp;ifr[16])) = uint16(syscall.IFF_TUN) | uint16(syscall.IFF_NO_PI)
-
-    syscall.Syscall(syscall.SYS_IOCTL, tun.Fd(), uintptr(syscall.TUNSETIFF), uintptr(unsafe.Pointer(&amp;ifr)))
-
-    serverAddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;192.168.3.115:10010&quot;)
-    if err != nil {
-        log.Println(&quot;resolve udp error&quot;, err)
-        return
-    }
-
-    conn, err := net.DialUDP(&quot;udp&quot;, nil, serverAddr)
-    if err != nil {
-        log.Println(&quot;dial udp error&quot;, err)
-        return
-    }
-
-    go func() {
-        buf := make([]byte, 1500)
-        for {
-            tn, err := tun.Read(buf)
-            if err != nil {
-                log.Fatalf(&quot;Failed to read from device: %v&quot;, err)
-            }
-            fmt.Println(&quot;从tun虚拟设备中收到了请求&quot;, len(buf[:tn]))
-
-            _, err = conn.Write(buf[:tn])
-            if err != nil {
-                log.Println(&quot;conn write error&quot;, err)
-                continue
-            }
-            fmt.Println(&quot;将请求发送到udp服务器中&quot;, len(buf[:tn]))
-        }
-    }()
-    buf := make([]byte, 1500)
-    for {
-        cn, _, err := conn.ReadFromUDP(buf)
-        if err != nil {
-            log.Println(&quot;read from udp error&quot;, err)
-            continue
-        }
-        fmt.Println(&quot;已经从udp服务器中获取到数据&quot;)
-        _, err = tun.Write(buf[:cn])
-        if err != nil {
-            log.Println(&quot;tn write error&quot;, err)
-        }
-        fmt.Println(&quot;将数据写入到tun设备中&quot;)
-    }
-}
+<p>该查询语句是一条组合语句：</p>
+<ul>
+<li>
+<p><code>done</code>： 表示已经完成了的任务</p>
+</li>
+<li>
+<p><code>(starts before next week) AND (starts in or after last week)</code>：</p>
+</li>
+</ul>
+<p>表示开始时间在下周一之前和和本周一（包含本周一）之后。</p>
+<p><strong>查询已经过期且截止日期在7天内的未做的任务</strong></p>
+<pre><code class="language-bash">​```tasks
+not done
+(starts before +0 days) AND (due before +7 days)
+​```
 </code></pre>
-<h3 id="ping">尝试ping</h3>
-<p>首先，在没有启动 <code>tunApp</code> 的情况下，客户端尝试 <code>ping</code> <code>10.0.0.5</code> 时，当然是无法成功的。这是因为 <code>tun</code> 设备的句柄没有被打开，无法处理从客户端发送的请求，导致数据包无法传输。具体表现为无法接收到响应。</p>
-<pre><code class="language-bash">root@3114:~# ping 10.0.0.5 -c 2
-PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.
-
---- 10.0.0.5 ping statistics ---
-2 packets transmitted, 0 received, 100% packet loss, time 1015ms
-
-root@3114:~#
+<p>该查询语句和上述类似，这里不解释了。</p>
+<p><strong>查询所有 <code>start</code> 在过去 1 个月但 <code>due</code> 在未来 1 个月，<code>priority</code> 是 <code>medium</code> 或 <code>high</code>，且 <code>tags</code> 只能包含 <code>#work</code> 或 <code>#study</code>，不能包含 <code>#personal</code>，同时 <code>scheduled</code> 不为空的任务</strong></p>
+<pre><code class="language-jq">​```tasks
+not done
+(starts after last 1 month) AND (due before next 1 month) AND ((priority is medium) OR (priority is high)) AND ((tags include #work) OR (tags include #study)) AND (has scheduled date) AND (tags do not include #personal)
+​```
 </code></pre>
-<p>当启动 <code>tunApp</code> 后，客户端再次执行 <code>ping 10.0.0.5</code> 时，根据系统预设的路由规则，流量将会通过 <code>tun0</code> 设备发送出去。例如，客户端的路由如下所示：</p>
-<pre><code class="language-bash">root@3114:~# ip route
-default via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-1.2.4.8 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3
-114.114.114.114 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-192.168.3.0/24 dev eth0 proto kernel scope link src 192.168.3.114 metric 100
-192.168.3.1 dev eth0 proto dhcp scope link src 192.168.3.114 metric 100
-root@3114:~#
-</code></pre>
-<p>上面有一条规则是这样的：</p>
-<pre><code class="language-bash">10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3
-</code></pre>
-<p>这将表示，当请求 <code>10.0.0.0/24</code> 网络范围内的地址时，流量将被定向到 <code>10.0.0.3</code> 网卡，而该网卡正是我们 <code>tun0</code> 设备的地址。</p>
-<p>所以，在客户端机器上直接<code>ping 10.0.0.5</code>地址，会收到回复报文，如下：</p>
-<pre><code class="language-bash">root@3114:~# ping 10.0.0.5 -c 2
-PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.
-64 bytes from 10.0.0.5: icmp_seq=1 ttl=64 time=2.40 ms
-64 bytes from 10.0.0.5: icmp_seq=2 ttl=64 time=1.62 ms
-
---- 10.0.0.5 ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1002ms
-rtt min/avg/max/mdev = 1.622/2.011/2.400/0.389 ms
-root@3114:~#
-</code></pre>
-<p>同样的，<code>client</code>日志会显示如下：</p>
-<pre><code class="language-bash">root@3114:~# ./client
-client start...
-从tun虚拟设备中收到了请求 84
-将请求发送到udp服务器中 84
-已经从udp服务器中获取到数据
-将数据写入到tun设备中
-从tun虚拟设备中收到了请求 84
-将请求发送到udp服务器中 84
-已经从udp服务器中获取到数据
-将数据写入到tun设备中
-
-</code></pre>
-<p>对于<code>client</code>的报文内容如下：</p>
-<pre><code class="language-bash">root@3114:~# tcpdump -i tun0
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
-07:50:37.061239 IP 3114 &gt; 10.0.0.5: ICMP echo request, id 24, seq 1, length 64
-07:50:37.064101 IP 10.0.0.5 &gt; 3114: ICMP echo reply, id 24, seq 1, length 64
-07:50:38.062797 IP 3114 &gt; 10.0.0.5: ICMP echo request, id 24, seq 2, length 64
-07:50:38.065070 IP 10.0.0.5 &gt; 3114: ICMP echo reply, id 24, seq 2, length 64
-^C
-4 packets captured
-4 packets received by filter
-0 packets dropped by kernel
-root@3114:~#
-</code></pre>
-<p><code>server</code>日志会显示如下：</p>
-<pre><code class="language-bash">root@3115:~# ./server
-start server
-已经收到客户端udp请求了 84
-已经将请求写入到了tun虚拟设备中 84
-已经收到tun收到了信息 84
-将数据回复到udp客户端中 84
-已经收到客户端udp请求了 84
-已经将请求写入到了tun虚拟设备中 84
-已经收到tun收到了信息 84
-将数据回复到udp客户端中 84
-
-</code></pre>
-<p>对于<code>server</code>的报文内容如下：</p>
-<pre><code class="language-bash">root@3115:~# tcpdump -i tun0
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
-07:50:37.053759 IP 10.0.0.3 &gt; 10.0.0.5: ICMP echo request, id 24, seq 1, length 64
-07:50:37.053831 IP 10.0.0.5 &gt; 10.0.0.3: ICMP echo reply, id 24, seq 1, length 64
-07:50:38.054582 IP 10.0.0.3 &gt; 10.0.0.5: ICMP echo request, id 24, seq 2, length 64
-07:50:38.054651 IP 10.0.0.5 &gt; 10.0.0.3: ICMP echo reply, id 24, seq 2, length 64
-^C
-4 packets captured
-4 packets received by filter
-0 packets dropped by kernel
-root@3115:~#
-</code></pre>
-<h2 id="_3">总结</h2>
-<p>对于 <code>tun</code> 虚拟设备，可以将其简单理解为：将 <code>A</code> 产生的报文原封不动地传输到 <code>B</code> 进行处理，待 <code>B</code> 执行完毕后，再将处理结果返回给 <code>A</code>。</p>
+<ul>
+<li><code>starts after last 1 month</code> ：开始时间在上个月之后。</li>
+<li><code>due before next 1 month</code>： 截止时间在下一个之前。</li>
+<li><code>(priority is medium) OR (priority is high)</code> ： 优先级为<code>medium</code>或者为<code>high</code>。</li>
+<li><code>(tags include #work) OR (tags include #study)</code>：<code>tags</code>为<code>#work</code>或者是<code>#study</code>。</li>
+<li><code>has scheduled date</code>：<code>scheduled</code>必须有值。</li>
+<li><code>tags do not include #personal</code>：<code>tags</code>不包含<code>#personal</code>。</li>
+</ul>
+<h2 id="_5">总结</h2>
+<p>最近在使用<code>tasks</code>，实在是太方便了，随时随地都可以创建任务，然后查询过程中，都会被收集起来，只是新建看板查询任务列表过于繁琐，需要自己编写查询语句，不过在短暂的学习之后，使用起来非常得心应手。</p>
 
 
 
@@ -1014,8 +836,8 @@ root@3115:~#
 
 <p class="underline"></p>
 <div>
-  <p><b>linux tun 虚拟设备的简单探寻</b></p>
-  <p><a href="">https://wangli2025.github.io/2025/01/10/Linux_Tun_Virtual_Devices.html</a></p>
+  <p><b>使用 obsidian tasks 进行简单查询</b></p>
+  <p><a href="">https://wangli2025.github.io/2025/03/19/obsidian_tasks_01.html</a></p>
   <p>本站均为原创文章，采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><b>CC BY-NC-ND 4.0</b></a> 协议。转载请注明出处，不得用于商业用途。</p>
 </div>
 <p class="underline"></p>
