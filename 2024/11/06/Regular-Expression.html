@@ -1041,159 +1041,230 @@
 </table>
 <h2 id="_6">元字符操作</h2>
 <h4 id="_7"><code>.</code> 可以匹配任意字符</h4>
-<pre><code class="language-bash">root@debian:~# echo '123' | grep '1.3'
-123
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;123&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;1.3&#39;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="m">123</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p><code>.</code> 可以匹配任何字符，但是不包括换行符<code>\n</code>。</p>
 <p>但是无法匹配换行符</p>
-<pre><code class="language-bash">root@debian:~# echo -e '1\n2\n3' &gt; hello
-root@debian:~#
-root@debian:~# cat hello -A
-1$
-2$
-3$
-root@debian:~#
-root@debian:~# grep '1.2' hello
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;1\n2\n3&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>hello
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>root@debian:~#
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>root@debian:~#<span class="w"> </span>cat<span class="w"> </span>hello<span class="w"> </span>-A
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="m">1</span>$
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="m">2</span>$
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="m">3</span>$
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>root@debian:~#
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>root@debian:~#<span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;1.2&#39;</span><span class="w"> </span>hello
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_8"><code>*</code> 匹配任意个前面的字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abbbbbbbbbd&quot; | grep 'a*d'
-abbbbbbbbbd
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abbbbbbbbbd&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;a*d&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>abbbbbbbbbd
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p><code>*</code> 匹配上面任意字符<code>0</code> 次或者无数次。</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;1&quot; | grep ' *'
-1
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39; *&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="m">1</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>上面案例之所以能够被匹配到是因为</p>
 <p>可以和<code>*</code>一起使用，表示匹配任意字符</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep 'a.*e'
-abced
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abced&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;a.*e&#39;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>abced
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_9"><code>^</code>匹配起始行</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abced&quot; | grep '^a'
-abced
-root@debian:~#
-root@debian:~# echo &quot;baced&quot; | grep '^a'
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abced&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;^a&#39;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>abced
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>root@debian:~#
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;baced&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;^a&#39;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_10"><code>$</code>匹配行结尾</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abced' | grep 'd$'
-abced
-root@debian:~# echo 'abcede' | grep 'd$'
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;abced&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;d$&#39;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>abced
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;abcede&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;d$&#39;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>可以和<code>^</code> 搭配使用，表示匹配空行</p>
-<pre><code class="language-bash">root@debian:~# echo '' | grep '^$'
-
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;^$&#39;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_11">匹配上一个字符出现的次数</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab\{3\}c'
-abbbc
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;abbbc&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;ab\{3\}c&#39;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>abbbc
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>注意，在基本正则表达式中，<code>{}</code> 必须使用<code>\</code> 进行转义，如直接使用时不行的。</p>
-<pre><code class="language-bash">root@debian:~# echo 'abbbc' | grep 'ab{3}c'
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;abbbc&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;ab{3}c&#39;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>如果不加<code>\</code>进行转义，是直接匹配<code>{}</code>字符，而非正则表达式。</p>
-<pre><code class="language-bash">root@debian:~# echo 'ab{3}c' | grep 'ab{3}c'
-ab{3}c
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;ab{3}c&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;ab{3}c&#39;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>ab<span class="o">{</span><span class="m">3</span><span class="o">}</span>c
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_12">匹配上一个出现的次数范围</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{3,5\}c'
-abbbc
-root@debian:~# echo &quot;abbbc&quot; | grep 'ab\{4,5\}c'
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abbbc&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;ab\{3,5\}c&#39;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>abbbc
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abbbc&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;ab\{4,5\}c&#39;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_13">转义特殊字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;a\.e&quot; | grep 'a\\.e'
-a\.e
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;a\.e&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;a\\.e&#39;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>a<span class="se">\.</span>e
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p><code>.</code> 、<code>*</code> 、<code>^</code>、<code>$</code>都需要进行转义。</p>
 <h3 id="_14">字符集操作</h3>
 <h4 id="_15">匹配范围内的任意字符</h4>
-<pre><code class="language-bash">root@debian:~# echo 'a2c' | grep 'a[123]c'
-a2c
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;a2c&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;a[123]c&#39;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>a2c
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_16">匹配字符范围</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;3&quot; | grep '[1-9]'
-3
-root@debian:~#
-root@debian:~# echo &quot;a&quot; | grep '[a-z]'
-a
-root@debian:~#
-root@debian:~# echo &quot;a&quot; | grep '[a-z]'
-a
-root@debian:~#
-root@debian:~# echo &quot;Z&quot; | grep '[a-Z]'
-Z
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[1-9]&#39;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="m">3</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>root@debian:~#
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[a-z]&#39;</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a>a
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>root@debian:~#
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[a-z]&#39;</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>a
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a>root@debian:~#
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Z&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[a-Z]&#39;</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a>Z
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_17">字符类操作</h3>
 <h4 id="_18">匹配数字字符</h4>
-<pre><code class="language-bash">root@debian:~# echo '13579' | grep '[[:digit:]]'
-13579
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;13579&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[[:digit:]]&#39;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="m">13579</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_19">匹配小写字母</h4>
-<pre><code class="language-bash">root@debian:~# echo 'abcde' | grep '[[:lower:]]'
-abcde
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;abcde&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[[:lower:]]&#39;</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>abcde
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_20">匹配大写字母</h4>
-<pre><code class="language-bash">root@debian:~# echo 'ABCDE' | grep '[[:upper:]]'
-ABCDE
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;ABCDE&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[[:upper:]]&#39;</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>ABCDE
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_21">匹配空白字符</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;   &quot; | grep '[[:space:]]'
-
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;   &quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;[[:space:]]&#39;</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_22">分组操作</h3>
 <p>分组是指使用小括号将表达式括起来，创建子模式，该子模式会被保存，方便之后的引用和处理，同样的，<code>()</code> 也需要使用<code>\</code>转义，否则会被当成普通字符处理。</p>
 <h4 id="_23">捕获分组</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;abcabcabcabc&quot; | grep '\(abc\)\+'
-abcabcabcabc
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;abcabcabcabc&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;\(abc\)\+&#39;</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>abcabcabcabc
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_24">分组引用</h4>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\([[:digit:]]\{3\}\)-\([[:digit:]]\{4\}\)-\([[:digit:]]\{4\}\)/+86 \1 \2 \3/'
-+86 180 1234 1234
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;180-1234-1234&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\([[:digit:]]\{3\}\)-\([[:digit:]]\{4\}\)-\([[:digit:]]\{4\}\)/+86 \1 \2 \3/&#39;</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a>+86<span class="w"> </span><span class="m">180</span><span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="m">1234</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p><code>grep</code> 主要是用以匹配和查找，所以它不具备捕获分组和引用分组的功能，所以这里使用<code>sed</code> 进行替代，若是太难了，可以看如下案例：</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/180/182/'
-182-1234-1234
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;180-1234-1234&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/180/182/&#39;</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="m">182</span>-1234-1234
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>如上是一个简单的替换，<code>sed 's/old/new/'</code>。</p>
 <p>如果引用了分组</p>
-<pre><code class="language-bash">root@debian:~# echo &quot;180-1234-1234&quot; | sed 's/\(180\)-\(1234\)-\(1234\)/\1 \2 \3/'
-180 1234 1234
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;180-1234-1234&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\(180\)-\(1234\)-\(1234\)/\1 \2 \3/&#39;</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="m">180</span><span class="w"> </span><span class="m">1234</span><span class="w"> </span><span class="m">1234</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>这里将<code>180</code>捕获为分组1、<code>1234</code>捕获为分组2、最后的<code>1234</code>捕获为分组3，在进行替换的时候，可以直接使用<code>\1</code>、<code>\2</code>等直接引用分组内容。分组最多为1到9共9个。</p>
 <h2 id="_25">总结</h2>
 <p>基本正则表达相对而言，比较简单，需要注意的是，在基本正则表达式中，大括号<code>{}</code> 和小括号<code>()</code>都必须要使用<code>\</code> 进行转义，否则将表示字符本身。而<code>.</code> 、<code>*</code>、<code>^</code>、<code>$</code> 等，默认就是正则，如果需要使用其字符本身，则需要使用<code>\</code>进行转义。</p>
 <p>哦，对了，在<code>shell</code>中，我们查询文件，可能会用到类似的写法：</p>
-<pre><code class="language-bash">root@debian:~# ls -d ns[123]
-ns1  ns2
-root@debian:~# ls -d *
-BRE  Desktop  Documents  Downloads  hello  Music  ns1  ns2  Pictures  Public  Templates  Videos
-root@debian:~# ls -d .*
-.bash_history  .cache   .dmrc     .local    .ssh                                 .viminfo    .Xauthority       .xsession-errors.old
-.bashrc        .config  .lesshst  .profile  .vboxclient-vmsvga-session-tty7.pid  .wget-hsts  .xsession-errors
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span>
+<span class="normal"><a href="#__codelineno-23-7">7</a></span>
+<span class="normal"><a href="#__codelineno-23-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a>root@debian:~#<span class="w"> </span>ls<span class="w"> </span>-d<span class="w"> </span>ns<span class="o">[</span><span class="m">123</span><span class="o">]</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>ns1<span class="w">  </span>ns2
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a>root@debian:~#<span class="w"> </span>ls<span class="w"> </span>-d<span class="w"> </span>*
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a>BRE<span class="w">  </span>Desktop<span class="w">  </span>Documents<span class="w">  </span>Downloads<span class="w">  </span>hello<span class="w">  </span>Music<span class="w">  </span>ns1<span class="w">  </span>ns2<span class="w">  </span>Pictures<span class="w">  </span>Public<span class="w">  </span>Templates<span class="w">  </span>Videos
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a>root@debian:~#<span class="w"> </span>ls<span class="w"> </span>-d<span class="w"> </span>.*
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a>.bash_history<span class="w">  </span>.cache<span class="w">   </span>.dmrc<span class="w">     </span>.local<span class="w">    </span>.ssh<span class="w">                                 </span>.viminfo<span class="w">    </span>.Xauthority<span class="w">       </span>.xsession-errors.old
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7"></a>.bashrc<span class="w">        </span>.config<span class="w">  </span>.lesshst<span class="w">  </span>.profile<span class="w">  </span>.vboxclient-vmsvga-session-tty7.pid<span class="w">  </span>.wget-hsts<span class="w">  </span>.xsession-errors
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>这个其实是<code>bash</code>中的通配符匹配，不是正则表达式哦，不要弄混了。</p>
 
 

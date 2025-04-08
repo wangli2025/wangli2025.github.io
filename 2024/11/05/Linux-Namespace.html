@@ -546,7 +546,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              11 min read
+                              12 min read
                             
                           </span>
                         </div>
@@ -732,18 +732,28 @@
 
 <p>一提到<strong>容器</strong>技术，随之想到的便是<code>namespace</code> 是容器化的基石，本篇文章将对<code>Namespace</code>进行简单的了解。</p>
 <p>本文所依赖的环境为：</p>
-<pre><code class="language-bash">root@debian:~# hostnamectl
- Static hostname: windows11pro
-       Icon name: windowsBooks
-         Chassis: laptop 💻
-Operating System: Debian GNU/Linux 12 (bookworm)  
-          Kernel: Linux 6.1.0-26-amd64
-    Architecture: x86-64
- Hardware Vendor: ASUSTeK COMPUTER INC.
-  Hardware Model: X441UVK
-Firmware Version: X441UVK.314
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>root@debian:~#<span class="w"> </span>hostnamectl
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w"> </span>Static<span class="w"> </span>hostname:<span class="w"> </span>windows11pro
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">       </span>Icon<span class="w"> </span>name:<span class="w"> </span>windowsBooks
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">         </span>Chassis:<span class="w"> </span>laptop<span class="w"> </span>💻
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>Operating<span class="w"> </span>System:<span class="w"> </span>Debian<span class="w"> </span>GNU/Linux<span class="w"> </span><span class="m">12</span><span class="w"> </span><span class="o">(</span>bookworm<span class="o">)</span><span class="w">  </span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">          </span>Kernel:<span class="w"> </span>Linux<span class="w"> </span><span class="m">6</span>.1.0-26-amd64
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span>Architecture:<span class="w"> </span>x86-64
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w"> </span>Hardware<span class="w"> </span>Vendor:<span class="w"> </span>ASUSTeK<span class="w"> </span>COMPUTER<span class="w"> </span>INC.
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">  </span>Hardware<span class="w"> </span>Model:<span class="w"> </span>X441UVK
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>Firmware<span class="w"> </span>Version:<span class="w"> </span>X441UVK.314
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p><code>Namepace</code> 也称之为命名空间，最早出现在内核<code>2.4.19</code> 上，后期逐步迭代的，它的作用是将<code>Linux</code> 的资源隔离开来，可以这样理解，<code>Nmaespace</code> 就是为了虚拟化而存在的。</p>
 <p><code>Namespace</code> 类型众多，这里列举一个表格说明。</p>
 <table>
@@ -815,168 +825,279 @@ root@debian:~#
 </ul>
 <p>举一个最简单的例子，在<code>Network Namespace</code>启动一个<code>bash</code> 进程，可以使用如下命令：</p>
 <p>在此之前，我们需要先获取一下当前机器的<code>IP</code>信息，已做参考：</p>
-<pre><code class="language-bash">root@debian:~# ip link
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
-    link/ether 08:00:27:7c:92:af brd ff:ff:ff:ff:ff:ff
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>root@debian:~#<span class="w"> </span>ip<span class="w"> </span>link
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UNKNOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="m">2</span>:<span class="w"> </span>enp0s3:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>fq_codel<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">08</span>:00:27:7c:92:af<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>在<code>Network Namespace</code> 中执行命令</p>
-<pre><code class="language-bash">root@debian:~# unshare -n /usr/bin/bash
-root@debian-linux:~#
-root@debian-linux:~# ip link
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-root@debian-linux:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>root@debian:~#<span class="w"> </span>unshare<span class="w"> </span>-n<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>root@debian-linux:~#
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>root@debian-linux:~#<span class="w"> </span>ip<span class="w"> </span>link
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>root@debian-linux:~#
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>unshare -n /usr/bin/bash</code>会创建一个<code>Network Namespace</code>，并且在该<code>Namespace</code> 中执行<code>bash</code> 操作，使用<code>exit</code> 即可退出该<code>Namespace</code>。</p>
 <p>这是<code>unshare</code> 的最简单的用法。</p>
 <h3 id="_2">修改提示符</h3>
 <p><code>Linux</code> 的提示符格式都被记录到了<code>PS1</code>的内置变量中，可以使用<code>echo</code>查看其内容。</p>
-<pre><code class="language-bash">root@debian:~# echo $PS1
-${debian_chroot:+($debian_chroot)}\u@\h:\w\$
-root@debian:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>root@debian:~#<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="nv">$PS1</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="si">${</span><span class="nv">debian_chroot</span><span class="p">:+(</span><span class="nv">$debian_chroot</span><span class="p">)</span><span class="si">}</span><span class="se">\u</span>@<span class="se">\h</span>:<span class="se">\w\$</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>root@debian:~#
+</span></code></pre></div></td></tr></table></div>
 <p>为了方便使用<code>unshare</code>启动新进程更加直观，所以需要修改一下命令提示符，首先在<code>/root/.bashrc</code> 文件末尾添加如下代码：</p>
-<pre><code class="language-bash"># 打开调试
-set -x
-
-# 定义默认的PS1值
-export PS1=&quot;${debian_chroot:+($debian_chroot)}[\u@\h]:[\w][tty:\l]\\$ &quot;
-
-# 设置别名
-alias unshare=&quot;UNSHARE=1 unshare &quot;
-
-# 如果变量中的UNSHARE值为1，则修改PS1值
-if [ ! -e ${UNSHARE} ] &amp;&amp; [ ${UNSHARE} -eq 1 ];then
-        export PS1=&quot;(unshare) ${debian_chroot:+($debian_chroot)}[\u@\h]:[\w][tty:\l]\\$ &quot;
-fi
-
-# 关闭调试
-set +x
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># 打开调试</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nb">set</span><span class="w"> </span>-x
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="c1"># 定义默认的PS1值</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">debian_chroot</span><span class="p">:+(</span><span class="nv">$debian_chroot</span><span class="p">)</span><span class="si">}</span><span class="s2">[\u@\h]:[\w][tty:\l]\\</span>$<span class="s2"> &quot;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c1"># 设置别名</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">unshare</span><span class="o">=</span><span class="s2">&quot;UNSHARE=1 unshare &quot;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="c1"># 如果变量中的UNSHARE值为1，则修改PS1值</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span>!<span class="w"> </span>-e<span class="w"> </span><span class="si">${</span><span class="nv">UNSHARE</span><span class="si">}</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="si">${</span><span class="nv">UNSHARE</span><span class="si">}</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">        </span><span class="nb">export</span><span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;(unshare) </span><span class="si">${</span><span class="nv">debian_chroot</span><span class="p">:+(</span><span class="nv">$debian_chroot</span><span class="p">)</span><span class="si">}</span><span class="s2">[\u@\h]:[\w][tty:\l]\\</span>$<span class="s2"> &quot;</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="k">fi</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="c1"># 关闭调试</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="nb">set</span><span class="w"> </span>+x
+</span></code></pre></div></td></tr></table></div>
 <p>增加上述代码后，重新加载一下<code>/root/.bashrc</code>就可以使用<code>unshare</code> 启动<code>bash</code>进程了。</p>
 <p>首先先重新加载一下<code>/root/.bashrc</code> 文件</p>
-<pre><code class="language-bash">root@debian:~# source /root/.bashrc
-++ export 'PS1=[\u@\h]:[\w][tty:\l]\$ '
-++ PS1='[\u@\h]:[\w][tty:\l]\$ '
-++ alias 'unshare=UNSHARE=1 unshare '
-++ '[' '!' -e ']'
-++ set +x
-[root@debian]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>root@debian:~#<span class="w"> </span><span class="nb">source</span><span class="w"> </span>/root/.bashrc
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>++<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s1">&#39;PS1=[\u@\h]:[\w][tty:\l]\$ &#39;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>++<span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;[\u@\h]:[\w][tty:\l]\$ &#39;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>++<span class="w"> </span><span class="nb">alias</span><span class="w"> </span><span class="s1">&#39;unshare=UNSHARE=1 unshare &#39;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>++<span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;]&#39;</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>++<span class="w"> </span><span class="nb">set</span><span class="w"> </span>+x
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>unshare</code> 启动<code>bash</code> 进程</p>
-<pre><code class="language-bash">
-[root@debian]:[~][tty:1]# unshare -n /usr/bin/bash
-+ export 'PS1=[\u@\h]:[\w][tty:\l]\$ '
-+ PS1='[\u@\h]:[\w][tty:\l]\$ '
-+ alias 'unshare=UNSHARE=1 unshare '
-+ '[' '!' -e 1 ']'
-+ '[' 1 -eq 1 ']'
-+ export 'PS1=(unshare) [\u@\h]:[\w][tty:\l]\$ '
-+ PS1='(unshare) [\u@\h]:[\w][tty:\l]\$ '
-+ set +x
-(unshare) [root@debian]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># unshare -n /usr/bin/bash</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>+<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s1">&#39;PS1=[\u@\h]:[\w][tty:\l]\$ &#39;</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>+<span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;[\u@\h]:[\w][tty:\l]\$ &#39;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>+<span class="w"> </span><span class="nb">alias</span><span class="w"> </span><span class="s1">&#39;unshare=UNSHARE=1 unshare &#39;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>+<span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="s1">&#39;!&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;]&#39;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>+<span class="w"> </span><span class="s1">&#39;[&#39;</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>-eq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="s1">&#39;]&#39;</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>+<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="s1">&#39;PS1=(unshare) [\u@\h]:[\w][tty:\l]\$ &#39;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>+<span class="w"> </span><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;(unshare) [\u@\h]:[\w][tty:\l]\$ &#39;</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>+<span class="w"> </span><span class="nb">set</span><span class="w"> </span>+x
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>通过上面设置，就可以更加直观的看出当前<code>shell</code> 是否在<code>Namespace</code> 中，后续为了信息更加简洁，所以就暂时将调试给关闭了。</p>
 <h3 id="_3">命名空间文件描述符</h3>
 <p>在<code>Linux</code> 中，查看2个进程是否属于同一个命名空间，可以查看<code>/proc/进程ID/ns/*</code> 下面的文件描述符，如果文件描述符一致，则证明是处于同一命名空间的。</p>
 <p>例如，如下2个进程的<code>namespace</code>文件描述符如下：</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# readlink /proc/983/ns/*
-cgroup:[4026531835]
-ipc:[4026531839]
-mnt:[4026531841]
-net:[4026531840]
-pid:[4026531836]
-pid:[4026531836]
-time:[4026531834]
-time:[4026531834]
-user:[4026531837]
-uts:[4026531838]
-[root@debian]:[~][tty:0]# readlink /proc/998/ns/*
-cgroup:[4026531835]
-ipc:[4026531839]
-mnt:[4026531841]
-net:[4026531840]
-pid:[4026531836]
-pid:[4026531836]
-time:[4026531834]
-time:[4026531834]
-user:[4026531837]
-uts:[4026531838]
-[root@debian]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># readlink /proc/983/ns/*</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>cgroup:<span class="o">[</span><span class="m">4026531835</span><span class="o">]</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>ipc:<span class="o">[</span><span class="m">4026531839</span><span class="o">]</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>mnt:<span class="o">[</span><span class="m">4026531841</span><span class="o">]</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>net:<span class="o">[</span><span class="m">4026531840</span><span class="o">]</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>user:<span class="o">[</span><span class="m">4026531837</span><span class="o">]</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>uts:<span class="o">[</span><span class="m">4026531838</span><span class="o">]</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># readlink /proc/998/ns/*</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>cgroup:<span class="o">[</span><span class="m">4026531835</span><span class="o">]</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a>ipc:<span class="o">[</span><span class="m">4026531839</span><span class="o">]</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a>mnt:<span class="o">[</span><span class="m">4026531841</span><span class="o">]</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a>net:<span class="o">[</span><span class="m">4026531840</span><span class="o">]</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a>user:<span class="o">[</span><span class="m">4026531837</span><span class="o">]</span>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a>uts:<span class="o">[</span><span class="m">4026531838</span><span class="o">]</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，其每项<code>namespace</code> 的文件描述符都是一致的，所以证明该2个进程属于同一命名空间。</p>
 <p>如果是使用<code>unshare</code> 创建的命名空间，其<code>namespace</code> 文件描述符应该不一致。</p>
-<pre><code class="language-bash"># unshare -m /usr/bin/bash
-(unshare) [root@debian]:[~][tty:0]# echo $$
-1000
-(unshare) [root@debian]:[~][tty:0]#
-(unshare) [root@debian]:[~][tty:0]# readlink /proc/1000/ns/*
-cgroup:[4026531835]
-ipc:[4026531839]
-mnt:[4026532316]
-net:[4026531840]
-pid:[4026531836]
-pid:[4026531836]
-time:[4026531834]
-time:[4026531834]
-user:[4026531837]
-uts:[4026531838]
-(unshare) [root@debian]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># unshare -m /usr/bin/bash</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="m">1000</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># readlink /proc/1000/ns/*</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>cgroup:<span class="o">[</span><span class="m">4026531835</span><span class="o">]</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>ipc:<span class="o">[</span><span class="m">4026531839</span><span class="o">]</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>mnt:<span class="o">[</span><span class="m">4026532316</span><span class="o">]</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>net:<span class="o">[</span><span class="m">4026531840</span><span class="o">]</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a>user:<span class="o">[</span><span class="m">4026531837</span><span class="o">]</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>uts:<span class="o">[</span><span class="m">4026531838</span><span class="o">]</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在该<code>mount namespace</code> 中，其<code>mount namespace</code> 文件描述符为<strong>4026532316</strong>。</p>
-<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:0]# exit
-exit
-[root@debian]:[~][tty:0]# echo $$
-983
-[root@debian]:[~][tty:0]# readlink /proc/983/ns/*
-cgroup:[4026531835]
-ipc:[4026531839]
-mnt:[4026531841]
-net:[4026531840]
-pid:[4026531836]
-pid:[4026531836]
-time:[4026531834]
-time:[4026531834]
-user:[4026531837]
-uts:[4026531838]
-[root@debian]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># exit</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="nb">exit</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="m">983</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># readlink /proc/983/ns/*</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>cgroup:<span class="o">[</span><span class="m">4026531835</span><span class="o">]</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>ipc:<span class="o">[</span><span class="m">4026531839</span><span class="o">]</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a>mnt:<span class="o">[</span><span class="m">4026531841</span><span class="o">]</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>net:<span class="o">[</span><span class="m">4026531840</span><span class="o">]</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a>pid:<span class="o">[</span><span class="m">4026531836</span><span class="o">]</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a>time:<span class="o">[</span><span class="m">4026531834</span><span class="o">]</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a>user:<span class="o">[</span><span class="m">4026531837</span><span class="o">]</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a>uts:<span class="o">[</span><span class="m">4026531838</span><span class="o">]</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在该宿主机中，其<code>mount namespace</code> 文件描述符为<strong>4026531841</strong>。在宿主机的<code>namespace</code> ，也称之为默认<code>namespace</code> 。</p>
 <p>可以看到，2个文件描述符不一致，说明2个进程是在不同的<code>mount namespace</code> 中。</p>
 <h2 id="nmaespace">各个Nmaespace介绍</h2>
 <h3 id="uts-namespace">UTS Namespace</h3>
 <p><code>UTS Namespace</code> 是用来隔离主机名和域名的，可以使不同的<code>Namespace</code> 拥有不同的主机名。</p>
 <p>使用<code>unshare</code> 进入<code>bash</code> 后尝试修改主机名，不会影响到宿主机的，例如如下：</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:1]# unshare -u /usr/bin/bash
-(unshare) [root@debian]:[~][tty:1]#
-(unshare) [root@debian]:[~][tty:1]# echo $$
-13858
-(unshare) [root@debian]:[~][tty:1]#
-(unshare) [root@debian]:[~][tty:1]# hostname new-debian-uts
-(unshare) [root@debian]:[~][tty:1]#
-(unshare) [root@debian]:[~][tty:1]# hostname
-new-debian-uts
-(unshare) [root@debian]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># unshare -u /usr/bin/bash</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="m">13858</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># hostname new-debian-uts</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># hostname</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>new-debian-uts
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述命令使用<code>unshare</code> 创建了一个<code>uts namespace</code> ，并且将<code>bash</code> 放入其中执行，首先打印了其进程的<code>PID</code>为<code>13858</code> 、而后进行了主机名设置。</p>
 <p>同时在不关闭该<code>shell</code> 的前提下，打开另一个终端，获取主机名信息。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:5]# hostname
-debian
-[root@debian]:[~][tty:5]#
-[root@debian]:[~][tty:5]# echo $$
-13863
-[root@debian]:[~][tty:5]#
-[root@debian]:[~][tty:5]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1"># hostname</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>debian
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="m">13863</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，在<code>uts namespace</code>命名空间中修改主机名，并不影响宿主机环境，同时，还可以查询一下2个进程的<code>ns</code>值：</p>
-<pre><code class="language-bash"># readlink /proc/{13858,13863}/ns/uts
-uts:[4026532256]
-uts:[4026531838]
-[root@debian]:[~][tty:5]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># readlink /proc/{13858,13863}/ns/uts</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>uts:<span class="o">[</span><span class="m">4026532256</span><span class="o">]</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>uts:<span class="o">[</span><span class="m">4026531838</span><span class="o">]</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，上述2个进程的<code>uts namespace</code> 文件描述符并不一致，所以是2个不同的命名空间，所以，修改主机名才不会互相影响。</p>
 <h3 id="ipc-namespace">IPC Namespace</h3>
 <p><code>ipc namespace</code> 是隔离进程间的通信资源，但不是所有的进程间通信都会被隔离，它主要隔离 消息队列、信号量、共享内存等。</p>
@@ -1019,267 +1140,426 @@ uts:[4026531838]
 </table>
 <p>这里举个简单的例子。</p>
 <p>在宿主机上查询共享内存段信息。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# ipcs -m
-
------- Shared Memory Segments --------
-key        shmid      owner      perms      bytes      nattch     status
-0x00000000 3          lightdm    600        524288     2          dest
-0x00000000 4          lightdm    600        33554432   2          dest
-
-[root@debian]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span>
+<span class="normal"><a href="#__codelineno-13-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ipcs -m</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>------<span class="w"> </span>Shared<span class="w"> </span>Memory<span class="w"> </span>Segments<span class="w"> </span>--------
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>key<span class="w">        </span>shmid<span class="w">      </span>owner<span class="w">      </span>perms<span class="w">      </span>bytes<span class="w">      </span>nattch<span class="w">     </span>status
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a>0x00000000<span class="w"> </span><span class="m">3</span><span class="w">          </span>lightdm<span class="w">    </span><span class="m">600</span><span class="w">        </span><span class="m">524288</span><span class="w">     </span><span class="m">2</span><span class="w">          </span>dest
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a>0x00000000<span class="w"> </span><span class="m">4</span><span class="w">          </span>lightdm<span class="w">    </span><span class="m">600</span><span class="w">        </span><span class="m">33554432</span><span class="w">   </span><span class="m">2</span><span class="w">          </span>dest
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在宿主机创建一个新的共享内存段。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# ipcmk -M 128
-Shared memory id: 6
-[root@debian]:[~][tty:0]#
-[root@debian]:[~][tty:0]# ipcs -m
-
------- Shared Memory Segments --------
-key        shmid      owner      perms      bytes      nattch     status
-0x00000000 3          lightdm    600        524288     2          dest
-0x00000000 4          lightdm    600        33554432   2          dest
-0x8b111882 6          root       644        128        0
-
-[root@debian]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ipcmk -M 128</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>Shared<span class="w"> </span>memory<span class="w"> </span>id:<span class="w"> </span><span class="m">6</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ipcs -m</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>------<span class="w"> </span>Shared<span class="w"> </span>Memory<span class="w"> </span>Segments<span class="w"> </span>--------
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>key<span class="w">        </span>shmid<span class="w">      </span>owner<span class="w">      </span>perms<span class="w">      </span>bytes<span class="w">      </span>nattch<span class="w">     </span>status
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>0x00000000<span class="w"> </span><span class="m">3</span><span class="w">          </span>lightdm<span class="w">    </span><span class="m">600</span><span class="w">        </span><span class="m">524288</span><span class="w">     </span><span class="m">2</span><span class="w">          </span>dest
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a>0x00000000<span class="w"> </span><span class="m">4</span><span class="w">          </span>lightdm<span class="w">    </span><span class="m">600</span><span class="w">        </span><span class="m">33554432</span><span class="w">   </span><span class="m">2</span><span class="w">          </span>dest
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a>0x8b111882<span class="w"> </span><span class="m">6</span><span class="w">          </span>root<span class="w">       </span><span class="m">644</span><span class="w">        </span><span class="m">128</span><span class="w">        </span><span class="m">0</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>而后在<code>ipc namespace</code> 中来查询共享内存段。</p>
-<pre><code class="language-bash"># unshare -i -u /usr/bin/bash
-(unshare) [root@debian]:[~][tty:0]#
-(unshare) [root@debian]:[~][tty:0]# ipcs -m
-
------- Shared Memory Segments --------
-key        shmid      owner      perms      bytes      nattch     status
-
-(unshare) [root@debian]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span>
+<span class="normal"><a href="#__codelineno-15-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1"># unshare -i -u /usr/bin/bash</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ipcs -m</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a>------<span class="w"> </span>Shared<span class="w"> </span>Memory<span class="w"> </span>Segments<span class="w"> </span>--------
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a>key<span class="w">        </span>shmid<span class="w">      </span>owner<span class="w">      </span>perms<span class="w">      </span>bytes<span class="w">      </span>nattch<span class="w">     </span>status
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，在<code>ipc namespace</code> 中共享内存段都没了，同样的，在该<code>namespace</code> 中创建共享内存段，其宿主机也不可以间。</p>
-<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:0]# ipcmk -M 128
-Shared memory id: 0
-(unshare) [root@debian]:[~][tty:0]#
-(unshare) [root@debian]:[~][tty:0]# ipcs -m
-
------- Shared Memory Segments --------
-key        shmid      owner      perms      bytes      nattch     status
-0x4ec24363 0          root       644        128        0
-
-(unshare) [root@debian]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ipcmk -M 128</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>Shared<span class="w"> </span>memory<span class="w"> </span>id:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ipcs -m</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>------<span class="w"> </span>Shared<span class="w"> </span>Memory<span class="w"> </span>Segments<span class="w"> </span>--------
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a>key<span class="w">        </span>shmid<span class="w">      </span>owner<span class="w">      </span>perms<span class="w">      </span>bytes<span class="w">      </span>nattch<span class="w">     </span>status
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a>0x4ec24363<span class="w"> </span><span class="m">0</span><span class="w">          </span>root<span class="w">       </span><span class="m">644</span><span class="w">        </span><span class="m">128</span><span class="w">        </span><span class="m">0</span>
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在上述<code>namespace</code> 不退出的情况下，在宿主机中查询共享内存段。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:1]# ipcs -m
-
------- Shared Memory Segments --------
-key        shmid      owner      perms      bytes      nattch     status
-0x00000000 3          lightdm    600        524288     2          dest
-0x00000000 4          lightdm    600        33554432   2          dest
-0x8b111882 6          root       644        128        0
-
-[root@debian]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span>
+<span class="normal"><a href="#__codelineno-17-6">6</a></span>
+<span class="normal"><a href="#__codelineno-17-7">7</a></span>
+<span class="normal"><a href="#__codelineno-17-8">8</a></span>
+<span class="normal"><a href="#__codelineno-17-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ipcs -m</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>------<span class="w"> </span>Shared<span class="w"> </span>Memory<span class="w"> </span>Segments<span class="w"> </span>--------
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>key<span class="w">        </span>shmid<span class="w">      </span>owner<span class="w">      </span>perms<span class="w">      </span>bytes<span class="w">      </span>nattch<span class="w">     </span>status
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a>0x00000000<span class="w"> </span><span class="m">3</span><span class="w">          </span>lightdm<span class="w">    </span><span class="m">600</span><span class="w">        </span><span class="m">524288</span><span class="w">     </span><span class="m">2</span><span class="w">          </span>dest
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a>0x00000000<span class="w"> </span><span class="m">4</span><span class="w">          </span>lightdm<span class="w">    </span><span class="m">600</span><span class="w">        </span><span class="m">33554432</span><span class="w">   </span><span class="m">2</span><span class="w">          </span>dest
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a>0x8b111882<span class="w"> </span><span class="m">6</span><span class="w">          </span>root<span class="w">       </span><span class="m">644</span><span class="w">        </span><span class="m">128</span><span class="w">        </span><span class="m">0</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8"></a>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上例子说明，在<code>ipc namespace</code> 中，<code>IPC</code>资源已被隔离。</p>
 <h3 id="pid-namespace">Pid Namespace</h3>
 <p><code>Pid Namespace</code> 是用来隔离进程<code>ID</code> 的，在<code>Pid Namespace</code> 中的进程都有独立的<code>PID</code> 。</p>
 <p>使用<code>unshare</code> 创建<code>pid namespace</code> 并且获取当前<code>PID</code> </p>
-<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare -u -i -p --fork /usr/bin/bash
-(unshare) [root@debian]:[~][tty:2]# 
-(unshare) [root@debian]:[~][tty:2]# echo $$
-1
-(unshare) [root@debian]:[~][tty:2]# 
-(unshare) [root@debian]:[~][tty:2]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># unshare -u -i -p --fork /usr/bin/bash</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="m">1</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>创建<code>pid namespace</code> 的时候，一定要加<code>--fork</code> 来<code>fork</code>一个新的进程，因为只有新的子进程才会分配<code>pid</code>，在使用<code>pid namespace</code> 后，新的命名空间中的<code>pid</code> 都会从1开始计数。</p>
 <p>实际上查询进程树信息，可以发现<code>linux</code>是做了一个转换，将宿主机的<code>pid</code> 会映射进<code>pid namespace</code> 中的进程<code>ID</code> 。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:1]# ps axjf | head -n 1
-   PPID     PID    PGID     SID TTY        TPGID STAT   UID   TIME COMMAND
-      1     756     756     756 ?             -1 SLsl     0   0:00 /usr/sbin/lightdm
-    756     777     777     777 tty7         777 Ssl+     0   0:02  \_ /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
-    756    1104     756     756 ?             -1 Sl       0   0:00  \_ lightdm --session-child 15 26
-   1104    1133    1133    1133 ?             -1 Ssl      0   0:00      \_ /usr/bin/lxsession -s LXDE -e LXDE
-   1133    1228    1228    1228 ?             -1 Ss       0   0:00          \_ /usr/bin/ssh-agent x-session-manager
-   1133    1259    1133    1133 ?             -1 S        0   0:00          \_ openbox --config-file /root/.config/openbox/lxde-rc.xml
-   1133    1264    1133    1133 ?             -1 Sl       0   0:00          \_ lxpolkit
-   1133    1266    1133    1133 ?             -1 Sl       0   0:00          \_ lxpanel --profile LXDE
-   1133    1269    1133    1133 ?             -1 Sl       0   0:00          \_ pcmanfm --desktop --profile LXDE
-   1269    1431    1133    1133 ?             -1 Sl       0   0:00          |   \_ lxterminal
-   1431    1434    1434    1434 pts/2       1469 Ss       0   0:00          |       \_ bash
-   1434    1468    1468    1434 pts/2       1469 S        0   0:00          |           \_ unshare -u -i -p --fork /usr/bin/bash
-   1468    1469    1469    1434 pts/2       1469 S+       0   0:00          |               \_ /usr/bin/bash
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span>
+<span class="normal"><a href="#__codelineno-19-12">12</a></span>
+<span class="normal"><a href="#__codelineno-19-13">13</a></span>
+<span class="normal"><a href="#__codelineno-19-14">14</a></span>
+<span class="normal"><a href="#__codelineno-19-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ps axjf | head -n 1</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="w">   </span>PPID<span class="w">     </span>PID<span class="w">    </span>PGID<span class="w">     </span>SID<span class="w"> </span>TTY<span class="w">        </span>TPGID<span class="w"> </span>STAT<span class="w">   </span>UID<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="w">      </span><span class="m">1</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>SLsl<span class="w">     </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>/usr/sbin/lightdm
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="w">    </span><span class="m">756</span><span class="w">     </span><span class="m">777</span><span class="w">     </span><span class="m">777</span><span class="w">     </span><span class="m">777</span><span class="w"> </span>tty7<span class="w">         </span><span class="m">777</span><span class="w"> </span>Ssl+<span class="w">     </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:02<span class="w">  </span><span class="se">\_</span><span class="w"> </span>/usr/lib/xorg/Xorg<span class="w"> </span>:0<span class="w"> </span>-seat<span class="w"> </span>seat0<span class="w"> </span>-auth<span class="w"> </span>/var/run/lightdm/root/:0<span class="w"> </span>-nolisten<span class="w"> </span>tcp<span class="w"> </span>vt7<span class="w"> </span>-novtswitch
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="w">    </span><span class="m">756</span><span class="w">    </span><span class="m">1104</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">  </span><span class="se">\_</span><span class="w"> </span>lightdm<span class="w"> </span>--session-child<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">26</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="w">   </span><span class="m">1104</span><span class="w">    </span><span class="m">1133</span><span class="w">    </span><span class="m">1133</span><span class="w">    </span><span class="m">1133</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Ssl<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">      </span><span class="se">\_</span><span class="w"> </span>/usr/bin/lxsession<span class="w"> </span>-s<span class="w"> </span>LXDE<span class="w"> </span>-e<span class="w"> </span>LXDE
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="w">   </span><span class="m">1133</span><span class="w">    </span><span class="m">1228</span><span class="w">    </span><span class="m">1228</span><span class="w">    </span><span class="m">1228</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Ss<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>/usr/bin/ssh-agent<span class="w"> </span>x-session-manager
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="w">   </span><span class="m">1133</span><span class="w">    </span><span class="m">1259</span><span class="w">    </span><span class="m">1133</span><span class="w">    </span><span class="m">1133</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>S<span class="w">        </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>openbox<span class="w"> </span>--config-file<span class="w"> </span>/root/.config/openbox/lxde-rc.xml
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="w">   </span><span class="m">1133</span><span class="w">    </span><span class="m">1264</span><span class="w">    </span><span class="m">1133</span><span class="w">    </span><span class="m">1133</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>lxpolkit
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="w">   </span><span class="m">1133</span><span class="w">    </span><span class="m">1266</span><span class="w">    </span><span class="m">1133</span><span class="w">    </span><span class="m">1133</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>lxpanel<span class="w"> </span>--profile<span class="w"> </span>LXDE
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="w">   </span><span class="m">1133</span><span class="w">    </span><span class="m">1269</span><span class="w">    </span><span class="m">1133</span><span class="w">    </span><span class="m">1133</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>pcmanfm<span class="w"> </span>--desktop<span class="w"> </span>--profile<span class="w"> </span>LXDE
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12"></a><span class="w">   </span><span class="m">1269</span><span class="w">    </span><span class="m">1431</span><span class="w">    </span><span class="m">1133</span><span class="w">    </span><span class="m">1133</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">   </span><span class="se">\_</span><span class="w"> </span>lxterminal
+</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13"></a><span class="w">   </span><span class="m">1431</span><span class="w">    </span><span class="m">1434</span><span class="w">    </span><span class="m">1434</span><span class="w">    </span><span class="m">1434</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">1469</span><span class="w"> </span>Ss<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">       </span><span class="se">\_</span><span class="w"> </span>bash
+</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14"></a><span class="w">   </span><span class="m">1434</span><span class="w">    </span><span class="m">1468</span><span class="w">    </span><span class="m">1468</span><span class="w">    </span><span class="m">1434</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">1469</span><span class="w"> </span>S<span class="w">        </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">           </span><span class="se">\_</span><span class="w"> </span>unshare<span class="w"> </span>-u<span class="w"> </span>-i<span class="w"> </span>-p<span class="w"> </span>--fork<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15"></a><span class="w">   </span><span class="m">1468</span><span class="w">    </span><span class="m">1469</span><span class="w">    </span><span class="m">1469</span><span class="w">    </span><span class="m">1434</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">1469</span><span class="w"> </span>S+<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">               </span><span class="se">\_</span><span class="w"> </span>/usr/bin/bash
+</span></code></pre></div></td></tr></table></div>
 <p>其实该<code>bash</code> 的进程<code>id</code> 为<code>1469</code> ，但是使用了<code>pid namespace</code> ，所以在该<code>namesapce</code> 中会被映射为了<code>1</code> ，此时若在宿主机上<code>kill -9 1469</code> ，则会影响到命名空间的进程。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:1]# kill -9 1469
-[root@debian]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># kill -9 1469</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>同样在命名空间中的进程会被<code>kill</code> 掉。</p>
-<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# unshare: sigprocmask unblock failed: Invalid argument
-[root@debian]:[~][tty:2]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># unshare: sigprocmask unblock failed: Invalid argument</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="mount-namespace">Mount Namespace</h3>
 <p><code>Mount Namespace</code> 是最早出现的<code>Namespace</code> ，可以看到其系统调用参数为 <code>CLONE_NEWNS</code> ，和后续出现的<code>Namespace</code> 系统调用参数都不同，这是因为最开始的时候，大佬们认为，不会在出现其他<code>Namespace</code> 了，所以就以此为命名，后面的事情，大家就都知道了，为了兼容，所以该<code>Mount Namespace</code> 还是以<code>CLONE_NEWNS</code> 来命名的。</p>
 <p><code>Mount Namespace</code> 的作用是实现文件系统的隔离和管理。</p>
 <p>使用<code>unshare</code> 创建<code>mount namespace</code> 并且重新挂载<code>proc</code> 分区。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare -u -i -p -m --fork /usr/bin/bash
-(unshare) [root@debian]:[~][tty:2]# 
-(unshare) [root@debian]:[~][tty:2]# echo $$
-1
-(unshare) [root@debian]:[~][tty:2]# 
-(unshare) [root@debian]:[~][tty:2]# mount -t proc proc /proc 
-(unshare) [root@debian]:[~][tty:2]# 
-(unshare) [root@debian]:[~][tty:2]# ps aux 
-USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root           1  0.0  0.1   7196  3996 pts/2    S    03:40   0:00 /usr/bin/bash
-root           3  0.0  0.2  11084  4456 pts/2    R+   03:40   0:00 ps aux
-(unshare) [root@debian]:[~][tty:2]# 
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># unshare -u -i -p -m --fork /usr/bin/bash</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="m">1</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># mount -t proc proc /proc </span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ps aux </span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9"></a>USER<span class="w">         </span>PID<span class="w"> </span>%CPU<span class="w"> </span>%MEM<span class="w">    </span>VSZ<span class="w">   </span>RSS<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w"> </span>START<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10"></a>root<span class="w">           </span><span class="m">1</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.1<span class="w">   </span><span class="m">7196</span><span class="w">  </span><span class="m">3996</span><span class="w"> </span>pts/2<span class="w">    </span>S<span class="w">    </span><span class="m">03</span>:40<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11"></a>root<span class="w">           </span><span class="m">3</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.2<span class="w">  </span><span class="m">11084</span><span class="w">  </span><span class="m">4456</span><span class="w"> </span>pts/2<span class="w">    </span>R+<span class="w">   </span><span class="m">03</span>:40<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>ps<span class="w"> </span>aux
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述使用<code>unshare</code> 创建了<code>mount namespace</code> ，并且将<code>bash</code> 放入其执行，在该<code>mount namespace</code> 中，使用<code>mount</code> 重新挂载了<code>proc</code> ，接着查询所有进程，由于<code>pid namesapce</code> 隔离，所以只能查询到当前命名空间中的进程了。</p>
 <p>默认的<code>mount namespace</code> 会继承宿主机的命名空间，若不进行重新挂载<code>proc</code> ，查看到的信息就是宿主机的信息。</p>
 <p>同样的，在该<code>namesapce</code> 中设置的挂载，在宿主机是隔离开来的，例如：</p>
-<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# df -h
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda1        19G  3.9G   14G  23% /
-udev            953M     0  953M   0% /dev
-tmpfs           984M  4.0K  984M   1% /dev/shm
-tmpfs           197M 1004K  196M   1% /run
-tmpfs           5.0M  8.0K  5.0M   1% /run/lock
-tmpfs           197M   44K  197M   1% /run/user/1000
-tmpfs           197M   44K  197M   1% /run/user/0
-/dev/sda5       6.4G  348M  5.8G   6% /var
-/dev/sda8        71G  1.2G   67G   2% /home
-/dev/sda7       1.2G   68K  1.1G   1% /tmp
-(unshare) [root@debian]:[~][tty:2]# mount /dev/sda1 /data
-(unshare) [root@debian]:[~][tty:2]# mount | grep /data
-/dev/sda1 on /data type ext4 (rw,relatime,errors=remount-ro)
-(unshare) [root@debian]:[~][tty:2]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-23-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-23-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-23-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-23-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-23-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-23-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-23-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-23-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-23-10">10</a></span>
+<span class="normal"><a href="#__codelineno-23-11">11</a></span>
+<span class="normal"><a href="#__codelineno-23-12">12</a></span>
+<span class="normal"><a href="#__codelineno-23-13">13</a></span>
+<span class="normal"><a href="#__codelineno-23-14">14</a></span>
+<span class="normal"><a href="#__codelineno-23-15">15</a></span>
+<span class="normal"><a href="#__codelineno-23-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># df -h</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>Filesystem<span class="w">      </span>Size<span class="w">  </span>Used<span class="w"> </span>Avail<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a>/dev/sda1<span class="w">        </span>19G<span class="w">  </span><span class="m">3</span>.9G<span class="w">   </span>14G<span class="w">  </span><span class="m">23</span>%<span class="w"> </span>/
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a>udev<span class="w">            </span>953M<span class="w">     </span><span class="m">0</span><span class="w">  </span>953M<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/dev
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a>tmpfs<span class="w">           </span>984M<span class="w">  </span><span class="m">4</span>.0K<span class="w">  </span>984M<span class="w">   </span><span class="m">1</span>%<span class="w"> </span>/dev/shm
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a>tmpfs<span class="w">           </span>197M<span class="w"> </span>1004K<span class="w">  </span>196M<span class="w">   </span><span class="m">1</span>%<span class="w"> </span>/run
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7"></a>tmpfs<span class="w">           </span><span class="m">5</span>.0M<span class="w">  </span><span class="m">8</span>.0K<span class="w">  </span><span class="m">5</span>.0M<span class="w">   </span><span class="m">1</span>%<span class="w"> </span>/run/lock
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8"></a>tmpfs<span class="w">           </span>197M<span class="w">   </span>44K<span class="w">  </span>197M<span class="w">   </span><span class="m">1</span>%<span class="w"> </span>/run/user/1000
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9"></a>tmpfs<span class="w">           </span>197M<span class="w">   </span>44K<span class="w">  </span>197M<span class="w">   </span><span class="m">1</span>%<span class="w"> </span>/run/user/0
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10"></a>/dev/sda5<span class="w">       </span><span class="m">6</span>.4G<span class="w">  </span>348M<span class="w">  </span><span class="m">5</span>.8G<span class="w">   </span><span class="m">6</span>%<span class="w"> </span>/var
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11"></a>/dev/sda8<span class="w">        </span>71G<span class="w">  </span><span class="m">1</span>.2G<span class="w">   </span>67G<span class="w">   </span><span class="m">2</span>%<span class="w"> </span>/home
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12"></a>/dev/sda7<span class="w">       </span><span class="m">1</span>.2G<span class="w">   </span>68K<span class="w">  </span><span class="m">1</span>.1G<span class="w">   </span><span class="m">1</span>%<span class="w"> </span>/tmp
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># mount /dev/sda1 /data</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># mount | grep /data</span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15"></a>/dev/sda1<span class="w"> </span>on<span class="w"> </span>/data<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ext4<span class="w"> </span><span class="o">(</span>rw,relatime,errors<span class="o">=</span>remount-ro<span class="o">)</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>在不退出当前<code>mount namesapce</code>环境下，查询宿主机关于<code>/data</code>的挂载。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:1]# mount /dev/sda1 /data
-[root@debian]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># mount /dev/sda1 /data</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如此，<code>mount namespace</code> 隔离了文件系统挂载。</p>
 <h3 id="network-namespace">Network Namespace</h3>
 <p><code>network namespace</code> 隔离的是网络环境，网络通信是较为复杂的操作，这里先仅仅证明<code>network namesapce</code> 隔离性。</p>
 <p>使用<code>unshare</code> 创建<code>network namespace</code> ，并且使<code>bash</code> 在其运行。</p>
-<pre><code class="language-bash">(unshare) [root@debian]:[~][tty:2]# unshare  -u -i -p -m -n --fork /usr/bin/bash
-(unshare) [root@debian]:[~][tty:2]# 
-(unshare) [root@debian]:[~][tty:2]# ip a
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-(unshare) [root@debian]:[~][tty:2]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span>
+<span class="normal"><a href="#__codelineno-25-5">5</a></span>
+<span class="normal"><a href="#__codelineno-25-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># unshare  -u -i -p -m -n --fork /usr/bin/bash</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ip a</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>创建了<code>network namespace</code> 之后，查询其<code>ip</code> 信息，只有本地回环地址，状态还是关闭的，说明 <code>network namespace</code>隔离了其网络环境。</p>
 <h3 id="user-namespace">User Namespace</h3>
 <p><code>user namespace</code> 隔离的是用户和用户组，换句话说，不同的<code>user namespace</code> 中的<code>user id</code> 和<code>group id</code> 可以是不同的。最为常用的是在宿主机以一个非<code>root</code> 用户运行创建了一个<code>user namespace</code> ，然后在该<code>user namespace</code> 中却被映射成了<code>root</code> 用户。</p>
 <p>使用<code>unshare</code> 创建<code>user namespace</code>，并且使<code>bash</code> 在其运行。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:2]# unshare -u -i -p -m -n -U --fork /usr/bin/bash
-(unshare) [nobody@debian]:[~][tty:2]$ 
-(unshare) [nobody@debian]:[~][tty:2]$ id
-uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
-(unshare) [nobody@debian]:[~][tty:2]$ 
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># unshare -u -i -p -m -n -U --fork /usr/bin/bash</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>id
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4"></a><span class="nv">uid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nobody<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，增加了<code>user namespace</code> 后，其用户被映射为了<code>nobody</code>用户。</p>
 <p>如果想要修改其容器中的<code>userid</code>值，可以使用<code>newuidmap</code> 进行<code>uid</code> 映射。</p>
 <p>首先，需要找到其<code>user namespace</code> 下运行进程的<code>pid</code> 。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# ps axjf
-   PPID     PID    PGID     SID TTY        TPGID STAT   UID   TIME COMMAND
-      1     756     756     756 ?             -1 SLsl     0   0:00 /usr/sbin/lightdm
-    756    2547    2547    2547 tty7        2547 Ssl+     0   0:01  \_ /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
-    756    2633     756     756 ?             -1 Sl       0   0:00  \_ lightdm --session-child 15 26
-   2633    2637    2637    2637 ?             -1 Ssl      0   0:00      \_ /usr/bin/lxsession -s LXDE -e LXDE
-   2637    2729    2729    2729 ?             -1 Ss       0   0:00          \_ /usr/bin/ssh-agent x-session-manager
-   2637    2749    2637    2637 ?             -1 S        0   0:00          \_ openbox --config-file /root/.config/openbox/lxde-rc.xml
-   2637    2750    2637    2637 ?             -1 Sl       0   0:00          \_ lxpolkit
-   2637    2752    2637    2637 ?             -1 Sl       0   0:00          \_ lxpanel --profile LXDE
-   2637    2754    2637    2637 ?             -1 Sl       0   0:00          \_ pcmanfm --desktop --profile LXDE
-   2754    2886    2637    2637 ?             -1 Sl       0   0:00          |   \_ lxterminal
-   2886    2889    2889    2889 pts/2       2916 Ss       0   0:00          |       \_ bash
-   2889    2915    2915    2889 pts/2       2916 S        0   0:00          |           \_ unshare -u -i -p -m -n -U --fork /usr/bin/bash
-   2915    2916    2916    2889 pts/2       2916 S+       0   0:00          |               \_ /usr/bin/bash
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-27-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-27-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-27-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-27-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-27-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-27-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-27-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-27-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-27-10">10</a></span>
+<span class="normal"><a href="#__codelineno-27-11">11</a></span>
+<span class="normal"><a href="#__codelineno-27-12">12</a></span>
+<span class="normal"><a href="#__codelineno-27-13">13</a></span>
+<span class="normal"><a href="#__codelineno-27-14">14</a></span>
+<span class="normal"><a href="#__codelineno-27-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ps axjf</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="w">   </span>PPID<span class="w">     </span>PID<span class="w">    </span>PGID<span class="w">     </span>SID<span class="w"> </span>TTY<span class="w">        </span>TPGID<span class="w"> </span>STAT<span class="w">   </span>UID<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">      </span><span class="m">1</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>SLsl<span class="w">     </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>/usr/sbin/lightdm
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="w">    </span><span class="m">756</span><span class="w">    </span><span class="m">2547</span><span class="w">    </span><span class="m">2547</span><span class="w">    </span><span class="m">2547</span><span class="w"> </span>tty7<span class="w">        </span><span class="m">2547</span><span class="w"> </span>Ssl+<span class="w">     </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:01<span class="w">  </span><span class="se">\_</span><span class="w"> </span>/usr/lib/xorg/Xorg<span class="w"> </span>:0<span class="w"> </span>-seat<span class="w"> </span>seat0<span class="w"> </span>-auth<span class="w"> </span>/var/run/lightdm/root/:0<span class="w"> </span>-nolisten<span class="w"> </span>tcp<span class="w"> </span>vt7<span class="w"> </span>-novtswitch
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="w">    </span><span class="m">756</span><span class="w">    </span><span class="m">2633</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">  </span><span class="se">\_</span><span class="w"> </span>lightdm<span class="w"> </span>--session-child<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">26</span>
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="w">   </span><span class="m">2633</span><span class="w">    </span><span class="m">2637</span><span class="w">    </span><span class="m">2637</span><span class="w">    </span><span class="m">2637</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Ssl<span class="w">      </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">      </span><span class="se">\_</span><span class="w"> </span>/usr/bin/lxsession<span class="w"> </span>-s<span class="w"> </span>LXDE<span class="w"> </span>-e<span class="w"> </span>LXDE
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7"></a><span class="w">   </span><span class="m">2637</span><span class="w">    </span><span class="m">2729</span><span class="w">    </span><span class="m">2729</span><span class="w">    </span><span class="m">2729</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Ss<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>/usr/bin/ssh-agent<span class="w"> </span>x-session-manager
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8"></a><span class="w">   </span><span class="m">2637</span><span class="w">    </span><span class="m">2749</span><span class="w">    </span><span class="m">2637</span><span class="w">    </span><span class="m">2637</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>S<span class="w">        </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>openbox<span class="w"> </span>--config-file<span class="w"> </span>/root/.config/openbox/lxde-rc.xml
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9"></a><span class="w">   </span><span class="m">2637</span><span class="w">    </span><span class="m">2750</span><span class="w">    </span><span class="m">2637</span><span class="w">    </span><span class="m">2637</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>lxpolkit
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10"></a><span class="w">   </span><span class="m">2637</span><span class="w">    </span><span class="m">2752</span><span class="w">    </span><span class="m">2637</span><span class="w">    </span><span class="m">2637</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>lxpanel<span class="w"> </span>--profile<span class="w"> </span>LXDE
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11"></a><span class="w">   </span><span class="m">2637</span><span class="w">    </span><span class="m">2754</span><span class="w">    </span><span class="m">2637</span><span class="w">    </span><span class="m">2637</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>pcmanfm<span class="w"> </span>--desktop<span class="w"> </span>--profile<span class="w"> </span>LXDE
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12"></a><span class="w">   </span><span class="m">2754</span><span class="w">    </span><span class="m">2886</span><span class="w">    </span><span class="m">2637</span><span class="w">    </span><span class="m">2637</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">   </span><span class="se">\_</span><span class="w"> </span>lxterminal
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13"></a><span class="w">   </span><span class="m">2886</span><span class="w">    </span><span class="m">2889</span><span class="w">    </span><span class="m">2889</span><span class="w">    </span><span class="m">2889</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">2916</span><span class="w"> </span>Ss<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">       </span><span class="se">\_</span><span class="w"> </span>bash
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14"></a><span class="w">   </span><span class="m">2889</span><span class="w">    </span><span class="m">2915</span><span class="w">    </span><span class="m">2915</span><span class="w">    </span><span class="m">2889</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">2916</span><span class="w"> </span>S<span class="w">        </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">           </span><span class="se">\_</span><span class="w"> </span>unshare<span class="w"> </span>-u<span class="w"> </span>-i<span class="w"> </span>-p<span class="w"> </span>-m<span class="w"> </span>-n<span class="w"> </span>-U<span class="w"> </span>--fork<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15"></a><span class="w">   </span><span class="m">2915</span><span class="w">    </span><span class="m">2916</span><span class="w">    </span><span class="m">2916</span><span class="w">    </span><span class="m">2889</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">2916</span><span class="w"> </span>S+<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">               </span><span class="se">\_</span><span class="w"> </span>/usr/bin/bash
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，其真实的<code>pid</code>是<code>2916</code>，则在宿主机上需要执行如下映射。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:1]# newuidmap 2916 0 0 1
-[root@debian]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># newuidmap 2916 0 0 1</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>此时，再回到<code>user namespace</code> 中，查看用户信息。</p>
-<pre><code class="language-bash">(unshare) [nobody@debian]:[~][tty:2]$ id
-uid=0(root) gid=65534(nogroup) groups=65534(nogroup)
-(unshare) [nobody@debian]:[~][tty:2]$ 
-(unshare) [nobody@debian]:[~][tty:2]$ mount -t proc proc /proc
-(unshare) [nobody@debian]:[~][tty:2]$ ps aux 
-USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root           1  0.0  0.1   7196  3876 pts/2    S    04:42   0:00 /usr/bin/bash
-root           8  0.0  0.2  11084  4328 pts/2    R+   04:49   0:00 ps aux
-(unshare) [nobody@debian]:[~][tty:2]$ 
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span>
+<span class="normal"><a href="#__codelineno-29-4">4</a></span>
+<span class="normal"><a href="#__codelineno-29-5">5</a></span>
+<span class="normal"><a href="#__codelineno-29-6">6</a></span>
+<span class="normal"><a href="#__codelineno-29-7">7</a></span>
+<span class="normal"><a href="#__codelineno-29-8">8</a></span>
+<span class="normal"><a href="#__codelineno-29-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>id
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>proc<span class="w"> </span>proc<span class="w"> </span>/proc
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>ps<span class="w"> </span>aux<span class="w"> </span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6"></a>USER<span class="w">         </span>PID<span class="w"> </span>%CPU<span class="w"> </span>%MEM<span class="w">    </span>VSZ<span class="w">   </span>RSS<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w"> </span>START<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7"></a>root<span class="w">           </span><span class="m">1</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.1<span class="w">   </span><span class="m">7196</span><span class="w">  </span><span class="m">3876</span><span class="w"> </span>pts/2<span class="w">    </span>S<span class="w">    </span><span class="m">04</span>:42<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8"></a>root<span class="w">           </span><span class="m">8</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.2<span class="w">  </span><span class="m">11084</span><span class="w">  </span><span class="m">4328</span><span class="w"> </span>pts/2<span class="w">    </span>R+<span class="w">   </span><span class="m">04</span>:49<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>ps<span class="w"> </span>aux
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>其<code>uid</code> 则变为了<code>root</code> ，也可以进行磁盘挂载。</p>
 <p>当然，在普通用户下，也是同理。</p>
 <p>使用普通用户使用<code>unshare</code>创建<code>user namespace</code> 并且启动<code>bash</code> 命令。</p>
-<pre><code class="language-bash">[wangli@debian]:[~][tty:2]$ unshare -u -i -p -m -n -U --fork /usr/bin/bash
-(unshare) [nobody@debian]:[~][tty:2]$ 
-(unshare) [nobody@debian]:[~][tty:2]$ id
-uid=65534(nobody) gid=65534(nogroup) groups=65534(nogroup)
-(unshare) [nobody@debian]:[~][tty:2]$ 
-(unshare) [nobody@debian]:[~][tty:2]$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>unshare<span class="w"> </span>-u<span class="w"> </span>-i<span class="w"> </span>-p<span class="w"> </span>-m<span class="w"> </span>-n<span class="w"> </span>-U<span class="w"> </span>--fork<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>id
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="nv">uid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nobody<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>查询其真实的<code>pid</code> 。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# ps axjf
-   PPID     PID    PGID     SID TTY        TPGID STAT   UID   TIME COMMAND
-      1     756     756     756 ?             -1 SLsl     0   0:00 /usr/sbin/lightdm
-    756    2992    2992    2992 tty7        2992 Ssl+     0   0:01  \_ /usr/lib/xorg/Xorg :0 -seat seat0 -auth /var/run/lightdm/root/:0 -nolisten tcp vt7 -novtswitch
-    756    3077     756     756 ?             -1 Sl       0   0:00  \_ lightdm --session-child 14 26
-   3077    3083    3083    3083 ?             -1 Ssl   1000   0:00      \_ /usr/bin/lxsession -s LXDE -e LXDE
-   3083    3169    3169    3169 ?             -1 Ss    1000   0:00          \_ /usr/bin/ssh-agent x-session-manager
-   3083    3185    3083    3083 ?             -1 S     1000   0:00          \_ openbox --config-file /home/wangli/.config/openbox/lxde-rc.xml
-   3083    3186    3083    3083 ?             -1 Sl    1000   0:00          \_ lxpolkit
-   3083    3189    3083    3083 ?             -1 Sl    1000   0:00          \_ lxpanel --profile LXDE
-   3083    3192    3083    3083 ?             -1 Sl    1000   0:00          \_ pcmanfm --desktop --profile LXDE
-   3192    3387    3083    3083 ?             -1 Sl    1000   0:00          |   \_ lxterminal
-   3387    3390    3390    3390 pts/2       3418 Ss    1000   0:00          |       \_ bash
-   3390    3417    3417    3390 pts/2       3418 S     1000   0:00          |           \_ unshare -u -i -p -m -n -U --fork /usr/bin/bash
-   3417    3418    3418    3390 pts/2       3418 S+    1000   0:00          |               \_ /usr/bin/bash
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-31-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-31-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-31-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-31-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-31-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-31-10">10</a></span>
+<span class="normal"><a href="#__codelineno-31-11">11</a></span>
+<span class="normal"><a href="#__codelineno-31-12">12</a></span>
+<span class="normal"><a href="#__codelineno-31-13">13</a></span>
+<span class="normal"><a href="#__codelineno-31-14">14</a></span>
+<span class="normal"><a href="#__codelineno-31-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ps axjf</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="w">   </span>PPID<span class="w">     </span>PID<span class="w">    </span>PGID<span class="w">     </span>SID<span class="w"> </span>TTY<span class="w">        </span>TPGID<span class="w"> </span>STAT<span class="w">   </span>UID<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="w">      </span><span class="m">1</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>SLsl<span class="w">     </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>/usr/sbin/lightdm
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="w">    </span><span class="m">756</span><span class="w">    </span><span class="m">2992</span><span class="w">    </span><span class="m">2992</span><span class="w">    </span><span class="m">2992</span><span class="w"> </span>tty7<span class="w">        </span><span class="m">2992</span><span class="w"> </span>Ssl+<span class="w">     </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:01<span class="w">  </span><span class="se">\_</span><span class="w"> </span>/usr/lib/xorg/Xorg<span class="w"> </span>:0<span class="w"> </span>-seat<span class="w"> </span>seat0<span class="w"> </span>-auth<span class="w"> </span>/var/run/lightdm/root/:0<span class="w"> </span>-nolisten<span class="w"> </span>tcp<span class="w"> </span>vt7<span class="w"> </span>-novtswitch
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="w">    </span><span class="m">756</span><span class="w">    </span><span class="m">3077</span><span class="w">     </span><span class="m">756</span><span class="w">     </span><span class="m">756</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">       </span><span class="m">0</span><span class="w">   </span><span class="m">0</span>:00<span class="w">  </span><span class="se">\_</span><span class="w"> </span>lightdm<span class="w"> </span>--session-child<span class="w"> </span><span class="m">14</span><span class="w"> </span><span class="m">26</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="w">   </span><span class="m">3077</span><span class="w">    </span><span class="m">3083</span><span class="w">    </span><span class="m">3083</span><span class="w">    </span><span class="m">3083</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Ssl<span class="w">   </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">      </span><span class="se">\_</span><span class="w"> </span>/usr/bin/lxsession<span class="w"> </span>-s<span class="w"> </span>LXDE<span class="w"> </span>-e<span class="w"> </span>LXDE
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="w">   </span><span class="m">3083</span><span class="w">    </span><span class="m">3169</span><span class="w">    </span><span class="m">3169</span><span class="w">    </span><span class="m">3169</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Ss<span class="w">    </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>/usr/bin/ssh-agent<span class="w"> </span>x-session-manager
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="w">   </span><span class="m">3083</span><span class="w">    </span><span class="m">3185</span><span class="w">    </span><span class="m">3083</span><span class="w">    </span><span class="m">3083</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>S<span class="w">     </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>openbox<span class="w"> </span>--config-file<span class="w"> </span>/home/wangli/.config/openbox/lxde-rc.xml
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="w">   </span><span class="m">3083</span><span class="w">    </span><span class="m">3186</span><span class="w">    </span><span class="m">3083</span><span class="w">    </span><span class="m">3083</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">    </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>lxpolkit
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="w">   </span><span class="m">3083</span><span class="w">    </span><span class="m">3189</span><span class="w">    </span><span class="m">3083</span><span class="w">    </span><span class="m">3083</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">    </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>lxpanel<span class="w"> </span>--profile<span class="w"> </span>LXDE
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11"></a><span class="w">   </span><span class="m">3083</span><span class="w">    </span><span class="m">3192</span><span class="w">    </span><span class="m">3083</span><span class="w">    </span><span class="m">3083</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">    </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="se">\_</span><span class="w"> </span>pcmanfm<span class="w"> </span>--desktop<span class="w"> </span>--profile<span class="w"> </span>LXDE
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12"></a><span class="w">   </span><span class="m">3192</span><span class="w">    </span><span class="m">3387</span><span class="w">    </span><span class="m">3083</span><span class="w">    </span><span class="m">3083</span><span class="w"> </span>?<span class="w">             </span>-1<span class="w"> </span>Sl<span class="w">    </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">   </span><span class="se">\_</span><span class="w"> </span>lxterminal
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13"></a><span class="w">   </span><span class="m">3387</span><span class="w">    </span><span class="m">3390</span><span class="w">    </span><span class="m">3390</span><span class="w">    </span><span class="m">3390</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">3418</span><span class="w"> </span>Ss<span class="w">    </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">       </span><span class="se">\_</span><span class="w"> </span>bash
+</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="w">   </span><span class="m">3390</span><span class="w">    </span><span class="m">3417</span><span class="w">    </span><span class="m">3417</span><span class="w">    </span><span class="m">3390</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">3418</span><span class="w"> </span>S<span class="w">     </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">           </span><span class="se">\_</span><span class="w"> </span>unshare<span class="w"> </span>-u<span class="w"> </span>-i<span class="w"> </span>-p<span class="w"> </span>-m<span class="w"> </span>-n<span class="w"> </span>-U<span class="w"> </span>--fork<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-31-15"><a id="__codelineno-31-15" name="__codelineno-31-15"></a><span class="w">   </span><span class="m">3417</span><span class="w">    </span><span class="m">3418</span><span class="w">    </span><span class="m">3418</span><span class="w">    </span><span class="m">3390</span><span class="w"> </span>pts/2<span class="w">       </span><span class="m">3418</span><span class="w"> </span>S+<span class="w">    </span><span class="m">1000</span><span class="w">   </span><span class="m">0</span>:00<span class="w">          </span><span class="p">|</span><span class="w">               </span><span class="se">\_</span><span class="w"> </span>/usr/bin/bash
+</span></code></pre></div></td></tr></table></div>
 <p>查询到其<code>PID</code>为3418，在另外的终端，执行<code>newuidmap</code>操作</p>
-<pre><code class="language-bash">[wangli@debian]:[/root][tty:1]$ id
-uid=1000(wangli) gid=1000(wangli) groups=1000(wangli),24(cdrom),25(floppy),29(audio),30(dip),44(video),46(plugdev),100(users),106(netdev),111(lpadmin),114(scanner)
-[wangli@debian]:[/root][tty:1]$
-[wangli@debian]:[/root][tty:1]$ newuidmap 3418 0 1000 1
-[wangli@debian]:[/root][tty:1]$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span>
+<span class="normal"><a href="#__codelineno-32-3">3</a></span>
+<span class="normal"><a href="#__codelineno-32-4">4</a></span>
+<span class="normal"><a href="#__codelineno-32-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>/root<span class="o">][</span>tty:1<span class="o">]</span>$<span class="w"> </span>id
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>wangli<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>wangli<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">1000</span><span class="o">(</span>wangli<span class="o">)</span>,24<span class="o">(</span>cdrom<span class="o">)</span>,25<span class="o">(</span>floppy<span class="o">)</span>,29<span class="o">(</span>audio<span class="o">)</span>,30<span class="o">(</span>dip<span class="o">)</span>,44<span class="o">(</span>video<span class="o">)</span>,46<span class="o">(</span>plugdev<span class="o">)</span>,100<span class="o">(</span>users<span class="o">)</span>,106<span class="o">(</span>netdev<span class="o">)</span>,111<span class="o">(</span>lpadmin<span class="o">)</span>,114<span class="o">(</span>scanner<span class="o">)</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>/root<span class="o">][</span>tty:1<span class="o">]</span>$
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>/root<span class="o">][</span>tty:1<span class="o">]</span>$<span class="w"> </span>newuidmap<span class="w"> </span><span class="m">3418</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>/root<span class="o">][</span>tty:1<span class="o">]</span>$
+</span></code></pre></div></td></tr></table></div>
 <p>请注意，这里<code>loweruid</code>设置为了1000，这是因为<code>wangli</code>这个用户的<code>uid</code>为1000。</p>
 <p>此时再到<code>user namespace</code> 中查看<code>id</code> 信息。</p>
-<pre><code class="language-bash">(unshare) [nobody@debian]:[~][tty:2]$ id
-uid=0(root) gid=65534(nogroup) groups=65534(nogroup)
-(unshare) [nobody@debian]:[~][tty:2]$ 
-(unshare) [nobody@debian]:[~][tty:2]$ mount -t proc proc /proc
-(unshare) [nobody@debian]:[~][tty:2]$ 
-(unshare) [nobody@debian]:[~][tty:2]$ ps aux 
-USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root           1  0.0  0.2   8008  4720 pts/2    S    04:55   0:00 /usr/bin/bash
-root           6  0.0  0.2  11084  4440 pts/2    R+   05:02   0:00 ps aux
-(unshare) [nobody@debian]:[~][tty:2]$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-33-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-33-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-33-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-33-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>id
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="nv">uid</span><span class="o">=</span><span class="m">0</span><span class="o">(</span>root<span class="o">)</span><span class="w"> </span><span class="nv">gid</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span><span class="w"> </span><span class="nv">groups</span><span class="o">=</span><span class="m">65534</span><span class="o">(</span>nogroup<span class="o">)</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>mount<span class="w"> </span>-t<span class="w"> </span>proc<span class="w"> </span>proc<span class="w"> </span>/proc
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>ps<span class="w"> </span>aux<span class="w"> </span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7"></a>USER<span class="w">         </span>PID<span class="w"> </span>%CPU<span class="w"> </span>%MEM<span class="w">    </span>VSZ<span class="w">   </span>RSS<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w"> </span>START<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8"></a>root<span class="w">           </span><span class="m">1</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.2<span class="w">   </span><span class="m">8008</span><span class="w">  </span><span class="m">4720</span><span class="w"> </span>pts/2<span class="w">    </span>S<span class="w">    </span><span class="m">04</span>:55<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9"></a>root<span class="w">           </span><span class="m">6</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.2<span class="w">  </span><span class="m">11084</span><span class="w">  </span><span class="m">4440</span><span class="w"> </span>pts/2<span class="w">    </span>R+<span class="w">   </span><span class="m">05</span>:02<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>ps<span class="w"> </span>aux
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，其<code>uid</code> 已经被映射为了<code>root</code> ，此时，执行<code>mount</code>进行挂载也可以实现。</p>
 <h3 id="time-namespace">Time Namespace</h3>
 <p><code>Time Nmaespace</code> 允许进程在独立的时间上下文中运行。使用了<code>time namespace</code> 的进程可以拥有自己独立的时间视图并且和其他<code>time namespace</code> 和宿主机隔离开来。</p>
 <p>下面举一个最简单的例子：</p>
 <p>先查询系统启动的秒数</p>
-<pre><code class="language-bash">[wangli@debian]:[~][tty:2]$  cat /proc/uptime 
-11397.34 10829.19
-[wangli@debian]:[~][tty:2]$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w">  </span>cat<span class="w"> </span>/proc/uptime<span class="w"> </span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="m">11397</span>.34<span class="w"> </span><span class="m">10829</span>.19
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>unshare</code>启动<code>time namespace</code> 命名空间，且运行<code>bash</code>进程。</p>
-<pre><code class="language-bash">[wangli@debian]:[~][tty:2]$ unshare -u -i -p -m -n -U -T --boottime -11397 --fork /usr/bin/bash
-(unshare) [nobody@debian]:[~][tty:2]$ uptime 
- 05:36:09 up 0 min,  3 users,  load average: 0.00, 0.01, 0.00
-(unshare) [nobody@debian]:[~][tty:2]$ 
-(unshare) [nobody@debian]:[~][tty:2]$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
+<span class="normal"><a href="#__codelineno-35-2">2</a></span>
+<span class="normal"><a href="#__codelineno-35-3">3</a></span>
+<span class="normal"><a href="#__codelineno-35-4">4</a></span>
+<span class="normal"><a href="#__codelineno-35-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>unshare<span class="w"> </span>-u<span class="w"> </span>-i<span class="w"> </span>-p<span class="w"> </span>-m<span class="w"> </span>-n<span class="w"> </span>-U<span class="w"> </span>-T<span class="w"> </span>--boottime<span class="w"> </span>-11397<span class="w"> </span>--fork<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>uptime<span class="w"> </span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="w"> </span><span class="m">05</span>:36:09<span class="w"> </span>up<span class="w"> </span><span class="m">0</span><span class="w"> </span>min,<span class="w">  </span><span class="m">3</span><span class="w"> </span>users,<span class="w">  </span>load<span class="w"> </span>average:<span class="w"> </span><span class="m">0</span>.00,<span class="w"> </span><span class="m">0</span>.01,<span class="w"> </span><span class="m">0</span>.00
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>nobody@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>在命名空间中，可以看到，其<code>uptime</code> 的启动时间已经为0了。</p>
 <p>在不退出<code>time namespace</code> 的情况下，开一个新的<code>shell</code> 来查看<code>uptime</code> 信息</p>
-<pre><code class="language-bash">[wangli@debian]:[~][tty:3]$ uptime 
- 05:39:01 up  3:12,  3 users,  load average: 0.00, 0.01, 0.00
-[wangli@debian]:[~][tty:3]$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
+<span class="normal"><a href="#__codelineno-36-2">2</a></span>
+<span class="normal"><a href="#__codelineno-36-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span>$<span class="w"> </span>uptime<span class="w"> </span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="w"> </span><span class="m">05</span>:39:01<span class="w"> </span>up<span class="w">  </span><span class="m">3</span>:12,<span class="w">  </span><span class="m">3</span><span class="w"> </span>users,<span class="w">  </span>load<span class="w"> </span>average:<span class="w"> </span><span class="m">0</span>.00,<span class="w"> </span><span class="m">0</span>.01,<span class="w"> </span><span class="m">0</span>.00
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="o">[</span>wangli@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>由此证明，<code>time namespace</code>对于系统时间的隔离性。</p>
 <h2 id="_4">总结</h2>
 <p>首先，在介绍<code>Linux Nmaespace</code>之前先进行了前置准备，包括 <code>unshare</code>工具的使用、修改提示符、命名空间文件描述符的基本说明等。</p>

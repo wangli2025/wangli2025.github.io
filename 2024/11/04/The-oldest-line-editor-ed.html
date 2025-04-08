@@ -545,7 +545,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              6 min read
+                              7 min read
                             
                           </span>
                         </div>
@@ -801,151 +801,214 @@
 <p>当前时间：2024年10月31日</p>
 </blockquote>
 <h4 id="ed_3">下载<code>ed</code></h4>
-<pre><code class="language-bash"># wget https://ftp.gnu.org/gnu/ed/ed-1.20.tar.lz
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># wget https://ftp.gnu.org/gnu/ed/ed-1.20.tar.lz</span>
+</span></code></pre></div></td></tr></table></div>
 <p>解压</p>
-<pre><code class="language-bash"># lzip -d ed-1.20.tar.lz
-# tar xf ed-1.20.tar
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># lzip -d ed-1.20.tar.lz</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1"># tar xf ed-1.20.tar</span>
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_1">编译安装</h4>
-<pre><code class="language-bash"># cd ed-1.20
-# ./configure
-# make
-# make install
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># cd ed-1.20</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1"># ./configure</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># make</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1"># make install</span>
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_2">查看版本</h4>
-<pre><code class="language-bash"># ed --version
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># ed --version</span>
+</span></code></pre></div></td></tr></table></div>
 <p>若安装完成，会输出以下信息</p>
-<pre><code class="language-bash">GNU ed 1.20
-Copyright (C) 1994 Andrew L. Moore.
-Copyright (C) 2024 Antonio Diaz Diaz.
-License GPLv2+: GNU GPL version 2 or later &lt;http://gnu.org/licenses/gpl.html&gt;
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>GNU<span class="w"> </span>ed<span class="w"> </span><span class="m">1</span>.20
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">1994</span><span class="w"> </span>Andrew<span class="w"> </span>L.<span class="w"> </span>Moore.
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2024</span><span class="w"> </span>Antonio<span class="w"> </span>Diaz<span class="w"> </span>Diaz.
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>License<span class="w"> </span>GPLv2+:<span class="w"> </span>GNU<span class="w"> </span>GPL<span class="w"> </span>version<span class="w"> </span><span class="m">2</span><span class="w"> </span>or<span class="w"> </span>later<span class="w"> </span>&lt;http://gnu.org/licenses/gpl.html&gt;
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+</span></code></pre></div></td></tr></table></div>
 <h3 id="ed_4">ed的基本使用</h3>
 <h4 id="ed_5"><strong>启动ed编辑器</strong></h4>
 <p>使用<code>ed filename</code>，该命令会尝试打开<code>filename</code> 文件，若当该文件不存在时，则会报错<code>filename: No such file or directory</code>，<code>ed</code>则会进入到编辑模式，直到手动保存，该文件才会被创建，并且写入内容。</p>
 <p>文件存在：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-q
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="m">12</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>q
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>当文件存在的时候，使用<code>ed</code>即可打开该文件，并且输出字符数，输入q退出。</p>
 <p>文件不存在：</p>
-<pre><code class="language-bash"># ls -lhta filename_2
-ls: cannot access filename_2: No such file or directory
-#
-# ed filename_2
-filename_2: No such file or directory
-a
-hello filename_2
-.
-w
-17
-q
-# cat filename_2
-hello filename_2
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># ls -lhta filename_2</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>ls:<span class="w"> </span>cannot<span class="w"> </span>access<span class="w"> </span>filename_2:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="c1">#</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># ed filename_2</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>filename_2:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>a
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>hello<span class="w"> </span>filename_2
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>.
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>w
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="m">17</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a>q
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="c1"># cat filename_2</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a>hello<span class="w"> </span>filename_2
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>当文件不存在的时候，使用<code>ed</code> 尝试打开该文件的时候，会报错<code>No such file or directory</code> ，但是还是会进入到编辑模式，此时若输入<code>a</code>命令，接着输入需要追加的行<code>hello filename_2</code> ，输入<code>.</code> 进行结束输入，命令<code>w</code> 则进行保存，保存完成后，会输出字符数，最后输入<code>q</code> 进行退出<code>ed</code> 编辑器。</p>
 <h4 id="_3"><strong>数据打印和遍历</strong></h4>
 <p>进入<code>ed</code> 编辑器打开文件后，可以通过如下命令打印和定位行信息。</p>
 <p>数据准备</p>
-<pre><code class="language-bash"># echo -e '123\n456\n789' &gt;&gt; filename_1
-#
-# cat filename_1
-hello world
-123
-456
-789
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># echo -e &#39;123\n456\n789&#39; &gt;&gt; filename_1</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="c1">#</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>hello<span class="w"> </span>world
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="m">123</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="m">456</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="m">789</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>p</code> 显示当前的行：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-p
-789
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="m">24</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>p
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="m">789</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>ed</code> 默认打开文件后，会进入到最后一行。使用<code>p</code> 命令可以显示当前行。</p>
 <p>使用<code>,p</code> 打印所有行：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-,p
-hello world
-123
-456
-789
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span>
+<span class="normal"><a href="#__codelineno-9-6">6</a></span>
+<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="m">24</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>,p
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>hello<span class="w"> </span>world
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="m">123</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="m">456</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="m">789</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>ed</code> 默认打开文件后，使用<code>,p</code> 会打印所有行。</p>
 <p>若想打印固定的行的话，可以使用<code>{startN},{endN}p</code> 命令，这才是<code>,p</code> 的完整写法，如，打印2到4行，则命令如下：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-2,4p
-123
-456
-789
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="m">24</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="m">2</span>,4p
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="m">123</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="m">456</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="m">789</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>=</code> 打印当前文件的行号</p>
-<pre><code class="language-bash"># ed filename_1
-24
-=
-4
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="nv">24</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="o">=</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="m">4</span>
+</span></code></pre></div></td></tr></table></div>
 <p>除此之外，还能使用<code>n</code> 来打印所在行的行号和内容</p>
-<pre><code class="language-bash"># ed filename_1
-24
-n
-4       789
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="m">24</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>n
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="m">4</span><span class="w">       </span><span class="m">789</span>
+</span></code></pre></div></td></tr></table></div>
 <p>若想输出固定行，和<code>p</code> 命令类似，如，打印2到4行的内容，包括行号，则命令如下：</p>
-<pre><code class="language-bash"># ed filename_1
-24
-2,4n
-2       123
-3       456
-4       789
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="m">24</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="m">2</span>,4n
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="m">2</span><span class="w">       </span><span class="m">123</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="m">3</span><span class="w">       </span><span class="m">456</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="m">4</span><span class="w">       </span><span class="m">789</span>
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_4">行定位</h4>
 <p><code>ed</code> 打开文件后，默认会定位到最后一行，如下命令，可以快速进行行定位。</p>
 <p>准备数据：</p>
-<pre><code class="language-bash"># echo -e &quot;a\nb\nc\nd\ne\nf&quot;  &gt; filename_1
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="c1"># echo -e &quot;a\nb\nc\nd\ne\nf&quot;  &gt; filename_1</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在<code>ed</code> 中，输入<code>1</code> 可以定位到第一行，<code>$</code> 则定位到最后一行。</p>
-<pre><code class="language-bash"># ed filename_1
-12
-1
-a
-$
-f
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="m">12</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="m">1</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>a
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a>$
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a>f
+</span></code></pre></div></td></tr></table></div>
 <p>不仅如此，还能基于当前行进行快速定位，比如定位到当前行的后2行。</p>
-<pre><code class="language-bash"># ed filename_1
-12
-1
-a
-+2
-c
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="m">12</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="m">1</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a>a
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>+2
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>c
+</span></code></pre></div></td></tr></table></div>
 <p>定位到当前行的前2行。</p>
-<pre><code class="language-bash"># ed filename_1
-12
-$
-f
--2
-d
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span>
+<span class="normal"><a href="#__codelineno-17-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="m">12</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>$
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>f
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a>-2
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a>d
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_5"><strong>追加文本</strong></h4>
 <p>在<code>ed</code> 中，有2个命令，分别是<code>a</code> 和<code>i</code> ，其含义如下：</p>
 <ul>
@@ -953,193 +1016,315 @@ d
 <li><code>i</code> ：在当前行前插入行</li>
 </ul>
 <p>使用<code>a</code> 进行追加行</p>
-<pre><code class="language-bash"># ed filename_1
-24
-a
-a append to data
-.
-w
-41
-q
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span>
+<span class="normal"><a href="#__codelineno-18-7">7</a></span>
+<span class="normal"><a href="#__codelineno-18-8">8</a></span>
+<span class="normal"><a href="#__codelineno-18-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="m">24</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>a
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a>a<span class="w"> </span>append<span class="w"> </span>to<span class="w"> </span>data
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a>.
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a>w
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="m">41</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a>q
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在<code>ed</code> 中，使用<code>a</code> 命令后会进入到插入模式，可以输入多行的内容，输入完成后，输入<code>.</code> 进行结束输入，<code>w</code> 会保存内容到磁盘，<code>q</code>则退出<code>ed</code> 编辑器。</p>
 <p>查看文件内容</p>
-<pre><code class="language-bash"># cat filename_1
-hello world
-123
-456
-789
-a append to data
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span>
+<span class="normal"><a href="#__codelineno-19-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>hello<span class="w"> </span>world
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="m">123</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="m">456</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="m">789</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a>a<span class="w"> </span>append<span class="w"> </span>to<span class="w"> </span>data
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>i</code> 插入行</p>
-<pre><code class="language-bash"># ed filename_1
-41
-1
-hello world
-n
-1       hello world
-i
-hello insert data
-ooooooo
-.
-w
-67
-q
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span>
+<span class="normal"><a href="#__codelineno-20-13">13</a></span>
+<span class="normal"><a href="#__codelineno-20-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="m">41</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="m">1</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a>hello<span class="w"> </span>world
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a>n
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="m">1</span><span class="w">       </span>hello<span class="w"> </span>world
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7"></a>i
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8"></a>hello<span class="w"> </span>insert<span class="w"> </span>data
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9"></a>ooooooo
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10"></a>.
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11"></a>w
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="m">67</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13"></a>q
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述命令中，在<code>ed</code> 打开<code>filename_1</code> 后，使用<code>1</code> 先切到到第1行，并且使用<code>n</code> 输出当前行的行号和内容，随后输入<code>i</code> 指令，插入了2行内容，输入<code>.</code>进行结束输入，随后保存到磁盘，接着退出。</p>
 <p>查看文件</p>
-<pre><code class="language-bash"># cat filename_1
-hello insert data
-ooooooo
-hello world
-123
-456
-789
-a append to data
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span>
+<span class="normal"><a href="#__codelineno-21-6">6</a></span>
+<span class="normal"><a href="#__codelineno-21-7">7</a></span>
+<span class="normal"><a href="#__codelineno-21-8">8</a></span>
+<span class="normal"><a href="#__codelineno-21-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a>hello<span class="w"> </span>insert<span class="w"> </span>data
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a>ooooooo
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a>hello<span class="w"> </span>world
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="m">123</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="m">456</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7"></a><span class="m">789</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a>a<span class="w"> </span>append<span class="w"> </span>to<span class="w"> </span>data
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>需要插入的内容，已经被插入到最前面了。</p>
 <p>如果在追加内容中，恰好需要在单行输入<code>.</code> ，该<code>.</code> 将作为字符，而非结束标志符，应该在该<code>.</code> 后再追加一个空格，例如<code>.</code> ，实际操作如下：</p>
-<pre><code class="language-bash"># &gt; filename_1
-#
-# ed filename_1
-0
-i
-insert into data
-. 
-123456
-.
-w
-27
-q
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-22-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-22-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-22-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-22-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-22-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-22-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-22-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-22-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-22-10">10</a></span>
+<span class="normal"><a href="#__codelineno-22-11">11</a></span>
+<span class="normal"><a href="#__codelineno-22-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="c1"># &gt; filename_1</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="c1">#</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="m">0</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a>i
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a>insert<span class="w"> </span>into<span class="w"> </span>data
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7"></a>.<span class="w"> </span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="m">123456</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9"></a>.
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10"></a>w
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="m">27</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12"></a>q
+</span></code></pre></div></td></tr></table></div>
 <p>请注意，在<code>insert...</code> 和<code>123456</code> 之间的<code>.</code> ，是<code>.</code>  + 空格，否则会被当成是结束符。</p>
 <p>使用<code>cat -A</code> 来查询一下：</p>
-<pre><code class="language-bash"># cat -A filename_1
-insert into data$
-. $
-123456$
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="c1"># cat -A filename_1</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>insert<span class="w"> </span>into<span class="w"> </span>data$
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a>.<span class="w"> </span>$
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="m">123456</span>$
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_6">删除行</h4>
 <p>在<code>ed</code> 中，使用<code>d</code> 可以进行删除行操作，首先进行数据准备：</p>
-<pre><code class="language-bash"># echo -e &quot;a\nb\nc\nd\ne\nf&quot;  &gt; filename_1
-# cat filename_1
-a
-b
-c
-d
-e
-f
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span>
+<span class="normal"><a href="#__codelineno-24-5">5</a></span>
+<span class="normal"><a href="#__codelineno-24-6">6</a></span>
+<span class="normal"><a href="#__codelineno-24-7">7</a></span>
+<span class="normal"><a href="#__codelineno-24-8">8</a></span>
+<span class="normal"><a href="#__codelineno-24-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="c1"># echo -e &quot;a\nb\nc\nd\ne\nf&quot;  &gt; filename_1</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a>a
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a>b
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a>c
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a>d
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a>e
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8"></a>f
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>d</code> 可以删除当前行：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-d
-,p
-a
-b
-c
-d
-e
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span>
+<span class="normal"><a href="#__codelineno-25-5">5</a></span>
+<span class="normal"><a href="#__codelineno-25-6">6</a></span>
+<span class="normal"><a href="#__codelineno-25-7">7</a></span>
+<span class="normal"><a href="#__codelineno-25-8">8</a></span>
+<span class="normal"><a href="#__codelineno-25-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="m">12</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a>d
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a>,p
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5"></a>a
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6"></a>b
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7"></a>c
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8"></a>d
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9"></a>e
+</span></code></pre></div></td></tr></table></div>
 <p>进入<code>ed</code> 后，默认会定位到最后一行，使用<code>d</code> 指令，将删除最后一行，即<code>f</code> 被删除了。</p>
 <p>不仅如此，还能指定行进行删除，比如2到4行进行删除：</p>
-<pre><code class="language-bash"># ed filename_1
-10
-2,4d
-,p
-a
-e
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span>
+<span class="normal"><a href="#__codelineno-26-3">3</a></span>
+<span class="normal"><a href="#__codelineno-26-4">4</a></span>
+<span class="normal"><a href="#__codelineno-26-5">5</a></span>
+<span class="normal"><a href="#__codelineno-26-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="m">10</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3"></a><span class="m">2</span>,4d
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4"></a>,p
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5"></a>a
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6"></a>e
+</span></code></pre></div></td></tr></table></div>
 <p>进入<code>ed</code> 后，使用<code>2,4d</code> 指令，将删除2到4行，即<code>b</code> 、<code>c</code> 被删除了。</p>
 <p>如果想删除全部行，则直接执行<code>,d</code> 即可删除所有行：</p>
-<pre><code class="language-bash"># ed filename_1
-4
-,d
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="m">4</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a>,d
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_7">文件的退出</h4>
 <p>使用<code>q</code> 指令会尝试退出<code>ed</code> 编辑器，当内存数据没有写入到磁盘的时候，会报错<code>?</code> 。</p>
-<pre><code class="language-bash"># ed filename_1
-0
-a
-123
-.
-q
-?
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span>
+<span class="normal"><a href="#__codelineno-28-3">3</a></span>
+<span class="normal"><a href="#__codelineno-28-4">4</a></span>
+<span class="normal"><a href="#__codelineno-28-5">5</a></span>
+<span class="normal"><a href="#__codelineno-28-6">6</a></span>
+<span class="normal"><a href="#__codelineno-28-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="m">0</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3"></a>a
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4"></a><span class="m">123</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5"></a>.
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6"></a>q
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7"></a>?
+</span></code></pre></div></td></tr></table></div>
 <p>此时若想退出<code>ed</code> 编辑器，可以使用<code>Q</code> 指令进行强制退出，内存的数据将会丢弃，不会写入到磁盘中。</p>
-<pre><code class="language-bash"># cat filename_1
-# ed filename_1
-0
-a
-123
-.
-q
-?
-Q
-# cat filename_1
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-29-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-29-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-29-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-29-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-29-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-29-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-29-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-29-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-29-10">10</a></span>
+<span class="normal"><a href="#__codelineno-29-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="m">0</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4"></a>a
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="m">123</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6"></a>.
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7"></a>q
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8"></a>?
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9"></a>Q
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>若想保存后退出<code>ed</code> 编辑器，可以使用<code>w</code> 先进行写入到磁盘，而后使用<code>q</code> 进行退出。</p>
-<pre><code class="language-bash"># ed filename_1
-0
-a
-123
-.
-w
-4
-q
-# cat filename_1
-123
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-30-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-30-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-30-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-30-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-30-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-30-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-30-10">10</a></span>
+<span class="normal"><a href="#__codelineno-30-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="m">0</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a>a
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="m">123</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a>.
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a>w
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="m">4</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a>q
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10"></a><span class="m">123</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="ed_6">ed的高级操作</h3>
 <h4 id="_8">数据准备</h4>
 <p>在开始之前，需要准备一份数据</p>
-<pre><code class="language-bash"># cat &gt;&gt; test.txt &lt;&lt; EOF
-name    age     sex
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-EOF
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-31-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-31-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-31-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-31-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-31-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-31-10">10</a></span>
+<span class="normal"><a href="#__codelineno-31-11">11</a></span>
+<span class="normal"><a href="#__codelineno-31-12">12</a></span>
+<span class="normal"><a href="#__codelineno-31-13">13</a></span>
+<span class="normal"><a href="#__codelineno-31-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="c1"># cat &gt;&gt; test.txt &lt;&lt; EOF</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a>name<span class="w">    </span>age<span class="w">     </span>sex
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a>Alice<span class="w">   </span><span class="m">28</span><span class="w">      </span>F
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a>Charlie<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a>Daisy<span class="w">   </span><span class="m">29</span><span class="w">      </span>F
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7"></a>Ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9"></a>George<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10"></a>Hannah<span class="w">  </span><span class="m">26</span><span class="w">      </span>F
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11"></a>Isaac<span class="w">   </span><span class="m">33</span><span class="w">      </span>M
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12"></a>Julia<span class="w">   </span><span class="m">24</span><span class="w">      </span>F
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13"></a>EOF
+</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看数据</p>
-<pre><code class="language-bash"># cat test.txt
-name    age     sex
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-32-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-32-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-32-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-32-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-32-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-32-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-32-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-32-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-32-10">10</a></span>
+<span class="normal"><a href="#__codelineno-32-11">11</a></span>
+<span class="normal"><a href="#__codelineno-32-12">12</a></span>
+<span class="normal"><a href="#__codelineno-32-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="c1"># cat test.txt</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a>name<span class="w">    </span>age<span class="w">     </span>sex
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a>Alice<span class="w">   </span><span class="m">28</span><span class="w">      </span>F
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a>Charlie<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6"></a>Daisy<span class="w">   </span><span class="m">29</span><span class="w">      </span>F
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7"></a>Ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9"></a>George<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10"></a>Hannah<span class="w">  </span><span class="m">26</span><span class="w">      </span>F
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11"></a>Isaac<span class="w">   </span><span class="m">33</span><span class="w">      </span>M
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12"></a>Julia<span class="w">   </span><span class="m">24</span><span class="w">      </span>F
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看数据基本信息</p>
-<pre><code class="language-bash"># wc test.txt
- 11  33 200 test.txt
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span>
+<span class="normal"><a href="#__codelineno-33-2">2</a></span>
+<span class="normal"><a href="#__codelineno-33-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="c1"># wc test.txt</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="w"> </span><span class="m">11</span><span class="w">  </span><span class="m">33</span><span class="w"> </span><span class="m">200</span><span class="w"> </span>test.txt
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>其中<code>test.txt</code> 的信息为：</p>
 <ul>
 <li>11行</li>
@@ -1152,121 +1337,154 @@ Julia   24      F
 <blockquote>
 <p>该操作是将文件的内容放到内存缓冲区中，当编辑完成后，需要手动保存，此时才会将内存中的数据写入磁盘中。</p>
 </blockquote>
-<pre><code class="language-bash"># ed test.txt
-200
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="c1"># ed test.txt</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="m">200</span>
+</span></code></pre></div></td></tr></table></div>
 <p>默认使用<code>ed</code> 打开文件后，会输出<strong>文件字符数</strong>，并且将位置定位到最后一行。</p>
 <p><strong>简单查询</strong></p>
 <p>此时使用<code>p</code> 会打印当前行的内容，即最后一行。</p>
-<pre><code class="language-bash"># ed test.txt
-200
-p
-Julia   24      F
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
+<span class="normal"><a href="#__codelineno-35-2">2</a></span>
+<span class="normal"><a href="#__codelineno-35-3">3</a></span>
+<span class="normal"><a href="#__codelineno-35-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="c1"># ed test.txt</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="m">200</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a>p
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4"></a>Julia<span class="w">   </span><span class="m">24</span><span class="w">      </span>F
+</span></code></pre></div></td></tr></table></div>
 <p>若想查询所有的内容，可<code>,p</code> 即可。</p>
-<pre><code class="language-bash">,p
-name    age     sex
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-36-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-36-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-36-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-36-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-36-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-36-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-36-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-36-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-36-10">10</a></span>
+<span class="normal"><a href="#__codelineno-36-11">11</a></span>
+<span class="normal"><a href="#__codelineno-36-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a>,p
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a>name<span class="w">    </span>age<span class="w">     </span>sex
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a>Alice<span class="w">   </span><span class="m">28</span><span class="w">      </span>F
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a>Charlie<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6"></a>Daisy<span class="w">   </span><span class="m">29</span><span class="w">      </span>F
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7"></a>Ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9"></a>George<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10"></a>Hannah<span class="w">  </span><span class="m">26</span><span class="w">      </span>F
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11"></a>Isaac<span class="w">   </span><span class="m">33</span><span class="w">      </span>M
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12"></a>Julia<span class="w">   </span><span class="m">24</span><span class="w">      </span>F
+</span></code></pre></div></td></tr></table></div>
 <p><strong>复杂搜索</strong></p>
 <p>若想查询符合规范的行，比如<code>sex</code> 是<code>M</code> 的行。</p>
-<pre><code class="language-bash">g/M/p
-Bob     32      M
-Charlie 25      M
-Ethan   30      M
-Fiona   27      M
-George  31      M
-Isaac   33      M
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span>
+<span class="normal"><a href="#__codelineno-37-3">3</a></span>
+<span class="normal"><a href="#__codelineno-37-4">4</a></span>
+<span class="normal"><a href="#__codelineno-37-5">5</a></span>
+<span class="normal"><a href="#__codelineno-37-6">6</a></span>
+<span class="normal"><a href="#__codelineno-37-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a>g/M/p
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a>Charlie<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4"></a>Ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6"></a>George<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7"></a>Isaac<span class="w">   </span><span class="m">33</span><span class="w">      </span>M
+</span></code></pre></div></td></tr></table></div>
 <p>其中<code>g</code> 表示全局、<code>M</code> 表示搜索关键字为<code>M</code>，<code>p</code> 是打印匹配行，每个指令由<code>/</code> 分割开来，若不包含<code>g</code> 则默认只匹配一行。</p>
-<pre><code class="language-bash">/M/p
-Bob     32      M
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a>/M/p
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span></code></pre></div></td></tr></table></div>
 <p>若想更为精确的匹配，如 1-8行中出现<code>M</code>的行信息。</p>
-<pre><code class="language-bash">1,8g/M/p
-Bob     32      M
-Charlie 25      M
-Ethan   30      M
-Fiona   27      M
-George  31      M
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span>
+<span class="normal"><a href="#__codelineno-39-3">3</a></span>
+<span class="normal"><a href="#__codelineno-39-4">4</a></span>
+<span class="normal"><a href="#__codelineno-39-5">5</a></span>
+<span class="normal"><a href="#__codelineno-39-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="m">1</span>,8g/M/p
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a>Charlie<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a>Ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6"></a>George<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span></code></pre></div></td></tr></table></div>
 <p><strong>利用正则表达式搜索</strong></p>
 <p>除此之外，<code>ed</code> 还支持正则表达式，比如查询<code>name</code> 以<code>e</code> 结尾的行信息。</p>
-<pre><code class="language-bash">g/.*e\s/p
-name    age     sex
-Alice   28      F
-Charlie 25      M
-George  31      M
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span>
+<span class="normal"><a href="#__codelineno-40-3">3</a></span>
+<span class="normal"><a href="#__codelineno-40-4">4</a></span>
+<span class="normal"><a href="#__codelineno-40-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a>g/.*e<span class="se">\s</span>/p
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a>name<span class="w">    </span>age<span class="w">     </span>sex
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a>Alice<span class="w">   </span><span class="m">28</span><span class="w">      </span>F
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4"></a>Charlie<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5"></a>George<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span></code></pre></div></td></tr></table></div>
 <p>其正则表达式<code>.*e\s</code> 的意思是匹配以<code>e</code> 紧接着空格的行。</p>
 <h4 id="ed_8">ed 编辑行数据</h4>
 <p><strong>数据准备</strong></p>
 <p>要编辑行内容，首先要先将文件加载到内存缓冲区中，即使用<code>ed</code> 打开文件。</p>
-<pre><code class="language-bash"># ed test.txt
-200
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="c1"># ed test.txt</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="m">200</span>
+</span></code></pre></div></td></tr></table></div>
 <p><strong>进行简单的替换</strong></p>
 <p>现在将第一行的<code>a</code> 替换为<code>A</code> </p>
-<pre><code class="language-bash">1
-name    age     sex
-s/a/A/
-1
-nAme    age     sex
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span>
+<span class="normal"><a href="#__codelineno-42-3">3</a></span>
+<span class="normal"><a href="#__codelineno-42-4">4</a></span>
+<span class="normal"><a href="#__codelineno-42-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="m">1</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2"></a>name<span class="w">    </span>age<span class="w">     </span>sex
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3"></a>s/a/A/
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4"></a><span class="m">1</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5"></a>nAme<span class="w">    </span>age<span class="w">     </span>sex
+</span></code></pre></div></td></tr></table></div>
 <p>首先，需要切换到第一行，然后使用 <code>s/a/A/</code> 将小写的 <code>a</code> 替换为大写的 <code>A</code>。不过，查看后发现该命令只修改了第一个出现的 <code>a</code>，而后续的 <code>a</code> 并未替换。</p>
 <p>这是因为在默认情况下，<code>ed</code> 只会修改首次匹配到的内容。若想替换整行中的所有匹配项，需要在命令后添加参数 <code>g</code>，表示全局替换。</p>
 <p>接下来，将第一行中的 <code>e</code> 替换为 <code>E</code>，并对所有匹配项进行替换。</p>
-<pre><code class="language-bash">1
-nAme    age     sex
-s/e/E/g
-1
-nAmE    agE     sEx
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span>
+<span class="normal"><a href="#__codelineno-43-2">2</a></span>
+<span class="normal"><a href="#__codelineno-43-3">3</a></span>
+<span class="normal"><a href="#__codelineno-43-4">4</a></span>
+<span class="normal"><a href="#__codelineno-43-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="m">1</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a>nAme<span class="w">    </span>age<span class="w">     </span>sex
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3"></a>s/e/E/g
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4"></a><span class="m">1</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5"></a>nAmE<span class="w">    </span>agE<span class="w">     </span>sEx
+</span></code></pre></div></td></tr></table></div>
 <p>从上面的结果可以看出，替换已成功完成。</p>
 <p><strong>进行全局替换</strong></p>
 <p>如果想要将文本中所有的 <code>e</code> 替换为 <code>E</code>，则需要使用以下参数。</p>
-<pre><code class="language-bash">g/.*/s/e/E/g
-,p
-nAmE    agE     sEx
-AlicE   28      F
-Bob     32      M
-CharliE 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-GEorgE  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-44-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-44-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-44-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-44-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-44-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-44-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-44-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-44-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-44-10">10</a></span>
+<span class="normal"><a href="#__codelineno-44-11">11</a></span>
+<span class="normal"><a href="#__codelineno-44-12">12</a></span>
+<span class="normal"><a href="#__codelineno-44-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a>g/.*/s/e/E/g
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a>,p
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3"></a>nAmE<span class="w">    </span>agE<span class="w">     </span>sEx
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4"></a>AlicE<span class="w">   </span><span class="m">28</span><span class="w">      </span>F
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6"></a>CharliE<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7"></a>Daisy<span class="w">   </span><span class="m">29</span><span class="w">      </span>F
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8"></a>Ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10"></a>GEorgE<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11"></a>Hannah<span class="w">  </span><span class="m">26</span><span class="w">      </span>F
+</span><span id="__span-44-12"><a id="__codelineno-44-12" name="__codelineno-44-12"></a>Isaac<span class="w">   </span><span class="m">33</span><span class="w">      </span>M
+</span><span id="__span-44-13"><a id="__codelineno-44-13" name="__codelineno-44-13"></a>Julia<span class="w">   </span><span class="m">24</span><span class="w">      </span>F
+</span></code></pre></div></td></tr></table></div>
 <p><code>g/.*/s/e/E/g</code> 的含义如下：</p>
 <ul>
 <li>第一个 <code>g</code>：表示全局操作。</li>
@@ -1276,104 +1494,153 @@ Julia   24      F
 </ul>
 <p><strong>进行特定行区间数据替换</strong></p>
 <p>若只想修改特定行区间的内容，可以更改 <code>.*</code> 的参数值，例如：</p>
-<pre><code class="language-bash">,p
-nAmE    agE     sEx
-AlicE   28      F
-Bob     32      M
-CharliE 25      M
-Daisy   29      F
-Ethan   30      M
-Fiona   27      M
-GEorgE  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-2,$s/E/e/g
-,p
-nAmE    agE     sEx
-Alice   28      F
-Bob     32      M
-Charlie 25      M
-Daisy   29      F
-ethan   30      M
-Fiona   27      M
-George  31      M
-Hannah  26      F
-Isaac   33      M
-Julia   24      F
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-45-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-45-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-45-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-45-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-45-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-45-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-45-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-45-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-45-10">10</a></span>
+<span class="normal"><a href="#__codelineno-45-11">11</a></span>
+<span class="normal"><a href="#__codelineno-45-12">12</a></span>
+<span class="normal"><a href="#__codelineno-45-13">13</a></span>
+<span class="normal"><a href="#__codelineno-45-14">14</a></span>
+<span class="normal"><a href="#__codelineno-45-15">15</a></span>
+<span class="normal"><a href="#__codelineno-45-16">16</a></span>
+<span class="normal"><a href="#__codelineno-45-17">17</a></span>
+<span class="normal"><a href="#__codelineno-45-18">18</a></span>
+<span class="normal"><a href="#__codelineno-45-19">19</a></span>
+<span class="normal"><a href="#__codelineno-45-20">20</a></span>
+<span class="normal"><a href="#__codelineno-45-21">21</a></span>
+<span class="normal"><a href="#__codelineno-45-22">22</a></span>
+<span class="normal"><a href="#__codelineno-45-23">23</a></span>
+<span class="normal"><a href="#__codelineno-45-24">24</a></span>
+<span class="normal"><a href="#__codelineno-45-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a>,p
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a>nAmE<span class="w">    </span>agE<span class="w">     </span>sEx
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3"></a>AlicE<span class="w">   </span><span class="m">28</span><span class="w">      </span>F
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5"></a>CharliE<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6"></a>Daisy<span class="w">   </span><span class="m">29</span><span class="w">      </span>F
+</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7"></a>Ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-45-8"><a id="__codelineno-45-8" name="__codelineno-45-8"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-45-9"><a id="__codelineno-45-9" name="__codelineno-45-9"></a>GEorgE<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span><span id="__span-45-10"><a id="__codelineno-45-10" name="__codelineno-45-10"></a>Hannah<span class="w">  </span><span class="m">26</span><span class="w">      </span>F
+</span><span id="__span-45-11"><a id="__codelineno-45-11" name="__codelineno-45-11"></a>Isaac<span class="w">   </span><span class="m">33</span><span class="w">      </span>M
+</span><span id="__span-45-12"><a id="__codelineno-45-12" name="__codelineno-45-12"></a>Julia<span class="w">   </span><span class="m">24</span><span class="w">      </span>F
+</span><span id="__span-45-13"><a id="__codelineno-45-13" name="__codelineno-45-13"></a><span class="m">2</span>,<span class="nv">$s</span>/E/e/g
+</span><span id="__span-45-14"><a id="__codelineno-45-14" name="__codelineno-45-14"></a>,p
+</span><span id="__span-45-15"><a id="__codelineno-45-15" name="__codelineno-45-15"></a>nAmE<span class="w">    </span>agE<span class="w">     </span>sEx
+</span><span id="__span-45-16"><a id="__codelineno-45-16" name="__codelineno-45-16"></a>Alice<span class="w">   </span><span class="m">28</span><span class="w">      </span>F
+</span><span id="__span-45-17"><a id="__codelineno-45-17" name="__codelineno-45-17"></a>Bob<span class="w">     </span><span class="m">32</span><span class="w">      </span>M
+</span><span id="__span-45-18"><a id="__codelineno-45-18" name="__codelineno-45-18"></a>Charlie<span class="w"> </span><span class="m">25</span><span class="w">      </span>M
+</span><span id="__span-45-19"><a id="__codelineno-45-19" name="__codelineno-45-19"></a>Daisy<span class="w">   </span><span class="m">29</span><span class="w">      </span>F
+</span><span id="__span-45-20"><a id="__codelineno-45-20" name="__codelineno-45-20"></a>ethan<span class="w">   </span><span class="m">30</span><span class="w">      </span>M
+</span><span id="__span-45-21"><a id="__codelineno-45-21" name="__codelineno-45-21"></a>Fiona<span class="w">   </span><span class="m">27</span><span class="w">      </span>M
+</span><span id="__span-45-22"><a id="__codelineno-45-22" name="__codelineno-45-22"></a>George<span class="w">  </span><span class="m">31</span><span class="w">      </span>M
+</span><span id="__span-45-23"><a id="__codelineno-45-23" name="__codelineno-45-23"></a>Hannah<span class="w">  </span><span class="m">26</span><span class="w">      </span>F
+</span><span id="__span-45-24"><a id="__codelineno-45-24" name="__codelineno-45-24"></a>Isaac<span class="w">   </span><span class="m">33</span><span class="w">      </span>M
+</span><span id="__span-45-25"><a id="__codelineno-45-25" name="__codelineno-45-25"></a>Julia<span class="w">   </span><span class="m">24</span><span class="w">      </span>F
+</span></code></pre></div></td></tr></table></div>
 <p><code>2,$s/E/e/g</code> 的含义是：在第二行到最后一行的范围内匹配包含 <code>E</code> 的内容，并将其替换为 <code>e</code>。</p>
 <h4 id="ed-shell">在<code>ed</code> 中执行<code>shell</code> 命令</h4>
 <p>在<code>ed</code> 中可以执行简单的命令，比如： 获取一下当前的服务器时间。</p>
-<pre><code class="language-bash"># ed
-! date
-Mon Nov  4 14:25:23 CST 2024
-!
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
+<span class="normal"><a href="#__codelineno-46-2">2</a></span>
+<span class="normal"><a href="#__codelineno-46-3">3</a></span>
+<span class="normal"><a href="#__codelineno-46-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="c1"># ed</span>
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2"></a>!<span class="w"> </span>date
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3"></a>Mon<span class="w"> </span>Nov<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">14</span>:25:23<span class="w"> </span>CST<span class="w"> </span><span class="m">2024</span>
+</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4"></a>!
+</span></code></pre></div></td></tr></table></div>
 <p>注意，<code>ed</code> 只能识别最简单的命令，如有特殊字符，比如<code>date +"%F %T"</code> 则不行，因为<code>%</code> 是特殊字符，用于引用文件和行，<code>%</code> 正确的用法为：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-! ls %
- ls filename_1
-filename_1
-!
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1">1</a></span>
+<span class="normal"><a href="#__codelineno-47-2">2</a></span>
+<span class="normal"><a href="#__codelineno-47-3">3</a></span>
+<span class="normal"><a href="#__codelineno-47-4">4</a></span>
+<span class="normal"><a href="#__codelineno-47-5">5</a></span>
+<span class="normal"><a href="#__codelineno-47-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2"></a><span class="m">12</span>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3"></a>!<span class="w"> </span>ls<span class="w"> </span>%
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4"></a><span class="w"> </span>ls<span class="w"> </span>filename_1
+</span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5"></a>filename_1
+</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6"></a>!
+</span></code></pre></div></td></tr></table></div>
 <p>而如果直接使用<code>date +"%F %T"</code>，会达不到预期效果：</p>
-<pre><code class="language-bash"># ed filename_1
-12
-! date +&quot;%F %T&quot;
- date +&quot;filename_1F filename_1T&quot;
-filename_1F filename_1T
-!
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
+<span class="normal"><a href="#__codelineno-48-2">2</a></span>
+<span class="normal"><a href="#__codelineno-48-3">3</a></span>
+<span class="normal"><a href="#__codelineno-48-4">4</a></span>
+<span class="normal"><a href="#__codelineno-48-5">5</a></span>
+<span class="normal"><a href="#__codelineno-48-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1"></a><span class="c1"># ed filename_1</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2"></a><span class="m">12</span>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3"></a>!<span class="w"> </span>date<span class="w"> </span>+<span class="s2">&quot;%F %T&quot;</span>
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4"></a><span class="w"> </span>date<span class="w"> </span>+<span class="s2">&quot;filename_1F filename_1T&quot;</span>
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5"></a>filename_1F<span class="w"> </span>filename_1T
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6"></a>!
+</span></code></pre></div></td></tr></table></div>
 <p>好在可以将该命令写入外部文件中，在<code>ed</code> 中进行调用即可：</p>
 <p>首先，需要先准备好脚本</p>
-<pre><code class="language-bash"># echo 'date +&quot;%F %T&quot;' &gt;&gt; getDate.sh
-# sh getDate.sh
-2024-11-04 14:36:34
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span>
+<span class="normal"><a href="#__codelineno-49-2">2</a></span>
+<span class="normal"><a href="#__codelineno-49-3">3</a></span>
+<span class="normal"><a href="#__codelineno-49-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1"></a><span class="c1"># echo &#39;date +&quot;%F %T&quot;&#39; &gt;&gt; getDate.sh</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2"></a><span class="c1"># sh getDate.sh</span>
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3"></a><span class="m">2024</span>-11-04<span class="w"> </span><span class="m">14</span>:36:34
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>而后在<code>ed</code> 中调用该脚本即可</p>
-<pre><code class="language-bash"># ed
-! sh getDate.sh
-2024-11-04 14:37:30
-!
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-50-1">1</a></span>
+<span class="normal"><a href="#__codelineno-50-2">2</a></span>
+<span class="normal"><a href="#__codelineno-50-3">3</a></span>
+<span class="normal"><a href="#__codelineno-50-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1"></a><span class="c1"># ed</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2"></a>!<span class="w"> </span>sh<span class="w"> </span>getDate.sh
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3"></a><span class="m">2024</span>-11-04<span class="w"> </span><span class="m">14</span>:37:30
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4"></a>!
+</span></code></pre></div></td></tr></table></div>
 <p>不仅如此，<code>ed</code> 还支持将执行的结果插入到当前文本中，例如：</p>
-<pre><code class="language-bash"># ed
-r ! sh getDate.sh
-20
-,p
-2024-11-04 14:40:38
-
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-51-1">1</a></span>
+<span class="normal"><a href="#__codelineno-51-2">2</a></span>
+<span class="normal"><a href="#__codelineno-51-3">3</a></span>
+<span class="normal"><a href="#__codelineno-51-4">4</a></span>
+<span class="normal"><a href="#__codelineno-51-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1"></a><span class="c1"># ed</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2"></a>r<span class="w"> </span>!<span class="w"> </span>sh<span class="w"> </span>getDate.sh
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3"></a><span class="m">20</span>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4"></a>,p
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5"></a><span class="m">2024</span>-11-04<span class="w"> </span><span class="m">14</span>:40:38
+</span></code></pre></div></td></tr></table></div>
 <p>只需要<code>r !</code>加上执行的命令，即可将命令执行的结果插入到当前文本中。</p>
 <h4 id="ed_9">ed 脚本化</h4>
 <p>可以将<code>ed</code> 的编辑命令放在独立的文件中，并且将他们作为<code>ed</code>行编辑器的输入，这样的话<code>ed</code>就具备了脚本化的能力。</p>
 <p>例如： 将一些列的<code>ed</code> 语句放入到<code>ed.script</code> 的文件中，可以利用下面的命令，对文件执行该<code>ed</code> 脚本：</p>
-<pre><code class="language-bash">ed filename &lt; ed.script
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1"></a>ed<span class="w"> </span>filename<span class="w"> </span>&lt;<span class="w"> </span>ed.script
+</span></code></pre></div></td></tr></table></div>
 <p>可以来尝试一下：</p>
 <p>首先，来编写<code>ed.script</code>(可以任意命名该文件)</p>
-<pre><code class="language-bash"># cat ed.script
-0,r ! date
-$,a
-the end.
-ed url site: https://www.gnu.org/software/ed
-.
-g/.*/s/a/A/g
-g/.*/s/c/C/g
-w
-q
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-53-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-53-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-53-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-53-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-53-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-53-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-53-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-53-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-53-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-53-10">10</a></span>
+<span class="normal"><a href="#__codelineno-53-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1"></a><span class="c1"># cat ed.script</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2"></a><span class="m">0</span>,r<span class="w"> </span>!<span class="w"> </span>date
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3"></a>$,a
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4"></a>the<span class="w"> </span>end.
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5"></a>ed<span class="w"> </span>url<span class="w"> </span>site:<span class="w"> </span>https://www.gnu.org/software/ed
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6"></a>.
+</span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7"></a>g/.*/s/a/A/g
+</span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8"></a>g/.*/s/c/C/g
+</span><span id="__span-53-9"><a id="__codelineno-53-9" name="__codelineno-53-9"></a>w
+</span><span id="__span-53-10"><a id="__codelineno-53-10" name="__codelineno-53-10"></a>q
+</span><span id="__span-53-11"><a id="__codelineno-53-11" name="__codelineno-53-11"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>解析一下每个语句的含义：</p>
 <ul>
 <li><code>0,r ! date</code> ：在首行插入<code>date</code> 命令执行的结果。</li>
@@ -1385,35 +1652,56 @@ q
 </ul>
 <p>接着，使用<code>ed filename &lt; ed.script</code> 的形式来执行该脚本。</p>
 <p>首先，先查看<code>filename_1</code> 的内容。</p>
-<pre><code class="language-bash"># cat filename_1
-a
-b
-c
-d
-e
-f
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1">1</a></span>
+<span class="normal"><a href="#__codelineno-54-2">2</a></span>
+<span class="normal"><a href="#__codelineno-54-3">3</a></span>
+<span class="normal"><a href="#__codelineno-54-4">4</a></span>
+<span class="normal"><a href="#__codelineno-54-5">5</a></span>
+<span class="normal"><a href="#__codelineno-54-6">6</a></span>
+<span class="normal"><a href="#__codelineno-54-7">7</a></span>
+<span class="normal"><a href="#__codelineno-54-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2"></a>a
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3"></a>b
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4"></a>c
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5"></a>d
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6"></a>e
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7"></a>f
+</span><span id="__span-54-8"><a id="__codelineno-54-8" name="__codelineno-54-8"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>接着，便对该文件执行<code>ed.script</code> 命令。</p>
-<pre><code class="language-bash"># ed filename_1 &lt; ed.script
-12
-29
-95
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-55-1">1</a></span>
+<span class="normal"><a href="#__codelineno-55-2">2</a></span>
+<span class="normal"><a href="#__codelineno-55-3">3</a></span>
+<span class="normal"><a href="#__codelineno-55-4">4</a></span>
+<span class="normal"><a href="#__codelineno-55-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1"></a><span class="c1"># ed filename_1 &lt; ed.script</span>
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2"></a><span class="m">12</span>
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3"></a><span class="m">29</span>
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4"></a><span class="m">95</span>
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>最后再次查看<code>filename_1</code> 文件。</p>
-<pre><code class="language-bash"># cat filename_1
-Mon Nov  4 15:14:21 CST 2024
-A
-b
-C
-d
-e
-f
-the end.
-ed url site: https://www.gnu.org/softwAre/ed
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-56-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-56-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-56-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-56-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-56-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-56-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-56-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-56-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-56-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-56-10">10</a></span>
+<span class="normal"><a href="#__codelineno-56-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1"></a><span class="c1"># cat filename_1</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2"></a>Mon<span class="w"> </span>Nov<span class="w">  </span><span class="m">4</span><span class="w"> </span><span class="m">15</span>:14:21<span class="w"> </span>CST<span class="w"> </span><span class="m">2024</span>
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3"></a>A
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4"></a>b
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5"></a>C
+</span><span id="__span-56-6"><a id="__codelineno-56-6" name="__codelineno-56-6"></a>d
+</span><span id="__span-56-7"><a id="__codelineno-56-7" name="__codelineno-56-7"></a>e
+</span><span id="__span-56-8"><a id="__codelineno-56-8" name="__codelineno-56-8"></a>f
+</span><span id="__span-56-9"><a id="__codelineno-56-9" name="__codelineno-56-9"></a>the<span class="w"> </span>end.
+</span><span id="__span-56-10"><a id="__codelineno-56-10" name="__codelineno-56-10"></a>ed<span class="w"> </span>url<span class="w"> </span>site:<span class="w"> </span>https://www.gnu.org/softwAre/ed
+</span><span id="__span-56-11"><a id="__codelineno-56-11" name="__codelineno-56-11"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_9">总结</h3>
 <p><code>ed</code> 是<code>Uinx</code>下的上古行编辑器，在目前的主流<code>Linux</code>版本中，都没有了它的身影，但是它影响了<code>sed</code> 、<code>grep</code>、<code>vi</code> 等一众软件，甚至于在上述软件使用中都能看到<code>ed</code> 的身影。</p>
 <p>如果你正在学习<code>sed</code>、<code>grep</code>、<code>vi</code> 等，不妨花几分钟了解一下<code>ed</code> 这个“老前辈”。</p>

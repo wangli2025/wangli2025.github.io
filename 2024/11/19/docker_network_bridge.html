@@ -546,7 +546,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              14 min read
+                              16 min read
                             
                           </span>
                         </div>
@@ -940,569 +940,916 @@
 <h2 id="_2">虚拟设备创建</h2>
 <h3 id="bridge">bridge创建</h3>
 <p>使用<code>ip</code>命令添加一个<code>bridge</code>虚拟设备。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link add name br0 type bridge
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link add name br0 type bridge</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上添加了<code>bridge</code>，名称为<code>br0</code>，使用如下命令，可以查看所有的<code>bridge</code>虚拟设备。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# brctl show
-bridge name     bridge id               STP enabled     interfaces
-br0             8000.72cfbe81fc62       no
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># brctl show</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>bridge<span class="w"> </span>name<span class="w">     </span>bridge<span class="w"> </span>id<span class="w">               </span>STP<span class="w"> </span>enabled<span class="w">     </span>interfaces
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>br0<span class="w">             </span><span class="m">8000</span>.72cfbe81fc62<span class="w">       </span>no
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth">创建veth</h3>
 <p>首先在宿主机上创建3条<code>veth</code>，命令如下：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link add name veth0 type veth peer name veth1
-[root@ubuntu]:[~][tty:0]# ip link add name veth2 type veth peer name veth3
-[root@ubuntu]:[~][tty:0]# ip link add name veth4 type veth peer name veth5
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link add name veth0 type veth peer name veth1</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link add name veth2 type veth peer name veth3</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link add name veth4 type veth peer name veth5</span>
+</span></code></pre></div></td></tr></table></div>
 <p>创建完毕后，使用<code>ip link</code>可以查询到所有的网卡信息，只需要关注<code>veth</code>的即可。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link
-......
-4: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 72:cf:be:81:fc:62 brd ff:ff:ff:ff:ff:ff
-5: veth1@veth0: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff
-6: veth0@veth1: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff
-7: veth3@veth2: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 52:6c:7b:57:b2:7b brd ff:ff:ff:ff:ff:ff
-8: veth2@veth3: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 9a:c0:ed:69:8c:4e brd ff:ff:ff:ff:ff:ff
-9: veth5@veth4: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether a2:c7:ea:83:fc:91 brd ff:ff:ff:ff:ff:ff
-10: veth4@veth5: &lt;BROADCAST,MULTICAST,M-DOWN&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether d2:a0:6a:c1:fe:80 brd ff:ff:ff:ff:ff:ff
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>......
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="m">4</span>:<span class="w"> </span>br0:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">72</span>:cf:be:81:fc:62<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="m">5</span>:<span class="w"> </span>veth1@veth0:<span class="w"> </span>&lt;BROADCAST,MULTICAST,M-DOWN&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span>link/ether<span class="w"> </span>ae:dd:f7:9d:9b:f8<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="m">6</span>:<span class="w"> </span>veth0@veth1:<span class="w"> </span>&lt;BROADCAST,MULTICAST,M-DOWN&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">66</span>:77:10:54:81:0e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="m">7</span>:<span class="w"> </span>veth3@veth2:<span class="w"> </span>&lt;BROADCAST,MULTICAST,M-DOWN&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">52</span>:6c:7b:57:b2:7b<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="m">8</span>:<span class="w"> </span>veth2@veth3:<span class="w"> </span>&lt;BROADCAST,MULTICAST,M-DOWN&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="w">    </span>link/ether<span class="w"> </span>9a:c0:ed:69:8c:4e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="m">9</span>:<span class="w"> </span>veth5@veth4:<span class="w"> </span>&lt;BROADCAST,MULTICAST,M-DOWN&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="w">    </span>link/ether<span class="w"> </span>a2:c7:ea:83:fc:91<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a><span class="m">10</span>:<span class="w"> </span>veth4@veth5:<span class="w"> </span>&lt;BROADCAST,MULTICAST,M-DOWN&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="w">    </span>link/ether<span class="w"> </span>d2:a0:6a:c1:fe:80<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="3">创建3个容器</h3>
 <p>使用<code>unshare</code>创建三个简单的容器，本次创建就不添加<code>pid namespace</code>了，免得获取进程自身的<code>pid</code>麻烦。</p>
 <p>创建第一个容器。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# unshare -m -u -n -i -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:1]# echo $$
-1349
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># unshare -m -u -n -i -f /bin/bash</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="m">1349</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>该进程的<code>pid</code>为<code>1349</code>。</p>
 <p>创建第二个容器。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:2]# unshare -m -u -i -n -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:2]# echo $$
-1357
-(unshare) [root@ubuntu]:[~][tty:2]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># unshare -m -u -i -n -f /bin/bash</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="m">1357</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>该进程的<code>pid</code>为<code>1357</code>。</p>
 <p>创建第三个容器。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:3]# unshare -m -u -i -n -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:3]# echo $$
-1365
-(unshare) [root@ubuntu]:[~][tty:3]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># unshare -m -u -i -n -f /bin/bash</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># echo $$</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="m">1365</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>该进程的<code>pid</code>为<code>1365</code>。</p>
 <p>如上使用<code>unshare</code>创建了3个“容器”，但是没有使用<code>pid namespace</code>，作用是为了方便查看其进程真实的<code>pid</code>。</p>
 <h2 id="veth_1">将veth串联起来</h2>
 <p>下面将使用<code>veth</code>串联起来<code>bridge</code>设备和容器。</p>
 <h3 id="veth0">将<code>veth0</code>移动到第一个容器中</h3>
 <p>通过上述创建容器的命令可得，第一个容器的<code>pid</code>为<code>1349</code>，下面命令将<code>veth0</code>设备移动到第一个容器中。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link set veth0 netns 1349
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth0 netns 1349</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看第一个容器中的相关网卡。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ip link
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-6: veth0@if5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip link</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="m">6</span>:<span class="w"> </span>veth0@if5:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">66</span>:77:10:54:81:0e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth1br0">将<code>veth1</code>连接到<code>br0</code>中</h3>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link set veth1 master br0
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth1 master br0</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>br0</code>连接的信息。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# brctl show
-bridge name     bridge id               STP enabled     interfaces
-br0             8000.72cfbe81fc62       no              veth1
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># brctl show</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>bridge<span class="w"> </span>name<span class="w">     </span>bridge<span class="w"> </span>id<span class="w">               </span>STP<span class="w"> </span>enabled<span class="w">     </span>interfaces
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>br0<span class="w">             </span><span class="m">8000</span>.72cfbe81fc62<span class="w">       </span>no<span class="w">              </span>veth1
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth2">将<code>veth2</code>移动到第二个容器中</h3>
 <p>通过上述创建容器的命令可得，第二个容器的<code>pid</code>为<code>1357</code>，下面命令将<code>veth2</code>设备移动到第一个容器中。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link set veth2 netns 1357
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth2 netns 1357</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看第二个容器中的相关网卡。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:2]# ip link
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-8: veth2@if7: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 9a:c0:ed:69:8c:4e brd ff:ff:ff:ff:ff:ff link-netnsid 0
-(unshare) [root@ubuntu]:[~][tty:2]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ip link</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="m">8</span>:<span class="w"> </span>veth2@if7:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">    </span>link/ether<span class="w"> </span>9a:c0:ed:69:8c:4e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth3br0">将<code>veth3</code>连接到<code>br0</code>中</h3>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link set veth3 master br0
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth3 master br0</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>br0</code>连接的信息。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# brctl show
-bridge name     bridge id               STP enabled     interfaces
-br0             8000.72cfbe81fc62       no              veth1
-                                                        veth3
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># brctl show</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>bridge<span class="w"> </span>name<span class="w">     </span>bridge<span class="w"> </span>id<span class="w">               </span>STP<span class="w"> </span>enabled<span class="w">     </span>interfaces
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>br0<span class="w">             </span><span class="m">8000</span>.72cfbe81fc62<span class="w">       </span>no<span class="w">              </span>veth1
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">                                                        </span>veth3
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth4">将<code>veth4</code>移动到第三个容器中</h3>
 <p>通过上述创建容器的命令可得，第二个容器的<code>pid</code>为<code>1365</code>，下面命令将<code>veth4</code>设备移动到第一个容器中。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link set veth4 netns 1365
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth4 netns 1365</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看第三个容器中的网卡信息。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:3]# ip link
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-10: veth4@if9: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether d2:a0:6a:c1:fe:80 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-(unshare) [root@ubuntu]:[~][tty:3]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ip link</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="m">10</span>:<span class="w"> </span>veth4@if9:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="w">    </span>link/ether<span class="w"> </span>d2:a0:6a:c1:fe:80<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth5br0">将<code>veth5</code>连接到<code>br0</code>中</h3>
-<pre><code>[root@ubuntu]:[~][tty:0]# ip link set veth5 master br0
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>[root@ubuntu]:[~][tty:0]# ip link set veth5 master br0
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>[root@ubuntu]:[~][tty:0]#
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>br0</code>连接信息。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# brctl show
-bridge name     bridge id               STP enabled     interfaces
-br0             8000.72cfbe81fc62       no              veth1
-                                                        veth3
-                                                        veth5
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># brctl show</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a>bridge<span class="w"> </span>name<span class="w">     </span>bridge<span class="w"> </span>id<span class="w">               </span>STP<span class="w"> </span>enabled<span class="w">     </span>interfaces
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>br0<span class="w">             </span><span class="m">8000</span>.72cfbe81fc62<span class="w">       </span>no<span class="w">              </span>veth1
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="w">                                                        </span>veth3
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">                                                        </span>veth5
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_3">查看宿主机现有的网络信息</h3>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link
-......
-4: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 1000
-    link/ether 72:cf:be:81:fc:62 brd ff:ff:ff:ff:ff:ff
-5: veth1@if6: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop master br0 state DOWN mode DEFAULT group default qlen 1000
-    link/ether ae:dd:f7:9d:9b:f8 brd ff:ff:ff:ff:ff:ff link-netnsid 1
-7: veth3@if8: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop master br0 state DOWN mode DEFAULT group default qlen 1000
-    link/ether 52:6c:7b:57:b2:7b brd ff:ff:ff:ff:ff:ff link-netnsid 0
-9: veth5@if10: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop master br0 state DOWN mode DEFAULT group default qlen 1000
-    link/ether a2:c7:ea:83:fc:91 brd ff:ff:ff:ff:ff:ff link-netnsid 2
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span>
+<span class="normal"><a href="#__codelineno-19-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>......
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="m">4</span>:<span class="w"> </span>br0:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">72</span>:cf:be:81:fc:62<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="m">5</span>:<span class="w"> </span>veth1@if6:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>master<span class="w"> </span>br0<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a><span class="w">    </span>link/ether<span class="w"> </span>ae:dd:f7:9d:9b:f8<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="m">7</span>:<span class="w"> </span>veth3@if8:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>master<span class="w"> </span>br0<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">52</span>:6c:7b:57:b2:7b<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a><span class="m">9</span>:<span class="w"> </span>veth5@if10:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>master<span class="w"> </span>br0<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10"></a><span class="w">    </span>link/ether<span class="w"> </span>a2:c7:ea:83:fc:91<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，在宿主机中就只能看到<code>br0</code>和<code>veth1</code>、<code>veth3</code>、<code>veth5</code>设备了，其他的<code>veth0</code>、<code>veth2</code>、<code>veth4</code>已经被移动到相应的容器中去了。</p>
 <h2 id="ip">给虚拟设备配置IP地址</h2>
 <h3 id="br0">配置设备<code>br0</code>的地址</h3>
 <p>由于<code>br0</code>在宿主机上，所以需要在宿主机执行。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip addr add 192.168.1.250/24 dev br0
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip addr add 192.168.1.250/24 dev br0</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>br0</code>地址</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip addr show br0
-4: br0: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 72:cf:be:81:fc:62 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.250/24 scope global br0
-       valid_lft forever preferred_lft forever
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span>
+<span class="normal"><a href="#__codelineno-21-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip addr show br0</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="m">4</span>:<span class="w"> </span>br0:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">72</span>:cf:be:81:fc:62<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.250/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>br0
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth0ip">配置<code>veth0</code>的<code>ip</code>地址</h3>
 <p>由于<code>veth0</code>已经移动到第一个容器中去了，所以需要到该容器中执行。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ip addr add 192.168.1.245/24 dev veth0
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip addr add 192.168.1.245/24 dev veth0</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>veth0</code>地址。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ip addr show veth0
-6: veth0@if5: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.245/24 scope global veth0
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip addr show veth0</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="m">6</span>:<span class="w"> </span>veth0@if5:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">66</span>:77:10:54:81:0e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.245/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth0
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth2ip">配置<code>veth2</code>的<code>ip</code>地址</h3>
 <p>由于<code>veth2</code>已经移动到第二个容器中去了，所以需要到该容器中执行。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:2]# ip addr add 192.168.1.246/24 dev veth2
-(unshare) [root@ubuntu]:[~][tty:2]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ip addr add 192.168.1.246/24 dev veth2</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>veth2</code>地址。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:2]# ip addr show veth2
-8: veth2@if7: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether 9a:c0:ed:69:8c:4e brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.246/24 scope global veth2
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:2]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span>
+<span class="normal"><a href="#__codelineno-25-2">2</a></span>
+<span class="normal"><a href="#__codelineno-25-3">3</a></span>
+<span class="normal"><a href="#__codelineno-25-4">4</a></span>
+<span class="normal"><a href="#__codelineno-25-5">5</a></span>
+<span class="normal"><a href="#__codelineno-25-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ip addr show veth2</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="m">8</span>:<span class="w"> </span>veth2@if7:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a><span class="w">    </span>link/ether<span class="w"> </span>9a:c0:ed:69:8c:4e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.246/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth2
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth4ip">配置<code>veth4</code>的<code>ip</code>地址</h3>
 <p>由于<code>veth4</code>已经移动到第三个容器中去了，所以需要到该容器中执行。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:3]# ip addr add 192.168.1.247/24 dev veth4
-(unshare) [root@ubuntu]:[~][tty:3]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ip addr add 192.168.1.247/24 dev veth4</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>veth4</code>地址。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:3]# ip addr show veth4
-10: veth4@if9: &lt;BROADCAST,MULTICAST&gt; mtu 1500 qdisc noop state DOWN group default qlen 1000
-    link/ether d2:a0:6a:c1:fe:80 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.247/24 scope global veth4
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:3]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span>
+<span class="normal"><a href="#__codelineno-27-2">2</a></span>
+<span class="normal"><a href="#__codelineno-27-3">3</a></span>
+<span class="normal"><a href="#__codelineno-27-4">4</a></span>
+<span class="normal"><a href="#__codelineno-27-5">5</a></span>
+<span class="normal"><a href="#__codelineno-27-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ip addr show veth4</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><span class="m">10</span>:<span class="w"> </span>veth4@if9:<span class="w"> </span>&lt;BROADCAST,MULTICAST&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a><span class="w">    </span>link/ether<span class="w"> </span>d2:a0:6a:c1:fe:80<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.247/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth4
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_4">启用虚拟设备</h2>
 <p>虚拟设备创建成功后，及时已经配置了<code>ip</code>地址，其网卡状态依然是关闭的（<code>DOWN</code>），需要手动启动才行。接下来，开始逐个启动网络设备。</p>
 <h3 id="br0_1">启动<code>br0</code></h3>
 <p><code>br0</code>在宿主机，所以需要在宿主机操作。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link set br0 up
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-28-1">1</a></span>
+<span class="normal"><a href="#__codelineno-28-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set br0 up</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>再查看<code>br0</code>的<code>ip</code>地址。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip addr show br0
-4: br0: &lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc noqueue state DOWN group default qlen 1000
-    link/ether 72:cf:be:81:fc:62 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.250/24 scope global br0
-       valid_lft forever preferred_lft forever
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-29-1">1</a></span>
+<span class="normal"><a href="#__codelineno-29-2">2</a></span>
+<span class="normal"><a href="#__codelineno-29-3">3</a></span>
+<span class="normal"><a href="#__codelineno-29-4">4</a></span>
+<span class="normal"><a href="#__codelineno-29-5">5</a></span>
+<span class="normal"><a href="#__codelineno-29-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip addr show br0</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2"></a><span class="m">4</span>:<span class="w"> </span>br0:<span class="w"> </span>&lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">72</span>:cf:be:81:fc:62<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.250/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>br0
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>虽然此时的状态还是<code>DOWN</code>，但是也已经可以<code>ping</code>通了。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ping -c 4 192.168.1.250
-PING 192.168.1.250 (192.168.1.250) 56(84) bytes of data.
-64 bytes from 192.168.1.250: icmp_seq=1 ttl=64 time=0.018 ms
-64 bytes from 192.168.1.250: icmp_seq=2 ttl=64 time=0.027 ms
-64 bytes from 192.168.1.250: icmp_seq=3 ttl=64 time=0.025 ms
-64 bytes from 192.168.1.250: icmp_seq=4 ttl=64 time=0.026 ms
-
---- 192.168.1.250 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3110ms
-rtt min/avg/max/mdev = 0.018/0.024/0.027/0.003 ms
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-30-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-30-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-30-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-30-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-30-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-30-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-30-10">10</a></span>
+<span class="normal"><a href="#__codelineno-30-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ping -c 4 192.168.1.250</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a>PING<span class="w"> </span><span class="m">192</span>.168.1.250<span class="w"> </span><span class="o">(</span><span class="m">192</span>.168.1.250<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.250:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.018<span class="w"> </span>ms
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.250:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.027<span class="w"> </span>ms
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.250:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.025<span class="w"> </span>ms
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.250:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.026<span class="w"> </span>ms
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a>---<span class="w"> </span><span class="m">192</span>.168.1.250<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3110ms
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.018/0.024/0.027/0.003<span class="w"> </span>ms
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth_2">启动宿主机上的<code>veth</code>设备</h3>
 <p><code>veth1</code>、<code>veth3</code>、<code>veth5</code>都在宿主机上，需要将其启动。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# ip link set veth1 up
-[root@ubuntu]:[~][tty:0]# ip link set veth3 up
-[root@ubuntu]:[~][tty:0]# ip link set veth5 up
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span>
+<span class="normal"><a href="#__codelineno-31-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth1 up</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth3 up</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ip link set veth5 up</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth0_1">启动<code>veth0</code>设备</h3>
 <p><code>veth0</code>在第一个容器上（<code>pid:1349</code>），需要将其启动。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ip link set veth0 up
-(unshare) [root@ubuntu]:[~][tty:1]#
-(unshare) [root@ubuntu]:[~][tty:1]# ip addr show veth0
-6: veth0@if5: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.245/24 scope global veth0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::6477:10ff:fe54:810e/64 scope link proto kernel_ll
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-32-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-32-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-32-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-32-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-32-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-32-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-32-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-32-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-32-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip link set veth0 up</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip addr show veth0</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="m">6</span>:<span class="w"> </span>veth0@if5:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">66</span>:77:10:54:81:0e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.245/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth0
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8"></a><span class="w">    </span>inet6<span class="w"> </span>fe80::6477:10ff:fe54:810e/64<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>proto<span class="w"> </span>kernel_ll
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth2_1">启动<code>veth2</code>设备</h3>
 <p><code>veth2</code>在第二个容器上（<code>pid:1357</code>），需要将其启动。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:2]# ip link set veth2 up
-(unshare) [root@ubuntu]:[~][tty:2]#
-(unshare) [root@ubuntu]:[~][tty:2]# ip addr show veth2
-8: veth2@if7: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 9a:c0:ed:69:8c:4e brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.246/24 scope global veth2
-       valid_lft forever preferred_lft forever
-    inet6 fe80::98c0:edff:fe69:8c4e/64 scope link proto kernel_ll
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:2]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-33-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-33-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-33-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-33-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ip link set veth2 up</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ip addr show veth2</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="m">8</span>:<span class="w"> </span>veth2@if7:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="w">    </span>link/ether<span class="w"> </span>9a:c0:ed:69:8c:4e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.246/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth2
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8"></a><span class="w">    </span>inet6<span class="w"> </span>fe80::98c0:edff:fe69:8c4e/64<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>proto<span class="w"> </span>kernel_ll
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="veth4_1">启动<code>veth4</code>设备</h3>
 <p><code>veth4</code>在第三个容器上（<code>pid:1365</code>），需要将其启动。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:3]# ip link set veth4 up
-(unshare) [root@ubuntu]:[~][tty:3]#
-(unshare) [root@ubuntu]:[~][tty:3]# ip addr show veth4
-10: veth4@if9: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether d2:a0:6a:c1:fe:80 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.247/24 scope global veth4
-       valid_lft forever preferred_lft forever
-    inet6 fe80::d0a0:6aff:fec1:fe80/64 scope link proto kernel_ll
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:3]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-34-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-34-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-34-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-34-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-34-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-34-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-34-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-34-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-34-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ip link set veth4 up</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ip addr show veth4</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="m">10</span>:<span class="w"> </span>veth4@if9:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="w">    </span>link/ether<span class="w"> </span>d2:a0:6a:c1:fe:80<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.247/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth4
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8"></a><span class="w">    </span>inet6<span class="w"> </span>fe80::d0a0:6aff:fec1:fe80/64<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>proto<span class="w"> </span>kernel_ll
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_5">容器之间互相通信</h2>
 <p>有了<code>bridge</code>的加持，连接上的设备都可以相互通信，此时容器可以相互通信了。</p>
 <p>比如在第三个容器上，可以<code>ping</code>通第一个容器和第二个容器。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:3]# ip a
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-10: veth4@if9: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether d2:a0:6a:c1:fe:80 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.247/24 scope global veth4
-       valid_lft forever preferred_lft forever
-    inet6 fe80::d0a0:6aff:fec1:fe80/64 scope link proto kernel_ll
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:3]#
-(unshare) [root@ubuntu]:[~][tty:3]# # ping 容器1
-(unshare) [root@ubuntu]:[~][tty:3]# ping 192.168.1.245 -c 4
-PING 192.168.1.245 (192.168.1.245) 56(84) bytes of data.
-64 bytes from 192.168.1.245: icmp_seq=1 ttl=64 time=0.021 ms
-64 bytes from 192.168.1.245: icmp_seq=2 ttl=64 time=0.035 ms
-64 bytes from 192.168.1.245: icmp_seq=3 ttl=64 time=0.037 ms
-64 bytes from 192.168.1.245: icmp_seq=4 ttl=64 time=0.039 ms
-
---- 192.168.1.245 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3101ms
-rtt min/avg/max/mdev = 0.021/0.033/0.039/0.007 ms
-(unshare) [root@ubuntu]:[~][tty:3]#
-(unshare) [root@ubuntu]:[~][tty:3]#
-(unshare) [root@ubuntu]:[~][tty:3]# # ping 容器2
-(unshare) [root@ubuntu]:[~][tty:3]# ping 192.168.1.246 -c 4
-PING 192.168.1.246 (192.168.1.246) 56(84) bytes of data.
-64 bytes from 192.168.1.246: icmp_seq=1 ttl=64 time=0.049 ms
-64 bytes from 192.168.1.246: icmp_seq=2 ttl=64 time=0.036 ms
-64 bytes from 192.168.1.246: icmp_seq=3 ttl=64 time=0.035 ms
-64 bytes from 192.168.1.246: icmp_seq=4 ttl=64 time=0.038 ms
-
---- 192.168.1.246 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3061ms
-rtt min/avg/max/mdev = 0.035/0.039/0.049/0.005 ms
-(unshare) [root@ubuntu]:[~][tty:3]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-35-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-35-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-35-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-35-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-35-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-35-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-35-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-35-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-35-10">10</a></span>
+<span class="normal"><a href="#__codelineno-35-11">11</a></span>
+<span class="normal"><a href="#__codelineno-35-12">12</a></span>
+<span class="normal"><a href="#__codelineno-35-13">13</a></span>
+<span class="normal"><a href="#__codelineno-35-14">14</a></span>
+<span class="normal"><a href="#__codelineno-35-15">15</a></span>
+<span class="normal"><a href="#__codelineno-35-16">16</a></span>
+<span class="normal"><a href="#__codelineno-35-17">17</a></span>
+<span class="normal"><a href="#__codelineno-35-18">18</a></span>
+<span class="normal"><a href="#__codelineno-35-19">19</a></span>
+<span class="normal"><a href="#__codelineno-35-20">20</a></span>
+<span class="normal"><a href="#__codelineno-35-21">21</a></span>
+<span class="normal"><a href="#__codelineno-35-22">22</a></span>
+<span class="normal"><a href="#__codelineno-35-23">23</a></span>
+<span class="normal"><a href="#__codelineno-35-24">24</a></span>
+<span class="normal"><a href="#__codelineno-35-25">25</a></span>
+<span class="normal"><a href="#__codelineno-35-26">26</a></span>
+<span class="normal"><a href="#__codelineno-35-27">27</a></span>
+<span class="normal"><a href="#__codelineno-35-28">28</a></span>
+<span class="normal"><a href="#__codelineno-35-29">29</a></span>
+<span class="normal"><a href="#__codelineno-35-30">30</a></span>
+<span class="normal"><a href="#__codelineno-35-31">31</a></span>
+<span class="normal"><a href="#__codelineno-35-32">32</a></span>
+<span class="normal"><a href="#__codelineno-35-33">33</a></span>
+<span class="normal"><a href="#__codelineno-35-34">34</a></span>
+<span class="normal"><a href="#__codelineno-35-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ip a</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4"></a><span class="m">10</span>:<span class="w"> </span>veth4@if9:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5"></a><span class="w">    </span>link/ether<span class="w"> </span>d2:a0:6a:c1:fe:80<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.247/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth4
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8"></a><span class="w">    </span>inet6<span class="w"> </span>fe80::d0a0:6aff:fec1:fe80/64<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>proto<span class="w"> </span>kernel_ll
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># # ping 容器1</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ping 192.168.1.245 -c 4</span>
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13"></a>PING<span class="w"> </span><span class="m">192</span>.168.1.245<span class="w"> </span><span class="o">(</span><span class="m">192</span>.168.1.245<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.245:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.021<span class="w"> </span>ms
+</span><span id="__span-35-15"><a id="__codelineno-35-15" name="__codelineno-35-15"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.245:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.035<span class="w"> </span>ms
+</span><span id="__span-35-16"><a id="__codelineno-35-16" name="__codelineno-35-16"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.245:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.037<span class="w"> </span>ms
+</span><span id="__span-35-17"><a id="__codelineno-35-17" name="__codelineno-35-17"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.245:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.039<span class="w"> </span>ms
+</span><span id="__span-35-18"><a id="__codelineno-35-18" name="__codelineno-35-18"></a>
+</span><span id="__span-35-19"><a id="__codelineno-35-19" name="__codelineno-35-19"></a>---<span class="w"> </span><span class="m">192</span>.168.1.245<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-35-20"><a id="__codelineno-35-20" name="__codelineno-35-20"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3101ms
+</span><span id="__span-35-21"><a id="__codelineno-35-21" name="__codelineno-35-21"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.021/0.033/0.039/0.007<span class="w"> </span>ms
+</span><span id="__span-35-22"><a id="__codelineno-35-22" name="__codelineno-35-22"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-35-23"><a id="__codelineno-35-23" name="__codelineno-35-23"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-35-24"><a id="__codelineno-35-24" name="__codelineno-35-24"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># # ping 容器2</span>
+</span><span id="__span-35-25"><a id="__codelineno-35-25" name="__codelineno-35-25"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ping 192.168.1.246 -c 4</span>
+</span><span id="__span-35-26"><a id="__codelineno-35-26" name="__codelineno-35-26"></a>PING<span class="w"> </span><span class="m">192</span>.168.1.246<span class="w"> </span><span class="o">(</span><span class="m">192</span>.168.1.246<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-35-27"><a id="__codelineno-35-27" name="__codelineno-35-27"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.049<span class="w"> </span>ms
+</span><span id="__span-35-28"><a id="__codelineno-35-28" name="__codelineno-35-28"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.036<span class="w"> </span>ms
+</span><span id="__span-35-29"><a id="__codelineno-35-29" name="__codelineno-35-29"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.035<span class="w"> </span>ms
+</span><span id="__span-35-30"><a id="__codelineno-35-30" name="__codelineno-35-30"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.038<span class="w"> </span>ms
+</span><span id="__span-35-31"><a id="__codelineno-35-31" name="__codelineno-35-31"></a>
+</span><span id="__span-35-32"><a id="__codelineno-35-32" name="__codelineno-35-32"></a>---<span class="w"> </span><span class="m">192</span>.168.1.246<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-35-33"><a id="__codelineno-35-33" name="__codelineno-35-33"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3061ms
+</span><span id="__span-35-34"><a id="__codelineno-35-34" name="__codelineno-35-34"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.035/0.039/0.049/0.005<span class="w"> </span>ms
+</span><span id="__span-35-35"><a id="__codelineno-35-35" name="__codelineno-35-35"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>同样的，在第一个容器上，也可以<code>ping</code>通第二个容器和第三个容器。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ip a
-1: lo: &lt;LOOPBACK&gt; mtu 65536 qdisc noop state DOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-6: veth0@if5: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default qlen 1000
-    link/ether 66:77:10:54:81:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet 192.168.1.245/24 scope global veth0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::6477:10ff:fe54:810e/64 scope link proto kernel_ll
-       valid_lft forever preferred_lft forever
-(unshare) [root@ubuntu]:[~][tty:1]#
-(unshare) [root@ubuntu]:[~][tty:1]# # ping 容器2
-(unshare) [root@ubuntu]:[~][tty:1]# ping -c 4  192.168.1.246
-PING 192.168.1.246 (192.168.1.246) 56(84) bytes of data.
-64 bytes from 192.168.1.246: icmp_seq=1 ttl=64 time=0.045 ms
-64 bytes from 192.168.1.246: icmp_seq=2 ttl=64 time=0.035 ms
-64 bytes from 192.168.1.246: icmp_seq=3 ttl=64 time=0.061 ms
-64 bytes from 192.168.1.246: icmp_seq=4 ttl=64 time=0.037 ms
-
---- 192.168.1.246 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3091ms
-rtt min/avg/max/mdev = 0.035/0.044/0.061/0.010 ms
-(unshare) [root@ubuntu]:[~][tty:1]# # ping 容器3
-(unshare) [root@ubuntu]:[~][tty:1]# ping -c 4  192.168.1.247
-PING 192.168.1.247 (192.168.1.247) 56(84) bytes of data.
-64 bytes from 192.168.1.247: icmp_seq=1 ttl=64 time=0.022 ms
-64 bytes from 192.168.1.247: icmp_seq=2 ttl=64 time=0.059 ms
-64 bytes from 192.168.1.247: icmp_seq=3 ttl=64 time=0.037 ms
-64 bytes from 192.168.1.247: icmp_seq=4 ttl=64 time=0.036 ms
-
---- 192.168.1.247 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3054ms
-rtt min/avg/max/mdev = 0.022/0.038/0.059/0.013 ms
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-36-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-36-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-36-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-36-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-36-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-36-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-36-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-36-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-36-10">10</a></span>
+<span class="normal"><a href="#__codelineno-36-11">11</a></span>
+<span class="normal"><a href="#__codelineno-36-12">12</a></span>
+<span class="normal"><a href="#__codelineno-36-13">13</a></span>
+<span class="normal"><a href="#__codelineno-36-14">14</a></span>
+<span class="normal"><a href="#__codelineno-36-15">15</a></span>
+<span class="normal"><a href="#__codelineno-36-16">16</a></span>
+<span class="normal"><a href="#__codelineno-36-17">17</a></span>
+<span class="normal"><a href="#__codelineno-36-18">18</a></span>
+<span class="normal"><a href="#__codelineno-36-19">19</a></span>
+<span class="normal"><a href="#__codelineno-36-20">20</a></span>
+<span class="normal"><a href="#__codelineno-36-21">21</a></span>
+<span class="normal"><a href="#__codelineno-36-22">22</a></span>
+<span class="normal"><a href="#__codelineno-36-23">23</a></span>
+<span class="normal"><a href="#__codelineno-36-24">24</a></span>
+<span class="normal"><a href="#__codelineno-36-25">25</a></span>
+<span class="normal"><a href="#__codelineno-36-26">26</a></span>
+<span class="normal"><a href="#__codelineno-36-27">27</a></span>
+<span class="normal"><a href="#__codelineno-36-28">28</a></span>
+<span class="normal"><a href="#__codelineno-36-29">29</a></span>
+<span class="normal"><a href="#__codelineno-36-30">30</a></span>
+<span class="normal"><a href="#__codelineno-36-31">31</a></span>
+<span class="normal"><a href="#__codelineno-36-32">32</a></span>
+<span class="normal"><a href="#__codelineno-36-33">33</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip a</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="m">6</span>:<span class="w"> </span>veth0@if5:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">66</span>:77:10:54:81:0e<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff<span class="w"> </span>link-netnsid<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.245/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>veth0
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8"></a><span class="w">    </span>inet6<span class="w"> </span>fe80::6477:10ff:fe54:810e/64<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>proto<span class="w"> </span>kernel_ll
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># # ping 容器2</span>
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ping -c 4  192.168.1.246</span>
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13"></a>PING<span class="w"> </span><span class="m">192</span>.168.1.246<span class="w"> </span><span class="o">(</span><span class="m">192</span>.168.1.246<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.045<span class="w"> </span>ms
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.035<span class="w"> </span>ms
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.061<span class="w"> </span>ms
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.246:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.037<span class="w"> </span>ms
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18"></a>
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19"></a>---<span class="w"> </span><span class="m">192</span>.168.1.246<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3091ms
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.035/0.044/0.061/0.010<span class="w"> </span>ms
+</span><span id="__span-36-22"><a id="__codelineno-36-22" name="__codelineno-36-22"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># # ping 容器3</span>
+</span><span id="__span-36-23"><a id="__codelineno-36-23" name="__codelineno-36-23"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ping -c 4  192.168.1.247</span>
+</span><span id="__span-36-24"><a id="__codelineno-36-24" name="__codelineno-36-24"></a>PING<span class="w"> </span><span class="m">192</span>.168.1.247<span class="w"> </span><span class="o">(</span><span class="m">192</span>.168.1.247<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-36-25"><a id="__codelineno-36-25" name="__codelineno-36-25"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.247:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.022<span class="w"> </span>ms
+</span><span id="__span-36-26"><a id="__codelineno-36-26" name="__codelineno-36-26"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.247:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.059<span class="w"> </span>ms
+</span><span id="__span-36-27"><a id="__codelineno-36-27" name="__codelineno-36-27"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.247:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.037<span class="w"> </span>ms
+</span><span id="__span-36-28"><a id="__codelineno-36-28" name="__codelineno-36-28"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">192</span>.168.1.247:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">0</span>.036<span class="w"> </span>ms
+</span><span id="__span-36-29"><a id="__codelineno-36-29" name="__codelineno-36-29"></a>
+</span><span id="__span-36-30"><a id="__codelineno-36-30" name="__codelineno-36-30"></a>---<span class="w"> </span><span class="m">192</span>.168.1.247<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-36-31"><a id="__codelineno-36-31" name="__codelineno-36-31"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3054ms
+</span><span id="__span-36-32"><a id="__codelineno-36-32" name="__codelineno-36-32"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>.022/0.038/0.059/0.013<span class="w"> </span>ms
+</span><span id="__span-36-33"><a id="__codelineno-36-33" name="__codelineno-36-33"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_6">让容器连上外网</h2>
 <p>现在的容器之间能够互相通信了，但是还是不能上外网，例如<code>ping 8.8.8.8</code>。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ping 8.8.8.8
-ping: connect: Network is unreachable
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
+<span class="normal"><a href="#__codelineno-37-2">2</a></span>
+<span class="normal"><a href="#__codelineno-37-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ping 8.8.8.8</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a>ping:<span class="w"> </span>connect:<span class="w"> </span>Network<span class="w"> </span>is<span class="w"> </span>unreachable
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>显示的还是网络不可达，但是宿主机是可以上网的，可以将流量发送到宿主机上，再由宿主机转发出去即可，</p>
 <p>首先要定义路由表，增加一条默认路由，将流量指向<code>br0</code>，即<code>192.168.1.250</code>。</p>
 <p>先查看其路由信息。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ip route
-192.168.1.0/24 dev veth0 proto kernel scope link src 192.168.1.245
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip route</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="m">192</span>.168.1.0/24<span class="w"> </span>dev<span class="w"> </span>veth0<span class="w"> </span>proto<span class="w"> </span>kernel<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.1.245
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>添加一条默认路由，将流量都指向<code>br0</code>。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ip route add default via 192.168.1.250
-(unshare) [root@ubuntu]:[~][tty:1]#
-(unshare) [root@ubuntu]:[~][tty:1]# ip route
-default via 192.168.1.250 dev veth0
-192.168.1.0/24 dev veth0 proto kernel scope link src 192.168.1.245
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span>
+<span class="normal"><a href="#__codelineno-39-3">3</a></span>
+<span class="normal"><a href="#__codelineno-39-4">4</a></span>
+<span class="normal"><a href="#__codelineno-39-5">5</a></span>
+<span class="normal"><a href="#__codelineno-39-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip route add default via 192.168.1.250</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ip route</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a>default<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.1.250<span class="w"> </span>dev<span class="w"> </span>veth0
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5"></a><span class="m">192</span>.168.1.0/24<span class="w"> </span>dev<span class="w"> </span>veth0<span class="w"> </span>proto<span class="w"> </span>kernel<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.1.245
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>定义完路由后，需要在宿主机上做转发。</p>
 <p>首先需要允许内核进行<code>ip</code>转发。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# sysctl net.ipv4.conf.all.forwarding=1
-net.ipv4.conf.all.forwarding = 1
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span>
+<span class="normal"><a href="#__codelineno-40-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># sysctl net.ipv4.conf.all.forwarding=1</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a>net.ipv4.conf.all.forwarding<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>而后再定一个<code>nat</code>规则，将容器上来的数据包，修改为宿主机吱声的，从而请求，报文回复后，再进行<code>nat</code>转发。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1">1</a></span>
+<span class="normal"><a href="#__codelineno-41-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># iptables -t nat -A POSTROUTING -s 192.168.1.0/24 -j MASQUERADE</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>此时再在容器中，就可以连接上外网了。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# ping 8.8.8.8 -c 4
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=54 time=34.1 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=54 time=33.8 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=54 time=33.7 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=54 time=34.0 ms
-
---- 8.8.8.8 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3004ms
-rtt min/avg/max/mdev = 33.705/33.907/34.094/0.165 ms
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-42-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-42-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-42-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-42-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-42-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-42-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-42-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-42-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-42-10">10</a></span>
+<span class="normal"><a href="#__codelineno-42-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ping 8.8.8.8 -c 4</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2"></a>PING<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span><span class="o">(</span><span class="m">8</span>.8.8.8<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.1<span class="w"> </span>ms
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">33</span>.8<span class="w"> </span>ms
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">33</span>.7<span class="w"> </span>ms
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.0<span class="w"> </span>ms
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7"></a>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8"></a>---<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3004ms
+</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">33</span>.705/33.907/34.094/0.165<span class="w"> </span>ms
+</span><span id="__span-42-11"><a id="__codelineno-42-11" name="__codelineno-42-11"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>其他2个容器，仅需添加默认路由为<code>192.168.1.250</code>，即可上网。</p>
 <p>首先操作第二个容器。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:2]# ip route add default via 192.168.1.250
-(unshare) [root@ubuntu]:[~][tty:2]# ping 8.8.8.8 -c 4
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=54 time=34.0 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=54 time=34.1 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=54 time=34.2 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=54 time=34.1 ms
-
---- 8.8.8.8 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3003ms
-rtt min/avg/max/mdev = 34.047/34.110/34.172/0.044 ms
-(unshare) [root@ubuntu]:[~][tty:2]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-43-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-43-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-43-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-43-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-43-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-43-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-43-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-43-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-43-10">10</a></span>
+<span class="normal"><a href="#__codelineno-43-11">11</a></span>
+<span class="normal"><a href="#__codelineno-43-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ip route add default via 192.168.1.250</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1"># ping 8.8.8.8 -c 4</span>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3"></a>PING<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span><span class="o">(</span><span class="m">8</span>.8.8.8<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.0<span class="w"> </span>ms
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.1<span class="w"> </span>ms
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.2<span class="w"> </span>ms
+</span><span id="__span-43-7"><a id="__codelineno-43-7" name="__codelineno-43-7"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.1<span class="w"> </span>ms
+</span><span id="__span-43-8"><a id="__codelineno-43-8" name="__codelineno-43-8"></a>
+</span><span id="__span-43-9"><a id="__codelineno-43-9" name="__codelineno-43-9"></a>---<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-43-10"><a id="__codelineno-43-10" name="__codelineno-43-10"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3003ms
+</span><span id="__span-43-11"><a id="__codelineno-43-11" name="__codelineno-43-11"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">34</span>.047/34.110/34.172/0.044<span class="w"> </span>ms
+</span><span id="__span-43-12"><a id="__codelineno-43-12" name="__codelineno-43-12"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:2<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>最后操作第三个容器。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:3]# ip route add default via 192.168.1.250
-(unshare) [root@ubuntu]:[~][tty:3]# ping 8.8.8.8 -c 4
-PING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
-64 bytes from 8.8.8.8: icmp_seq=1 ttl=54 time=35.5 ms
-64 bytes from 8.8.8.8: icmp_seq=2 ttl=54 time=34.0 ms
-64 bytes from 8.8.8.8: icmp_seq=3 ttl=54 time=34.3 ms
-64 bytes from 8.8.8.8: icmp_seq=4 ttl=54 time=33.7 ms
-
---- 8.8.8.8 ping statistics ---
-4 packets transmitted, 4 received, 0% packet loss, time 3003ms
-rtt min/avg/max/mdev = 33.713/34.397/35.524/0.683 ms
-(unshare) [root@ubuntu]:[~][tty:3]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-44-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-44-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-44-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-44-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-44-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-44-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-44-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-44-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-44-10">10</a></span>
+<span class="normal"><a href="#__codelineno-44-11">11</a></span>
+<span class="normal"><a href="#__codelineno-44-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ip route add default via 192.168.1.250</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1"># ping 8.8.8.8 -c 4</span>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3"></a>PING<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span><span class="o">(</span><span class="m">8</span>.8.8.8<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">35</span>.5<span class="w"> </span>ms
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.0<span class="w"> </span>ms
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">3</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">34</span>.3<span class="w"> </span>ms
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">8</span>.8.8.8:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">4</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">54</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">33</span>.7<span class="w"> </span>ms
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8"></a>
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9"></a>---<span class="w"> </span><span class="m">8</span>.8.8.8<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">4</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>3003ms
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">33</span>.713/34.397/35.524/0.683<span class="w"> </span>ms
+</span><span id="__span-44-12"><a id="__codelineno-44-12" name="__codelineno-44-12"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:3<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_7">将容器的端口映射进出去</h2>
 <h3 id="iptables">使用iptables进行端口映射</h3>
 <p>这个和<code>bridge</code>没有什么关系，只是让容器可以上网了，还有一个很常见的需求是，将容器的某个端口映射出去。比如，将宿主机的<code>8080</code>端口，映射到第一个容器的<code>80</code>端口上，即访问宿主机的<code>8080</code>端口，实际上是访问的第一个容器的<code>80</code>端口。</p>
 <p>此类也是需要<code>iptables</code>做<code>nat</code>转发。</p>
 <p>比如，第一个容器的<code>ip</code>地址为<code>192.168.1.245</code>，可以将宿主机的<code>8080</code>端口，转发到<code>192.168.1.245</code>的<code>80</code>端口上，例如：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# iptables -t nat -A OUTPUT -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.245:80
-[root@ubuntu]:[~][tty:0]# iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.245:80
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
+<span class="normal"><a href="#__codelineno-45-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># iptables -t nat -A OUTPUT -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.245:80</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># iptables -t nat -A PREROUTING -p tcp --dport 8080 -j DNAT --to-destination 192.168.1.245:80</span>
+</span></code></pre></div></td></tr></table></div>
 <p>添加了这2条规则，其中<code>OUTPUT</code>是指在本地发出的流量，而<code>PREROUTING</code>是指外部进入本机的流量。<code>DNAT</code>是修改流量的目标地址，将流量定向到<code>192.168.1.245:80</code>。</p>
 <p>添加了之后，在外部和内部都访问宿主机的<code>8080</code>即可。</p>
 <p>首先，在第一个容器中（<code>ip:192.168.1.245</code>）使用<code>nc</code>监听<code>80</code>端口。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# nc -lp 80
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># nc -lp 80</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在外部机器，使用<code>telnet</code>进行请求。</p>
-<pre><code class="language-bash">$ telnet 192.168.100.102 8080
-Trying 192.168.100.141...
-Connected to 192.168.100.102.
-Escape character is '^]'.
-hello world namespace 1
-^]
-
-telnet&gt; quit
-Connection closed.
-$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-47-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-47-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-47-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-47-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-47-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-47-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-47-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-47-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-47-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1"></a>$<span class="w"> </span>telnet<span class="w"> </span><span class="m">192</span>.168.100.102<span class="w"> </span><span class="m">8080</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2"></a>Trying<span class="w"> </span><span class="m">192</span>.168.100.141...
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3"></a>Connected<span class="w"> </span>to<span class="w"> </span><span class="m">192</span>.168.100.102.
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4"></a>Escape<span class="w"> </span>character<span class="w"> </span>is<span class="w"> </span><span class="s1">&#39;^]&#39;</span>.
+</span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5"></a>hello<span class="w"> </span>world<span class="w"> </span>namespace<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6"></a>^<span class="o">]</span>
+</span><span id="__span-47-7"><a id="__codelineno-47-7" name="__codelineno-47-7"></a>
+</span><span id="__span-47-8"><a id="__codelineno-47-8" name="__codelineno-47-8"></a>telnet&gt;<span class="w"> </span>quit
+</span><span id="__span-47-9"><a id="__codelineno-47-9" name="__codelineno-47-9"></a>Connection<span class="w"> </span>closed.
+</span><span id="__span-47-10"><a id="__codelineno-47-10" name="__codelineno-47-10"></a>$
+</span></code></pre></div></td></tr></table></div>
 <p>此时，在第一个容器中的<code>nc</code>也有了相同的消息。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# nc -lp 80
-hello world namespace 1
-(unshare) [root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
+<span class="normal"><a href="#__codelineno-48-2">2</a></span>
+<span class="normal"><a href="#__codelineno-48-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># nc -lp 80</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2"></a>hello<span class="w"> </span>world<span class="w"> </span>namespace<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在宿主机上同样的请求<code>192.168.100.102 8080</code>也是可以进行通信的。</p>
 <h3 id="_8">使用程序进行端口映射</h3>
 <p>这样操作太过麻烦，且在<code>iptables</code>使用了端口转发，使用<code>ss</code>也查看不到，所以，最好还是直接使用程序的方法进行转发，例如，使用<code>go</code>写一个最简单的转发命令。</p>
-<pre><code class="language-go">package main
-
-import (
-    &quot;flag&quot;
-    &quot;fmt&quot;
-    &quot;io&quot;
-    &quot;net&quot;
-)
-
-var (
-    tcpPort string
-    target  string
-)
-
-func init() {
-    flag.StringVar(&amp;tcpPort, &quot;tcpPort&quot;, &quot;&quot;, &quot;Specify TCP port&quot;)
-    flag.StringVar(&amp;target, &quot;target&quot;, &quot;&quot;, &quot;Specify the target address&quot;)
-}
-
-func main() {
-
-    flag.Parse()
-
-    if tcpPort == &quot;&quot; &amp;&amp; target == &quot;&quot; {
-        fmt.Println(&quot;No specified tcpPort or destination address&quot;)
-        return
-    }
-
-    l, err := net.Listen(&quot;tcp&quot;, fmt.Sprintf(&quot;0.0.0.0:%s&quot;, tcpPort))
-    if err != nil {
-        fmt.Println(&quot;Listening to TCP error &quot;, err)
-        return
-    }
-
-    for {
-        conn, err := l.Accept()
-        if err != nil {
-            fmt.Println(&quot;accept error&quot;, err)
-            continue
-        }
-        go handleConn(conn, target)
-    }
-}
-
-func handleConn(conn net.Conn, targetAddr string) {
-    defer conn.Close()
-
-    fmt.Println(conn.RemoteAddr().String(), &quot;is connected.&quot;)
-
-    remoteConn, err := net.Dial(&quot;tcp&quot;, targetAddr)
-    if err != nil {
-        fmt.Println(&quot;connet tcp &quot;, targetAddr, &quot; error&quot;, err)
-        return
-    }
-    defer remoteConn.Close()
-
-    go io.Copy(remoteConn, conn)
-    io.Copy(conn, remoteConn)
-}
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-49-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-49-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-49-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-49-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-49-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-49-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-49-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-49-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-49-10">10</a></span>
+<span class="normal"><a href="#__codelineno-49-11">11</a></span>
+<span class="normal"><a href="#__codelineno-49-12">12</a></span>
+<span class="normal"><a href="#__codelineno-49-13">13</a></span>
+<span class="normal"><a href="#__codelineno-49-14">14</a></span>
+<span class="normal"><a href="#__codelineno-49-15">15</a></span>
+<span class="normal"><a href="#__codelineno-49-16">16</a></span>
+<span class="normal"><a href="#__codelineno-49-17">17</a></span>
+<span class="normal"><a href="#__codelineno-49-18">18</a></span>
+<span class="normal"><a href="#__codelineno-49-19">19</a></span>
+<span class="normal"><a href="#__codelineno-49-20">20</a></span>
+<span class="normal"><a href="#__codelineno-49-21">21</a></span>
+<span class="normal"><a href="#__codelineno-49-22">22</a></span>
+<span class="normal"><a href="#__codelineno-49-23">23</a></span>
+<span class="normal"><a href="#__codelineno-49-24">24</a></span>
+<span class="normal"><a href="#__codelineno-49-25">25</a></span>
+<span class="normal"><a href="#__codelineno-49-26">26</a></span>
+<span class="normal"><a href="#__codelineno-49-27">27</a></span>
+<span class="normal"><a href="#__codelineno-49-28">28</a></span>
+<span class="normal"><a href="#__codelineno-49-29">29</a></span>
+<span class="normal"><a href="#__codelineno-49-30">30</a></span>
+<span class="normal"><a href="#__codelineno-49-31">31</a></span>
+<span class="normal"><a href="#__codelineno-49-32">32</a></span>
+<span class="normal"><a href="#__codelineno-49-33">33</a></span>
+<span class="normal"><a href="#__codelineno-49-34">34</a></span>
+<span class="normal"><a href="#__codelineno-49-35">35</a></span>
+<span class="normal"><a href="#__codelineno-49-36">36</a></span>
+<span class="normal"><a href="#__codelineno-49-37">37</a></span>
+<span class="normal"><a href="#__codelineno-49-38">38</a></span>
+<span class="normal"><a href="#__codelineno-49-39">39</a></span>
+<span class="normal"><a href="#__codelineno-49-40">40</a></span>
+<span class="normal"><a href="#__codelineno-49-41">41</a></span>
+<span class="normal"><a href="#__codelineno-49-42">42</a></span>
+<span class="normal"><a href="#__codelineno-49-43">43</a></span>
+<span class="normal"><a href="#__codelineno-49-44">44</a></span>
+<span class="normal"><a href="#__codelineno-49-45">45</a></span>
+<span class="normal"><a href="#__codelineno-49-46">46</a></span>
+<span class="normal"><a href="#__codelineno-49-47">47</a></span>
+<span class="normal"><a href="#__codelineno-49-48">48</a></span>
+<span class="normal"><a href="#__codelineno-49-49">49</a></span>
+<span class="normal"><a href="#__codelineno-49-50">50</a></span>
+<span class="normal"><a href="#__codelineno-49-51">51</a></span>
+<span class="normal"><a href="#__codelineno-49-52">52</a></span>
+<span class="normal"><a href="#__codelineno-49-53">53</a></span>
+<span class="normal"><a href="#__codelineno-49-54">54</a></span>
+<span class="normal"><a href="#__codelineno-49-55">55</a></span>
+<span class="normal"><a href="#__codelineno-49-56">56</a></span>
+<span class="normal"><a href="#__codelineno-49-57">57</a></span>
+<span class="normal"><a href="#__codelineno-49-58">58</a></span>
+<span class="normal"><a href="#__codelineno-49-59">59</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2"></a>
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4"></a><span class="w">    </span><span class="s">&quot;flag&quot;</span>
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5"></a><span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6"></a><span class="w">    </span><span class="s">&quot;io&quot;</span>
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7"></a><span class="w">    </span><span class="s">&quot;net&quot;</span>
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8"></a><span class="p">)</span>
+</span><span id="__span-49-9"><a id="__codelineno-49-9" name="__codelineno-49-9"></a>
+</span><span id="__span-49-10"><a id="__codelineno-49-10" name="__codelineno-49-10"></a><span class="kd">var</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-49-11"><a id="__codelineno-49-11" name="__codelineno-49-11"></a><span class="w">    </span><span class="nx">tcpPort</span><span class="w"> </span><span class="kt">string</span>
+</span><span id="__span-49-12"><a id="__codelineno-49-12" name="__codelineno-49-12"></a><span class="w">    </span><span class="nx">target</span><span class="w">  </span><span class="kt">string</span>
+</span><span id="__span-49-13"><a id="__codelineno-49-13" name="__codelineno-49-13"></a><span class="p">)</span>
+</span><span id="__span-49-14"><a id="__codelineno-49-14" name="__codelineno-49-14"></a>
+</span><span id="__span-49-15"><a id="__codelineno-49-15" name="__codelineno-49-15"></a><span class="kd">func</span><span class="w"> </span><span class="nx">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-16"><a id="__codelineno-49-16" name="__codelineno-49-16"></a><span class="w">    </span><span class="nx">flag</span><span class="p">.</span><span class="nx">StringVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">tcpPort</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tcpPort&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Specify TCP port&quot;</span><span class="p">)</span>
+</span><span id="__span-49-17"><a id="__codelineno-49-17" name="__codelineno-49-17"></a><span class="w">    </span><span class="nx">flag</span><span class="p">.</span><span class="nx">StringVar</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">target</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;target&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Specify the target address&quot;</span><span class="p">)</span>
+</span><span id="__span-49-18"><a id="__codelineno-49-18" name="__codelineno-49-18"></a><span class="p">}</span>
+</span><span id="__span-49-19"><a id="__codelineno-49-19" name="__codelineno-49-19"></a>
+</span><span id="__span-49-20"><a id="__codelineno-49-20" name="__codelineno-49-20"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-21"><a id="__codelineno-49-21" name="__codelineno-49-21"></a>
+</span><span id="__span-49-22"><a id="__codelineno-49-22" name="__codelineno-49-22"></a><span class="w">    </span><span class="nx">flag</span><span class="p">.</span><span class="nx">Parse</span><span class="p">()</span>
+</span><span id="__span-49-23"><a id="__codelineno-49-23" name="__codelineno-49-23"></a>
+</span><span id="__span-49-24"><a id="__codelineno-49-24" name="__codelineno-49-24"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">tcpPort</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">target</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-25"><a id="__codelineno-49-25" name="__codelineno-49-25"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;No specified tcpPort or destination address&quot;</span><span class="p">)</span>
+</span><span id="__span-49-26"><a id="__codelineno-49-26" name="__codelineno-49-26"></a><span class="w">        </span><span class="k">return</span>
+</span><span id="__span-49-27"><a id="__codelineno-49-27" name="__codelineno-49-27"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-49-28"><a id="__codelineno-49-28" name="__codelineno-49-28"></a>
+</span><span id="__span-49-29"><a id="__codelineno-49-29" name="__codelineno-49-29"></a><span class="w">    </span><span class="nx">l</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nx">Listen</span><span class="p">(</span><span class="s">&quot;tcp&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&quot;0.0.0.0:%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">tcpPort</span><span class="p">))</span>
+</span><span id="__span-49-30"><a id="__codelineno-49-30" name="__codelineno-49-30"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-31"><a id="__codelineno-49-31" name="__codelineno-49-31"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Listening to TCP error &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-49-32"><a id="__codelineno-49-32" name="__codelineno-49-32"></a><span class="w">        </span><span class="k">return</span>
+</span><span id="__span-49-33"><a id="__codelineno-49-33" name="__codelineno-49-33"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-49-34"><a id="__codelineno-49-34" name="__codelineno-49-34"></a>
+</span><span id="__span-49-35"><a id="__codelineno-49-35" name="__codelineno-49-35"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-36"><a id="__codelineno-49-36" name="__codelineno-49-36"></a><span class="w">        </span><span class="nx">conn</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">l</span><span class="p">.</span><span class="nx">Accept</span><span class="p">()</span>
+</span><span id="__span-49-37"><a id="__codelineno-49-37" name="__codelineno-49-37"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-38"><a id="__codelineno-49-38" name="__codelineno-49-38"></a><span class="w">            </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;accept error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-49-39"><a id="__codelineno-49-39" name="__codelineno-49-39"></a><span class="w">            </span><span class="k">continue</span>
+</span><span id="__span-49-40"><a id="__codelineno-49-40" name="__codelineno-49-40"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-49-41"><a id="__codelineno-49-41" name="__codelineno-49-41"></a><span class="w">        </span><span class="k">go</span><span class="w"> </span><span class="nx">handleConn</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span><span class="w"> </span><span class="nx">target</span><span class="p">)</span>
+</span><span id="__span-49-42"><a id="__codelineno-49-42" name="__codelineno-49-42"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-49-43"><a id="__codelineno-49-43" name="__codelineno-49-43"></a><span class="p">}</span>
+</span><span id="__span-49-44"><a id="__codelineno-49-44" name="__codelineno-49-44"></a>
+</span><span id="__span-49-45"><a id="__codelineno-49-45" name="__codelineno-49-45"></a><span class="kd">func</span><span class="w"> </span><span class="nx">handleConn</span><span class="p">(</span><span class="nx">conn</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nx">Conn</span><span class="p">,</span><span class="w"> </span><span class="nx">targetAddr</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-46"><a id="__codelineno-49-46" name="__codelineno-49-46"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">conn</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+</span><span id="__span-49-47"><a id="__codelineno-49-47" name="__codelineno-49-47"></a>
+</span><span id="__span-49-48"><a id="__codelineno-49-48" name="__codelineno-49-48"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">conn</span><span class="p">.</span><span class="nx">RemoteAddr</span><span class="p">().</span><span class="nx">String</span><span class="p">(),</span><span class="w"> </span><span class="s">&quot;is connected.&quot;</span><span class="p">)</span>
+</span><span id="__span-49-49"><a id="__codelineno-49-49" name="__codelineno-49-49"></a>
+</span><span id="__span-49-50"><a id="__codelineno-49-50" name="__codelineno-49-50"></a><span class="w">    </span><span class="nx">remoteConn</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nx">Dial</span><span class="p">(</span><span class="s">&quot;tcp&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">targetAddr</span><span class="p">)</span>
+</span><span id="__span-49-51"><a id="__codelineno-49-51" name="__codelineno-49-51"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-49-52"><a id="__codelineno-49-52" name="__codelineno-49-52"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;connet tcp &quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">targetAddr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-49-53"><a id="__codelineno-49-53" name="__codelineno-49-53"></a><span class="w">        </span><span class="k">return</span>
+</span><span id="__span-49-54"><a id="__codelineno-49-54" name="__codelineno-49-54"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-49-55"><a id="__codelineno-49-55" name="__codelineno-49-55"></a><span class="w">    </span><span class="k">defer</span><span class="w"> </span><span class="nx">remoteConn</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+</span><span id="__span-49-56"><a id="__codelineno-49-56" name="__codelineno-49-56"></a>
+</span><span id="__span-49-57"><a id="__codelineno-49-57" name="__codelineno-49-57"></a><span class="w">    </span><span class="k">go</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Copy</span><span class="p">(</span><span class="nx">remoteConn</span><span class="p">,</span><span class="w"> </span><span class="nx">conn</span><span class="p">)</span>
+</span><span id="__span-49-58"><a id="__codelineno-49-58" name="__codelineno-49-58"></a><span class="w">    </span><span class="nx">io</span><span class="p">.</span><span class="nx">Copy</span><span class="p">(</span><span class="nx">conn</span><span class="p">,</span><span class="w"> </span><span class="nx">remoteConn</span><span class="p">)</span>
+</span><span id="__span-49-59"><a id="__codelineno-49-59" name="__codelineno-49-59"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述命令是一个及其简单的<code>tcp</code>转发程序，需要输入的参数有2个。</p>
 <ul>
 <li><code>--tcpPort</code>：用于监听宿主机的端口。</li>
 <li><code>--target</code>：用于转发的容器地址（也可以是任何网络地址）。</li>
 </ul>
 <p>先进行编译。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:4]# go build -o portForward 
-[root@ubuntu]:[~][tty:4]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-50-1">1</a></span>
+<span class="normal"><a href="#__codelineno-50-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:4<span class="o">]</span><span class="c1"># go build -o portForward </span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:4<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>运行程序。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:4]# ./portForward --tcpPort 8081 --target 192.168.1.245:80
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-51-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:4<span class="o">]</span><span class="c1"># ./portForward --tcpPort 8081 --target 192.168.1.245:80</span>
+</span></code></pre></div></td></tr></table></div>
 <p>表示将宿主机的<code>8081</code>端口，映射到<code>192.168.1.245</code>的<code>80</code>端口上。</p>
 <p>这样的话，现在本地尝试<code>telnet</code>下。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:5]# telnet 127.0.0.1 8081
-Trying 127.0.0.1...
-Connected to 127.0.0.1.
-Escape character is '^]'.
-hello world ,test portForward
-^]
-telnet&gt;
-^]
-telnet&gt; quit
-Connection closed.
-[root@ubuntu]:[~][tty:5]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-52-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-52-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-52-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-52-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-52-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-52-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-52-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-52-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-52-10">10</a></span>
+<span class="normal"><a href="#__codelineno-52-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1"># telnet 127.0.0.1 8081</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2"></a>Trying<span class="w"> </span><span class="m">127</span>.0.0.1...
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3"></a>Connected<span class="w"> </span>to<span class="w"> </span><span class="m">127</span>.0.0.1.
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4"></a>Escape<span class="w"> </span>character<span class="w"> </span>is<span class="w"> </span><span class="s1">&#39;^]&#39;</span>.
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5"></a>hello<span class="w"> </span>world<span class="w"> </span>,test<span class="w"> </span>portForward
+</span><span id="__span-52-6"><a id="__codelineno-52-6" name="__codelineno-52-6"></a>^<span class="o">]</span>
+</span><span id="__span-52-7"><a id="__codelineno-52-7" name="__codelineno-52-7"></a>telnet&gt;
+</span><span id="__span-52-8"><a id="__codelineno-52-8" name="__codelineno-52-8"></a>^<span class="o">]</span>
+</span><span id="__span-52-9"><a id="__codelineno-52-9" name="__codelineno-52-9"></a>telnet&gt;<span class="w"> </span>quit
+</span><span id="__span-52-10"><a id="__codelineno-52-10" name="__codelineno-52-10"></a>Connection<span class="w"> </span>closed.
+</span><span id="__span-52-11"><a id="__codelineno-52-11" name="__codelineno-52-11"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:5<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看第一个容器的<code>nc</code>日志。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# nc -lp 80
-hello world ,test portForward
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-53-1">1</a></span>
+<span class="normal"><a href="#__codelineno-53-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># nc -lp 80</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2"></a>hello<span class="w"> </span>world<span class="w"> </span>,test<span class="w"> </span>portForward
+</span></code></pre></div></td></tr></table></div>
 <p>使用外网再测试下。</p>
-<pre><code class="language-bash">liwang@DESKTOP-CU66GL1:~$ telnet 192.168.100.102 8081
-Trying 192.168.100.102...
-Connected to 192.168.100.102.
-Escape character is '^]'.
-hello world port forward out
-^]
-
-telnet&gt; quit
-Connection closed.
-liwang@DESKTOP-CU66GL1:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-54-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-54-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-54-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-54-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-54-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-54-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-54-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-54-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-54-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1"></a>liwang@DESKTOP-CU66GL1:~$<span class="w"> </span>telnet<span class="w"> </span><span class="m">192</span>.168.100.102<span class="w"> </span><span class="m">8081</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2"></a>Trying<span class="w"> </span><span class="m">192</span>.168.100.102...
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3"></a>Connected<span class="w"> </span>to<span class="w"> </span><span class="m">192</span>.168.100.102.
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4"></a>Escape<span class="w"> </span>character<span class="w"> </span>is<span class="w"> </span><span class="s1">&#39;^]&#39;</span>.
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5"></a>hello<span class="w"> </span>world<span class="w"> </span>port<span class="w"> </span>forward<span class="w"> </span>out
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6"></a>^<span class="o">]</span>
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7"></a>
+</span><span id="__span-54-8"><a id="__codelineno-54-8" name="__codelineno-54-8"></a>telnet&gt;<span class="w"> </span>quit
+</span><span id="__span-54-9"><a id="__codelineno-54-9" name="__codelineno-54-9"></a>Connection<span class="w"> </span>closed.
+</span><span id="__span-54-10"><a id="__codelineno-54-10" name="__codelineno-54-10"></a>liwang@DESKTOP-CU66GL1:~$
+</span></code></pre></div></td></tr></table></div>
 <p>同样的查看<code>nc</code>日志。</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:1]# nc -lp 80
-hello world port forward out
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-55-1">1</a></span>
+<span class="normal"><a href="#__codelineno-55-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># nc -lp 80</span>
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2"></a>hello<span class="w"> </span>world<span class="w"> </span>port<span class="w"> </span>forward<span class="w"> </span>out
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>portForward</code>程序的日志。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:4]# ./portForward --tcpPort 8081 --target 192.168.1.245:80
-127.0.0.1:54988 is connected.
-192.168.100.101:63441 is connected.
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-56-1">1</a></span>
+<span class="normal"><a href="#__codelineno-56-2">2</a></span>
+<span class="normal"><a href="#__codelineno-56-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:4<span class="o">]</span><span class="c1"># ./portForward --tcpPort 8081 --target 192.168.1.245:80</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2"></a><span class="m">127</span>.0.0.1:54988<span class="w"> </span>is<span class="w"> </span>connected.
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3"></a><span class="m">192</span>.168.100.101:63441<span class="w"> </span>is<span class="w"> </span>connected.
+</span></code></pre></div></td></tr></table></div>
 <p>通过上述例子，可见，直接使用程序监听端口，比设置<code>iptables</code>更加容易的多。</p>
 <h2 id="_9">总结</h2>
 <p><code>linux bridge</code>是虚拟网桥，可以将多个网络接口连接在一起的虚拟设备，上述案例，创建多个容器，为每个容器都分配了<code>veth</code>，另一端则直接接入到了<code>bridge</code>中，这样可以实现容器间通信，容器间和宿主机的通信。想让容器能够上网的话，需要现将容器的默认路由指向<code>bridge</code>，再在宿主机上设置<code>iptables</code>转发规则即可。</p>

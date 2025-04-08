@@ -543,7 +543,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              2 min read
+                              3 min read
                             
                           </span>
                         </div>
@@ -647,17 +647,22 @@
 <p><code>tasks</code>用户指南：https://publish.obsidian.md/tasks/Introduction</p>
 <p>本文使用的<code>tasks</code>版本为：<code>7.18.3</code></p>
 <p><code>obsidian tasks</code>允许在<code>obsidian</code>仓库中的任何地方创建任务，并且在任何地方<strong>查询任务</strong>、且更新修改等，其查询非常强大。</p>
-<p>在查询中，需要将查询语句添加到<code>```tasks</code>中，例如：</p>
-<pre><code class="language-bash">​```tasks
-查询语句
-​```
-</code></pre>
+<p>在查询中，需要将查询语句添加到<code>tasks</code>中，例如：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>​```tasks
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>查询语句
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p>如果需要添加注释，则直接在前面添加#即可，例如：</p>
-<pre><code class="language-bash">​```tasks
-# 查询未被结束的任务
-not done 
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>​```tasks
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a># 查询未被结束的任务
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>not done 
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_2">前置说明</h2>
 <ul>
 <li>在看本篇文章的时候，默认已经学会了<code>tasks</code>基本操作，包括创建任务、结束任务、修改任务等等。</li>
@@ -671,47 +676,66 @@ not done
 <h2 id="_3">简单查询</h2>
 <p><strong>查询所有任务</strong></p>
 <p>直接使用<code>tasks</code>便可以查看所有任务，包括已经结束、取消了的。</p>
-<pre><code class="language-bash">​```tasks
-
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>​```tasks
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p><strong>查询未结束的任务</strong></p>
 <p>在查询语句中，加上<code>not done</code>，即可查询未被结束、取消的任务。</p>
-<pre><code class="language-bash">​```tasks
-not done
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>​```tasks
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>not done
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p><strong>查询已经结束的任务</strong></p>
 <p>在查询语句中，加上<code>done</code>，即可查询已经结束，或者被取消的任务。</p>
-<pre><code class="language-bash">​```tasks
-done
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>​```tasks
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>done
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p><strong>查询被取消的任务</strong></p>
 <p>在查询语句中，加上<code>has cancelled date</code>，该语句的含义是<code>cancelled</code>必须有值，该操作即可查询被取消的任务。</p>
-<pre><code class="language-bash">​```tasks
-# 查询已经被取消的任务
-has cancelled date
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>​```tasks
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a># 查询已经被取消的任务
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>has cancelled date
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p><strong>以树类型展示任务</strong></p>
 <p>如果有树类型任务，可加上<code>show tree</code>来展示层次关系。</p>
 <p>例如，有树类型任务如下：</p>
-<pre><code class="language-bash">- [ ] 总任务
-    - 任务1
-        - [ ] 步骤1 🛫 2025-03-23 📅 2025-03-25 
-        - [ ] 步骤2
-        - [ ] 步骤3
-    - 任务2
-        - [ ] 步骤1
-        - [ ] 步骤2
-        - [ ] 步骤3
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>- [ ] 总任务
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>    - 任务1
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>        - [ ] 步骤1 🛫 2025-03-23 📅 2025-03-25 
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>        - [ ] 步骤2
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>        - [ ] 步骤3
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>    - 任务2
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>        - [ ] 步骤1
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>        - [ ] 步骤2
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>        - [ ] 步骤3
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>show tree</code>可以展示类型，比如：</p>
-<pre><code class="language-bash">​```tasks
-show tree
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>​```tasks
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>show tree
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p>其结果为：</p>
 <p><img alt="image-20250316220331810" src="../../../blog/img/image-20250316220331810.png" /></p>
 <h2 id="_4">关于时间的查询</h2>
@@ -770,32 +794,44 @@ show tree
 <p>有了上述铺垫，查询起来就简单多了。</p>
 <p><strong>查询本周内没有完成的任务</strong></p>
 <p>直接查询下周一之前，但是不包含下周一即可，查询语句：</p>
-<pre><code class="language-bash">​```tasks
-not done
-starts before next week 
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>​```tasks
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>not done
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>starts before next week 
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p>该查询语句会查询到开始时间<code>start</code>为下周一之前的所有任务，包括过去的任务，比如今天是<code>2025-03-10</code>，恰好<code>2025-03-09</code>也有任务且状态没有完成，那么也会被查询出来。</p>
 <p><strong>查询今天之前没有完成的任务</strong></p>
 <p>查询语句如下：</p>
-<pre><code class="language-bash">​```tasks
-not done
-starts before today
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>​```tasks
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>not done
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>starts before today
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p>该查询语句会查询开始时间在今天之前（不包含今天）为完成的任务。</p>
 <p>你还可以这样写：</p>
-<pre><code class="language-bash">​```tasks
-not done
-starts before +0 day
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>​```tasks
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>not done
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>starts before +0 day
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p><strong>查询本周内完成的任务</strong></p>
-<pre><code class="language-bash">​```tasks
-done
-(starts before next week) AND (starts in or after this week)
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>​```tasks
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>done
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>(starts before next week) AND (starts in or after this week)
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p>该查询语句是一条组合语句：</p>
 <ul>
 <li>
@@ -807,18 +843,24 @@ done
 </ul>
 <p>表示开始时间在下周一之前和和本周一（包含本周一）之后。</p>
 <p><strong>查询已经过期且截止日期在7天内的未做的任务</strong></p>
-<pre><code class="language-bash">​```tasks
-not done
-(starts before +0 days) AND (due before +7 days)
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>​```tasks
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>not done
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>(starts before +0 days) AND (due before +7 days)
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <p>该查询语句和上述类似，这里不解释了。</p>
 <p><strong>查询所有 <code>start</code> 在过去 1 个月但 <code>due</code> 在未来 1 个月，<code>priority</code> 是 <code>medium</code> 或 <code>high</code>，且 <code>tags</code> 只能包含 <code>#work</code> 或 <code>#study</code>，不能包含 <code>#personal</code>，同时 <code>scheduled</code> 不为空的任务</strong></p>
-<pre><code class="language-jq">​```tasks
-not done
-(starts after last 1 month) AND (due before next 1 month) AND ((priority is medium) OR (priority is high)) AND ((tags include #work) OR (tags include #study)) AND (has scheduled date) AND (tags do not include #personal)
-​```
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>​```tasks
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>not done
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>(starts after last 1 month) AND (due before next 1 month) AND ((priority is medium) OR (priority is high)) AND ((tags include #work) OR (tags include #study)) AND (has scheduled date) AND (tags do not include #personal)
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>​```
+</span></code></pre></div></td></tr></table></div>
 <ul>
 <li><code>starts after last 1 month</code> ：开始时间在上个月之后。</li>
 <li><code>due before next 1 month</code>： 截止时间在下一个之前。</li>

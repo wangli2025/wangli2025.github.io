@@ -728,87 +728,121 @@
 <!-- more -->
 
 <h2 id="_1">安装依赖</h2>
-<pre><code class="language-bash">pip3 install requests
-pip3 install aliyun-python-sdk-core-v3
-pip3 install aliyun-python-sdk-alidns==2.0.6
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>pip3<span class="w"> </span>install<span class="w"> </span>requests
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>pip3<span class="w"> </span>install<span class="w"> </span>aliyun-python-sdk-core-v3
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>pip3<span class="w"> </span>install<span class="w"> </span>aliyun-python-sdk-alidns<span class="o">==</span><span class="m">2</span>.0.6
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_2">部署</h2>
-<pre><code class="language-bash">git clone https://github.com/wangli2025/aliyunDnsUpdateRecord.git
-cd aliyunDnsUpdateRecord
-chmod +x main.py
-sudo ln -s $(pwd)/main.py /usr/local/bin/aliyunDnsUpdateRecord
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/wangli2025/aliyunDnsUpdateRecord.git
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nb">cd</span><span class="w"> </span>aliyunDnsUpdateRecord
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>chmod<span class="w"> </span>+x<span class="w"> </span>main.py
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>sudo<span class="w"> </span>ln<span class="w"> </span>-s<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/main.py<span class="w"> </span>/usr/local/bin/aliyunDnsUpdateRecord
+</span></code></pre></div></td></tr></table></div>
 <p>部署完成后，可以使用<code>aliyunDnsUpdateRecord --help</code> 查看帮助</p>
-<pre><code class="language-bash">$ aliyunDnsUpdateRecord --help
-usage: aliyunDnsUpdateRecord [-h] [-c CONFIGPATH] [-d DOMAINNAME] [-r RR] [-t TYPE] [-v VALUE]
-
-阿里云修改域名解析命令行工具
-
-options:
-  -h, --help            show this help message and exit
-  -c CONFIGPATH, --configPath CONFIGPATH
-                        配置文件
-  -d DOMAINNAME, --DomainName DOMAINNAME
-                        域名
-  -r RR, --RR RR        主机
-  -t TYPE, --Type TYPE  解析类型
-  -v VALUE, --Value VALUE
-                        解析值
-$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>aliyunDnsUpdateRecord<span class="w"> </span>--help
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>usage:<span class="w"> </span>aliyunDnsUpdateRecord<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>-c<span class="w"> </span>CONFIGPATH<span class="o">]</span><span class="w"> </span><span class="o">[</span>-d<span class="w"> </span>DOMAINNAME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-r<span class="w"> </span>RR<span class="o">]</span><span class="w"> </span><span class="o">[</span>-t<span class="w"> </span>TYPE<span class="o">]</span><span class="w"> </span><span class="o">[</span>-v<span class="w"> </span>VALUE<span class="o">]</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>阿里云修改域名解析命令行工具
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>options:
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">            </span>show<span class="w"> </span>this<span class="w"> </span><span class="nb">help</span><span class="w"> </span>message<span class="w"> </span>and<span class="w"> </span><span class="nb">exit</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">  </span>-c<span class="w"> </span>CONFIGPATH,<span class="w"> </span>--configPath<span class="w"> </span>CONFIGPATH
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">                        </span>配置文件
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">  </span>-d<span class="w"> </span>DOMAINNAME,<span class="w"> </span>--DomainName<span class="w"> </span>DOMAINNAME
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">                        </span>域名
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">  </span>-r<span class="w"> </span>RR,<span class="w"> </span>--RR<span class="w"> </span>RR<span class="w">        </span>主机
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">  </span>-t<span class="w"> </span>TYPE,<span class="w"> </span>--Type<span class="w"> </span>TYPE<span class="w">  </span>解析类型
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">  </span>-v<span class="w"> </span>VALUE,<span class="w"> </span>--Value<span class="w"> </span>VALUE
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">                        </span>解析值
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_3">使用</h2>
 <h3 id="_4">配置秘钥</h3>
 <h4 id="_5">使用配置文件</h4>
-<pre><code class="language-bash">cat .alidns.json
-{
-    &quot;AliDNS_AccessKey_ID&quot;: &quot;阿里云ID&quot;,
-    &quot;AliDNS_Access_Key_Secret&quot;: &quot;阿里云key&quot;,
-    &quot;AliDNS_region_id&quot;: &quot;区域&quot;
-}
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>cat<span class="w"> </span>.alidns.json
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="o">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="s2">&quot;AliDNS_AccessKey_ID&quot;</span>:<span class="w"> </span><span class="s2">&quot;阿里云ID&quot;</span>,
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="s2">&quot;AliDNS_Access_Key_Secret&quot;</span>:<span class="w"> </span><span class="s2">&quot;阿里云key&quot;</span>,
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="s2">&quot;AliDNS_region_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;区域&quot;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="o">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h4 id="_6">使用环境变量</h4>
-<pre><code class="language-bash">export AliDNS_AccessKey_ID=阿里云ID
-export AliDNS_Access_Key_Secret=阿里云key
-export AliDNS_region_id=区域
-</code></pre>
-<p>秘钥读取顺序为：配置文件 --&gt; 环境变量。<strong>若读取到配置文件的内容了，则不会再获取环境变量配置。</strong></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AliDNS_AccessKey_ID</span><span class="o">=</span>阿里云ID
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AliDNS_Access_Key_Secret</span><span class="o">=</span>阿里云key
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nb">export</span><span class="w"> </span><span class="nv">AliDNS_region_id</span><span class="o">=</span>区域
+</span></code></pre></div></td></tr></table></div>
+<p>秘钥读取顺序为：配置文件 &rarr; 环境变量。<strong>若读取到配置文件的内容了，则不会再获取环境变量配置。</strong></p>
 <h3 id="_7">脚本执行</h3>
 <p>配置秘钥后，使用如下命令即可更新解析。</p>
-<pre><code class="language-bash">$ aliyunDnsUpdateRecord -d example.com -r www -t A -v 127.0.0.10
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>aliyunDnsUpdateRecord<span class="w"> </span>-d<span class="w"> </span>example.com<span class="w"> </span>-r<span class="w"> </span>www<span class="w"> </span>-t<span class="w"> </span>A<span class="w"> </span>-v<span class="w"> </span><span class="m">127</span>.0.0.10
+</span></code></pre></div></td></tr></table></div>
 <p>如果使用的是配置文件方式，且文件路径不是执行命令所在的<code>./.alidns.json</code>，则需要单独使用<code>-c</code> 单独指定。</p>
-<pre><code class="language-bash">$ cat c.json 
-{
-    &quot;AliDNS_AccessKey_ID&quot;: &quot;阿里云ID&quot;,
-    &quot;AliDNS_Access_Key_Secret&quot;: &quot;阿里云key&quot;,
-    &quot;AliDNS_region_id&quot;: &quot;区域&quot;
-}
-$ 
-$ aliyunDnsUpdateRecord -c c.json -d example.com -r www -t A -v 127.0.0.10
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>cat<span class="w"> </span>c.json<span class="w"> </span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="o">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="s2">&quot;AliDNS_AccessKey_ID&quot;</span>:<span class="w"> </span><span class="s2">&quot;阿里云ID&quot;</span>,
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="s2">&quot;AliDNS_Access_Key_Secret&quot;</span>:<span class="w"> </span><span class="s2">&quot;阿里云key&quot;</span>,
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="s2">&quot;AliDNS_region_id&quot;</span>:<span class="w"> </span><span class="s2">&quot;区域&quot;</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="o">}</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>$<span class="w"> </span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>$<span class="w"> </span>aliyunDnsUpdateRecord<span class="w"> </span>-c<span class="w"> </span>c.json<span class="w"> </span>-d<span class="w"> </span>example.com<span class="w"> </span>-r<span class="w"> </span>www<span class="w"> </span>-t<span class="w"> </span>A<span class="w"> </span>-v<span class="w"> </span><span class="m">127</span>.0.0.10
+</span></code></pre></div></td></tr></table></div>
 <p>如果正确修改，会输入如下内容：</p>
-<pre><code class="language-bash">解析修改成功 example.com www 127.0.0.10
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>解析修改成功<span class="w"> </span>example.com<span class="w"> </span>www<span class="w"> </span><span class="m">127</span>.0.0.10
+</span></code></pre></div></td></tr></table></div>
 <p>如果想将域名解析修改为本机所在的公网地址，则不用添加<code>-v</code> 即可。</p>
-<pre><code class="language-bash">$ aliyunDnsUpdateRecord -d example.com -r www -t A
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>$<span class="w"> </span>aliyunDnsUpdateRecord<span class="w"> </span>-d<span class="w"> </span>example.com<span class="w"> </span>-r<span class="w"> </span>www<span class="w"> </span>-t<span class="w"> </span>A
+</span></code></pre></div></td></tr></table></div>
 <p>如上默认会获取本机所在的公网地址，并且修改<code>example.com</code>的<code>www</code>主机上的<code>A</code>记录值。</p>
 <h3 id="_8">报错信息</h3>
 <h4 id="_9">秘钥配置出错</h4>
-<pre><code class="language-bash">ERROR:root:获取[域名]域名解析失败: HTTP Status: 404 Error:InvalidAccessKeyId.NotFound Specified access key is not found. 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>ERROR:root:获取<span class="o">[</span>域名<span class="o">]</span>域名解析失败:<span class="w"> </span>HTTP<span class="w"> </span>Status:<span class="w"> </span><span class="m">404</span><span class="w"> </span>Error:InvalidAccessKeyId.NotFound<span class="w"> </span>Specified<span class="w"> </span>access<span class="w"> </span>key<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>found.<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>请检查秘钥配置是否正确。</p>
 <h4 id="_10">找不到域名</h4>
-<pre><code class="language-bash">ERROR:root:获取[域名]域名解析失败: HTTP Status: 400 Error:InvalidDomainName.NoExist The specified domain name does not exist. Refresh the page and try again.
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>ERROR:root:获取<span class="o">[</span>域名<span class="o">]</span>域名解析失败:<span class="w"> </span>HTTP<span class="w"> </span>Status:<span class="w"> </span><span class="m">400</span><span class="w"> </span>Error:InvalidDomainName.NoExist<span class="w"> </span>The<span class="w"> </span>specified<span class="w"> </span>domain<span class="w"> </span>name<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>exist.<span class="w"> </span>Refresh<span class="w"> </span>the<span class="w"> </span>page<span class="w"> </span>and<span class="w"> </span>try<span class="w"> </span>again.
+</span></code></pre></div></td></tr></table></div>
 <p>请检查域名配置是否正确。</p>
 <h4 id="ram">RAM权限配置出错</h4>
-<pre><code class="language-bash">ERROR:root:获取[域名]域名解析失败: HTTP Status: 403 Error:Forbidden.RAM User not authorized to operate on the specified resource, or this API doesn't support RAM. 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>ERROR:root:获取<span class="o">[</span>域名<span class="o">]</span>域名解析失败:<span class="w"> </span>HTTP<span class="w"> </span>Status:<span class="w"> </span><span class="m">403</span><span class="w"> </span>Error:Forbidden.RAM<span class="w"> </span>User<span class="w"> </span>not<span class="w"> </span>authorized<span class="w"> </span>to<span class="w"> </span>operate<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>specified<span class="w"> </span>resource,<span class="w"> </span>or<span class="w"> </span>this<span class="w"> </span>API<span class="w"> </span>doesn<span class="err">&#39;</span>t<span class="w"> </span>support<span class="w"> </span>RAM.<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>请检查RAM权限配置是否正确，如果没有配置更加细化的自定义策略，则应该添加 AliyunDNSFullAccess 系统策略。</p>
 <h4 id="_11">解析记录为找到</h4>
-<pre><code class="language-bash">未找到该域名解析记录，请检查是否被添加，[域名信息]
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>未找到该域名解析记录，请检查是否被添加，<span class="o">[</span>域名信息<span class="o">]</span>
+</span></code></pre></div></td></tr></table></div>
 <p>未找到解析记录，请检查是否已经被添加了</p>
 
 

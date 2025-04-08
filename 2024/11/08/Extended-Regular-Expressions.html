@@ -546,7 +546,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              3 min read
+                              4 min read
                             
                           </span>
                         </div>
@@ -761,31 +761,44 @@
 <h2 id="_4">操作</h2>
 <h3 id="_5">直接引用不需要转义</h3>
 <p>在<code>ERE</code>中，可以直接引用<code>{}</code> 、<code>()</code> 中，而不需要进行转义，简化了写法，如：</p>
-<pre><code class="language-bash">wangli@debian:~$ echo &quot;worrrrld&quot; | grep -E 'r{1,3}'
-worrrrld
-wangli@debian:~$
-</code></pre>
-<pre><code class="language-bash">wangli@debian:~$ echo &quot;worrrld&quot; | sed -E 's/(r{3})/-\1-/'
-wo-rrr-ld
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;worrrrld&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;r{1,3}&#39;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>worrrrld
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;worrrld&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;s/(r{3})/-\1-/&#39;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>wo-rrr-ld
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>在<code>BRE</code> 中，需要将<code>{}</code> 和<code>()</code> 进行转义后，才能使用，写出来，可读性大大降低，在<code>ERE</code>中，直接调用即可，可读性增强了。</p>
 <p>同样的，如果只想表示<code>{}</code> 、<code>()</code> 本身的含义，需要用<code>\</code> 进行转义，如：</p>
-<pre><code class="language-bash">wangli@debian:~$ echo &quot;2{35}&quot; | grep -E '2{35}'
-wangli@debian:~$
-wangli@debian:~$ echo &quot;2{35}&quot; | grep -E '2\{35\}'
-2{35}
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2{35}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;2{35}&#39;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>wangli@debian:~$
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;2{35}&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;2\{35\}&#39;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="m">2</span><span class="o">{</span><span class="m">35</span><span class="o">}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_6">新增的元字符</h3>
 <p>在<code>ERE</code>中，新增了<code>?</code> 和<code>+</code> 2个元字符，前者表示匹配前面的字符0次或者1次，后者表示匹配前面的字符1次或多次，这其实也是简化了<code>BRE</code>的写法，案例如下：</p>
-<pre><code class="language-bash">wangli@debian:~$ echo &quot;1123&quot; | grep -E '111?'
-1123
-wangli@debian:~$
-wangli@debian:~$ echo &quot;1123&quot; | grep &quot;111\{0,1\}&quot;
-1123
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1123&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;111?&#39;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="m">1123</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>wangli@debian:~$
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1123&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;111\{0,1\}&quot;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="m">1123</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>这里需要介绍下，为什么<code>1123</code> 可以使用<code>111?</code> 来获取到呢？首先<code>?</code> 的含义是表示匹配前面的字符0次或者1次，所以<code>111?</code> 会有2中情况：</p>
 <ul>
 <li><code>11</code> ，再匹配一个<code>1</code> ，结果是<code>111</code></li>
@@ -793,85 +806,135 @@ wangli@debian:~$
 </ul>
 <p>所以最后会被匹配到，同样的，使用<code>BRE</code>来写的话，表达式为 <code>111\{0,1\}</code>，然后功能完全一样，但是非常不直观。</p>
 <p>再来看看<code>+</code> 呢。</p>
-<pre><code class="language-bash">wangli@debian:~$ echo &quot;1111111123&quot; | sed -E 's/(1+)/\1-/'
-11111111-23
-wangli@debian:~$
-wangli@debian:~$ echo &quot;1111111123&quot; | sed 's/\(1\{1,\}\)/\1-/'
-11111111-23
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1111111123&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span><span class="s1">&#39;s/(1+)/\1-/&#39;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="m">11111111</span>-23
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>wangli@debian:~$
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>wangli@debian:~$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;1111111123&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/\(1\{1,\}\)/\1-/&#39;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="m">11111111</span>-23
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>通过上面2个语句，可以发现虽然<code>s/(1+)/\1-/</code> 和<code>s/\(1\{1,\}\)/\1-/</code> 效果都是一样的，但是第一种要简单、直观很多，可读性要比第二种好。</p>
 <h2 id="_7">一些关于正则表达式的例子</h2>
 <h3 id="_8">剔除多余的空格</h3>
 <p>有以下文本：</p>
-<pre><code class="language-bash">wangli@debian:~$ cat test.txt
-            grep    prints
-
- lines   that    contain   a    match  for one or more            patterns.
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>wangli@debian:~$<span class="w"> </span>cat<span class="w"> </span>test.txt
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">            </span>grep<span class="w">    </span>prints
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w"> </span>lines<span class="w">   </span>that<span class="w">    </span>contain<span class="w">   </span>a<span class="w">    </span>match<span class="w">  </span><span class="k">for</span><span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w">            </span>patterns.
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>需要将多余的空格给剔除掉。</p>
-<pre><code class="language-bash">wangli@debian:~$ cat test.txt | sed -E -e 's/ +/ /g' -e 's/^ +//g'
-grep prints
-
-lines that contain a match for one or more patterns.
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>wangli@debian:~$<span class="w"> </span>cat<span class="w"> </span>test.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/ +/ /g&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/^ +//g&#39;</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>grep<span class="w"> </span>prints
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>lines<span class="w"> </span>that<span class="w"> </span>contain<span class="w"> </span>a<span class="w"> </span>match<span class="w"> </span><span class="k">for</span><span class="w"> </span>one<span class="w"> </span>or<span class="w"> </span>more<span class="w"> </span>patterns.
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>sed -e</code> 可以执行多条命令，<code>s/ +/ /g</code> 表示将包含了多个连续空格都替换为1个空格，<code>s/^ +//g</code> 表示将以空格开头的连续空格都替换为空，即删除以空格开头的连续空格。</p>
 <h3 id="_9">删除注释</h3>
 <p>定义注释的含义</p>
-<pre><code># 这也是注释
-# 这也是一种注释 #
-# 这也是一种注释 # 这是正常的内容
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a># 这也是注释
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a># 这也是一种注释 #
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a># 这也是一种注释 # 这是正常的内容
+</span></code></pre></div></td></tr></table></div>
 <p>有如下内容：</p>
-<pre><code class="language-bash">wangli@debian:~$ cat test.txt
-# 这也是注释
-# 这也是一种注释 #
-# 这也是一种注释 # 这是正常的内容
-
-a b e d # 含义是 a b c d
-c d e f # 这是注释 # g h i j k
-
-a # 注释 # b
-
-# 这也是注释
-# 这还是注释 # ccccc
-ddd
-aa
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>wangli@debian:~$<span class="w"> </span>cat<span class="w"> </span>test.txt
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="c1"># 这也是注释</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="c1"># 这也是一种注释 #</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># 这也是一种注释 # 这是正常的内容</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a>a<span class="w"> </span>b<span class="w"> </span>e<span class="w"> </span>d<span class="w"> </span><span class="c1"># 含义是 a b c d</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a>c<span class="w"> </span>d<span class="w"> </span>e<span class="w"> </span>f<span class="w"> </span><span class="c1"># 这是注释 # g h i j k</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>a<span class="w"> </span><span class="c1"># 注释 # b</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="c1"># 这也是注释</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="c1"># 这还是注释 # ccccc</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a>ddd
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a>aa
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>去除掉注释</p>
-<pre><code class="language-bash">wangli@debian:~$ cat  test.txt | sed -E -e 's/#.*#//' -e 's/#.*//'
-
-
- 这是正常的内容
-
-a b e d
-c d e f  g h i j k
-
-a  b
-
-
- ccccc
-ddd
-aa
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>wangli@debian:~$<span class="w"> </span>cat<span class="w">  </span>test.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/#.*#//&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/#.*//&#39;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w"> </span>这是正常的内容
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>a<span class="w"> </span>b<span class="w"> </span>e<span class="w"> </span>d
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>c<span class="w"> </span>d<span class="w"> </span>e<span class="w"> </span>f<span class="w">  </span>g<span class="w"> </span>h<span class="w"> </span>i<span class="w"> </span>j<span class="w"> </span>k
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>a<span class="w">  </span>b
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w"> </span>ccccc
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a>ddd
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a>aa
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_10">提取并且交换字符串中的两个数字</h3>
 <p>有以下文本：</p>
-<pre><code class="language-bash">wangli@debian:~$ cat test.txt
-
-
-
-a 123 b c d e 456 f
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>wangli@debian:~$<span class="w"> </span>cat<span class="w"> </span>test.txt
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>a<span class="w"> </span><span class="m">123</span><span class="w"> </span>b<span class="w"> </span>c<span class="w"> </span>d<span class="w"> </span>e<span class="w"> </span><span class="m">456</span><span class="w"> </span>f
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>需要将<code>123</code>和<code>456</code>顺序交换。</p>
-<pre><code class="language-bash">wangli@debian:~$ cat test.txt | sed -E -n 's/(.* )([0-9]{1,5})( .* )([0-9]{1,5})/\1\4\3\2/p'
-a 456 b c d e 123 f
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>wangli@debian:~$<span class="w"> </span>cat<span class="w"> </span>test.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/(.* )([0-9]{1,5})( .* )([0-9]{1,5})/\1\4\3\2/p&#39;</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>a<span class="w"> </span><span class="m">456</span><span class="w"> </span>b<span class="w"> </span>c<span class="w"> </span>d<span class="w"> </span>e<span class="w"> </span><span class="m">123</span><span class="w"> </span>f
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>上面正则含义为：</p>
 <ul>
 <li><code>(.* )</code>： 表示匹配以任何字符开头且任何长度的字符，并且以空格结束，并且设为分组1。</li>
@@ -888,34 +951,50 @@ wangli@debian:~$
 </ul>
 <p>此时，在引用分组的时候，只需要将<code>4</code> 和<code>2</code>进行对调，则可以满足<code>123</code> 和<code>456</code>交换。</p>
 <h3 id="ip">获取机器的IP地址</h3>
-<pre><code class="language-bash">wangli@debian:~$ ip a | sed -E -n 's/.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*/\1/p'
-127.0.0.1
-192.168.1.135
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a>wangli@debian:~$<span class="w"> </span>ip<span class="w"> </span>a<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-E<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*/\1/p&#39;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="m">127</span>.0.0.1
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="m">192</span>.168.1.135
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>ip a</code> 可以查询所有的IP信息</p>
-<pre><code class="language-bash">wangli@debian:~$ ip a
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host noprefixroute
-       valid_lft forever preferred_lft forever
-2: enp0s3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
-    link/ether 08:00:27:7c:92:af brd ff:ff:ff:ff:ff:ff
-    inet 192.168.1.135/24 brd 192.168.1.255 scope global dynamic noprefixroute enp0s3
-       valid_lft 4631sec preferred_lft 4631sec
-    inet6 fe80::a00:27ff:fe7c:92af/64 scope link noprefixroute
-       valid_lft forever preferred_lft forever
-wangli@debian:~$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>wangli@debian:~$<span class="w"> </span>ip<span class="w"> </span>a
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="m">1</span>:<span class="w"> </span>lo:<span class="w"> </span>&lt;LOOPBACK,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">65536</span><span class="w"> </span>qdisc<span class="w"> </span>noqueue<span class="w"> </span>state<span class="w"> </span>UNKNOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="w">    </span>link/loopback<span class="w"> </span><span class="m">00</span>:00:00:00:00:00<span class="w"> </span>brd<span class="w"> </span><span class="m">00</span>:00:00:00:00:00
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">127</span>.0.0.1/8<span class="w"> </span>scope<span class="w"> </span>host<span class="w"> </span>lo
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="w">    </span>inet6<span class="w"> </span>::1/128<span class="w"> </span>scope<span class="w"> </span>host<span class="w"> </span>noprefixroute
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="m">2</span>:<span class="w"> </span>enp0s3:<span class="w"> </span>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>fq_codel<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">1000</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="w">    </span>link/ether<span class="w"> </span><span class="m">08</span>:00:27:7c:92:af<span class="w"> </span>brd<span class="w"> </span>ff:ff:ff:ff:ff:ff
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">192</span>.168.1.135/24<span class="w"> </span>brd<span class="w"> </span><span class="m">192</span>.168.1.255<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>dynamic<span class="w"> </span>noprefixroute<span class="w"> </span>enp0s3
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="w">       </span>valid_lft<span class="w"> </span>4631sec<span class="w"> </span>preferred_lft<span class="w"> </span>4631sec
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="w">    </span>inet6<span class="w"> </span>fe80::a00:27ff:fe7c:92af/64<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>noprefixroute
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>使用的正则如下：</p>
-<pre><code class="language-bash">sed -E -n 's/.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*/\1/p'
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>sed<span class="w"> </span>-E<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;s/.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*/\1/p&#39;</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>sed -E</code> 表示启用正则，而<code>sed -n</code> 表示只输出匹配的部分。</p>
 <p>而正则表达式如下：</p>
-<pre><code class="language-bash">.* ([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})\/[0-9]{1,3}.*
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a>.*<span class="w"> </span><span class="o">([</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,3<span class="o">}</span><span class="se">\.</span><span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,3<span class="o">})</span><span class="se">\/</span><span class="o">[</span><span class="m">0</span>-9<span class="o">]{</span><span class="m">1</span>,3<span class="o">}</span>.*
+</span></code></pre></div></td></tr></table></div>
 <p>意思为提取包含所有<code>IP</code>地址和子网掩码的内容，并且只提取<code>IP</code>部分，忽略子网掩码，其中<code>IP</code> 部分又规定了获取的是<code>IPv4</code>格式。</p>
 <p>所以，该正则表达式含义为：</p>
 <ul>
@@ -925,13 +1004,15 @@ wangli@debian:~$
 <li><code>.*</code>：最后的匹配后面的所有字符。</li>
 </ul>
 <h3 id="url">提取URL中的协议、域名和路径</h3>
-<pre><code>wangli@debian:~$ echo 'https://1.3.3.4/hello/world.txt' | sed -E -n &quot;s|(.*)://([^/]+)/(.*)|s1:\1 s2:\2 s3:\3|p&quot;
-s1:https s2:1.3.3.4 s3:hello/world.txt
-wangli@debian:~$
-</code></pre>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a>wangli@debian:~$ echo &#39;https://1.3.3.4/hello/world.txt&#39; | sed -E -n &quot;s|(.*)://([^/]+)/(.*)|s1:\1 s2:\2 s3:\3|p&quot;
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>s1:https s2:1.3.3.4 s3:hello/world.txt
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a>wangli@debian:~$
+</span></code></pre></div></td></tr></table></div>
 <p>其中正则表达式为：</p>
-<pre><code class="language-bash">sed -E -n &quot;s|(.*)://([^/]+)/(.*)|s1:\1 s2:\2 s3:\3|p&quot;
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>sed<span class="w"> </span>-E<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;s|(.*)://([^/]+)/(.*)|s1:\1 s2:\2 s3:\3|p&quot;</span>
+</span></code></pre></div></td></tr></table></div>
 <p>其中<code>[^/]+</code> 的含义如下：</p>
 <p><code>[]</code> 表示一个字符集，<code>[^/]</code> 则表示除了<code>/</code> 以外的所有字符，后面的<code>+</code> 表示上一个字符至少出现1次，这里如果使用<code>(.*)/</code>的话，会出现贪婪匹配。</p>
 <h2 id="_11">总结</h2>

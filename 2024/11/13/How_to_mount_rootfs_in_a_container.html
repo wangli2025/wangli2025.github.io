@@ -546,7 +546,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              8 min read
+                              9 min read
                             
                           </span>
                         </div>
@@ -719,209 +719,353 @@
 <!-- more -->
 
 <p>本篇文章使用的环境为：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# hostnamectl
- Static hostname: ubuntu
-       Icon name: computer-vm
-         Chassis: vm 🖴
-    Product UUID: d7a79327-c7b6-4c40-a8d2-abf3244c3abc
-  Virtualization: oracle
-Operating System: Ubuntu 24.10
-          Kernel: Linux 6.11.0-9-generic
-    Architecture: x86-64
- Hardware Vendor: innotek GmbH
-  Hardware Model: VirtualBox
- Hardware Serial: 0
-Firmware Version: VirtualBox
-   Firmware Date: Fri 2006-12-01
-    Firmware Age: 17y 11month 1w 6d
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># hostnamectl</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w"> </span>Static<span class="w"> </span>hostname:<span class="w"> </span>ubuntu
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">       </span>Icon<span class="w"> </span>name:<span class="w"> </span>computer-vm
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">         </span>Chassis:<span class="w"> </span>vm<span class="w"> </span>🖴
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span>Product<span class="w"> </span>UUID:<span class="w"> </span>d7a79327-c7b6-4c40-a8d2-abf3244c3abc
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">  </span>Virtualization:<span class="w"> </span>oracle
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>Operating<span class="w"> </span>System:<span class="w"> </span>Ubuntu<span class="w"> </span><span class="m">24</span>.10
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">          </span>Kernel:<span class="w"> </span>Linux<span class="w"> </span><span class="m">6</span>.11.0-9-generic
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span>Architecture:<span class="w"> </span>x86-64
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w"> </span>Hardware<span class="w"> </span>Vendor:<span class="w"> </span>innotek<span class="w"> </span>GmbH
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">  </span>Hardware<span class="w"> </span>Model:<span class="w"> </span>VirtualBox
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w"> </span>Hardware<span class="w"> </span>Serial:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>Firmware<span class="w"> </span>Version:<span class="w"> </span>VirtualBox
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">   </span>Firmware<span class="w"> </span>Date:<span class="w"> </span>Fri<span class="w"> </span><span class="m">2006</span>-12-01
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span>Firmware<span class="w"> </span>Age:<span class="w"> </span>17y<span class="w"> </span>11month<span class="w"> </span>1w<span class="w"> </span>6d
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <blockquote>
 <p>debian 12 默认内核不支持<code>pivot_root</code>命令，在重新编译内核的时候失败了，把机器系统搞坏了，所以用<code>ubuntu</code>演示。</p>
 </blockquote>
 <p>此前已经介绍了<code>Linux</code>中的相关<code>namespace</code>，这里简单回顾一下。</p>
 <p>使用<code>unshare</code>可以将命令挪到相应的<code>namespace</code>中执行，案例如下：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -p -u -n -i -f /usr/bin/bash
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# ps aux
-USER         PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root           1  0.0  0.1   7696  4460 pts/0    S    08:45   0:00 /usr/bin/bash
-root           9  0.0  0.1   8428  4012 pts/0    R+   08:45   0:00 ps aux
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# df -h
-Filesystem      Size  Used Avail Use% Mounted on
-/dev/sda4        92G  6.6G   81G   8% /
-tmpfs           1.7G     0  1.7G   0% /dev/shm
-...
-tmpfs           1.7G     0  1.7G   0% /tmp
-/dev/sda2       4.9G  172M  4.5G   4% /boot
-(unshare) [root@ubuntu]:[~][tty:0]# exit
-exit
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># unshare -m -p -u -n -i -f /usr/bin/bash</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount -t proc proc /proc</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ps aux</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>USER<span class="w">         </span>PID<span class="w"> </span>%CPU<span class="w"> </span>%MEM<span class="w">    </span>VSZ<span class="w">   </span>RSS<span class="w"> </span>TTY<span class="w">      </span>STAT<span class="w"> </span>START<span class="w">   </span>TIME<span class="w"> </span>COMMAND
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>root<span class="w">           </span><span class="m">1</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.1<span class="w">   </span><span class="m">7696</span><span class="w">  </span><span class="m">4460</span><span class="w"> </span>pts/0<span class="w">    </span>S<span class="w">    </span><span class="m">08</span>:45<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>/usr/bin/bash
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a>root<span class="w">           </span><span class="m">9</span><span class="w">  </span><span class="m">0</span>.0<span class="w">  </span><span class="m">0</span>.1<span class="w">   </span><span class="m">8428</span><span class="w">  </span><span class="m">4012</span><span class="w"> </span>pts/0<span class="w">    </span>R+<span class="w">   </span><span class="m">08</span>:45<span class="w">   </span><span class="m">0</span>:00<span class="w"> </span>ps<span class="w"> </span>aux
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># df -h</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>Filesystem<span class="w">      </span>Size<span class="w">  </span>Used<span class="w"> </span>Avail<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>/dev/sda4<span class="w">        </span>92G<span class="w">  </span><span class="m">6</span>.6G<span class="w">   </span>81G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>tmpfs<span class="w">           </span><span class="m">1</span>.7G<span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="m">1</span>.7G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/dev/shm
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a>...
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>tmpfs<span class="w">           </span><span class="m">1</span>.7G<span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="m">1</span>.7G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/tmp
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a>/dev/sda2<span class="w">       </span><span class="m">4</span>.9G<span class="w">  </span>172M<span class="w">  </span><span class="m">4</span>.5G<span class="w">   </span><span class="m">4</span>%<span class="w"> </span>/boot
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># exit</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="nb">exit</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>上面例子，虽然成功在相应的<code>namespace</code>的运行进程了，但是在该容器中，文件系统还是使用的宿主机的，本篇文章就简单来讲一下，如何在容器中挂载<code>rootfs</code>。</p>
 <h2 id="rootfs_1">获取rootfs</h2>
 <h3 id="rootfs_2">什么是rootfs</h3>
 <p>也称为根文件系统，它是系统启动的时候加载的第一个文件系统，包含了系统的基本目录结构和所必要的文件系统。</p>
 <h3 id="dockerrootfs">利用docker获取rootfs</h3>
 <p>这里使用<code>docker pull</code> 拉取一个镜像，解压开来便是<code>rootfs</code>了。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# docker pull busybox
-Using default tag: latest
-latest: Pulling from library/busybox
-a46fbb00284b: Pull complete
-Digest: sha256:768e5c6f5cb6db0794eec98dc7a967f40631746c32232b78a3105fb946f3ab83
-Status: Downloaded newer image for busybox:latest
-docker.io/library/busybox:latest
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># docker pull busybox</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>Using<span class="w"> </span>default<span class="w"> </span>tag:<span class="w"> </span>latest
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>latest:<span class="w"> </span>Pulling<span class="w"> </span>from<span class="w"> </span>library/busybox
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>a46fbb00284b:<span class="w"> </span>Pull<span class="w"> </span><span class="nb">complete</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>Digest:<span class="w"> </span>sha256:768e5c6f5cb6db0794eec98dc7a967f40631746c32232b78a3105fb946f3ab83
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>Status:<span class="w"> </span>Downloaded<span class="w"> </span>newer<span class="w"> </span>image<span class="w"> </span><span class="k">for</span><span class="w"> </span>busybox:latest
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>docker.io/library/busybox:latest
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>docker pull</code>拉取一个最简单的<code>busybox</code>镜像。</p>
 <p>使用<code>docker export</code>可以将其导出。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# docker run -d busybox
-7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982
-[root@ubuntu]:[~][tty:0]# docker export -o rootfs.tar 7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># docker run -d busybox</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># docker export -o rootfs.tar 7512c7ab5a8760ccf1080612fbb48533a08b23e5cfe32b6276f828355500a982</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>解压开来，便是完整的<code>rootfs</code>了。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mkdir rootfs
-[root@ubuntu]:[~][tty:0]# tar xf rootfs.tar -C rootfs
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mkdir rootfs</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># tar xf rootfs.tar -C rootfs</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>busybox</code>完整的<code>rootfs</code>。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# cd rootfs
-[root@ubuntu]:[~/rootfs][tty:0]# ls
-bin  dev  etc  home  lib  lib64  proc  root  sys  tmp  usr  var
-[root@ubuntu]:[~/rootfs][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># cd rootfs</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/rootfs<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># ls</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>bin<span class="w">  </span>dev<span class="w">  </span>etc<span class="w">  </span>home<span class="w">  </span>lib<span class="w">  </span>lib64<span class="w">  </span>proc<span class="w">  </span>root<span class="w">  </span>sys<span class="w">  </span>tmp<span class="w">  </span>usr<span class="w">  </span>var
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/rootfs<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_1">更改根文件系统</h2>
 <h3 id="pivot_root">使用pivot_root更改根文件系统</h3>
 <p>如上，已经获取了<code>rootfs</code>根文件系统，接下来将使用<code>pivot_root</code>进行更改根文件系统。</p>
 <p><code>pivot_root</code>是一个系统调用，用于更改文件系统的根目录，用法如下：</p>
-<pre><code class="language-bash">pivot_root new_root put_old
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>pivot_root<span class="w"> </span>new_root<span class="w"> </span>put_old
+</span></code></pre></div></td></tr></table></div>
 <p>其中<code>new_root</code>是指新的根文件系统，<code>put_old</code>则是指老的根文件系统。</p>
 <p>命令执行后，会将<code>new_root</code>目录挂载为新的根文件系统，而老的根文件系统则会挂载到<code>put_old</code>上。</p>
 <p><code>new_root</code>和<code>put_old</code>都要是独立的文件系统才可以，若不是的话，需要使用<code>mount</code>进行声明式挂载。</p>
 <p>注意，这里一定要在<code>mount namespace</code>中执行<code>pivot_root</code>操作。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# cd
-[root@ubuntu]:[~][tty:0]# mkdir -p rootfs/put_old
-[root@ubuntu]:[~][tty:0]#
-[root@ubuntu]:[~][tty:0]# unshare -m -u -i -p -n -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs /root/rootfs
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs/put_old /root/rootfs/put_old
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/rootfs /root/rootfs/put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# cd
-(unshare) [root@ubuntu]:[~][tty:tty]# ls -l
-total 0
-(unshare) [root@ubuntu]:[~][tty:tty]# ls -l /
-total 56
-drwxr-xr-x    2 root     root         12288 Sep 26 21:31 bin
-drwxr-xr-x    4 root     root          4096 Nov 13 09:04 dev
-drwxr-xr-x    3 root     root          4096 Nov 13 09:04 etc
-drwxr-xr-x    2 nobody   nobody        4096 Sep 26 21:31 home
-drwxr-xr-x    2 root     root          4096 Sep 26 21:31 lib
-lrwxrwxrwx    1 root     root             3 Sep 26 21:31 lib64 -&gt; lib
-drwxr-xr-x    2 root     root          4096 Nov 13 09:04 proc
-drwxr-xr-x   20 root     root          4096 Nov 13 08:34 put_old
-drwx------    2 root     root          4096 Nov 13 09:16 root
-drwxr-xr-x    2 root     root          4096 Nov 13 09:04 sys
-drwxrwxrwt    2 root     root          4096 Sep 26 21:31 tmp
-drwxr-xr-x    4 root     root          4096 Sep 26 21:31 usr
-drwxr-xr-x    4 root     root          4096 Sep 26 21:31 var
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-udev                      1.6G         0      1.6G   0% /put_old/dev
-tmpfs                     1.7G         0      1.7G   0% /put_old/dev/shm
-tmpfs                   340.2M      1.1M    339.1M   0% /put_old/run
-tmpfs                     5.0M         0      5.0M   0% /put_old/run/lock
-...
-tmpfs                     1.7G         0      1.7G   0% /put_old/tmp
-/dev/sda2                 4.8G    171.7M      4.4G   4% /put_old/boot
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span>
+<span class="normal"><a href="#__codelineno-7-26">26</a></span>
+<span class="normal"><a href="#__codelineno-7-27">27</a></span>
+<span class="normal"><a href="#__codelineno-7-28">28</a></span>
+<span class="normal"><a href="#__codelineno-7-29">29</a></span>
+<span class="normal"><a href="#__codelineno-7-30">30</a></span>
+<span class="normal"><a href="#__codelineno-7-31">31</a></span>
+<span class="normal"><a href="#__codelineno-7-32">32</a></span>
+<span class="normal"><a href="#__codelineno-7-33">33</a></span>
+<span class="normal"><a href="#__codelineno-7-34">34</a></span>
+<span class="normal"><a href="#__codelineno-7-35">35</a></span>
+<span class="normal"><a href="#__codelineno-7-36">36</a></span>
+<span class="normal"><a href="#__codelineno-7-37">37</a></span>
+<span class="normal"><a href="#__codelineno-7-38">38</a></span>
+<span class="normal"><a href="#__codelineno-7-39">39</a></span>
+<span class="normal"><a href="#__codelineno-7-40">40</a></span>
+<span class="normal"><a href="#__codelineno-7-41">41</a></span>
+<span class="normal"><a href="#__codelineno-7-42">42</a></span>
+<span class="normal"><a href="#__codelineno-7-43">43</a></span>
+<span class="normal"><a href="#__codelineno-7-44">44</a></span>
+<span class="normal"><a href="#__codelineno-7-45">45</a></span>
+<span class="normal"><a href="#__codelineno-7-46">46</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># cd</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mkdir -p rootfs/put_old</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># unshare -m -u -i -p -n -f /bin/bash</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount --bind /root/rootfs /root/rootfs</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount --bind /root/rootfs/put_old /root/rootfs/put_old</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># pivot_root /root/rootfs /root/rootfs/put_old</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># cd</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># ls -l</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>total<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># ls -l /</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a>total<span class="w"> </span><span class="m">56</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a>drwxr-xr-x<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">         </span><span class="m">12288</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">21</span>:31<span class="w"> </span>bin
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a>drwxr-xr-x<span class="w">    </span><span class="m">4</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">09</span>:04<span class="w"> </span>dev
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a>drwxr-xr-x<span class="w">    </span><span class="m">3</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">09</span>:04<span class="w"> </span>etc
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a>drwxr-xr-x<span class="w">    </span><span class="m">2</span><span class="w"> </span>nobody<span class="w">   </span>nobody<span class="w">        </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">21</span>:31<span class="w"> </span>home
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a>drwxr-xr-x<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">21</span>:31<span class="w"> </span>lib
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a>lrwxrwxrwx<span class="w">    </span><span class="m">1</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">             </span><span class="m">3</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">21</span>:31<span class="w"> </span>lib64<span class="w"> </span>-&gt;<span class="w"> </span>lib
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a>drwxr-xr-x<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">09</span>:04<span class="w"> </span>proc
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a>drwxr-xr-x<span class="w">   </span><span class="m">20</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">08</span>:34<span class="w"> </span>put_old
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24"></a>drwx------<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">09</span>:16<span class="w"> </span>root
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25"></a>drwxr-xr-x<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">13</span><span class="w"> </span><span class="m">09</span>:04<span class="w"> </span>sys
+</span><span id="__span-7-26"><a id="__codelineno-7-26" name="__codelineno-7-26"></a>drwxrwxrwt<span class="w">    </span><span class="m">2</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">21</span>:31<span class="w"> </span>tmp
+</span><span id="__span-7-27"><a id="__codelineno-7-27" name="__codelineno-7-27"></a>drwxr-xr-x<span class="w">    </span><span class="m">4</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">21</span>:31<span class="w"> </span>usr
+</span><span id="__span-7-28"><a id="__codelineno-7-28" name="__codelineno-7-28"></a>drwxr-xr-x<span class="w">    </span><span class="m">4</span><span class="w"> </span>root<span class="w">     </span>root<span class="w">          </span><span class="m">4096</span><span class="w"> </span>Sep<span class="w"> </span><span class="m">26</span><span class="w"> </span><span class="m">21</span>:31<span class="w"> </span>var
+</span><span id="__span-7-29"><a id="__codelineno-7-29" name="__codelineno-7-29"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-7-30"><a id="__codelineno-7-30" name="__codelineno-7-30"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/mount -t proc proc /proc</span>
+</span><span id="__span-7-31"><a id="__codelineno-7-31" name="__codelineno-7-31"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-7-32"><a id="__codelineno-7-32" name="__codelineno-7-32"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/df -h</span>
+</span><span id="__span-7-33"><a id="__codelineno-7-33" name="__codelineno-7-33"></a>Filesystem<span class="w">                </span>Size<span class="w">      </span>Used<span class="w"> </span>Available<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-7-34"><a id="__codelineno-7-34" name="__codelineno-7-34"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old
+</span><span id="__span-7-35"><a id="__codelineno-7-35" name="__codelineno-7-35"></a>udev<span class="w">                      </span><span class="m">1</span>.6G<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">1</span>.6G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/dev
+</span><span id="__span-7-36"><a id="__codelineno-7-36" name="__codelineno-7-36"></a>tmpfs<span class="w">                     </span><span class="m">1</span>.7G<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">1</span>.7G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/dev/shm
+</span><span id="__span-7-37"><a id="__codelineno-7-37" name="__codelineno-7-37"></a>tmpfs<span class="w">                   </span><span class="m">340</span>.2M<span class="w">      </span><span class="m">1</span>.1M<span class="w">    </span><span class="m">339</span>.1M<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/run
+</span><span id="__span-7-38"><a id="__codelineno-7-38" name="__codelineno-7-38"></a>tmpfs<span class="w">                     </span><span class="m">5</span>.0M<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">5</span>.0M<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/run/lock
+</span><span id="__span-7-39"><a id="__codelineno-7-39" name="__codelineno-7-39"></a>...
+</span><span id="__span-7-40"><a id="__codelineno-7-40" name="__codelineno-7-40"></a>tmpfs<span class="w">                     </span><span class="m">1</span>.7G<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">1</span>.7G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/tmp
+</span><span id="__span-7-41"><a id="__codelineno-7-41" name="__codelineno-7-41"></a>/dev/sda2<span class="w">                 </span><span class="m">4</span>.8G<span class="w">    </span><span class="m">171</span>.7M<span class="w">      </span><span class="m">4</span>.4G<span class="w">   </span><span class="m">4</span>%<span class="w"> </span>/put_old/boot
+</span><span id="__span-7-42"><a id="__codelineno-7-42" name="__codelineno-7-42"></a>overlay<span class="w">                  </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
+</span><span id="__span-7-43"><a id="__codelineno-7-43" name="__codelineno-7-43"></a>overlay<span class="w">                  </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
+</span><span id="__span-7-44"><a id="__codelineno-7-44" name="__codelineno-7-44"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/
+</span><span id="__span-7-45"><a id="__codelineno-7-45" name="__codelineno-7-45"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old
+</span><span id="__span-7-46"><a id="__codelineno-7-46" name="__codelineno-7-46"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上，在<code>rootfs</code>目录下创建了<code>put_old</code>目录，用以存放老的根文件系统。</p>
 <p>使用<code>unshare</code>进入<code>namespace</code>后，对<code>/root/rootfs</code>和<code>/root/rootfs/put_old</code>进行声明式挂载。</p>
 <p>而后使用<code>pivot_root</code>进行切换目录，重新挂载<code>proc</code>虚拟文件系统，使用<code>df -h</code>查看文件挂载点，不难看出，老的文件系统已经被挂载到<code>/put_old</code>目录中了。</p>
 <h3 id="_2">卸载老的根文件系统</h3>
 <p>虽然切换为了新的根文件系统，但是挂载点都还在，也能操作<code>/put_old</code>中的目录和文件，这里介绍将其卸载掉。</p>
 <p>只需要使用<code>umount -l</code>卸载掉即可，如下：</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount
-/dev/sda4 on / type ext4 (rw,relatime)
-/dev/sda4 on /put_old type ext4 (rw,relatime)
-proc on /proc type proc (rw,relatime)
-(unshare) [root@ubuntu]:[~][tty:tty]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># umount -l /put_old</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/df -h</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>Filesystem<span class="w">                </span>Size<span class="w">      </span>Used<span class="w"> </span>Available<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/mount</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>/dev/sda4<span class="w"> </span>on<span class="w"> </span>/<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ext4<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>/dev/sda4<span class="w"> </span>on<span class="w"> </span>/put_old<span class="w"> </span><span class="nb">type</span><span class="w"> </span>ext4<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a>proc<span class="w"> </span>on<span class="w"> </span>/proc<span class="w"> </span><span class="nb">type</span><span class="w"> </span>proc<span class="w"> </span><span class="o">(</span>rw,relatime<span class="o">)</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p><code>umount -l</code>是惰性卸载，惰性卸载是指将挂载点标记为待卸载状态，但是不会立即进行卸载，惰性卸载后，从表面来看，都会卸载干净，但是它会等文件系统不再被使用的时候，才会真正卸载掉。</p>
 <h3 id="_3">映射挂载点</h3>
 <p>若想卸载掉老文件系统，又想映射部分目录到该<code>namespace</code>中，可以在惰性卸载前，进行声明式挂载即可，例如：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -u -i -p -n -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs /root/rootfs
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/rootfs/put_old /root/rootfs/put_old
-(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/rootfs /root/rootfs/put_old
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-udev                      1.6G         0      1.6G   0% /put_old/dev
-tmpfs                     1.7G         0      1.7G   0% /put_old/dev/shm
-tmpfs                   340.2M      1.1M    339.1M   0% /put_old/run
-tmpfs                     5.0M         0      5.0M   0% /put_old/run/lock
-...
-tmpfs                   340.2M     12.0K    340.2M   0% /put_old/run/user/1000
-tmpfs                     1.7G         0      1.7G   0% /put_old/tmp
-/dev/sda2                 4.8G    171.7M      4.4G   4% /put_old/boot
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
-overlay                  92.0G      6.9G     80.3G   8% /put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# mkdir /put_old/root/
-.bash_history  .bashrc        .dockerenv     .lesshst       .profile       rootfs/        rootfs.tar     .ssh/          .viminfo
-(unshare) [root@ubuntu]:[~][tty:tty]# mkdir /put_old/root/dir1
-(unshare) [root@ubuntu]:[~][tty:tty]# mkdir ~/dir2
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount --bind /put_old/root/dir1 /root/dir2
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# df -h
-Filesystem                Size      Used Available Use% Mounted on
-/dev/sda4                92.0G      6.9G     80.3G   8% /
-/dev/sda4                92.0G      6.9G     80.3G   8% /put_old
-/dev/sda4                92.0G      6.9G     80.3G   8% /root/dir2
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span>
+<span class="normal"><a href="#__codelineno-9-35">35</a></span>
+<span class="normal"><a href="#__codelineno-9-36">36</a></span>
+<span class="normal"><a href="#__codelineno-9-37">37</a></span>
+<span class="normal"><a href="#__codelineno-9-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># unshare -m -u -i -p -n -f /bin/bash</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount --bind /root/rootfs /root/rootfs</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount --bind /root/rootfs/put_old /root/rootfs/put_old</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># pivot_root /root/rootfs /root/rootfs/put_old</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/mount -t proc proc /proc</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># df -h</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a>Filesystem<span class="w">                </span>Size<span class="w">      </span>Used<span class="w"> </span>Available<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>udev<span class="w">                      </span><span class="m">1</span>.6G<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">1</span>.6G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/dev
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a>tmpfs<span class="w">                     </span><span class="m">1</span>.7G<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">1</span>.7G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/dev/shm
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a>tmpfs<span class="w">                   </span><span class="m">340</span>.2M<span class="w">      </span><span class="m">1</span>.1M<span class="w">    </span><span class="m">339</span>.1M<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/run
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a>tmpfs<span class="w">                     </span><span class="m">5</span>.0M<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">5</span>.0M<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/run/lock
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a>...
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a>tmpfs<span class="w">                   </span><span class="m">340</span>.2M<span class="w">     </span><span class="m">12</span>.0K<span class="w">    </span><span class="m">340</span>.2M<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/run/user/1000
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a>tmpfs<span class="w">                     </span><span class="m">1</span>.7G<span class="w">         </span><span class="m">0</span><span class="w">      </span><span class="m">1</span>.7G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/put_old/tmp
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17"></a>/dev/sda2<span class="w">                 </span><span class="m">4</span>.8G<span class="w">    </span><span class="m">171</span>.7M<span class="w">      </span><span class="m">4</span>.4G<span class="w">   </span><span class="m">4</span>%<span class="w"> </span>/put_old/boot
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18"></a>overlay<span class="w">                  </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
+</span><span id="__span-9-19"><a id="__codelineno-9-19" name="__codelineno-9-19"></a>overlay<span class="w">                  </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
+</span><span id="__span-9-20"><a id="__codelineno-9-20" name="__codelineno-9-20"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/
+</span><span id="__span-9-21"><a id="__codelineno-9-21" name="__codelineno-9-21"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old
+</span><span id="__span-9-22"><a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-9-23"><a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># mkdir /put_old/root/</span>
+</span><span id="__span-9-24"><a id="__codelineno-9-24" name="__codelineno-9-24"></a>.bash_history<span class="w">  </span>.bashrc<span class="w">        </span>.dockerenv<span class="w">     </span>.lesshst<span class="w">       </span>.profile<span class="w">       </span>rootfs/<span class="w">        </span>rootfs.tar<span class="w">     </span>.ssh/<span class="w">          </span>.viminfo
+</span><span id="__span-9-25"><a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># mkdir /put_old/root/dir1</span>
+</span><span id="__span-9-26"><a id="__codelineno-9-26" name="__codelineno-9-26"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># mkdir ~/dir2</span>
+</span><span id="__span-9-27"><a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-9-28"><a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/mount --bind /put_old/root/dir1 /root/dir2</span>
+</span><span id="__span-9-29"><a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-9-30"><a id="__codelineno-9-30" name="__codelineno-9-30"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># umount -l /put_old</span>
+</span><span id="__span-9-31"><a id="__codelineno-9-31" name="__codelineno-9-31"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-9-32"><a id="__codelineno-9-32" name="__codelineno-9-32"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># df -h</span>
+</span><span id="__span-9-33"><a id="__codelineno-9-33" name="__codelineno-9-33"></a>Filesystem<span class="w">                </span>Size<span class="w">      </span>Used<span class="w"> </span>Available<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-9-34"><a id="__codelineno-9-34" name="__codelineno-9-34"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/
+</span><span id="__span-9-35"><a id="__codelineno-9-35" name="__codelineno-9-35"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old
+</span><span id="__span-9-36"><a id="__codelineno-9-36" name="__codelineno-9-36"></a>/dev/sda4<span class="w">                </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/root/dir2
+</span><span id="__span-9-37"><a id="__codelineno-9-37" name="__codelineno-9-37"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-9-38"><a id="__codelineno-9-38" name="__codelineno-9-38"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上操作和上述操作一致，只不过在惰性挂载之前，创建了2个目录，<code>/put_old/root/dir1</code> 和<code>~/dir2</code>，而后进行声明式挂载，最后惰性卸载掉<code>/put_old</code>，就可以看到宿主机的挂载点了。</p>
 <p>实际写入也是可以的，如下：</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# echo 'hello' &gt; /root/dir2/123.ttx
-(unshare) [root@ubuntu]:[~][tty:tty]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># echo &#39;hello&#39; &gt; /root/dir2/123.ttx</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在<code>namespace</code>中，创建了<code>/root/dir2/123.ttx</code>，并且写入值<code>hello</code>，而在宿主机中同样查看该文件。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# cat dir1/123.ttx
-hello
-[root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># cat dir1/123.ttx</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>hello
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="overlayrootfs">使用overlay来重复利用rootfs</h2>
 <p>上述有一个问题，若开启了多个容器，是需要为每一个容器都拷贝一份<code>rootfs</code>，实际上<code>rootfs</code>大多数情况下不会存在太多的修改，如果是这样的话，则非常浪费存储空间，好在<code>overlay</code>可以解决该问题。</p>
 <p><code>overlay</code>是一个特殊的文件系统，它允许将一个文件系统的视图叠加到另一个文件系统上，可以简单的分为基础层和可写层，当使用该文件系统的时候，需要指定这2个层次，当文件有修改的时候，会从基础层拷贝一份，到可写层，修改可写层的数据，不会影响最底层的原始数据。</p>
@@ -935,136 +1079,220 @@ hello
 </ul>
 <p>下面将演示使用<code>overlay</code>进行简单的挂载。</p>
 <p>准备工作：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# mkdir overlay
-[root@ubuntu]:[~][tty:1]# cd overlay/
-[root@ubuntu]:[~/overlay][tty:1]#
-[root@ubuntu]:[~/overlay][tty:1]# mkdir lower_directory
-[root@ubuntu]:[~/overlay][tty:1]# mkdir upper_directory
-[root@ubuntu]:[~/overlay][tty:1]# mkdir work_directory
-[root@ubuntu]:[~/overlay][tty:1]# mkdir work
-[root@ubuntu]:[~/overlay][tty:1]#
-[root@ubuntu]:[~/overlay][tty:1]# echo &quot;123456&quot; &gt; lower_directory/text.txt
-[root@ubuntu]:[~/overlay][tty:1]# echo &quot;hello&quot; &gt; lower_directory/test
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># mkdir overlay</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># cd overlay/</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># mkdir lower_directory</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># mkdir upper_directory</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># mkdir work_directory</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># mkdir work</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># echo &quot;123456&quot; &gt; lower_directory/text.txt</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># echo &quot;hello&quot; &gt; lower_directory/test</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上创建了3个目录，分别为<code>lower_directory</code>、<code>upper_directory</code>、<code>work_directory</code>以及<code>work</code>目录。</p>
 <p>并且在<code>lower_directory</code>目录下创建了2个文件：<code>text.txt</code>和<code>test</code>分别写入了内容。</p>
 <p>使用<code>overlay</code>进行挂载：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# mount -t overlay overlay -o lowerdir=lower_directory,upperdir=upper_directory,workdir=work_directory ./work
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># mount -t overlay overlay -o lowerdir=lower_directory,upperdir=upper_directory,workdir=work_directory ./work</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>挂载<code>overlay</code>指定了基础只读文件系统层目录、可写层目录以及内部工作目录，最后是将<code>overlay</code>挂载到了<code>./work</code>中。</p>
 <p>查看挂载信息：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# df -h
-Filesystem      Size  Used Avail Use% Mounted on
-tmpfs           341M  1.2M  340M   1% /run
-/dev/sda4        92G  7.0G   81G   8% /
-tmpfs           1.7G     0  1.7G   0% /dev/shm
-...
-overlay          92G  7.0G   81G   8% /var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
-overlay          92G  7.0G   81G   8% /var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
-overlay          92G  7.0G   81G   8% /root/overlay/work
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># df -h</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>Filesystem<span class="w">      </span>Size<span class="w">  </span>Used<span class="w"> </span>Avail<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>tmpfs<span class="w">           </span>341M<span class="w">  </span><span class="m">1</span>.2M<span class="w">  </span>340M<span class="w">   </span><span class="m">1</span>%<span class="w"> </span>/run
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>/dev/sda4<span class="w">        </span>92G<span class="w">  </span><span class="m">7</span>.0G<span class="w">   </span>81G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a>tmpfs<span class="w">           </span><span class="m">1</span>.7G<span class="w">     </span><span class="m">0</span><span class="w">  </span><span class="m">1</span>.7G<span class="w">   </span><span class="m">0</span>%<span class="w"> </span>/dev/shm
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>...
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>overlay<span class="w">          </span>92G<span class="w">  </span><span class="m">7</span>.0G<span class="w">   </span>81G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/var/lib/docker/overlay2/cc5c084fbc8408885238df38f319ed6b4c30633214a40cb826b509ebaf8a37ea/merged
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>overlay<span class="w">          </span>92G<span class="w">  </span><span class="m">7</span>.0G<span class="w">   </span>81G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/var/lib/docker/overlay2/bafdfaa3dbd7563bd81d30ec86c03b7749a08b144304eae7c5de60922482dc5c/merged
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a>overlay<span class="w">          </span>92G<span class="w">  </span><span class="m">7</span>.0G<span class="w">   </span>81G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/root/overlay/work
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，文件类型是<code>overlay</code>，已经挂载到<code>/root/overlay/work</code>目录中了。</p>
 <p>查看各个目录的文件：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# tree
-.
-├── lower_directory
-│   ├── test
-│   └── text.txt
-├── upper_directory
-├── work
-│   ├── test
-│   └── text.txt
-└── work_directory
-    └── work
-
-6 directories, 4 files
-[root@ubuntu]:[~/overlay][tty:1]# md5sum lower_directory/* work/*
-b1946ac92492d2347c6235b4d2611184  lower_directory/test
-f447b20a7fcbf53a5d5be013ea0b15af  lower_directory/text.txt
-b1946ac92492d2347c6235b4d2611184  work/test
-f447b20a7fcbf53a5d5be013ea0b15af  work/text.txt
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span>
+<span class="normal"><a href="#__codelineno-15-13">13</a></span>
+<span class="normal"><a href="#__codelineno-15-14">14</a></span>
+<span class="normal"><a href="#__codelineno-15-15">15</a></span>
+<span class="normal"><a href="#__codelineno-15-16">16</a></span>
+<span class="normal"><a href="#__codelineno-15-17">17</a></span>
+<span class="normal"><a href="#__codelineno-15-18">18</a></span>
+<span class="normal"><a href="#__codelineno-15-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># tree</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a>.
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>├──<span class="w"> </span>lower_directory
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>│<span class="w">   </span>├──<span class="w"> </span><span class="nb">test</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a>│<span class="w">   </span>└──<span class="w"> </span>text.txt
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a>├──<span class="w"> </span>upper_directory
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a>├──<span class="w"> </span>work
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a>│<span class="w">   </span>├──<span class="w"> </span><span class="nb">test</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a>│<span class="w">   </span>└──<span class="w"> </span>text.txt
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a>└──<span class="w"> </span>work_directory
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">    </span>└──<span class="w"> </span>work
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12"></a>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="m">6</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">4</span><span class="w"> </span>files
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># md5sum lower_directory/* work/*</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15"></a>b1946ac92492d2347c6235b4d2611184<span class="w">  </span>lower_directory/test
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16"></a>f447b20a7fcbf53a5d5be013ea0b15af<span class="w">  </span>lower_directory/text.txt
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17"></a>b1946ac92492d2347c6235b4d2611184<span class="w">  </span>work/test
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18"></a>f447b20a7fcbf53a5d5be013ea0b15af<span class="w">  </span>work/text.txt
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，其<code>work</code>目录和<code>lower_directory</code>目录中的文件都是一样的，其<code>md5</code>也是一样的，说明<code>overlay</code>已经将基础系统层的文件映射进来了。</p>
 <p>此时若修改<code>work</code>目录下的某个文件，再查看文件信息：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# echo &quot;123&quot; &gt;&gt; work/text.txt
-[root@ubuntu]:[~/overlay][tty:1]#
-[root@ubuntu]:[~/overlay][tty:1]# tree
-.
-├── lower_directory
-│   ├── test
-│   └── text.txt
-├── upper_directory
-│   └── text.txt
-├── work
-│   ├── test
-│   └── text.txt
-└── work_directory
-    └── work
-
-6 directories, 5 files
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-16-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-16-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-16-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-16-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-16-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-16-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-16-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-16-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-16-10">10</a></span>
+<span class="normal"><a href="#__codelineno-16-11">11</a></span>
+<span class="normal"><a href="#__codelineno-16-12">12</a></span>
+<span class="normal"><a href="#__codelineno-16-13">13</a></span>
+<span class="normal"><a href="#__codelineno-16-14">14</a></span>
+<span class="normal"><a href="#__codelineno-16-15">15</a></span>
+<span class="normal"><a href="#__codelineno-16-16">16</a></span>
+<span class="normal"><a href="#__codelineno-16-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># echo &quot;123&quot; &gt;&gt; work/text.txt</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># tree</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a>.
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>├──<span class="w"> </span>lower_directory
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>│<span class="w">   </span>├──<span class="w"> </span><span class="nb">test</span>
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a>│<span class="w">   </span>└──<span class="w"> </span>text.txt
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a>├──<span class="w"> </span>upper_directory
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a>│<span class="w">   </span>└──<span class="w"> </span>text.txt
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10"></a>├──<span class="w"> </span>work
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11"></a>│<span class="w">   </span>├──<span class="w"> </span><span class="nb">test</span>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12"></a>│<span class="w">   </span>└──<span class="w"> </span>text.txt
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13"></a>└──<span class="w"> </span>work_directory
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14"></a><span class="w">    </span>└──<span class="w"> </span>work
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15"></a>
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="m">6</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">5</span><span class="w"> </span>files
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，可写层也增加了一个<code>text.txt</code>，具体的逻辑是当我们视图修改<code>work/text.txt</code>内容是，<code>overlay</code>会先将只读文件系统层的<code>text.txt</code>拷贝到<code>upper_directory</code>中，然后再修改其内容，当我们读取<code>work</code>目录下内容的时候，当<code>upper_directory</code>目录中有文件的时候，会读取该目录下内容，没有才会在<code>lower_directory</code>进行尝试读取。</p>
 <p>校验一下各个文件的<code>md5</code>：</p>
-<pre><code class="language-bash">[root@ubuntu]:[~/overlay][tty:1]# md5sum lower_directory/text.txt work/text.txt upper_directory/text.txt
-f447b20a7fcbf53a5d5be013ea0b15af  lower_directory/text.txt
-6104fbccc189d29b24969b514bb7de5a  work/text.txt
-6104fbccc189d29b24969b514bb7de5a  upper_directory/text.txt
-[root@ubuntu]:[~/overlay][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># md5sum lower_directory/text.txt work/text.txt upper_directory/text.txt</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>f447b20a7fcbf53a5d5be013ea0b15af<span class="w">  </span>lower_directory/text.txt
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>6104fbccc189d29b24969b514bb7de5a<span class="w">  </span>work/text.txt
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>6104fbccc189d29b24969b514bb7de5a<span class="w">  </span>upper_directory/text.txt
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~/overlay<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>通过上述三个目录中的<code>`text.txt</code>的<code>md5</code>值可以判断，其修改的值被存入到了<code>upper_directory</code>中。</p>
 <p>​   </p>
 <h3 id="overlayrootfs_1">使用<code>overlay</code>挂载<code>rootfs</code></h3>
 <p>想要每个容器都获取“独立”的<code>rootfs</code>，那在创建<code>namespace</code>之前，就需要先进行挂载，需要指定不同的<code>lowerdir</code>、<code>upperdir</code>以及<code>workdir</code>。</p>
 <p>每个容器启动之前，都需要进行<code>overlay</code>的挂载。</p>
 <p>在此之前，需要为容器创建相应的<code>overlay</code>目录。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mkdir {upper,work,busybox_container_01}
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mkdir {upper,work,busybox_container_01}</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p><code>busybox_container_01</code>就是为即将启动的容器，创建的根目录，其他的，则和上节是一样的。</p>
 <p>将<code>rootfs</code>挂载到<code>busybox_container_01</code>中。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# mount -t overlay overlay -o lowerdir=rootfs,upperdir=upper,workdir=work busybox_container_01
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount -t overlay overlay -o lowerdir=rootfs,upperdir=upper,workdir=work busybox_container_01</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>这里的<code>lowerdir</code>需要修改为<code>rootfs</code>。</p>
 <p>使用<code>unshare</code>创建<code>namespace</code>。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# unshare -m -p -u -n -i -f /bin/bash
-(unshare) [root@ubuntu]:[~][tty:0]# mkdir -p busybox_container_01/put_old
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/busybox_container_01 /root/busybox_container_01
-(unshare) [root@ubuntu]:[~][tty:0]# mount --bind /root/busybox_container_01/put_old /root/busybox_container_01/put_old
-(unshare) [root@ubuntu]:[~][tty:0]#
-(unshare) [root@ubuntu]:[~][tty:0]# pivot_root /root/busybox_container_01 /root/busybox_container_01/put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# cd
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/mount -t proc proc /proc
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# umount -l /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-(unshare) [root@ubuntu]:[~][tty:tty]# /bin/df -h
-Filesystem                Size      Used Available Use% Mounted on
-overlay                  92.0G      6.9G     80.3G   8% /
-overlay                  92.0G      6.9G     80.3G   8% /put_old
-(unshare) [root@ubuntu]:[~][tty:tty]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span>
+<span class="normal"><a href="#__codelineno-20-13">13</a></span>
+<span class="normal"><a href="#__codelineno-20-14">14</a></span>
+<span class="normal"><a href="#__codelineno-20-15">15</a></span>
+<span class="normal"><a href="#__codelineno-20-16">16</a></span>
+<span class="normal"><a href="#__codelineno-20-17">17</a></span>
+<span class="normal"><a href="#__codelineno-20-18">18</a></span>
+<span class="normal"><a href="#__codelineno-20-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># unshare -m -p -u -n -i -f /bin/bash</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mkdir -p busybox_container_01/put_old</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount --bind /root/busybox_container_01 /root/busybox_container_01</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># mount --bind /root/busybox_container_01/put_old /root/busybox_container_01/put_old</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># pivot_root /root/busybox_container_01 /root/busybox_container_01/put_old</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># cd</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/mount -t proc proc /proc</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># umount -l /put_old</span>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># /bin/df -h</span>
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16"></a>Filesystem<span class="w">                </span>Size<span class="w">      </span>Used<span class="w"> </span>Available<span class="w"> </span>Use%<span class="w"> </span>Mounted<span class="w"> </span>on
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17"></a>overlay<span class="w">                  </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18"></a>overlay<span class="w">                  </span><span class="m">92</span>.0G<span class="w">      </span><span class="m">6</span>.9G<span class="w">     </span><span class="m">80</span>.3G<span class="w">   </span><span class="m">8</span>%<span class="w"> </span>/put_old
+</span><span id="__span-20-19"><a id="__codelineno-20-19" name="__codelineno-20-19"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上便成功了。</p>
 <p>如果容器中有修改，会相应的修改到<code>/root/upper</code>内容，例如：</p>
-<pre><code class="language-bash">(unshare) [root@ubuntu]:[~][tty:tty]# echo 'busybox' &gt; 123.txt
-(unshare) [root@ubuntu]:[~][tty:tty]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1"># echo &#39;busybox&#39; &gt; 123.txt</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="o">(</span>unshare<span class="o">)</span><span class="w"> </span><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:tty<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>会同步修改到<code>upper</code>目录中，而不会影响到原始的<code>rootfs</code>。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# cat upper/root/123.txt
-busybox
-[root@ubuntu]:[~][tty:1]#
-[root@ubuntu]:[~][tty:1]# ls rootfs/root/123.txt
-ls: cannot access 'rootfs/root/123.txt': No such file or directory
-[root@ubuntu]:[~][tty:1]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span>
+<span class="normal"><a href="#__codelineno-22-5">5</a></span>
+<span class="normal"><a href="#__codelineno-22-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># cat upper/root/123.txt</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a>busybox
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># ls rootfs/root/123.txt</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a>ls:<span class="w"> </span>cannot<span class="w"> </span>access<span class="w"> </span><span class="s1">&#39;rootfs/root/123.txt&#39;</span>:<span class="w"> </span>No<span class="w"> </span>such<span class="w"> </span>file<span class="w"> </span>or<span class="w"> </span>directory
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，在宿主机中，<code>rootfs/root/123.txt</code>并没有存在该文件，而<code>upper/root/123.txt</code>则存在，所以使用<code>overlay</code>可以重复利用<code>rootfs</code>，节省磁盘存储空间。</p>
 <h2 id="_4">总结</h2>
 <p>若一个进程使用<code>mount namespace</code>后，会使用和宿主机相同的<code>rootfs</code>，为了将容器和宿主机<code>rootfs</code>分离开来，可以使用<code>pivot_root</code>进行更改容器中的根文件系统。</p>

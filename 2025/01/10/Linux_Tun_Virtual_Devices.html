@@ -545,7 +545,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              7 min read
+                              8 min read
                             
                           </span>
                         </div>
@@ -677,49 +677,72 @@
 <p>因此，可以说 <code>tun</code> 实现了对网络层数据包的劫持。这些数据包会被发送到与 <code>tun</code> 相连的应用层程序进行处理，例如加密、压缩或其他自定义操作。处理完成后，数据包再通过网络协议栈发送出去，完成整个流程。</p>
 <h2 id="tun_1"><code>tun</code>基本操作</h2>
 <p>在使用<code>tun</code>虚拟设备之前，需要先设置<code>IP</code>转发。</p>
-<pre><code class="language-bash">root@3114:~# sysctl -w net.ipv4.ip_forward=1
-net.ipv4.ip_forward = 1
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>root@3114:~#<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv4.ip_forward<span class="o">=</span><span class="m">1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>net.ipv4.ip_forward<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>可以使用 <code>ip</code> 命令来创建 <code>tun</code> 虚拟网卡。例如，创建一个名为 <code>tun0</code> 的 <code>tun</code> 虚拟设备，命令如下：</p>
-<pre><code class="language-bash">root@3114:~# ip tuntap add dev tun0 mode tun
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>tuntap<span class="w"> </span>add<span class="w"> </span>dev<span class="w"> </span>tun0<span class="w"> </span>mode<span class="w"> </span>tun
+</span></code></pre></div></td></tr></table></div>
 <p>要查看已经创建好的 <code>tun</code> 设备，可以使用以下命令：</p>
-<pre><code class="language-bash">root@3114:~# ip link show tun0
-3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
-    link/none
-root@3114:~#
-root@3114:~# ip addr show tun0
-3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN group default qlen 500
-    link/none
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span>tun0
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="m">3</span>:<span class="w"> </span>tun0:<span class="w"> </span>&lt;POINTOPOINT,MULTICAST,NOARP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span>link/none
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>root@3114:~#
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>tun0
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="m">3</span>:<span class="w"> </span>tun0:<span class="w"> </span>&lt;POINTOPOINT,MULTICAST,NOARP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span>link/none
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>可以使用以下命令为 <code>tun</code> 虚拟设备分配<code>ip</code>地址，例如为设备 <code>tun0</code> 分配 <code>10.0.0.3/24</code>：</p>
-<pre><code class="language-bash">root@3114:~# ip addr add 10.0.0.3/24 dev tun0
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">10</span>.0.0.3/24<span class="w"> </span>dev<span class="w"> </span>tun0
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>再次查看，就有了其<code>ip</code>地址。</p>
-<pre><code class="language-bash">root@3114:~# ip addr show dev tun0
-3: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN group default qlen 500
-    link/none
-    inet 10.0.0.3/24 scope global tun0
-       valid_lft forever preferred_lft forever
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>dev<span class="w"> </span>tun0
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="m">3</span>:<span class="w"> </span>tun0:<span class="w"> </span>&lt;POINTOPOINT,MULTICAST,NOARP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span>link/none
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">10</span>.0.0.3/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>tun0
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>该虚拟网卡，默认为关闭状态，可以将该虚拟网卡开启。</p>
-<pre><code class="language-bash">root@3114:~# ip link set tun0 up
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>tun0<span class="w"> </span>up
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>当虚拟网卡<code>tun0</code>创建完毕后，系统会默认为其创建一条路由，可以使用<code>ip route</code>查看。</p>
-<pre><code class="language-bash">root@3114:~# ip route
-default via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-1.2.4.8 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3 linkdown
-114.114.114.114 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-192.168.3.0/24 dev eth0 proto kernel scope link src 192.168.3.114 metric 100
-192.168.3.1 dev eth0 proto dhcp scope link src 192.168.3.114 metric 100
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>route
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>default<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="m">1</span>.2.4.8<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="m">10</span>.0.0.0/24<span class="w"> </span>dev<span class="w"> </span>tun0<span class="w"> </span>proto<span class="w"> </span>kernel<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">10</span>.0.0.3<span class="w"> </span>linkdown
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="m">114</span>.114.114.114<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="m">192</span>.168.3.0/24<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>kernel<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，设备的状态为 <code>linkdown</code>，实际上这是因为 <code>tunApp</code> 尚未启动。当 <code>tunApp</code> 没有启动时，<code>tun</code> 设备的句柄无法被打开，因此路由中才会显示为 <code>linkdown</code> 状态。</p>
 <h2 id="tun_2">实际体验使用<code>tun</code>传输数据</h2>
 <p>在进行具体操作之前，我们已经将图给画好了，如下：</p>
@@ -727,284 +750,513 @@ root@3114:~#
 <p>我们将 <code>3.115</code> 的机器称为服务端，<code>3.114</code> 的机器称为客户端。这两台机器上分别有一个 <code>tun</code> 虚拟设备，并且各自运行着 <code>tunApp</code> 程序。实现的功能是，在 <code>3.114</code> 上执行 <code>ping 10.0.0.5</code> 操作，通过 <code>tun</code> 设备让请求在 <code>3.115</code> 上执行，并将结果返回给 <code>3.114</code>。</p>
 <h3 id="_1">服务器操作</h3>
 <p>首先，需要在<code>3.115</code>上操作创建<code>tun</code>虚拟设备，并且分为地址。</p>
-<pre><code class="language-bash">root@3115:~# ip tuntap add name tun0 mode tun
-root@3115:~#
-root@3115:~# ip link show tun0
-4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP&gt; mtu 1500 qdisc noop state DOWN mode DEFAULT group default qlen 500
-    link/none
-root@3115:~#
-root@3115:~# ip addr add 10.0.0.5/24 dev tun0
-root@3115:~#
-root@3115:~# ip link set tun0 up
-root@3115:~#
-root@3115:~# sysctl -w net.ipv4.ip_forward=1
-net.ipv4.ip_forward = 1
-root@3115:~#
-root@3115:~# ip addr show tun0
-4: tun0: &lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 500
-    link/none
-    inet 10.0.0.5/24 scope global tun0
-       valid_lft forever preferred_lft forever
-root@3115:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>root@3115:~#<span class="w"> </span>ip<span class="w"> </span>tuntap<span class="w"> </span>add<span class="w"> </span>name<span class="w"> </span>tun0<span class="w"> </span>mode<span class="w"> </span>tun
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>root@3115:~#
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>root@3115:~#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span>show<span class="w"> </span>tun0
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="m">4</span>:<span class="w"> </span>tun0:<span class="w"> </span>&lt;POINTOPOINT,MULTICAST,NOARP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>noop<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>mode<span class="w"> </span>DEFAULT<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span>link/none
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>root@3115:~#
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>root@3115:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">10</span>.0.0.5/24<span class="w"> </span>dev<span class="w"> </span>tun0
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>root@3115:~#
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>root@3115:~#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>tun0<span class="w"> </span>up
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>root@3115:~#
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a>root@3115:~#<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv4.ip_forward<span class="o">=</span><span class="m">1</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>net.ipv4.ip_forward<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>root@3115:~#
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a>root@3115:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>tun0
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="m">4</span>:<span class="w"> </span>tun0:<span class="w"> </span>&lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>fq_codel<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">    </span>link/none
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">10</span>.0.0.5/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>tun0
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a>root@3115:~#
+</span></code></pre></div></td></tr></table></div>
 <p>我们需要为此编写一个<code>tunapp2</code>，并且监听<code>udp</code>的<code>10010</code>端口，代码如下：</p>
-<pre><code class="language-go">package main
-
-import (
-    &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-    &quot;syscall&quot;
-    &quot;time&quot;
-    &quot;unsafe&quot;
-)
-
-func main() {
-    fmt.Println(&quot;start server&quot;)
-    tun, err := os.OpenFile(&quot;/dev/net/tun&quot;, os.O_RDWR, 0)
-    if err != nil {
-        log.Println(&quot;open tun devices error&quot;, err)
-    }
-
-    var ifr [18]byte
-    copy(ifr[:], &quot;tun0&quot;)
-    *(*uint16)(unsafe.Pointer(&amp;ifr[16])) = uint16(syscall.IFF_TUN) | uint16(syscall.IFF_NO_PI)
-
-    syscall.Syscall(syscall.SYS_IOCTL, tun.Fd(), uintptr(syscall.TUNSETIFF), uintptr(unsafe.Pointer(&amp;ifr)))
-
-    serverAddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;:10010&quot;)
-    if err != nil {
-        log.Println(&quot;failed resolve udp addr&quot;, err)
-        return
-    }
-    conn, err := net.ListenUDP(&quot;udp&quot;, serverAddr)
-    if err != nil {
-        log.Println(&quot;listen udp error&quot;, err)
-        return
-    }
-
-    buf := make([]byte, 1500)
-    for {
-        un, udpAddr, err := conn.ReadFromUDP(buf)
-        if err != nil {
-            log.Println(&quot;read from udp error&quot;, err)
-            continue
-        }
-
-        fmt.Println(&quot;已经收到客户端udp请求了&quot;, len(buf[:un]))
-
-        tun.SetReadDeadline(time.Now().Add(1 * time.Second))
-
-        _, err = tun.Write(buf[:un])
-        if err != nil {
-            log.Println(&quot;tun write error&quot;, err)
-        }
-
-        fmt.Println(&quot;已经将请求写入到了tun虚拟设备中&quot;, len(buf[:un]))
-
-        n, err := tun.Read(buf)
-        if err != nil {
-            if os.IsTimeout(err) {
-                continue
-            }
-            log.Fatalf(&quot;Failed to read from device: %v&quot;, err)
-        }
-        fmt.Println(&quot;已经收到tun收到了信息&quot;, len(buf[:n]))
-        conn.WriteToUDP(buf[:n], udpAddr)
-        fmt.Println(&quot;将数据回复到udp客户端中&quot;, len(buf[:n]))
-    }
-}
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span>
+<span class="normal"><a href="#__codelineno-8-35">35</a></span>
+<span class="normal"><a href="#__codelineno-8-36">36</a></span>
+<span class="normal"><a href="#__codelineno-8-37">37</a></span>
+<span class="normal"><a href="#__codelineno-8-38">38</a></span>
+<span class="normal"><a href="#__codelineno-8-39">39</a></span>
+<span class="normal"><a href="#__codelineno-8-40">40</a></span>
+<span class="normal"><a href="#__codelineno-8-41">41</a></span>
+<span class="normal"><a href="#__codelineno-8-42">42</a></span>
+<span class="normal"><a href="#__codelineno-8-43">43</a></span>
+<span class="normal"><a href="#__codelineno-8-44">44</a></span>
+<span class="normal"><a href="#__codelineno-8-45">45</a></span>
+<span class="normal"><a href="#__codelineno-8-46">46</a></span>
+<span class="normal"><a href="#__codelineno-8-47">47</a></span>
+<span class="normal"><a href="#__codelineno-8-48">48</a></span>
+<span class="normal"><a href="#__codelineno-8-49">49</a></span>
+<span class="normal"><a href="#__codelineno-8-50">50</a></span>
+<span class="normal"><a href="#__codelineno-8-51">51</a></span>
+<span class="normal"><a href="#__codelineno-8-52">52</a></span>
+<span class="normal"><a href="#__codelineno-8-53">53</a></span>
+<span class="normal"><a href="#__codelineno-8-54">54</a></span>
+<span class="normal"><a href="#__codelineno-8-55">55</a></span>
+<span class="normal"><a href="#__codelineno-8-56">56</a></span>
+<span class="normal"><a href="#__codelineno-8-57">57</a></span>
+<span class="normal"><a href="#__codelineno-8-58">58</a></span>
+<span class="normal"><a href="#__codelineno-8-59">59</a></span>
+<span class="normal"><a href="#__codelineno-8-60">60</a></span>
+<span class="normal"><a href="#__codelineno-8-61">61</a></span>
+<span class="normal"><a href="#__codelineno-8-62">62</a></span>
+<span class="normal"><a href="#__codelineno-8-63">63</a></span>
+<span class="normal"><a href="#__codelineno-8-64">64</a></span>
+<span class="normal"><a href="#__codelineno-8-65">65</a></span>
+<span class="normal"><a href="#__codelineno-8-66">66</a></span>
+<span class="normal"><a href="#__codelineno-8-67">67</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="s">&quot;log&quot;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="s">&quot;net&quot;</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span><span class="s">&quot;os&quot;</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">    </span><span class="s">&quot;syscall&quot;</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="w">    </span><span class="s">&quot;time&quot;</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">    </span><span class="s">&quot;unsafe&quot;</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;start server&quot;</span><span class="p">)</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a><span class="w">    </span><span class="nx">tun</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">OpenFile</span><span class="p">(</span><span class="s">&quot;/dev/net/tun&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">O_RDWR</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;open tun devices error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">ifr</span><span class="w"> </span><span class="p">[</span><span class="mi">18</span><span class="p">]</span><span class="kt">byte</span>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="w">    </span><span class="nb">copy</span><span class="p">(</span><span class="nx">ifr</span><span class="p">[:],</span><span class="w"> </span><span class="s">&quot;tun0&quot;</span><span class="p">)</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="kt">uint16</span><span class="p">)(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ifr</span><span class="p">[</span><span class="mi">16</span><span class="p">]))</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">uint16</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">IFF_TUN</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">uint16</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">IFF_NO_PI</span><span class="p">)</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="w">    </span><span class="nx">syscall</span><span class="p">.</span><span class="nx">Syscall</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">SYS_IOCTL</span><span class="p">,</span><span class="w"> </span><span class="nx">tun</span><span class="p">.</span><span class="nx">Fd</span><span class="p">(),</span><span class="w"> </span><span class="nb">uintptr</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">TUNSETIFF</span><span class="p">),</span><span class="w"> </span><span class="nb">uintptr</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ifr</span><span class="p">)))</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25"></a>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26"></a><span class="w">    </span><span class="nx">serverAddr</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nx">ResolveUDPAddr</span><span class="p">(</span><span class="s">&quot;udp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;:10010&quot;</span><span class="p">)</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;failed resolve udp addr&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29"></a><span class="w">        </span><span class="k">return</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31"></a><span class="w">    </span><span class="nx">conn</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nx">ListenUDP</span><span class="p">(</span><span class="s">&quot;udp&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">serverAddr</span><span class="p">)</span>
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;listen udp error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34"></a><span class="w">        </span><span class="k">return</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36"></a>
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37"></a><span class="w">    </span><span class="nx">buf</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">1500</span><span class="p">)</span>
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39"></a><span class="w">        </span><span class="nx">un</span><span class="p">,</span><span class="w"> </span><span class="nx">udpAddr</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">conn</span><span class="p">.</span><span class="nx">ReadFromUDP</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41"></a><span class="w">            </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;read from udp error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42"></a><span class="w">            </span><span class="k">continue</span>
+</span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-44"><a id="__codelineno-8-44" name="__codelineno-8-44"></a>
+</span><span id="__span-8-45"><a id="__codelineno-8-45" name="__codelineno-8-45"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;已经收到客户端udp请求了&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">un</span><span class="p">]))</span>
+</span><span id="__span-8-46"><a id="__codelineno-8-46" name="__codelineno-8-46"></a>
+</span><span id="__span-8-47"><a id="__codelineno-8-47" name="__codelineno-8-47"></a><span class="w">        </span><span class="nx">tun</span><span class="p">.</span><span class="nx">SetReadDeadline</span><span class="p">(</span><span class="nx">time</span><span class="p">.</span><span class="nx">Now</span><span class="p">().</span><span class="nx">Add</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">))</span>
+</span><span id="__span-8-48"><a id="__codelineno-8-48" name="__codelineno-8-48"></a>
+</span><span id="__span-8-49"><a id="__codelineno-8-49" name="__codelineno-8-49"></a><span class="w">        </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tun</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">un</span><span class="p">])</span>
+</span><span id="__span-8-50"><a id="__codelineno-8-50" name="__codelineno-8-50"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-51"><a id="__codelineno-8-51" name="__codelineno-8-51"></a><span class="w">            </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;tun write error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-8-52"><a id="__codelineno-8-52" name="__codelineno-8-52"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-53"><a id="__codelineno-8-53" name="__codelineno-8-53"></a>
+</span><span id="__span-8-54"><a id="__codelineno-8-54" name="__codelineno-8-54"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;已经将请求写入到了tun虚拟设备中&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">un</span><span class="p">]))</span>
+</span><span id="__span-8-55"><a id="__codelineno-8-55" name="__codelineno-8-55"></a>
+</span><span id="__span-8-56"><a id="__codelineno-8-56" name="__codelineno-8-56"></a><span class="w">        </span><span class="nx">n</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">tun</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+</span><span id="__span-8-57"><a id="__codelineno-8-57" name="__codelineno-8-57"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-58"><a id="__codelineno-8-58" name="__codelineno-8-58"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">IsTimeout</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-59"><a id="__codelineno-8-59" name="__codelineno-8-59"></a><span class="w">                </span><span class="k">continue</span>
+</span><span id="__span-8-60"><a id="__codelineno-8-60" name="__codelineno-8-60"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-8-61"><a id="__codelineno-8-61" name="__codelineno-8-61"></a><span class="w">            </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to read from device: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-8-62"><a id="__codelineno-8-62" name="__codelineno-8-62"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-63"><a id="__codelineno-8-63" name="__codelineno-8-63"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;已经收到tun收到了信息&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">n</span><span class="p">]))</span>
+</span><span id="__span-8-64"><a id="__codelineno-8-64" name="__codelineno-8-64"></a><span class="w">        </span><span class="nx">conn</span><span class="p">.</span><span class="nx">WriteToUDP</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">n</span><span class="p">],</span><span class="w"> </span><span class="nx">udpAddr</span><span class="p">)</span>
+</span><span id="__span-8-65"><a id="__codelineno-8-65" name="__codelineno-8-65"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;将数据回复到udp客户端中&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">n</span><span class="p">]))</span>
+</span><span id="__span-8-66"><a id="__codelineno-8-66" name="__codelineno-8-66"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-67"><a id="__codelineno-8-67" name="__codelineno-8-67"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在运行 <code>tunApp2</code> 后，可以使用以下命令查看 <code>tun0</code> 的状态：</p>
-<pre><code class="language-bash">root@3115:~# ./server
-start server
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>root@3115:~#<span class="w"> </span>./server
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>start<span class="w"> </span>server
+</span></code></pre></div></td></tr></table></div>
 <p>查看<code>tun0</code>状态。</p>
-<pre><code class="language-bash">root@3115:~# ip addr show tun0
-4: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 500
-    link/none
-    inet 10.0.0.5/24 scope global tun0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::f4d3:cccd:e9e2:3be6/64 scope link stable-privacy
-       valid_lft forever preferred_lft forever
-root@3115:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span>
+<span class="normal"><a href="#__codelineno-10-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>root@3115:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>tun0
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="m">4</span>:<span class="w"> </span>tun0:<span class="w"> </span>&lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>fq_codel<span class="w"> </span>state<span class="w"> </span>UP<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">    </span>link/none
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">10</span>.0.0.5/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>tun0
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="w">    </span>inet6<span class="w"> </span>fe80::f4d3:cccd:e9e2:3be6/64<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>stable-privacy
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>root@3115:~#
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到，当客户端连接并启动时，<code>tun</code> 虚拟设备的状态会从 <code>DOWN</code> 变为 <code>UP</code>。这表明设备已成功启用，并且可以开始接收和发送网络数据。此时，用户态程序<code>tunApp2</code>也与设备建立了连接。</p>
 <h3 id="_2">客户端操作</h3>
 <p>同样的，也需要在客户端上创建<code>tun</code>虚拟设备，配置<code>IP</code>信息等，具体命令如下：</p>
-<pre><code class="language-bash">root@3114:~# ip tuntap add name tun0 mode tun
-root@3114:~# ip addr add 10.0.0.3/24 dev tun0
-root@3114:~# ip link set tun0 up
-root@3114:~# sysctl -w net.ipv4.ip_forward=1
-net.ipv4.ip_forward = 1
-root@3114:~# ip addr show tun0
-3: tun0: &lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt; mtu 1500 qdisc fq_codel state DOWN group default qlen 500
-    link/none
-    inet 10.0.0.3/24 scope global tun0
-       valid_lft forever preferred_lft forever
-root@3114:~#
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>tuntap<span class="w"> </span>add<span class="w"> </span>name<span class="w"> </span>tun0<span class="w"> </span>mode<span class="w"> </span>tun
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>add<span class="w"> </span><span class="m">10</span>.0.0.3/24<span class="w"> </span>dev<span class="w"> </span>tun0
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>tun0<span class="w"> </span>up
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>root@3114:~#<span class="w"> </span>sysctl<span class="w"> </span>-w<span class="w"> </span>net.ipv4.ip_forward<span class="o">=</span><span class="m">1</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>net.ipv4.ip_forward<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>addr<span class="w"> </span>show<span class="w"> </span>tun0
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="m">3</span>:<span class="w"> </span>tun0:<span class="w"> </span>&lt;NO-CARRIER,POINTOPOINT,MULTICAST,NOARP,UP&gt;<span class="w"> </span>mtu<span class="w"> </span><span class="m">1500</span><span class="w"> </span>qdisc<span class="w"> </span>fq_codel<span class="w"> </span>state<span class="w"> </span>DOWN<span class="w"> </span>group<span class="w"> </span>default<span class="w"> </span>qlen<span class="w"> </span><span class="m">500</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">    </span>link/none
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="w">    </span>inet<span class="w"> </span><span class="m">10</span>.0.0.3/24<span class="w"> </span>scope<span class="w"> </span>global<span class="w"> </span>tun0
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="w">       </span>valid_lft<span class="w"> </span>forever<span class="w"> </span>preferred_lft<span class="w"> </span>forever
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a>root@3114:~#
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>并且，为此编写一个<code>tunApp1</code>程序，将作为客户端使用，代码如下：</p>
-<pre><code class="language-bash">package main
-
-import (
-    &quot;fmt&quot;
-    &quot;log&quot;
-    &quot;net&quot;
-    &quot;os&quot;
-    &quot;syscall&quot;
-    &quot;unsafe&quot;
-)
-
-func main() {
-    fmt.Println(&quot;client start...&quot;)
-    tun, err := os.OpenFile(&quot;/dev/net/tun&quot;, os.O_RDWR, 0)
-    if err != nil {
-        log.Println(&quot;open tun devices error&quot;, err)
-    }
-
-    var ifr [18]byte
-    copy(ifr[:], &quot;tun0&quot;)
-    *(*uint16)(unsafe.Pointer(&amp;ifr[16])) = uint16(syscall.IFF_TUN) | uint16(syscall.IFF_NO_PI)
-
-    syscall.Syscall(syscall.SYS_IOCTL, tun.Fd(), uintptr(syscall.TUNSETIFF), uintptr(unsafe.Pointer(&amp;ifr)))
-
-    serverAddr, err := net.ResolveUDPAddr(&quot;udp&quot;, &quot;192.168.3.115:10010&quot;)
-    if err != nil {
-        log.Println(&quot;resolve udp error&quot;, err)
-        return
-    }
-
-    conn, err := net.DialUDP(&quot;udp&quot;, nil, serverAddr)
-    if err != nil {
-        log.Println(&quot;dial udp error&quot;, err)
-        return
-    }
-
-    go func() {
-        buf := make([]byte, 1500)
-        for {
-            tn, err := tun.Read(buf)
-            if err != nil {
-                log.Fatalf(&quot;Failed to read from device: %v&quot;, err)
-            }
-            fmt.Println(&quot;从tun虚拟设备中收到了请求&quot;, len(buf[:tn]))
-
-            _, err = conn.Write(buf[:tn])
-            if err != nil {
-                log.Println(&quot;conn write error&quot;, err)
-                continue
-            }
-            fmt.Println(&quot;将请求发送到udp服务器中&quot;, len(buf[:tn]))
-        }
-    }()
-    buf := make([]byte, 1500)
-    for {
-        cn, _, err := conn.ReadFromUDP(buf)
-        if err != nil {
-            log.Println(&quot;read from udp error&quot;, err)
-            continue
-        }
-        fmt.Println(&quot;已经从udp服务器中获取到数据&quot;)
-        _, err = tun.Write(buf[:cn])
-        if err != nil {
-            log.Println(&quot;tn write error&quot;, err)
-        }
-        fmt.Println(&quot;将数据写入到tun设备中&quot;)
-    }
-}
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span>
+<span class="normal"><a href="#__codelineno-12-11">11</a></span>
+<span class="normal"><a href="#__codelineno-12-12">12</a></span>
+<span class="normal"><a href="#__codelineno-12-13">13</a></span>
+<span class="normal"><a href="#__codelineno-12-14">14</a></span>
+<span class="normal"><a href="#__codelineno-12-15">15</a></span>
+<span class="normal"><a href="#__codelineno-12-16">16</a></span>
+<span class="normal"><a href="#__codelineno-12-17">17</a></span>
+<span class="normal"><a href="#__codelineno-12-18">18</a></span>
+<span class="normal"><a href="#__codelineno-12-19">19</a></span>
+<span class="normal"><a href="#__codelineno-12-20">20</a></span>
+<span class="normal"><a href="#__codelineno-12-21">21</a></span>
+<span class="normal"><a href="#__codelineno-12-22">22</a></span>
+<span class="normal"><a href="#__codelineno-12-23">23</a></span>
+<span class="normal"><a href="#__codelineno-12-24">24</a></span>
+<span class="normal"><a href="#__codelineno-12-25">25</a></span>
+<span class="normal"><a href="#__codelineno-12-26">26</a></span>
+<span class="normal"><a href="#__codelineno-12-27">27</a></span>
+<span class="normal"><a href="#__codelineno-12-28">28</a></span>
+<span class="normal"><a href="#__codelineno-12-29">29</a></span>
+<span class="normal"><a href="#__codelineno-12-30">30</a></span>
+<span class="normal"><a href="#__codelineno-12-31">31</a></span>
+<span class="normal"><a href="#__codelineno-12-32">32</a></span>
+<span class="normal"><a href="#__codelineno-12-33">33</a></span>
+<span class="normal"><a href="#__codelineno-12-34">34</a></span>
+<span class="normal"><a href="#__codelineno-12-35">35</a></span>
+<span class="normal"><a href="#__codelineno-12-36">36</a></span>
+<span class="normal"><a href="#__codelineno-12-37">37</a></span>
+<span class="normal"><a href="#__codelineno-12-38">38</a></span>
+<span class="normal"><a href="#__codelineno-12-39">39</a></span>
+<span class="normal"><a href="#__codelineno-12-40">40</a></span>
+<span class="normal"><a href="#__codelineno-12-41">41</a></span>
+<span class="normal"><a href="#__codelineno-12-42">42</a></span>
+<span class="normal"><a href="#__codelineno-12-43">43</a></span>
+<span class="normal"><a href="#__codelineno-12-44">44</a></span>
+<span class="normal"><a href="#__codelineno-12-45">45</a></span>
+<span class="normal"><a href="#__codelineno-12-46">46</a></span>
+<span class="normal"><a href="#__codelineno-12-47">47</a></span>
+<span class="normal"><a href="#__codelineno-12-48">48</a></span>
+<span class="normal"><a href="#__codelineno-12-49">49</a></span>
+<span class="normal"><a href="#__codelineno-12-50">50</a></span>
+<span class="normal"><a href="#__codelineno-12-51">51</a></span>
+<span class="normal"><a href="#__codelineno-12-52">52</a></span>
+<span class="normal"><a href="#__codelineno-12-53">53</a></span>
+<span class="normal"><a href="#__codelineno-12-54">54</a></span>
+<span class="normal"><a href="#__codelineno-12-55">55</a></span>
+<span class="normal"><a href="#__codelineno-12-56">56</a></span>
+<span class="normal"><a href="#__codelineno-12-57">57</a></span>
+<span class="normal"><a href="#__codelineno-12-58">58</a></span>
+<span class="normal"><a href="#__codelineno-12-59">59</a></span>
+<span class="normal"><a href="#__codelineno-12-60">60</a></span>
+<span class="normal"><a href="#__codelineno-12-61">61</a></span>
+<span class="normal"><a href="#__codelineno-12-62">62</a></span>
+<span class="normal"><a href="#__codelineno-12-63">63</a></span>
+<span class="normal"><a href="#__codelineno-12-64">64</a></span>
+<span class="normal"><a href="#__codelineno-12-65">65</a></span>
+<span class="normal"><a href="#__codelineno-12-66">66</a></span>
+<span class="normal"><a href="#__codelineno-12-67">67</a></span>
+<span class="normal"><a href="#__codelineno-12-68">68</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">    </span><span class="s">&quot;log&quot;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="w">    </span><span class="s">&quot;net&quot;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="w">    </span><span class="s">&quot;os&quot;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">    </span><span class="s">&quot;syscall&quot;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="w">    </span><span class="s">&quot;unsafe&quot;</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="p">)</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;client start...&quot;</span><span class="p">)</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14"></a><span class="w">    </span><span class="nx">tun</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">OpenFile</span><span class="p">(</span><span class="s">&quot;/dev/net/tun&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">os</span><span class="p">.</span><span class="nx">O_RDWR</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;open tun devices error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18"></a>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19"></a><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">ifr</span><span class="w"> </span><span class="p">[</span><span class="mi">18</span><span class="p">]</span><span class="kt">byte</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20"></a><span class="w">    </span><span class="nb">copy</span><span class="p">(</span><span class="nx">ifr</span><span class="p">[:],</span><span class="w"> </span><span class="s">&quot;tun0&quot;</span><span class="p">)</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21"></a><span class="w">    </span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="kt">uint16</span><span class="p">)(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ifr</span><span class="p">[</span><span class="mi">16</span><span class="p">]))</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">uint16</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">IFF_TUN</span><span class="p">)</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nb">uint16</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">IFF_NO_PI</span><span class="p">)</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22"></a>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23"></a><span class="w">    </span><span class="nx">syscall</span><span class="p">.</span><span class="nx">Syscall</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">SYS_IOCTL</span><span class="p">,</span><span class="w"> </span><span class="nx">tun</span><span class="p">.</span><span class="nx">Fd</span><span class="p">(),</span><span class="w"> </span><span class="nb">uintptr</span><span class="p">(</span><span class="nx">syscall</span><span class="p">.</span><span class="nx">TUNSETIFF</span><span class="p">),</span><span class="w"> </span><span class="nb">uintptr</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nx">Pointer</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">ifr</span><span class="p">)))</span>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24"></a>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25"></a><span class="w">    </span><span class="nx">serverAddr</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nx">ResolveUDPAddr</span><span class="p">(</span><span class="s">&quot;udp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;192.168.3.115:10010&quot;</span><span class="p">)</span>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;resolve udp error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28"></a><span class="w">        </span><span class="k">return</span>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30"></a>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31"></a><span class="w">    </span><span class="nx">conn</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">net</span><span class="p">.</span><span class="nx">DialUDP</span><span class="p">(</span><span class="s">&quot;udp&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">nil</span><span class="p">,</span><span class="w"> </span><span class="nx">serverAddr</span><span class="p">)</span>
+</span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33"></a><span class="w">        </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;dial udp error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34"></a><span class="w">        </span><span class="k">return</span>
+</span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36"></a>
+</span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37"></a><span class="w">    </span><span class="k">go</span><span class="w"> </span><span class="kd">func</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-38"><a id="__codelineno-12-38" name="__codelineno-12-38"></a><span class="w">        </span><span class="nx">buf</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">1500</span><span class="p">)</span>
+</span><span id="__span-12-39"><a id="__codelineno-12-39" name="__codelineno-12-39"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-40"><a id="__codelineno-12-40" name="__codelineno-12-40"></a><span class="w">            </span><span class="nx">tn</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">tun</span><span class="p">.</span><span class="nx">Read</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+</span><span id="__span-12-41"><a id="__codelineno-12-41" name="__codelineno-12-41"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-42"><a id="__codelineno-12-42" name="__codelineno-12-42"></a><span class="w">                </span><span class="nx">log</span><span class="p">.</span><span class="nx">Fatalf</span><span class="p">(</span><span class="s">&quot;Failed to read from device: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-12-43"><a id="__codelineno-12-43" name="__codelineno-12-43"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-12-44"><a id="__codelineno-12-44" name="__codelineno-12-44"></a><span class="w">            </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;从tun虚拟设备中收到了请求&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">tn</span><span class="p">]))</span>
+</span><span id="__span-12-45"><a id="__codelineno-12-45" name="__codelineno-12-45"></a>
+</span><span id="__span-12-46"><a id="__codelineno-12-46" name="__codelineno-12-46"></a><span class="w">            </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">conn</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">tn</span><span class="p">])</span>
+</span><span id="__span-12-47"><a id="__codelineno-12-47" name="__codelineno-12-47"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-48"><a id="__codelineno-12-48" name="__codelineno-12-48"></a><span class="w">                </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;conn write error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-12-49"><a id="__codelineno-12-49" name="__codelineno-12-49"></a><span class="w">                </span><span class="k">continue</span>
+</span><span id="__span-12-50"><a id="__codelineno-12-50" name="__codelineno-12-50"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-12-51"><a id="__codelineno-12-51" name="__codelineno-12-51"></a><span class="w">            </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;将请求发送到udp服务器中&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">tn</span><span class="p">]))</span>
+</span><span id="__span-12-52"><a id="__codelineno-12-52" name="__codelineno-12-52"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-53"><a id="__codelineno-12-53" name="__codelineno-12-53"></a><span class="w">    </span><span class="p">}()</span>
+</span><span id="__span-12-54"><a id="__codelineno-12-54" name="__codelineno-12-54"></a><span class="w">    </span><span class="nx">buf</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nb">make</span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="mi">1500</span><span class="p">)</span>
+</span><span id="__span-12-55"><a id="__codelineno-12-55" name="__codelineno-12-55"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-56"><a id="__codelineno-12-56" name="__codelineno-12-56"></a><span class="w">        </span><span class="nx">cn</span><span class="p">,</span><span class="w"> </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">conn</span><span class="p">.</span><span class="nx">ReadFromUDP</span><span class="p">(</span><span class="nx">buf</span><span class="p">)</span>
+</span><span id="__span-12-57"><a id="__codelineno-12-57" name="__codelineno-12-57"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-58"><a id="__codelineno-12-58" name="__codelineno-12-58"></a><span class="w">            </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;read from udp error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-12-59"><a id="__codelineno-12-59" name="__codelineno-12-59"></a><span class="w">            </span><span class="k">continue</span>
+</span><span id="__span-12-60"><a id="__codelineno-12-60" name="__codelineno-12-60"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-61"><a id="__codelineno-12-61" name="__codelineno-12-61"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;已经从udp服务器中获取到数据&quot;</span><span class="p">)</span>
+</span><span id="__span-12-62"><a id="__codelineno-12-62" name="__codelineno-12-62"></a><span class="w">        </span><span class="nx">_</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">tun</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">buf</span><span class="p">[:</span><span class="nx">cn</span><span class="p">])</span>
+</span><span id="__span-12-63"><a id="__codelineno-12-63" name="__codelineno-12-63"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-64"><a id="__codelineno-12-64" name="__codelineno-12-64"></a><span class="w">            </span><span class="nx">log</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;tn write error&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
+</span><span id="__span-12-65"><a id="__codelineno-12-65" name="__codelineno-12-65"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-12-66"><a id="__codelineno-12-66" name="__codelineno-12-66"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;将数据写入到tun设备中&quot;</span><span class="p">)</span>
+</span><span id="__span-12-67"><a id="__codelineno-12-67" name="__codelineno-12-67"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-12-68"><a id="__codelineno-12-68" name="__codelineno-12-68"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="ping">尝试ping</h3>
 <p>首先，在没有启动 <code>tunApp</code> 的情况下，客户端尝试 <code>ping</code> <code>10.0.0.5</code> 时，当然是无法成功的。这是因为 <code>tun</code> 设备的句柄没有被打开，无法处理从客户端发送的请求，导致数据包无法传输。具体表现为无法接收到响应。</p>
-<pre><code class="language-bash">root@3114:~# ping 10.0.0.5 -c 2
-PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.
-
---- 10.0.0.5 ping statistics ---
-2 packets transmitted, 0 received, 100% packet loss, time 1015ms
-
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>root@3114:~#<span class="w"> </span>ping<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>PING<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span><span class="o">(</span><span class="m">10</span>.0.0.5<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>---<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="m">2</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">0</span><span class="w"> </span>received,<span class="w"> </span><span class="m">100</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>1015ms
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>当启动 <code>tunApp</code> 后，客户端再次执行 <code>ping 10.0.0.5</code> 时，根据系统预设的路由规则，流量将会通过 <code>tun0</code> 设备发送出去。例如，客户端的路由如下所示：</p>
-<pre><code class="language-bash">root@3114:~# ip route
-default via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-1.2.4.8 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3
-114.114.114.114 via 192.168.3.1 dev eth0 proto dhcp src 192.168.3.114 metric 100
-192.168.3.0/24 dev eth0 proto kernel scope link src 192.168.3.114 metric 100
-192.168.3.1 dev eth0 proto dhcp scope link src 192.168.3.114 metric 100
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>root@3114:~#<span class="w"> </span>ip<span class="w"> </span>route
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>default<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="m">1</span>.2.4.8<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="m">10</span>.0.0.0/24<span class="w"> </span>dev<span class="w"> </span>tun0<span class="w"> </span>proto<span class="w"> </span>kernel<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">10</span>.0.0.3
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="m">114</span>.114.114.114<span class="w"> </span>via<span class="w"> </span><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="m">192</span>.168.3.0/24<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>kernel<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="m">192</span>.168.3.1<span class="w"> </span>dev<span class="w"> </span>eth0<span class="w"> </span>proto<span class="w"> </span>dhcp<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">192</span>.168.3.114<span class="w"> </span>metric<span class="w"> </span><span class="m">100</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>上面有一条规则是这样的：</p>
-<pre><code class="language-bash">10.0.0.0/24 dev tun0 proto kernel scope link src 10.0.0.3
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="m">10</span>.0.0.0/24<span class="w"> </span>dev<span class="w"> </span>tun0<span class="w"> </span>proto<span class="w"> </span>kernel<span class="w"> </span>scope<span class="w"> </span>link<span class="w"> </span>src<span class="w"> </span><span class="m">10</span>.0.0.3
+</span></code></pre></div></td></tr></table></div>
 <p>这将表示，当请求 <code>10.0.0.0/24</code> 网络范围内的地址时，流量将被定向到 <code>10.0.0.3</code> 网卡，而该网卡正是我们 <code>tun0</code> 设备的地址。</p>
 <p>所以，在客户端机器上直接<code>ping 10.0.0.5</code>地址，会收到回复报文，如下：</p>
-<pre><code class="language-bash">root@3114:~# ping 10.0.0.5 -c 2
-PING 10.0.0.5 (10.0.0.5) 56(84) bytes of data.
-64 bytes from 10.0.0.5: icmp_seq=1 ttl=64 time=2.40 ms
-64 bytes from 10.0.0.5: icmp_seq=2 ttl=64 time=1.62 ms
-
---- 10.0.0.5 ping statistics ---
-2 packets transmitted, 2 received, 0% packet loss, time 1002ms
-rtt min/avg/max/mdev = 1.622/2.011/2.400/0.389 ms
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span>
+<span class="normal"><a href="#__codelineno-16-5">5</a></span>
+<span class="normal"><a href="#__codelineno-16-6">6</a></span>
+<span class="normal"><a href="#__codelineno-16-7">7</a></span>
+<span class="normal"><a href="#__codelineno-16-8">8</a></span>
+<span class="normal"><a href="#__codelineno-16-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a>root@3114:~#<span class="w"> </span>ping<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>-c<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a>PING<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span><span class="o">(</span><span class="m">10</span>.0.0.5<span class="o">)</span><span class="w"> </span><span class="m">56</span><span class="o">(</span><span class="m">84</span><span class="o">)</span><span class="w"> </span>bytes<span class="w"> </span>of<span class="w"> </span>data.
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">10</span>.0.0.5:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">2</span>.40<span class="w"> </span>ms
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="m">64</span><span class="w"> </span>bytes<span class="w"> </span>from<span class="w"> </span><span class="m">10</span>.0.0.5:<span class="w"> </span><span class="nv">icmp_seq</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">ttl</span><span class="o">=</span><span class="m">64</span><span class="w"> </span><span class="nv">time</span><span class="o">=</span><span class="m">1</span>.62<span class="w"> </span>ms
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5"></a>
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a>---<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>ping<span class="w"> </span>statistics<span class="w"> </span>---
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="m">2</span><span class="w"> </span>packets<span class="w"> </span>transmitted,<span class="w"> </span><span class="m">2</span><span class="w"> </span>received,<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>packet<span class="w"> </span>loss,<span class="w"> </span><span class="nb">time</span><span class="w"> </span>1002ms
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8"></a>rtt<span class="w"> </span>min/avg/max/mdev<span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>.622/2.011/2.400/0.389<span class="w"> </span>ms
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p>同样的，<code>client</code>日志会显示如下：</p>
-<pre><code class="language-bash">root@3114:~# ./client
-client start...
-从tun虚拟设备中收到了请求 84
-将请求发送到udp服务器中 84
-已经从udp服务器中获取到数据
-将数据写入到tun设备中
-从tun虚拟设备中收到了请求 84
-将请求发送到udp服务器中 84
-已经从udp服务器中获取到数据
-将数据写入到tun设备中
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a>root@3114:~#<span class="w"> </span>./client
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>client<span class="w"> </span>start...
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>从tun虚拟设备中收到了请求<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>将请求发送到udp服务器中<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a>已经从udp服务器中获取到数据
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a>将数据写入到tun设备中
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a>从tun虚拟设备中收到了请求<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8"></a>将请求发送到udp服务器中<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9"></a>已经从udp服务器中获取到数据
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10"></a>将数据写入到tun设备中
+</span></code></pre></div></td></tr></table></div>
 <p>对于<code>client</code>的报文内容如下：</p>
-<pre><code class="language-bash">root@3114:~# tcpdump -i tun0
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
-07:50:37.061239 IP 3114 &gt; 10.0.0.5: ICMP echo request, id 24, seq 1, length 64
-07:50:37.064101 IP 10.0.0.5 &gt; 3114: ICMP echo reply, id 24, seq 1, length 64
-07:50:38.062797 IP 3114 &gt; 10.0.0.5: ICMP echo request, id 24, seq 2, length 64
-07:50:38.065070 IP 10.0.0.5 &gt; 3114: ICMP echo reply, id 24, seq 2, length 64
-^C
-4 packets captured
-4 packets received by filter
-0 packets dropped by kernel
-root@3114:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a>root@3114:~#<span class="w"> </span>tcpdump<span class="w"> </span>-i<span class="w"> </span>tun0
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a>tcpdump:<span class="w"> </span>verbose<span class="w"> </span>output<span class="w"> </span>suppressed,<span class="w"> </span>use<span class="w"> </span>-v<span class="o">[</span>v<span class="o">]</span>...<span class="w"> </span><span class="k">for</span><span class="w"> </span>full<span class="w"> </span>protocol<span class="w"> </span>decode
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>listening<span class="w"> </span>on<span class="w"> </span>tun0,<span class="w"> </span>link-type<span class="w"> </span>RAW<span class="w"> </span><span class="o">(</span>Raw<span class="w"> </span>IP<span class="o">)</span>,<span class="w"> </span>snapshot<span class="w"> </span>length<span class="w"> </span><span class="m">262144</span><span class="w"> </span>bytes
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="m">07</span>:50:37.061239<span class="w"> </span>IP<span class="w"> </span><span class="m">3114</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">10</span>.0.0.5:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>request,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="m">07</span>:50:37.064101<span class="w"> </span>IP<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>&gt;<span class="w"> </span><span class="m">3114</span>:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>reply,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="m">07</span>:50:38.062797<span class="w"> </span>IP<span class="w"> </span><span class="m">3114</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">10</span>.0.0.5:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>request,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="m">07</span>:50:38.065070<span class="w"> </span>IP<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>&gt;<span class="w"> </span><span class="m">3114</span>:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>reply,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a>^C
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>captured
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>received<span class="w"> </span>by<span class="w"> </span>filter
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="m">0</span><span class="w"> </span>packets<span class="w"> </span>dropped<span class="w"> </span>by<span class="w"> </span>kernel
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12"></a>root@3114:~#
+</span></code></pre></div></td></tr></table></div>
 <p><code>server</code>日志会显示如下：</p>
-<pre><code class="language-bash">root@3115:~# ./server
-start server
-已经收到客户端udp请求了 84
-已经将请求写入到了tun虚拟设备中 84
-已经收到tun收到了信息 84
-将数据回复到udp客户端中 84
-已经收到客户端udp请求了 84
-已经将请求写入到了tun虚拟设备中 84
-已经收到tun收到了信息 84
-将数据回复到udp客户端中 84
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-19-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-19-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-19-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-19-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-19-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-19-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-19-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-19-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-19-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a>root@3115:~#<span class="w"> </span>./server
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>start<span class="w"> </span>server
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a>已经收到客户端udp请求了<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a>已经将请求写入到了tun虚拟设备中<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a>已经收到tun收到了信息<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a>将数据回复到udp客户端中<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a>已经收到客户端udp请求了<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8"></a>已经将请求写入到了tun虚拟设备中<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9"></a>已经收到tun收到了信息<span class="w"> </span><span class="m">84</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10"></a>将数据回复到udp客户端中<span class="w"> </span><span class="m">84</span>
+</span></code></pre></div></td></tr></table></div>
 <p>对于<code>server</code>的报文内容如下：</p>
-<pre><code class="language-bash">root@3115:~# tcpdump -i tun0
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-listening on tun0, link-type RAW (Raw IP), snapshot length 262144 bytes
-07:50:37.053759 IP 10.0.0.3 &gt; 10.0.0.5: ICMP echo request, id 24, seq 1, length 64
-07:50:37.053831 IP 10.0.0.5 &gt; 10.0.0.3: ICMP echo reply, id 24, seq 1, length 64
-07:50:38.054582 IP 10.0.0.3 &gt; 10.0.0.5: ICMP echo request, id 24, seq 2, length 64
-07:50:38.054651 IP 10.0.0.5 &gt; 10.0.0.3: ICMP echo reply, id 24, seq 2, length 64
-^C
-4 packets captured
-4 packets received by filter
-0 packets dropped by kernel
-root@3115:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-20-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-20-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-20-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-20-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-20-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-20-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-20-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-20-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-20-10">10</a></span>
+<span class="normal"><a href="#__codelineno-20-11">11</a></span>
+<span class="normal"><a href="#__codelineno-20-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a>root@3115:~#<span class="w"> </span>tcpdump<span class="w"> </span>-i<span class="w"> </span>tun0
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a>tcpdump:<span class="w"> </span>verbose<span class="w"> </span>output<span class="w"> </span>suppressed,<span class="w"> </span>use<span class="w"> </span>-v<span class="o">[</span>v<span class="o">]</span>...<span class="w"> </span><span class="k">for</span><span class="w"> </span>full<span class="w"> </span>protocol<span class="w"> </span>decode
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a>listening<span class="w"> </span>on<span class="w"> </span>tun0,<span class="w"> </span>link-type<span class="w"> </span>RAW<span class="w"> </span><span class="o">(</span>Raw<span class="w"> </span>IP<span class="o">)</span>,<span class="w"> </span>snapshot<span class="w"> </span>length<span class="w"> </span><span class="m">262144</span><span class="w"> </span>bytes
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4"></a><span class="m">07</span>:50:37.053759<span class="w"> </span>IP<span class="w"> </span><span class="m">10</span>.0.0.3<span class="w"> </span>&gt;<span class="w"> </span><span class="m">10</span>.0.0.5:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>request,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="m">07</span>:50:37.053831<span class="w"> </span>IP<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>&gt;<span class="w"> </span><span class="m">10</span>.0.0.3:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>reply,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">1</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="m">07</span>:50:38.054582<span class="w"> </span>IP<span class="w"> </span><span class="m">10</span>.0.0.3<span class="w"> </span>&gt;<span class="w"> </span><span class="m">10</span>.0.0.5:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>request,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="m">07</span>:50:38.054651<span class="w"> </span>IP<span class="w"> </span><span class="m">10</span>.0.0.5<span class="w"> </span>&gt;<span class="w"> </span><span class="m">10</span>.0.0.3:<span class="w"> </span>ICMP<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>reply,<span class="w"> </span>id<span class="w"> </span><span class="m">24</span>,<span class="w"> </span>seq<span class="w"> </span><span class="m">2</span>,<span class="w"> </span>length<span class="w"> </span><span class="m">64</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8"></a>^C
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>captured
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="m">4</span><span class="w"> </span>packets<span class="w"> </span>received<span class="w"> </span>by<span class="w"> </span>filter
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="m">0</span><span class="w"> </span>packets<span class="w"> </span>dropped<span class="w"> </span>by<span class="w"> </span>kernel
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12"></a>root@3115:~#
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_3">总结</h2>
 <p>对于 <code>tun</code> 虚拟设备，可以将其简单理解为：将 <code>A</code> 产生的报文原封不动地传输到 <code>B</code> 进行处理，待 <code>B</code> 执行完毕后，再将处理结果返回给 <code>A</code>。</p>
 

@@ -795,49 +795,82 @@
 <p>目前<code>gpg</code>已经有了<code>2.*</code>版本，在<code>1.*</code>的基础上进行重大改进，但是完全建议<code>1.*</code>。</p>
 <h2 id="gpg2">安装<code>gpg2</code></h2>
 <p>在<code>ubuntu</code>系统中，直接使用<code>apt</code>安装即可。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:1]# apt-get install gnupg2
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:1<span class="o">]</span><span class="c1"># apt-get install gnupg2</span>
+</span></code></pre></div></td></tr></table></div>
 <p>在<code>centos</code>系统重，直接使用<code>yum</code>或者<code>dnf</code>安装即可。</p>
-<pre><code class="language-bash">[root@centosServer ~]# yum install gnupg2
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="o">[</span>root@centosServer<span class="w"> </span>~<span class="o">]</span><span class="c1"># yum install gnupg2</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_1">秘钥的基本操作</h2>
 <h3 id="_2">生成秘钥</h3>
 <p>使用<code>gpg2 --full-generate-key</code>即可开始生成<code>key</code></p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]#  gpg2 --full-generate-key
-gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-
-Please select what kind of key you want:
-   (1) RSA and RSA (default)
-   (2) DSA and Elgamal
-   (3) DSA (sign only)
-   (4) RSA (sign only)
-  (14) Existing key from card
-Your selection? 1
-RSA keys may be between 1024 and 4096 bits long.
-What keysize do you want? (3072) 4096
-Requested keysize is 4096 bits
-Please specify how long the key should be valid.
-         0 = key does not expire
-      &lt;n&gt;  = key expires in n days
-      &lt;n&gt;w = key expires in n weeks
-      &lt;n&gt;m = key expires in n months
-      &lt;n&gt;y = key expires in n years
-Key is valid for? (0) 1y
-Key expires at Sun 16 Nov 2025 08:03:27 PM CST
-Is this correct? (y/N) y
-
-GnuPG needs to construct a user ID to identify your key.
-
-Real name: gpguser
-Email address: gpguser@localhost.com
-Comment: gpg test 
-You selected this USER-ID:
-    &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;
-
-Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span>
+<span class="normal"><a href="#__codelineno-2-30">30</a></span>
+<span class="normal"><a href="#__codelineno-2-31">31</a></span>
+<span class="normal"><a href="#__codelineno-2-32">32</a></span>
+<span class="normal"><a href="#__codelineno-2-33">33</a></span>
+<span class="normal"><a href="#__codelineno-2-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#  gpg2 --full-generate-key</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>gpg<span class="w"> </span><span class="o">(</span>GnuPG<span class="o">)</span><span class="w"> </span><span class="m">2</span>.2.40<span class="p">;</span><span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>g10<span class="w"> </span>Code<span class="w"> </span>GmbH
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>Please<span class="w"> </span><span class="k">select</span><span class="w"> </span>what<span class="w"> </span>kind<span class="w"> </span>of<span class="w"> </span>key<span class="w"> </span>you<span class="w"> </span>want:
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">   </span><span class="o">(</span><span class="m">1</span><span class="o">)</span><span class="w"> </span>RSA<span class="w"> </span>and<span class="w"> </span>RSA<span class="w"> </span><span class="o">(</span>default<span class="o">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">   </span><span class="o">(</span><span class="m">2</span><span class="o">)</span><span class="w"> </span>DSA<span class="w"> </span>and<span class="w"> </span>Elgamal
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">   </span><span class="o">(</span><span class="m">3</span><span class="o">)</span><span class="w"> </span>DSA<span class="w"> </span><span class="o">(</span>sign<span class="w"> </span>only<span class="o">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">   </span><span class="o">(</span><span class="m">4</span><span class="o">)</span><span class="w"> </span>RSA<span class="w"> </span><span class="o">(</span>sign<span class="w"> </span>only<span class="o">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">  </span><span class="o">(</span><span class="m">14</span><span class="o">)</span><span class="w"> </span>Existing<span class="w"> </span>key<span class="w"> </span>from<span class="w"> </span>card
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>Your<span class="w"> </span>selection?<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>RSA<span class="w"> </span>keys<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>between<span class="w"> </span><span class="m">1024</span><span class="w"> </span>and<span class="w"> </span><span class="m">4096</span><span class="w"> </span>bits<span class="w"> </span>long.
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a>What<span class="w"> </span>keysize<span class="w"> </span><span class="k">do</span><span class="w"> </span>you<span class="w"> </span>want?<span class="w"> </span><span class="o">(</span><span class="m">3072</span><span class="o">)</span><span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a>Requested<span class="w"> </span>keysize<span class="w"> </span>is<span class="w"> </span><span class="m">4096</span><span class="w"> </span>bits
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a>Please<span class="w"> </span>specify<span class="w"> </span>how<span class="w"> </span>long<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>valid.
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">         </span><span class="nv">0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>key<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>expire
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="w">      </span>&lt;n&gt;<span class="w">  </span><span class="o">=</span><span class="w"> </span>key<span class="w"> </span>expires<span class="w"> </span><span class="k">in</span><span class="w"> </span>n<span class="w"> </span>days
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="w">      </span>&lt;n&gt;w<span class="w"> </span><span class="o">=</span><span class="w"> </span>key<span class="w"> </span>expires<span class="w"> </span><span class="k">in</span><span class="w"> </span>n<span class="w"> </span>weeks
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="w">      </span>&lt;n&gt;m<span class="w"> </span><span class="o">=</span><span class="w"> </span>key<span class="w"> </span>expires<span class="w"> </span><span class="k">in</span><span class="w"> </span>n<span class="w"> </span>months
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">      </span>&lt;n&gt;y<span class="w"> </span><span class="o">=</span><span class="w"> </span>key<span class="w"> </span>expires<span class="w"> </span><span class="k">in</span><span class="w"> </span>n<span class="w"> </span>years
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22"></a>Key<span class="w"> </span>is<span class="w"> </span>valid<span class="w"> </span><span class="k">for</span>?<span class="w"> </span><span class="o">(</span><span class="m">0</span><span class="o">)</span><span class="w"> </span>1y
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23"></a>Key<span class="w"> </span>expires<span class="w"> </span>at<span class="w"> </span>Sun<span class="w"> </span><span class="m">16</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">2025</span><span class="w"> </span><span class="m">08</span>:03:27<span class="w"> </span>PM<span class="w"> </span>CST
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24"></a>Is<span class="w"> </span>this<span class="w"> </span>correct?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span><span class="w"> </span>y
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25"></a>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26"></a>GnuPG<span class="w"> </span>needs<span class="w"> </span>to<span class="w"> </span>construct<span class="w"> </span>a<span class="w"> </span>user<span class="w"> </span>ID<span class="w"> </span>to<span class="w"> </span>identify<span class="w"> </span>your<span class="w"> </span>key.
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27"></a>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28"></a>Real<span class="w"> </span>name:<span class="w"> </span>gpguser
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29"></a>Email<span class="w"> </span>address:<span class="w"> </span>gpguser@localhost.com
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30"></a>Comment:<span class="w"> </span>gpg<span class="w"> </span><span class="nb">test</span><span class="w"> </span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31"></a>You<span class="w"> </span>selected<span class="w"> </span>this<span class="w"> </span>USER-ID:
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32"></a><span class="w">    </span><span class="s2">&quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33"></a>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34"></a>Change<span class="w"> </span><span class="o">(</span>N<span class="o">)</span>ame,<span class="w"> </span><span class="o">(</span>C<span class="o">)</span>omment,<span class="w"> </span><span class="o">(</span>E<span class="o">)</span>mail<span class="w"> </span>or<span class="w"> </span><span class="o">(</span>O<span class="o">)</span>kay/<span class="o">(</span>Q<span class="o">)</span>uit?<span class="w"> </span>o
+</span></code></pre></div></td></tr></table></div>
 <p>具体生成的流程如下：</p>
 <ul>
 <li><code>gpg</code>提供了多种秘钥类型，选择选择，默认为<code>RSA and RSA</code>，如果需要选择其他的，直接输入对应的序号即可。</li>
@@ -850,253 +883,391 @@ Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? o
 <p>如果输入密码后，终端有问题，可以使用<code>reset</code>命令进行重置。</p>
 </blockquote>
 <p>创建完成后，会输出类似如下创建成功的信息提示，并且会标注创建的<code>key</code>。</p>
-<pre><code class="language-bash">We need to generate a lot of random bytes. It is a good idea to perform
-some other action (type on the keyboard, move the mouse, utilize the
-disks) during the prime generation; this gives the random number
-generator a better chance to gain enough entropy.
-We need to generate a lot of random bytes. It is a good idea to perform
-some other action (type on the keyboard, move the mouse, utilize the
-disks) during the prime generation; this gives the random number
-generator a better chance to gain enough entropy.
-gpg: revocation certificate stored as '/root/.gnupg/openpgp-revocs.d/3678F2332D0A0475A47125050ABA3F7577773A8F.rev'
-public and secret key created and signed.
-
-pub   rsa4096 2024-11-16 [SC] [expires: 2025-11-16]
-      3678F2332D0A0475A47125050ABA3F7577773A8F
-uid                      gpguser (gpg test) &lt;gpguser@localhost.com&gt;
-sub   rsa4096 2024-11-16 [E] [expires: 2025-11-16]
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>We<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>a<span class="w"> </span>lot<span class="w"> </span>of<span class="w"> </span>random<span class="w"> </span>bytes.<span class="w"> </span>It<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>good<span class="w"> </span>idea<span class="w"> </span>to<span class="w"> </span>perform
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>some<span class="w"> </span>other<span class="w"> </span>action<span class="w"> </span><span class="o">(</span><span class="nb">type</span><span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>keyboard,<span class="w"> </span>move<span class="w"> </span>the<span class="w"> </span>mouse,<span class="w"> </span>utilize<span class="w"> </span>the
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>disks<span class="o">)</span><span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span>prime<span class="w"> </span>generation<span class="p">;</span><span class="w"> </span>this<span class="w"> </span>gives<span class="w"> </span>the<span class="w"> </span>random<span class="w"> </span>number
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>generator<span class="w"> </span>a<span class="w"> </span>better<span class="w"> </span>chance<span class="w"> </span>to<span class="w"> </span>gain<span class="w"> </span>enough<span class="w"> </span>entropy.
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>We<span class="w"> </span>need<span class="w"> </span>to<span class="w"> </span>generate<span class="w"> </span>a<span class="w"> </span>lot<span class="w"> </span>of<span class="w"> </span>random<span class="w"> </span>bytes.<span class="w"> </span>It<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>good<span class="w"> </span>idea<span class="w"> </span>to<span class="w"> </span>perform
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>some<span class="w"> </span>other<span class="w"> </span>action<span class="w"> </span><span class="o">(</span><span class="nb">type</span><span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>keyboard,<span class="w"> </span>move<span class="w"> </span>the<span class="w"> </span>mouse,<span class="w"> </span>utilize<span class="w"> </span>the
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>disks<span class="o">)</span><span class="w"> </span>during<span class="w"> </span>the<span class="w"> </span>prime<span class="w"> </span>generation<span class="p">;</span><span class="w"> </span>this<span class="w"> </span>gives<span class="w"> </span>the<span class="w"> </span>random<span class="w"> </span>number
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>generator<span class="w"> </span>a<span class="w"> </span>better<span class="w"> </span>chance<span class="w"> </span>to<span class="w"> </span>gain<span class="w"> </span>enough<span class="w"> </span>entropy.
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>gpg:<span class="w"> </span>revocation<span class="w"> </span>certificate<span class="w"> </span>stored<span class="w"> </span>as<span class="w"> </span><span class="s1">&#39;/root/.gnupg/openpgp-revocs.d/3678F2332D0A0475A47125050ABA3F7577773A8F.rev&#39;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>public<span class="w"> </span>and<span class="w"> </span>secret<span class="w"> </span>key<span class="w"> </span>created<span class="w"> </span>and<span class="w"> </span>signed.
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a>pub<span class="w">   </span>rsa4096<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>SC<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="w">      </span>3678F2332D0A0475A47125050ABA3F7577773A8F
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a>uid<span class="w">                      </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a>sub<span class="w">   </span>rsa4096<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>E<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span></code></pre></div></td></tr></table></div>
 <p>如何，该<code>gpg</code>签名为<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>。</p>
 <h3 id="_3">查看秘钥</h3>
 <p>使用<code>--list-keys</code>参数可以查看公钥的信息。</p>
-<pre><code class="language-bash">[root@ubuntu]:[~][tty:0]# gpg2 --list-keys
-gpg: checking the trustdb
-gpg: marginals needed: 3  completes needed: 1  trust model: pgp
-gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
-gpg: next trustdb check due at 2025-11-16
-/root/.gnupg/pubring.kbx
-------------------------
-pub   rsa2048 2024-11-16 [SC] [expires: 2025-11-16]
-      3678F2332D0A0475A47125050ABA3F7577773A8F
-uid           [ultimate] gpguser (gpg test) &lt;gpguser@localhost.com&gt;
-sub   rsa2048 2024-11-16 [E] [expires: 2025-11-16]
-
-[root@ubuntu]:[~][tty:0]#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --list-keys</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>gpg:<span class="w"> </span>checking<span class="w"> </span>the<span class="w"> </span>trustdb
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>gpg:<span class="w"> </span>marginals<span class="w"> </span>needed:<span class="w"> </span><span class="m">3</span><span class="w">  </span>completes<span class="w"> </span>needed:<span class="w"> </span><span class="m">1</span><span class="w">  </span>trust<span class="w"> </span>model:<span class="w"> </span>pgp
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>gpg:<span class="w"> </span>depth:<span class="w"> </span><span class="m">0</span><span class="w">  </span>valid:<span class="w">   </span><span class="m">1</span><span class="w">  </span>signed:<span class="w">   </span><span class="m">0</span><span class="w">  </span>trust:<span class="w"> </span><span class="m">0</span>-,<span class="w"> </span>0q,<span class="w"> </span>0n,<span class="w"> </span>0m,<span class="w"> </span>0f,<span class="w"> </span>1u
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>gpg:<span class="w"> </span>next<span class="w"> </span>trustdb<span class="w"> </span>check<span class="w"> </span>due<span class="w"> </span>at<span class="w"> </span><span class="m">2025</span>-11-16
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>/root/.gnupg/pubring.kbx
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>------------------------
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>pub<span class="w">   </span>rsa2048<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>SC<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span>3678F2332D0A0475A47125050ABA3F7577773A8F
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>uid<span class="w">           </span><span class="o">[</span>ultimate<span class="o">]</span><span class="w"> </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>sub<span class="w">   </span>rsa2048<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>E<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="o">[</span>root@ubuntu<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>其中<code>C57CF88588C503F6B6BFD0802A75FE471D0D8313</code>就是我们的签名。</p>
 <p>同样的，使用<code>--list-secert-keys</code>参数也可以查看私钥的信息。</p>
 <p>其中，<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>也是私钥的签名哦。</p>
 <h3 id="_4">导出秘钥</h3>
 <p>导出公钥：</p>
 <p>在查询到秘钥的<code>id</code>后，可以使用<code>--export</code>导出公钥，其中<code>--armor</code>是以<code>ascii</code>格式导出，方便共享。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --armor --export 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; public.key
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --armor --export 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; public.key</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上，会将<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>的公钥重定向到<code>public.key</code>文件中。</p>
 <p>导出私钥：</p>
 <p>在查询到秘钥<code>id</code>后，可以使用<code>--export-secret-keys</code>导出私钥，导出时会要求输入密码，私钥要非常妥善保管。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --armor --export-secret-keys 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; private.key
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --armor --export-secret-keys 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; private.key</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上，会将<code>3678F2332D0A0475A47125050ABA3F7577773A8F</code>的私钥导出到<code>private.key</code>文件中，如果私钥设置有密码，再导入的时候会提示验证密码。</p>
 <h3 id="_5">导入秘钥</h3>
 <p>导入公钥 和 导入私钥 的方法都是一样的，都是使用<code>gpg2 --import</code>进行导入即可。</p>
 <p>首先查看本地的公钥。</p>
-<pre><code class="language-bash"># gpg2 --list-keys
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="c1"># gpg2 --list-keys</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>导入公钥，公钥记录在本地的<code>public-key.asc</code>中。</p>
-<pre><code class="language-bash"># gpg2 --import public.key 
-gpg: key 0ABA3F7577773A8F: public key &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; imported
-gpg: Total number processed: 1
-gpg:               imported: 1
-# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># gpg2 --import public.key </span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>gpg:<span class="w"> </span>key<span class="w"> </span>0ABA3F7577773A8F:<span class="w"> </span>public<span class="w"> </span>key<span class="w"> </span><span class="s2">&quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;</span><span class="w"> </span>imported
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>gpg:<span class="w"> </span>Total<span class="w"> </span>number<span class="w"> </span>processed:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>gpg:<span class="w">               </span>imported:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>此时再查询一下本地的公钥。</p>
-<pre><code class="language-bash"># gpg2 --list-keys
-gpg: checking the trustdb
-gpg: no ultimately trusted keys found
-/root/.gnupg/pubring.kbx
-------------------------
-pub   rsa4096 2024-11-16 [SC] [expires: 2025-11-16]
-      3678F2332D0A0475A47125050ABA3F7577773A8F
-uid           [ unknown] gpguser (gpg test) &lt;gpguser@localhost.com&gt;
-sub   rsa4096 2024-11-16 [E] [expires: 2025-11-16]
-
-# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1"># gpg2 --list-keys</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>gpg:<span class="w"> </span>checking<span class="w"> </span>the<span class="w"> </span>trustdb
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>gpg:<span class="w"> </span>no<span class="w"> </span>ultimately<span class="w"> </span>trusted<span class="w"> </span>keys<span class="w"> </span>found
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>/root/.gnupg/pubring.kbx
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>------------------------
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>pub<span class="w">   </span>rsa4096<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>SC<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">      </span>3678F2332D0A0475A47125050ABA3F7577773A8F
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a>uid<span class="w">           </span><span class="o">[</span><span class="w"> </span>unknown<span class="o">]</span><span class="w"> </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>sub<span class="w">   </span>rsa4096<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>E<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>再来查看下本地的私钥。</p>
-<pre><code class="language-bash">root@DESKTOP-CU66GL1:~# gpg2 --list-secret-keys
-root@DESKTOP-CU66GL1:~#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>root@DESKTOP-CU66GL1:~#<span class="w"> </span>gpg2<span class="w"> </span>--list-secret-keys
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>root@DESKTOP-CU66GL1:~#
+</span></code></pre></div></td></tr></table></div>
 <p>导入私钥，私钥记录在本地的<code>private-key.asc</code>中。</p>
-<pre><code class="language-bash"># gpg2 --import private.key 
-gpg: key 0ABA3F7577773A8F: &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; not changed
-gpg: key 0ABA3F7577773A8F: secret key imported
-gpg: Total number processed: 1
-gpg:              unchanged: 1
-gpg:       secret keys read: 1
-gpg:   secret keys imported: 1
-# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span>
+<span class="normal"><a href="#__codelineno-11-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># gpg2 --import private.key </span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>gpg:<span class="w"> </span>key<span class="w"> </span>0ABA3F7577773A8F:<span class="w"> </span><span class="s2">&quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;</span><span class="w"> </span>not<span class="w"> </span>changed
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>gpg:<span class="w"> </span>key<span class="w"> </span>0ABA3F7577773A8F:<span class="w"> </span>secret<span class="w"> </span>key<span class="w"> </span>imported
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>gpg:<span class="w"> </span>Total<span class="w"> </span>number<span class="w"> </span>processed:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>gpg:<span class="w">              </span>unchanged:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>gpg:<span class="w">       </span>secret<span class="w"> </span>keys<span class="w"> </span>read:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a>gpg:<span class="w">   </span>secret<span class="w"> </span>keys<span class="w"> </span>imported:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>同样的，在导入过程中，会让我们验证私钥的密码，密码正确后，才可被导入。</p>
 <p>再次查看私钥。</p>
-<pre><code class="language-bash"># gpg2 --list-secret-keys
-/root/.gnupg/pubring.kbx
-------------------------
-sec   rsa4096 2024-11-16 [SC] [expires: 2025-11-16]
-      3678F2332D0A0475A47125050ABA3F7577773A8F
-uid           [ unknown] gpguser (gpg test) &lt;gpguser@localhost.com&gt;
-ssb   rsa4096 2024-11-16 [E] [expires: 2025-11-16]
-
-# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span>
+<span class="normal"><a href="#__codelineno-12-8">8</a></span>
+<span class="normal"><a href="#__codelineno-12-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1"># gpg2 --list-secret-keys</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a>/root/.gnupg/pubring.kbx
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a>------------------------
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a>sec<span class="w">   </span>rsa4096<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>SC<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="w">      </span>3678F2332D0A0475A47125050ABA3F7577773A8F
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a>uid<span class="w">           </span><span class="o">[</span><span class="w"> </span>unknown<span class="o">]</span><span class="w"> </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a>ssb<span class="w">   </span>rsa4096<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span><span class="o">[</span>E<span class="o">]</span><span class="w"> </span><span class="o">[</span>expires:<span class="w"> </span><span class="m">2025</span>-11-16<span class="o">]</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_6">删除密钥</h3>
 <p>使用<code>--delete-keys</code>可以删除公钥，请注意，当你视图删除掉的公钥仍有对应的私钥的时候，需要先删除私钥，才能删除公钥。</p>
 <p>删除公钥报错，提示有对应的私钥。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --delete-keys 3678F2332D0A0475A47125050ABA3F7577773A8F
-gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-
-gpg: there is a secret key for public key &quot;3678F2332D0A0475A47125050ABA3F7577773A8F&quot;!
-gpg: use option &quot;--delete-secret-keys&quot; to delete it first.
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span>
+<span class="normal"><a href="#__codelineno-13-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --delete-keys 3678F2332D0A0475A47125050ABA3F7577773A8F</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>gpg<span class="w"> </span><span class="o">(</span>GnuPG<span class="o">)</span><span class="w"> </span><span class="m">2</span>.2.40<span class="p">;</span><span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>g10<span class="w"> </span>Code<span class="w"> </span>GmbH
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a>gpg:<span class="w"> </span>there<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>secret<span class="w"> </span>key<span class="w"> </span><span class="k">for</span><span class="w"> </span>public<span class="w"> </span>key<span class="w"> </span><span class="s2">&quot;3678F2332D0A0475A47125050ABA3F7577773A8F&quot;</span>!
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a>gpg:<span class="w"> </span>use<span class="w"> </span>option<span class="w"> </span><span class="s2">&quot;--delete-secret-keys&quot;</span><span class="w"> </span>to<span class="w"> </span>delete<span class="w"> </span>it<span class="w"> </span>first.
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>删除私钥。</p>
 <p>可以使用<code>--delete-secret-keys</code>删除私钥。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --delete-secret-keys 3678F2332D0A0475A47125050ABA3F7577773A8F
-gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-
-
-sec  rsa4096/0ABA3F7577773A8F 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
-
-Delete this key from the keyring? (y/N) y
-This is a secret key! - really delete? (y/N) y
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --delete-secret-keys 3678F2332D0A0475A47125050ABA3F7577773A8F</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>gpg<span class="w"> </span><span class="o">(</span>GnuPG<span class="o">)</span><span class="w"> </span><span class="m">2</span>.2.40<span class="p">;</span><span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>g10<span class="w"> </span>Code<span class="w"> </span>GmbH
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a>sec<span class="w">  </span>rsa4096/0ABA3F7577773A8F<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a>Delete<span class="w"> </span>this<span class="w"> </span>key<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>keyring?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span><span class="w"> </span>y
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a>This<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>secret<span class="w"> </span>key!<span class="w"> </span>-<span class="w"> </span>really<span class="w"> </span>delete?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span><span class="w"> </span>y
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>在删除私钥的时候，会二次确认是否进行删除。</p>
 <p>在删除私钥后，就可以删除公钥了。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --delete-keys 3678F2332D0A0475A47125050ABA3F7577773A8F
-gpg (GnuPG) 2.2.40; Copyright (C) 2022 g10 Code GmbH
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-
-
-pub  rsa4096/0ABA3F7577773A8F 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
-
-Delete this key from the keyring? (y/N) y
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --delete-keys 3678F2332D0A0475A47125050ABA3F7577773A8F</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a>gpg<span class="w"> </span><span class="o">(</span>GnuPG<span class="o">)</span><span class="w"> </span><span class="m">2</span>.2.40<span class="p">;</span><span class="w"> </span>Copyright<span class="w"> </span><span class="o">(</span>C<span class="o">)</span><span class="w"> </span><span class="m">2022</span><span class="w"> </span>g10<span class="w"> </span>Code<span class="w"> </span>GmbH
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>This<span class="w"> </span>is<span class="w"> </span>free<span class="w"> </span>software:<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>free<span class="w"> </span>to<span class="w"> </span>change<span class="w"> </span>and<span class="w"> </span>redistribute<span class="w"> </span>it.
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>There<span class="w"> </span>is<span class="w"> </span>NO<span class="w"> </span>WARRANTY,<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>extent<span class="w"> </span>permitted<span class="w"> </span>by<span class="w"> </span>law.
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a>pub<span class="w">  </span>rsa4096/0ABA3F7577773A8F<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a>Delete<span class="w"> </span>this<span class="w"> </span>key<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>keyring?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span><span class="w"> </span>y
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>此时，再来查看公钥和私钥。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --list-keys
-[root@debian]:[~][tty:0]# 
-[root@debian]:[~][tty:0]# gpg2 --list-secret-keys
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --list-keys</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --list-secret-keys</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>当然，为了下面的测试，最好是将秘钥重新导入回去。</p>
 <h2 id="_7">内容的加密和解密</h2>
 <h3 id="_8">使用公钥进行加密文件</h3>
 <p>使用公钥加密文件或者内容。</p>
 <p>直接加密字符。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo &quot;hello world&quot; | gpg2 --armor --encrypt --recipient 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; encrypt_msg.asc
-gpg: D67F66F29079D8A1: There is no assurance this key belongs to the named user
-
-sub  rsa4096/D67F66F29079D8A1 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
- Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
-      Subkey fingerprint: CFBD 3066 E074 10FC EBA1  FF50 D67F 66F2 9079 D8A1
-
-It is NOT certain that the key belongs to the person named
-in the user ID.  If you *really* know what you are doing,
-you may answer the next question with yes.
-
-Use this key anyway? (y/N) y
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span>
+<span class="normal"><a href="#__codelineno-17-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># echo &quot;hello world&quot; | gpg2 --armor --encrypt --recipient 3678F2332D0A0475A47125050ABA3F7577773A8F &gt; encrypt_msg.asc</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>gpg:<span class="w"> </span>D67F66F29079D8A1:<span class="w"> </span>There<span class="w"> </span>is<span class="w"> </span>no<span class="w"> </span>assurance<span class="w"> </span>this<span class="w"> </span>key<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>named<span class="w"> </span>user
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>sub<span class="w">  </span>rsa4096/D67F66F29079D8A1<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w"> </span>Primary<span class="w"> </span>key<span class="w"> </span>fingerprint:<span class="w"> </span><span class="m">3678</span><span class="w"> </span>F233<span class="w"> </span>2D0A<span class="w"> </span><span class="m">0475</span><span class="w"> </span>A471<span class="w">  </span><span class="m">2505</span><span class="w"> </span>0ABA<span class="w"> </span>3F75<span class="w"> </span><span class="m">7777</span><span class="w"> </span>3A8F
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">      </span>Subkey<span class="w"> </span>fingerprint:<span class="w"> </span>CFBD<span class="w"> </span><span class="m">3066</span><span class="w"> </span>E074<span class="w"> </span>10FC<span class="w"> </span>EBA1<span class="w">  </span>FF50<span class="w"> </span>D67F<span class="w"> </span>66F2<span class="w"> </span><span class="m">9079</span><span class="w"> </span>D8A1
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8"></a>It<span class="w"> </span>is<span class="w"> </span>NOT<span class="w"> </span>certain<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>person<span class="w"> </span>named
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>user<span class="w"> </span>ID.<span class="w">  </span>If<span class="w"> </span>you<span class="w"> </span>*really*<span class="w"> </span>know<span class="w"> </span>what<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>doing,
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10"></a>you<span class="w"> </span>may<span class="w"> </span>answer<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>question<span class="w"> </span>with<span class="w"> </span>yes.
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11"></a>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12"></a>Use<span class="w"> </span>this<span class="w"> </span>key<span class="w"> </span>anyway?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span><span class="w"> </span>y
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述命令，使用<code>echo</code>输出<code>hello world</code>，并且通过管道，使用<code>gpg2</code>进行加密，其中<code>--armor</code>表示使用<code>ascii</code>码输出、<code>--encrypt</code>表示加密操作，<code>--recipient keyid</code>表示使用哪公钥进行加密，最后重定向到<code>encrypt_msg.asc</code>中。</p>
 <p>同样的，如果是文件的话，直接在后面跟文件即可，例如：</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo &quot;hello world2&quot; &gt;&gt; file.txt
-[root@debian]:[~][tty:0]# gpg2 --armor --encrypt --recipient 3678F2332D0A0475A47125050ABA3F7577773A8F file.txt
-gpg: D67F66F29079D8A1: There is no assurance this key belongs to the named user
-
-sub  rsa4096/D67F66F29079D8A1 2024-11-16 gpguser (gpg test) &lt;gpguser@localhost.com&gt;
- Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
-      Subkey fingerprint: CFBD 3066 E074 10FC EBA1  FF50 D67F 66F2 9079 D8A1
-
-It is NOT certain that the key belongs to the person named
-in the user ID.  If you *really* know what you are doing,
-you may answer the next question with yes.
-
-Use this key anyway? (y/N) y
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-18-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-18-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-18-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-18-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-18-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-18-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-18-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-18-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-18-10">10</a></span>
+<span class="normal"><a href="#__codelineno-18-11">11</a></span>
+<span class="normal"><a href="#__codelineno-18-12">12</a></span>
+<span class="normal"><a href="#__codelineno-18-13">13</a></span>
+<span class="normal"><a href="#__codelineno-18-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># echo &quot;hello world2&quot; &gt;&gt; file.txt</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --armor --encrypt --recipient 3678F2332D0A0475A47125050ABA3F7577773A8F file.txt</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>gpg:<span class="w"> </span>D67F66F29079D8A1:<span class="w"> </span>There<span class="w"> </span>is<span class="w"> </span>no<span class="w"> </span>assurance<span class="w"> </span>this<span class="w"> </span>key<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>named<span class="w"> </span>user
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a>sub<span class="w">  </span>rsa4096/D67F66F29079D8A1<span class="w"> </span><span class="m">2024</span>-11-16<span class="w"> </span>gpguser<span class="w"> </span><span class="o">(</span>gpg<span class="w"> </span><span class="nb">test</span><span class="o">)</span><span class="w"> </span>&lt;gpguser@localhost.com&gt;
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><span class="w"> </span>Primary<span class="w"> </span>key<span class="w"> </span>fingerprint:<span class="w"> </span><span class="m">3678</span><span class="w"> </span>F233<span class="w"> </span>2D0A<span class="w"> </span><span class="m">0475</span><span class="w"> </span>A471<span class="w">  </span><span class="m">2505</span><span class="w"> </span>0ABA<span class="w"> </span>3F75<span class="w"> </span><span class="m">7777</span><span class="w"> </span>3A8F
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="w">      </span>Subkey<span class="w"> </span>fingerprint:<span class="w"> </span>CFBD<span class="w"> </span><span class="m">3066</span><span class="w"> </span>E074<span class="w"> </span>10FC<span class="w"> </span>EBA1<span class="w">  </span>FF50<span class="w"> </span>D67F<span class="w"> </span>66F2<span class="w"> </span><span class="m">9079</span><span class="w"> </span>D8A1
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9"></a>It<span class="w"> </span>is<span class="w"> </span>NOT<span class="w"> </span>certain<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>person<span class="w"> </span>named
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="k">in</span><span class="w"> </span>the<span class="w"> </span>user<span class="w"> </span>ID.<span class="w">  </span>If<span class="w"> </span>you<span class="w"> </span>*really*<span class="w"> </span>know<span class="w"> </span>what<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>doing,
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11"></a>you<span class="w"> </span>may<span class="w"> </span>answer<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>question<span class="w"> </span>with<span class="w"> </span>yes.
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12"></a>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13"></a>Use<span class="w"> </span>this<span class="w"> </span>key<span class="w"> </span>anyway?<span class="w"> </span><span class="o">(</span>y/N<span class="o">)</span><span class="w"> </span>y
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>加密的文件会以<code>&lt;filename&gt;.asc</code>存在。</p>
 <h3 id="_9">使用私钥进行解密文件</h3>
 <p>使用<code>--decrypt</code>选项即可解密文件，还可以输出到相应的文件中。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --output file.out --decrypt file.txt.asc
-gpg: encrypted with 4096-bit RSA key, ID D67F66F29079D8A1, created 2024-11-16
-      &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;
-[root@debian]:[~][tty:0]# 
-[root@debian]:[~][tty:0]# cat file.out
-hello world2
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span>
+<span class="normal"><a href="#__codelineno-19-6">6</a></span>
+<span class="normal"><a href="#__codelineno-19-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --output file.out --decrypt file.txt.asc</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a>gpg:<span class="w"> </span>encrypted<span class="w"> </span>with<span class="w"> </span><span class="m">4096</span>-bit<span class="w"> </span>RSA<span class="w"> </span>key,<span class="w"> </span>ID<span class="w"> </span>D67F66F29079D8A1,<span class="w"> </span>created<span class="w"> </span><span class="m">2024</span>-11-16
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="w">      </span><span class="s2">&quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># cat file.out</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6"></a>hello<span class="w"> </span>world2
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p>使用<code>--decrypt 加密内容</code>可以解密文件，使用<code>--output</code>可以将文件保存到文件中。</p>
 <h2 id="_10">签名与验证</h2>
 <p><code>gpg</code>可以对文件和消息进行签名，以确保文件或者消息的完整性。</p>
 <h3 id="_11">对文件进行签名</h3>
 <p>对文件进行签名，使用<code>sign</code>即可。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo 'sign_message' &gt; siginMessage
-[root@debian]:[~][tty:0]# gpg2 --armor --detach-sign siginMessage
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span>
+<span class="normal"><a href="#__codelineno-20-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># echo &#39;sign_message&#39; &gt; siginMessage</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --armor --detach-sign siginMessage</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p><code>--detach-sign</code>：表示对文件分离前面。<code>--armor</code>：表示生成<code>ascii</code>字符。</p>
 <p>默认生成的签名文件会被记录到<code>&lt;filename&gt;.asc</code>中。</p>
 <h3 id="_12">对消息进行签名</h3>
 <p>如果相对消息进行签名，使用<code>--clearsign</code>即可。</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# echo &quot;hello sign_message&quot; | gpg2 --armor --clearsign &gt; siginMessageHello.txt
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># echo &quot;hello sign_message&quot; | gpg2 --armor --clearsign &gt; siginMessageHello.txt</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <p><code>--clearsign</code>表示在不加密的情况下，将签名嵌入到消息内容中。</p>
 <h3 id="_13">对文件进行签名验证</h3>
 <p>对于分离签名，使用<code>--verify 签名文件 原始文件</code> 进行校验即可，例如：</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --verify siginMessage.asc siginMessage
-gpg: Signature made Sat 16 Nov 2024 08:17:54 PM CST
-gpg:                using RSA key 3678F2332D0A0475A47125050ABA3F7577773A8F
-gpg: Good signature from &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; [unknown]
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span>
+<span class="normal"><a href="#__codelineno-22-5">5</a></span>
+<span class="normal"><a href="#__codelineno-22-6">6</a></span>
+<span class="normal"><a href="#__codelineno-22-7">7</a></span>
+<span class="normal"><a href="#__codelineno-22-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --verify siginMessage.asc siginMessage</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a>gpg:<span class="w"> </span>Signature<span class="w"> </span>made<span class="w"> </span>Sat<span class="w"> </span><span class="m">16</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">08</span>:17:54<span class="w"> </span>PM<span class="w"> </span>CST
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a>gpg:<span class="w">                </span>using<span class="w"> </span>RSA<span class="w"> </span>key<span class="w"> </span>3678F2332D0A0475A47125050ABA3F7577773A8F
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a>gpg:<span class="w"> </span>Good<span class="w"> </span>signature<span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;</span><span class="w"> </span><span class="o">[</span>unknown<span class="o">]</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a>gpg:<span class="w"> </span>WARNING:<span class="w"> </span>This<span class="w"> </span>key<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>certified<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>trusted<span class="w"> </span>signature!
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a>gpg:<span class="w">          </span>There<span class="w"> </span>is<span class="w"> </span>no<span class="w"> </span>indication<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>signature<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>owner.
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7"></a>Primary<span class="w"> </span>key<span class="w"> </span>fingerprint:<span class="w"> </span><span class="m">3678</span><span class="w"> </span>F233<span class="w"> </span>2D0A<span class="w"> </span><span class="m">0475</span><span class="w"> </span>A471<span class="w">  </span><span class="m">2505</span><span class="w"> </span>0ABA<span class="w"> </span>3F75<span class="w"> </span><span class="m">7777</span><span class="w"> </span>3A8F
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_14">对消息进行签名验证</h3>
 <p>对于消息签名，直接进行校验即可，例如：</p>
-<pre><code class="language-bash">[root@debian]:[~][tty:0]# gpg2 --verify siginMessageHello.txt
-gpg: Signature made Sat 16 Nov 2024 08:19:08 PM CST
-gpg:                using RSA key 3678F2332D0A0475A47125050ABA3F7577773A8F
-gpg: Good signature from &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; [unknown]
-gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
-[root@debian]:[~][tty:0]# 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span>
+<span class="normal"><a href="#__codelineno-23-7">7</a></span>
+<span class="normal"><a href="#__codelineno-23-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># gpg2 --verify siginMessageHello.txt</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a>gpg:<span class="w"> </span>Signature<span class="w"> </span>made<span class="w"> </span>Sat<span class="w"> </span><span class="m">16</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">08</span>:19:08<span class="w"> </span>PM<span class="w"> </span>CST
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a>gpg:<span class="w">                </span>using<span class="w"> </span>RSA<span class="w"> </span>key<span class="w"> </span>3678F2332D0A0475A47125050ABA3F7577773A8F
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a>gpg:<span class="w"> </span>Good<span class="w"> </span>signature<span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;</span><span class="w"> </span><span class="o">[</span>unknown<span class="o">]</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a>gpg:<span class="w"> </span>WARNING:<span class="w"> </span>This<span class="w"> </span>key<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>certified<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>trusted<span class="w"> </span>signature!
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a>gpg:<span class="w">          </span>There<span class="w"> </span>is<span class="w"> </span>no<span class="w"> </span>indication<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>signature<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>owner.
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7"></a>Primary<span class="w"> </span>key<span class="w"> </span>fingerprint:<span class="w"> </span><span class="m">3678</span><span class="w"> </span>F233<span class="w"> </span>2D0A<span class="w"> </span><span class="m">0475</span><span class="w"> </span>A471<span class="w">  </span><span class="m">2505</span><span class="w"> </span>0ABA<span class="w"> </span>3F75<span class="w"> </span><span class="m">7777</span><span class="w"> </span>3A8F
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8"></a><span class="o">[</span>root@debian<span class="o">]</span>:<span class="o">[</span>~<span class="o">][</span>tty:0<span class="o">]</span><span class="c1"># </span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="_15">对签名输出的解读</h3>
 <p>上面前面的意思分解一下，可以整理为如下内容：</p>
-<pre><code class="language-bash">gpg: Signature made Sat 16 Nov 2024 08:19:08 PM CST
-gpg:                using RSA key 3678F2332D0A0475A47125050ABA3F7577773A8F
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a>gpg:<span class="w"> </span>Signature<span class="w"> </span>made<span class="w"> </span>Sat<span class="w"> </span><span class="m">16</span><span class="w"> </span>Nov<span class="w"> </span><span class="m">2024</span><span class="w"> </span><span class="m">08</span>:19:08<span class="w"> </span>PM<span class="w"> </span>CST
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a>gpg:<span class="w">                </span>using<span class="w"> </span>RSA<span class="w"> </span>key<span class="w"> </span>3678F2332D0A0475A47125050ABA3F7577773A8F
+</span></code></pre></div></td></tr></table></div>
 <p>表明是在什么时候进行签名，并且通过哪个秘钥进行签名的。</p>
-<pre><code class="language-bash">gpg: Good signature from &quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot; [unknown]
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-25-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a>gpg:<span class="w"> </span>Good<span class="w"> </span>signature<span class="w"> </span>from<span class="w"> </span><span class="s2">&quot;gpguser (gpg test) &lt;gpguser@localhost.com&gt;&quot;</span><span class="w"> </span><span class="o">[</span>unknown<span class="o">]</span>
+</span></code></pre></div></td></tr></table></div>
 <p>表明识别到了签名者的信息，后面的<code>unknown</code>表示<code>GPG</code>不知道是否信任这个公钥。</p>
-<pre><code class="language-bash">gpg: WARNING: This key is not certified with a trusted signature!
-gpg:          There is no indication that the signature belongs to the owner.
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-26-1">1</a></span>
+<span class="normal"><a href="#__codelineno-26-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a>gpg:<span class="w"> </span>WARNING:<span class="w"> </span>This<span class="w"> </span>key<span class="w"> </span>is<span class="w"> </span>not<span class="w"> </span>certified<span class="w"> </span>with<span class="w"> </span>a<span class="w"> </span>trusted<span class="w"> </span>signature!
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a>gpg:<span class="w">          </span>There<span class="w"> </span>is<span class="w"> </span>no<span class="w"> </span>indication<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>signature<span class="w"> </span>belongs<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>owner.
+</span></code></pre></div></td></tr></table></div>
 <p>这是一条警告信息，表示<code>GPG</code>没有收到关于如上公钥的信任认证，</p>
-<pre><code class="language-bash">Primary key fingerprint: 3678 F233 2D0A 0475 A471  2505 0ABA 3F75 7777 3A8F
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-27-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a>Primary<span class="w"> </span>key<span class="w"> </span>fingerprint:<span class="w"> </span><span class="m">3678</span><span class="w"> </span>F233<span class="w"> </span>2D0A<span class="w"> </span><span class="m">0475</span><span class="w"> </span>A471<span class="w">  </span><span class="m">2505</span><span class="w"> </span>0ABA<span class="w"> </span>3F75<span class="w"> </span><span class="m">7777</span><span class="w"> </span>3A8F
+</span></code></pre></div></td></tr></table></div>
 <p>表示签名者的秘钥指纹。</p>
 <h2 id="_16">总结</h2>
 <p><code>gpg2</code>是<code>gpg</code>的升级版本，是<code>pgp</code>的开源替代。提供了加密、签名等功能。在使用<code>gpg</code>的时候，需要先生成公钥和私钥，将公钥开放出去，用于数据加密，私钥则需要妥善保管，用以数据解密。</p>

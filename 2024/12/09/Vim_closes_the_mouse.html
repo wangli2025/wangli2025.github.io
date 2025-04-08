@@ -593,45 +593,73 @@
 <!-- more -->
 
 <p>如果你不习惯vim鼠标可视模式的话，不妨尝试来禁用它，首先需要确认<code>vim</code>的版本号。使用<code>vim --version</code>即可查询。</p>
-<pre><code class="language-bash"># vim --version
-VIM - Vi IMproved 9.0 (2022 Jun 28, 编译于 May 04 2023 10:24:44)
-包含补丁: 1-1378, 1499
-修改者 team+vim@tracker.debian.org
-
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># vim --version</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>VIM<span class="w"> </span>-<span class="w"> </span>Vi<span class="w"> </span>IMproved<span class="w"> </span><span class="m">9</span>.0<span class="w"> </span><span class="o">(</span><span class="m">2022</span><span class="w"> </span>Jun<span class="w"> </span><span class="m">28</span>,<span class="w"> </span>编译于<span class="w"> </span>May<span class="w"> </span><span class="m">04</span><span class="w"> </span><span class="m">2023</span><span class="w"> </span><span class="m">10</span>:24:44<span class="o">)</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>包含补丁:<span class="w"> </span><span class="m">1</span>-1378,<span class="w"> </span><span class="m">1499</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>修改者<span class="w"> </span>team+vim@tracker.debian.org
+</span></code></pre></div></td></tr></table></div>
 <p>可以看到该<code>vim</code>版本为<code>9.0</code>，需要编辑<code>vim</code>默认配置文件，即：<code>/usr/share/vim/vim90/defaults.vim</code>，注意，<code>9.0</code>版本的<code>vim</code>是<code>vim90</code>，如果是其他版本的，直接替换路径即可。</p>
 <p>使用<code>mouse</code>作为关键字，找到如下配置，<code>9.0</code>版本，大概位置在77行到88行之间。</p>
-<pre><code class="language-bash"># sed -n '77,88p' /usr/share/vim/vim90/defaults.vim
-&quot; In many terminal emulators the mouse works just fine.  By enabling it you
-&quot; can position the cursor, Visually select and scroll with the mouse.
-&quot; Only xterm can grab the mouse events when using the shift key, for other
-&quot; terminals use &quot;:&quot;, select text and press Esc.
-if has('mouse')
-  if &amp;term =~ 'xterm'
-    set mouse=a
-  else
-    set mouse=nvi
-  endif
-endif
-
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># sed -n &#39;77,88p&#39; /usr/share/vim/vim90/defaults.vim</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="s2">&quot; In many terminal emulators the mouse works just fine.  By enabling it you</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="s2">&quot;</span><span class="w"> </span>can<span class="w"> </span>position<span class="w"> </span>the<span class="w"> </span>cursor,<span class="w"> </span>Visually<span class="w"> </span><span class="k">select</span><span class="w"> </span>and<span class="w"> </span>scroll<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>mouse.
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="s2">&quot; Only xterm can grab the mouse events when using the shift key, for other</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="s2">&quot;</span><span class="w"> </span>terminals<span class="w"> </span>use<span class="w"> </span><span class="s2">&quot;:&quot;</span>,<span class="w"> </span><span class="k">select</span><span class="w"> </span>text<span class="w"> </span>and<span class="w"> </span>press<span class="w"> </span>Esc.
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="k">if</span><span class="w"> </span>has<span class="o">(</span><span class="s1">&#39;mouse&#39;</span><span class="o">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">&amp;</span><span class="nv">term</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s1">&#39;xterm&#39;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="nb">set</span><span class="w"> </span><span class="nv">mouse</span><span class="o">=</span>a
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">  </span><span class="k">else</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="nb">set</span><span class="w"> </span><span class="nv">mouse</span><span class="o">=</span>nvi
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">  </span>endif
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>endif
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>然后只需要将这些配置给注释掉即可，注意，注释掉的语法是<code>"</code>，注释后，配置如下：</p>
-<pre><code class="language-bash"># sed -n '77,88p' /usr/share/vim/vim90/defaults.vim
-&quot; In many terminal emulators the mouse works just fine.  By enabling it you
-&quot; can position the cursor, Visually select and scroll with the mouse.
-&quot; Only xterm can grab the mouse events when using the shift key, for other
-&quot; terminals use &quot;:&quot;, select text and press Esc.
-&quot;if has('mouse')
-&quot;  if &amp;term =~ 'xterm'
-&quot;    set mouse=a
-&quot;  else
-&quot;    set mouse=nvi
-&quot;  endif
-&quot;endif
-
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># sed -n &#39;77,88p&#39; /usr/share/vim/vim90/defaults.vim</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="s2">&quot; In many terminal emulators the mouse works just fine.  By enabling it you</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="s2">&quot;</span><span class="w"> </span>can<span class="w"> </span>position<span class="w"> </span>the<span class="w"> </span>cursor,<span class="w"> </span>Visually<span class="w"> </span><span class="k">select</span><span class="w"> </span>and<span class="w"> </span>scroll<span class="w"> </span>with<span class="w"> </span>the<span class="w"> </span>mouse.
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="s2">&quot; Only xterm can grab the mouse events when using the shift key, for other</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="s2">&quot;</span><span class="w"> </span>terminals<span class="w"> </span>use<span class="w"> </span><span class="s2">&quot;:&quot;</span>,<span class="w"> </span><span class="k">select</span><span class="w"> </span>text<span class="w"> </span>and<span class="w"> </span>press<span class="w"> </span>Esc.
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="s2">&quot;if has(&#39;mouse&#39;)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="s2">&quot;</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">&amp;</span><span class="nv">term</span><span class="w"> </span><span class="o">=</span>~<span class="w"> </span><span class="s1">&#39;xterm&#39;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="s2">&quot;    set mouse=a</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="s2">&quot;</span><span class="w">  </span><span class="k">else</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="s2">&quot;    set mouse=nvi</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="s2">&quot;</span><span class="w">  </span>endif
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="s2">&quot;endif</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="s2">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>都屏蔽后，再次打开文件，则不会默认进入到鼠标可视模式了。</p>
 
 

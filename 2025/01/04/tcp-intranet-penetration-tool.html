@@ -720,133 +720,202 @@
 <h2 id="_2">如何获取可执行文件</h2>
 <h3 id="_3">从已发布的版本中获取</h3>
 <p>可以从已发布版本中得到以下可执行文件：</p>
-<p><code>goRelay</code>是一个可执行文件，通过添加<code>--type</code>的方式来区分服务器类型。具体的类型可以分为：
-- <code>relayServer</code>：中转服务器用于接收和发送数据，需部署在客户端请求的内网环境中，可以部署多个，用于支持端口复用。
-- <code>pipeServer</code>：管道服务器用于数据传输，需部署具有公网<code>IP</code>的服务器上。
-- <code>pipeClient</code>：管道客户端用于用户数据传输，需部署在真实服务所在的内网环境中。
-- <code>relayClient</code>：中转客户端用于接收和发送数据，需部署在真实服务所在的内网环境中，需要配置<code>relayServer</code>信息，以支持端口复用。</p>
+<p><code>goRelay</code>是一个可执行文件，通过添加<code>--type</code>的方式来区分服务器类型。具体的类型可以分为：</p>
+<ul>
+<li>
+<p><code>relayServer</code>：中转服务器用于接收和发送数据，需部署在客户端请求的内网环境中，可以部署多个，用于支持端口复用。</p>
+</li>
+<li>
+<p><code>pipeServer</code>：管道服务器用于数据传输，需部署具有公网<code>IP</code>的服务器上。</p>
+</li>
+<li>
+<p><code>pipeClient</code>：管道客户端用于用户数据传输，需部署在真实服务所在的内网环境中。</p>
+</li>
+<li>
+<p><code>relayClient</code>：中转客户端用于接收和发送数据，需部署在真实服务所在的内网环境中，需要配置<code>relayServer</code>信息，以支持端口复用。</p>
+</li>
+</ul>
 <h3 id="_4">编译获取</h3>
-<p>将该仓库<code>clone</code>下来后，使用<code>bash build.sh</code> + 版本号 进行编译，例如：</p>
-<pre><code class="language-bash">➜  goRelay git:(main) ✗ bash build.sh v0.0.1
-build project
-go build -ldflags &quot;-X goRelay/pkg.Version=v0.0.1 -X goRelay/pkg.BuildAt=2025-01-04 -X goRelay/pkg.GitCommit=9002ae53fff26c433cdcde76abed1781c3cc218a&quot; -o ./bin/goRelay 
-tar zcvf pipeSourcev0.0.1.tar.gz ./bin
-./bin/
-./bin/goRelay
-➜  goRelay git:(main) ✗ 
-</code></pre>
-<p>编译完成之后，会在<code>./bin/</code>下生成对应的二进制文件。</p>
-<pre><code class="language-bash">➜  goRelay git:(main) ✗ ls bin/
-goRelay
-➜  goRelay git:(main) ✗ 
-</code></pre>
+<p>将该仓库<code>clone</code>下来后，使用<code>bash build.sh</code> + 版本号 进行编译，例如：
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>➜<span class="w">  </span>goRelay<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>bash<span class="w"> </span>build.sh<span class="w"> </span>v0.0.1
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>build<span class="w"> </span>project
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>go<span class="w"> </span>build<span class="w"> </span>-ldflags<span class="w"> </span><span class="s2">&quot;-X goRelay/pkg.Version=v0.0.1 -X goRelay/pkg.BuildAt=2025-01-04 -X goRelay/pkg.GitCommit=9002ae53fff26c433cdcde76abed1781c3cc218a&quot;</span><span class="w"> </span>-o<span class="w"> </span>./bin/goRelay<span class="w"> </span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>tar<span class="w"> </span>zcvf<span class="w"> </span>pipeSourcev0.0.1.tar.gz<span class="w"> </span>./bin
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>./bin/
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>./bin/goRelay
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>➜<span class="w">  </span>goRelay<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></p>
+<p>编译完成之后，会在<code>./bin/</code>下生成对应的二进制文件。
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>➜<span class="w">  </span>goRelay<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>ls<span class="w"> </span>bin/
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>goRelay
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>➜<span class="w">  </span>goRelay<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></p>
 <h2 id="_5">如何执行</h2>
 <h3 id="pipeserver"><code>pipeServer</code></h3>
 <p><code>pipeServer</code>是管道服务器，用于数据传输，需要部署到具有公网<code>IP</code>的服务器上。</p>
 <p>启动该服务，需要先创建配置文件，比如该文件名称为：<code>conf_pipeServer.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;listen_pipe_server_addr&quot;:&quot;:8888&quot;,
-    &quot;black_ip_list&quot;:[
-        &quot;127.0.0.3&quot;
-    ],
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;:true
-}
-</code></pre>
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="nt">&quot;listen_pipe_server_addr&quot;</span><span class="p">:</span><span class="s2">&quot;:8888&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;black_ip_list&quot;</span><span class="p">:[</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">        </span><span class="s2">&quot;127.0.0.3&quot;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="nt">&quot;white_ip_list&quot;</span><span class="p">:[</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">        </span><span class="s2">&quot;127.0.0.1&quot;</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nt">&quot;debug_log&quot;</span><span class="p">:</span><span class="kc">true</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>其中，<code>listen_pipe_server_addr</code>是对外监听的地址，若想监听某个网卡，则指定网卡地址即可，比如：<code>192.168.2.3:8888</code>。
 <code>white_ip_list</code>是设置的白名单，只允许名单内的连接上来，为空，则不设置白名单，均可以连接。后续配置也是如此，
 <code>black_ip_list</code>是设置的黑名单，禁止名单内的IP连接上来，若为空，则不设置黑名单，若黑名单和白名单都用相同的值，则黑名单优先级高于白名单。
 <code>debug_log</code>为<code>true</code>是否输出<code>debug</code>日志。后续配置也是如此，</p>
-<p>启动<code>pipeServer</code>，只需要指定配置文件即可，例如：</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type pipeServer --config conf/conf_pipeServer.json 
-</code></pre>
+<p>启动<code>pipeServer</code>，只需要指定配置文件即可，例如：
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>➜<span class="w">  </span>bin<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>./goRelay<span class="w"> </span>--type<span class="w"> </span>pipeServer<span class="w"> </span>--config<span class="w"> </span>conf/conf_pipeServer.json<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></p>
 <h3 id="relayserver"><code>relayServer</code></h3>
 <p><code>relayServer</code>是中转服务器，用于接收和发送用户的数据，需要部署在客户端请求的内网环境中。</p>
 <p><code>relayServer</code>可以开启多个，以便支持端口复用，需要为每个<code>relayServer</code>设置不同的<code>id</code>。</p>
-<p>同样的，如果需要启动该服务，需要先创建配置文件，比如该文件名称为：<code>conf_relayServer.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;client1&quot;,
-    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
-    &quot;listen_relay_server_addr&quot;:&quot;:10010&quot;,
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;:true
-}
-</code></pre>
+<p>同样的，如果需要启动该服务，需要先创建配置文件，比如该文件名称为：<code>conf_relayServer.json</code>：
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span>
+<span class="normal"><a href="#__codelineno-4-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;client1&quot;</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;pipe_server_addr&quot;</span><span class="p">:</span><span class="s2">&quot;127.0.0.1:8888&quot;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;listen_relay_server_addr&quot;</span><span class="p">:</span><span class="s2">&quot;:10010&quot;</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="nt">&quot;white_ip_list&quot;</span><span class="p">:[</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">        </span><span class="s2">&quot;127.0.0.1&quot;</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">    </span><span class="nt">&quot;debug_log&quot;</span><span class="p">:</span><span class="kc">true</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></p>
 <p>其中，<code>id</code>是<code>relayServer</code>的唯一标识符，对其多开的时候需要注意<code>id</code>不能重复，该<code>id</code>是字符串，允许自设定，建议设置复杂一点。
 <code>pipe_server_addr</code>是<code>pipeServer</code>的地址。
 <code>listen_relay_server_addr</code>是<code>relayServer</code>监听的地址。
 <code>white_ip_list</code>是设置的白名单。</p>
-<p>同样的，可以创建第二个配置文件<code>conf_relayServer2.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;id&quot;: &quot;client2&quot;,
-    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
-    &quot;listen_relay_server_addr&quot;:&quot;:10012&quot;,
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;:true
-}
-</code></pre>
-<p>注意，<code>id</code>不能重复，如果是在一台机器上，则<code>listen_relay_server_addr</code>对外监听的地址也不能重复。</p>
-<p>指定配置文件即可启动该服务。</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type relayServer --config conf/conf_relayServer.json 
-</code></pre>
+<p>同样的，可以创建第二个配置文件<code>conf_relayServer2.json</code>：
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span>
+<span class="normal"><a href="#__codelineno-5-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="p">{</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;client2&quot;</span><span class="p">,</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="nt">&quot;pipe_server_addr&quot;</span><span class="p">:</span><span class="s2">&quot;127.0.0.1:8888&quot;</span><span class="p">,</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nt">&quot;listen_relay_server_addr&quot;</span><span class="p">:</span><span class="s2">&quot;:10012&quot;</span><span class="p">,</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="nt">&quot;white_ip_list&quot;</span><span class="p">:[</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">        </span><span class="s2">&quot;127.0.0.1&quot;</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="nt">&quot;debug_log&quot;</span><span class="p">:</span><span class="kc">true</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+注意，<code>id</code>不能重复，如果是在一台机器上，则<code>listen_relay_server_addr</code>对外监听的地址也不能重复。</p>
+<p>指定配置文件即可启动该服务。
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>➜<span class="w">  </span>bin<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>./goRelay<span class="w"> </span>--type<span class="w"> </span>relayServer<span class="w"> </span>--config<span class="w"> </span>conf/conf_relayServer.json<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></p>
 <h3 id="relayclient"><code>relayClient</code></h3>
 <p><code>relayClient</code>是中转客户端，用于接收/发送来自管道客户端、真实服务的数据，需要部署在真实服务所在的内网环境中。</p>
 <p>启动该服务，需要配置<code>relayServer</code>随指定的<code>id</code>,根据<code>id</code>的不同，来指定相应的真实服务的地址，并且需要设置监听的端口，用于管道客户端的连接。</p>
-<p>要想启动该服务，需要创建配置文件，比如：<code>conf_relayClient.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;listen_relay_client_addr&quot;: &quot;:10011&quot;,
-    &quot;white_ip_list&quot;:[
-        &quot;127.0.0.1&quot;
-    ],
-    &quot;debug_log&quot;: true,
-    &quot;realServerInfo&quot;: [
-        {
-            &quot;id&quot;: &quot;client1&quot;,
-            &quot;real_Server_Addr&quot;: &quot;127.0.0.1:80&quot;
-        },
-        {
-            &quot;id&quot;: &quot;client2&quot;,
-            &quot;real_Server_Addr&quot;: &quot;127.0.0.1:22&quot;
-        }
-    ]
-}
-</code></pre>
+<p>要想启动该服务，需要创建配置文件，比如：<code>conf_relayClient.json</code>：
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="w">    </span><span class="nt">&quot;listen_relay_client_addr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;:10011&quot;</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="nt">&quot;white_ip_list&quot;</span><span class="p">:[</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">        </span><span class="s2">&quot;127.0.0.1&quot;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="p">],</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="nt">&quot;debug_log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="nt">&quot;realServerInfo&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;client1&quot;</span><span class="p">,</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">            </span><span class="nt">&quot;real_Server_Addr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1:80&quot;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">        </span><span class="p">},</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">        </span><span class="p">{</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">            </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;client2&quot;</span><span class="p">,</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">            </span><span class="nt">&quot;real_Server_Addr&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;127.0.0.1:22&quot;</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">    </span><span class="p">]</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></p>
 <p>其中<code>listen_relay_client_addr</code>是对外监听的端口，用于<code>pipeClient</code>程序的连接。
 <code>realServerInfo</code>则是真实服务器信息，是一个数组，该数组以<code>id</code>和<code>real_Server_Addr</code>成对出现，用于分辨哪些<code>id</code>和哪些后端服务进行绑定。该<code>id</code>和<code>relayServer</code>的<code>id</code>必须一致，请注意<code>id</code>不要重复，否则会以最后一个<code>id</code>的信息为准。</p>
-<p>启动该服务只需要指定相应的配置文件即可。</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type relayClient --config conf/conf_relayClient.json 
-</code></pre>
+<p>启动该服务只需要指定相应的配置文件即可。
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>➜<span class="w">  </span>bin<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>./goRelay<span class="w"> </span>--type<span class="w"> </span>relayClient<span class="w"> </span>--config<span class="w"> </span>conf/conf_relayClient.json<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></p>
 <h3 id="pipeclient"><code>pipeClient</code></h3>
 <p><code>pipeClient</code>是管道客户端，用于传输来自管道服务器的数据，以及中转客户端的数据，该服务需要部署在真实服务所在的内网环境中。</p>
-<p>启动该服务，需要创建配置文件，比如：<code>conf_pipeClient.json</code>：</p>
-<pre><code class="language-json">{
-    &quot;pipe_server_addr&quot;:&quot;127.0.0.1:8888&quot;,
-    &quot;relay_client_addr&quot;:&quot;127.0.0.1:10011&quot;,
-    &quot;debug_log&quot;: true
-}
-</code></pre>
+<p>启动该服务，需要创建配置文件，比如：<code>conf_pipeClient.json</code>：
+<div class="language-json highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">JSON</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span>
+<span class="normal"><a href="#__codelineno-9-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">    </span><span class="nt">&quot;pipe_server_addr&quot;</span><span class="p">:</span><span class="s2">&quot;127.0.0.1:8888&quot;</span><span class="p">,</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="nt">&quot;relay_client_addr&quot;</span><span class="p">:</span><span class="s2">&quot;127.0.0.1:10011&quot;</span><span class="p">,</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="nt">&quot;debug_log&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></p>
 <p>其中<code>pipe_server_addr</code>表示<code>pipeServer</code>服务器的地址。
 <code>relay_client_addr</code>表示<code>relayClient</code>服务器的地址。</p>
-<p>只需要指定配置文件，即可启动该服务。</p>
-<pre><code class="language-bash">➜  bin git:(main) ✗ ./goRelay --type pipeClient --config conf/conf_pipeClient.json 
-</code></pre>
+<p>只需要指定配置文件，即可启动该服务。
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>➜<span class="w">  </span>bin<span class="w"> </span>git:<span class="o">(</span>main<span class="o">)</span><span class="w"> </span>✗<span class="w"> </span>./goRelay<span class="w"> </span>--type<span class="w"> </span>pipeClient<span class="w"> </span>--config<span class="w"> </span>conf/conf_pipeClient.json<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div></p>
 <h2 id="_6">数据加密</h2>
 <p>当你不是该公网服务器的所有者时，就必须要考虑到中间人攻击的风险。为了确保数据安全，建议使用数据加密，如部署图中绿色部分所示，数据传输可以加密。然而需要注意的是，目前版本并未实现数据加密功能，但已为此预留了接口。你可以通过修改<code>pipeProtocol/enDecode.go</code>文件中的<code>Encode</code>和<code>Decode</code>函数，来实现数据加密。</p>
-<p>函数如下：</p>
-<pre><code class="language-go">func Encode(s []byte) []byte {
-    return s
-}
-
-func Decode(s []byte) []byte {
-    return s
-}
-</code></pre>
+<p>函数如下：
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span>
+<span class="normal"><a href="#__codelineno-11-6">6</a></span>
+<span class="normal"><a href="#__codelineno-11-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="kd">func</span><span class="w"> </span><span class="nx">Encode</span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="p">}</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="kd">func</span><span class="w"> </span><span class="nx">Decode</span><span class="p">(</span><span class="nx">s</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">s</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div></p>
 <p>其中，<code>Encode</code>将用做加密操作，<code>Decode</code>将用作解密操作。</p>
 <h2 id="_7">其他</h2>
 <p>该项目不接受任何需求。</p>

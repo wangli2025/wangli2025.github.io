@@ -657,231 +657,372 @@
 <h2 id="_1">前提</h2>
 <p>在使用 <code>go</code> 编写的代码且将其打包为二进制文件后，尽管机器的架构相同，但是不同操作系统（如 <code>Ubuntu</code> 和 <code>CentOS</code>）可能无法运行，例如：</p>
 <p>在<code>Ubuntu 22.04.4 LTS</code>机器下编写如下代码：</p>
-<pre><code class="language-bash">package main
-
-import (
-    &quot;fmt&quot;
-    &quot;net&quot;
-)
-
-func main() {
-    fmt.Println(&quot;hello world&quot;)
-
-    net.ResolveIPAddr(&quot;tcp&quot;, &quot;127.0.0.1&quot;)
-}
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">import</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="s">&quot;fmt&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="s">&quot;net&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;hello world&quot;</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="nx">net</span><span class="p">.</span><span class="nx">ResolveIPAddr</span><span class="p">(</span><span class="s">&quot;tcp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>编译完成后，在本机可以成功运行。</p>
-<pre><code class="language-bash">$ go build
-$ ./hello 
-hello world
-$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>go<span class="w"> </span>build
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>$<span class="w"> </span>./hello<span class="w"> </span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>hello<span class="w"> </span>world
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>当将该二进制<code>hello</code>拷贝到<code>CentOS Linux 7 (Core)</code>上运行的时候，却会报错。</p>
-<pre><code class="language-bash"># ./hello
-./hello: /lib64/libc.so.6: version `GLIBC_2.34' not found (required by ./hello)
-./hello: /lib64/libc.so.6: version `GLIBC_2.32' not found (required by ./hello)
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># ./hello</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>./hello:<span class="w"> </span>/lib64/libc.so.6:<span class="w"> </span>version<span class="w"> </span><span class="sb">`</span>GLIBC_2.34<span class="s1">&#39; not found (required by ./hello)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="s1">./hello: /lib64/libc.so.6: version `GLIBC_2.32&#39;</span><span class="w"> </span>not<span class="w"> </span>found<span class="w"> </span><span class="o">(</span>required<span class="w"> </span>by<span class="w"> </span>./hello<span class="o">)</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <p>其根本原因是由于程序依赖了第三方运行库，而这些运行库在目标机器上并不存在或不兼容，但是运行出现异常。</p>
 <h2 id="_2">静态编译基本操作</h2>
 <p>对于二进制文件，在<code>linux</code>中可以使用<code>ldd</code>查看其依赖的运行库，例如上面的<code>hello</code>可执行文件。</p>
-<pre><code class="language-bash">$ ldd hello 
-        linux-vdso.so.1 (0x00007fff037bf000)
-        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f72f1955000)
-        /lib64/ld-linux-x86-64.so.2 (0x00007f72f1b88000)
-$
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>$<span class="w"> </span>ldd<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="w">        </span>linux-vdso.so.1<span class="w"> </span><span class="o">(</span>0x00007fff037bf000<span class="o">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">        </span>libc.so.6<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/x86_64-linux-gnu/libc.so.6<span class="w"> </span><span class="o">(</span>0x00007f72f1955000<span class="o">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">        </span>/lib64/ld-linux-x86-64.so.2<span class="w"> </span><span class="o">(</span>0x00007f72f1b88000<span class="o">)</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>$
+</span></code></pre></div></td></tr></table></div>
 <p>所以当<code>hello</code> 从<code>ubuntu</code>挪到<code>centos</code>的时候，虽然其架构都是一致的，但是<code>centos</code>没有这些依赖库，所以会报错。</p>
 <p>所以所谓的静态编译，就是去除这些动态依赖，在<code>go</code>中，可以使用<code>CGO_ENABLED=0</code>来禁用<code>cgo</code>配置，目的是生成完全静态的二进制文件，摆脱对动态库的依赖。</p>
 <p>在使用中，一般语法为：</p>
-<pre><code class="language-bash">CGO_ENABLED=0 go build -o hello
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>hello
+</span></code></pre></div></td></tr></table></div>
 <blockquote>
 <p>上述先设置了一个环境变量<code>CGO_ENABLED</code>，其值为<code>0</code>，且仅对该条命令生效，这是<code>bash</code>特性，在其他环境下需要注意切换设置方式。</p>
 </blockquote>
 <p>编译完成后，再次使用<code>ldd</code>进行查看该二进制文件，会发现其已经没有动态依赖库了。</p>
-<pre><code class="language-bash">$ ldd hello 
-        not a dynamic executable
-$ 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>ldd<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="w">        </span>not<span class="w"> </span>a<span class="w"> </span>dynamic<span class="w"> </span>executable
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>$<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>此时再将<code>hello</code>从<code>ubuntu</code> 拷贝到<code>centos</code>也可以同样运行了。</p>
-<pre><code class="language-bash"># ./hello
-hello world
-#
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1"># ./hello</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>hello<span class="w"> </span>world
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="c1">#</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="_3">静态编译是如何实现的</h2>
 <p>通过上述例子，我们可以看出静态编译似乎是一项简单的事情，然而，实际情况却并非如此。如果不启用 <code>cgo</code>的话，<code>Go</code> 就需要为相关功能提供 <code>Go</code> 版本的实现，才能确保静态编译成功，否则依然会遇到错误。</p>
 <p>这里举个简单的例子。当我们只有 <code>C</code> 代码实现的功能时，如果关闭 <code>cgo</code> 进行编译，就会出现问题。例如，假设有如下代码：</p>
-<pre><code class="language-go">package main
-
-import &quot;fmt&quot;
-
-/*
-# include &lt;stdio.h&gt;
-
-int Add(int a,int b) {
-    return a + b + 2;
-}
-*/
-import &quot;C&quot;
-
-func Add(a int, b int) int {
-    cIntA := C.int(a)
-    cintB := C.int(b)
-    cIntAddNum := C.Add(cIntA, cintB)
-
-    return int(cIntAddNum)
-}
-
-func main() {
-    result := Add(2, 8)
-    fmt.Println(&quot;Result:&quot;, result)
-}
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span>
+<span class="normal"><a href="#__codelineno-7-17">17</a></span>
+<span class="normal"><a href="#__codelineno-7-18">18</a></span>
+<span class="normal"><a href="#__codelineno-7-19">19</a></span>
+<span class="normal"><a href="#__codelineno-7-20">20</a></span>
+<span class="normal"><a href="#__codelineno-7-21">21</a></span>
+<span class="normal"><a href="#__codelineno-7-22">22</a></span>
+<span class="normal"><a href="#__codelineno-7-23">23</a></span>
+<span class="normal"><a href="#__codelineno-7-24">24</a></span>
+<span class="normal"><a href="#__codelineno-7-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="cm">/*</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="cm"># include &lt;stdio.h&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="cm">int Add(int a,int b) {</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="cm">    return a + b + 2;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="cm">}</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="cm">*/</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;C&quot;</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="kd">func</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">    </span><span class="nx">cIntA</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nb">int</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="w">    </span><span class="nx">cintB</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nb">int</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-7-17"><a id="__codelineno-7-17" name="__codelineno-7-17"></a><span class="w">    </span><span class="nx">cIntAddNum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">cIntA</span><span class="p">,</span><span class="w"> </span><span class="nx">cintB</span><span class="p">)</span>
+</span><span id="__span-7-18"><a id="__codelineno-7-18" name="__codelineno-7-18"></a>
+</span><span id="__span-7-19"><a id="__codelineno-7-19" name="__codelineno-7-19"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="nx">cIntAddNum</span><span class="p">)</span>
+</span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20"></a><span class="p">}</span>
+</span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21"></a>
+</span><span id="__span-7-22"><a id="__codelineno-7-22" name="__codelineno-7-22"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-23"><a id="__codelineno-7-23" name="__codelineno-7-23"></a><span class="w">    </span><span class="nx">result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-7-24"><a id="__codelineno-7-24" name="__codelineno-7-24"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span>
+</span><span id="__span-7-25"><a id="__codelineno-7-25" name="__codelineno-7-25"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述代码非常简单，使用 <code>C</code> 编写了一个 <code>Add</code> 函数，它将传入的 <code>int</code> 类型的 <code>a</code> 和 <code>b</code> 相加，最后再加上 2。</p>
 <p>当使用默认方式进行编译（启用 <code>cgo</code>）时，可以顺利执行，例如：</p>
-<pre><code class="language-bash">➜  cgoTests go build -o hello 
-➜  cgoTests ./hello 
-Result: 12
-➜  cgoTests ldd hello 
-        linux-vdso.so.1 (0x00007ffd4d139000)
-        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007f5ea7f4d000)
-        /lib64/ld-linux-x86-64.so.2 (0x00007f5ea8180000)
-➜  cgoTests 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span>
+<span class="normal"><a href="#__codelineno-8-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>./hello<span class="w"> </span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>Result:<span class="w"> </span><span class="m">12</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>ldd<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">        </span>linux-vdso.so.1<span class="w"> </span><span class="o">(</span>0x00007ffd4d139000<span class="o">)</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">        </span>libc.so.6<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/x86_64-linux-gnu/libc.so.6<span class="w"> </span><span class="o">(</span>0x00007f5ea7f4d000<span class="o">)</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">        </span>/lib64/ld-linux-x86-64.so.2<span class="w"> </span><span class="o">(</span>0x00007f5ea8180000<span class="o">)</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>当使用静态编译时（即禁用 <code>cgo</code>），则会报错，因为代码中使用了 <code>cgo</code>，但编译时却禁用了它。</p>
-<pre><code class="language-bash">➜  cgoTests CGO_ENABLED=0 go build -o hello
-package hello: build constraints exclude all Go files in /data/code/golang/cgoTests
-➜  cgoTests 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>hello
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>package<span class="w"> </span>hello:<span class="w"> </span>build<span class="w"> </span>constraints<span class="w"> </span>exclude<span class="w"> </span>all<span class="w"> </span>Go<span class="w"> </span>files<span class="w"> </span><span class="k">in</span><span class="w"> </span>/data/code/golang/cgoTests
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>所以说，要实现这一功能，我们需要在 <code>Go</code> 代码中重新实现 <code>Add</code> 函数。这样，如果启用了 <code>cgo</code> 编译，程序将调用 <code>C</code> 代码；否则，则会调用 <code>Go</code> 代码实现。</p>
 <p>因此，我们将上述代码中的 <code>cgo</code> 部分分离出来，组织成多个文件，例如有如下几个文件：</p>
-<pre><code class="language-bash">➜  cgoTests tree | grep '\.go'
-├── add_c.go
-├── add_go.go
-└── main.go
-➜  cgoTests 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>tree<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;\.go&#39;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>├──<span class="w"> </span>add_c.go
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>├──<span class="w"> </span>add_go.go
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>└──<span class="w"> </span>main.go
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>其中文件中，<code>add_c.go</code> 文件包含使用 <code>C</code> 代码实现的 <code>Add</code> 函数，而 <code>add_go.go</code> 文件则实现了使用 <code>Go</code> 代码的 <code>Add</code> 函数。而<code>main.go</code>则无脑调用<code>Add()</code>函数即可。</p>
 <p>具体的代码内容如下：</p>
 <p><code>main.go</code>：</p>
-<pre><code class="language-go">➜  cgoTests cat main.go 
-package main
-
-import &quot;fmt&quot;
-
-func main() {
-        result := Add(2, 8)
-        fmt.Println(&quot;Result:&quot;, result)
-}
-➜  cgoTests 
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="err">➜</span><span class="w">  </span><span class="nx">cgoTests</span><span class="w"> </span><span class="nx">cat</span><span class="w"> </span><span class="nx">main</span><span class="p">.</span><span class="k">go</span><span class="w"> </span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><span class="w">        </span><span class="nx">result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a><span class="w">        </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a><span class="p">}</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a><span class="err">➜</span><span class="w">  </span><span class="nx">cgoTests</span><span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述代码仅调用了一个 <code>Add</code> 函数，并且将结果放入到<code>result</code>中，然后输出它。</p>
 <p><code>add_go.go</code>:</p>
-<pre><code class="language-go">➜  cgoTests cat add_go.go 
-//go:build !cgo
-// +build !cgo
-
-package main
-
-func Add(a int, b int) int {
-        return a + b
-}
-➜  cgoTests 
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-12-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-12-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-12-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-12-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-12-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-12-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-12-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-12-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-12-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="err">➜</span><span class="w">  </span><span class="nx">cgoTests</span><span class="w"> </span><span class="nx">cat</span><span class="w"> </span><span class="nx">add_go</span><span class="p">.</span><span class="k">go</span><span class="w"> </span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="c1">//go:build !cgo</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="c1">// +build !cgo</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="kd">func</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9"></a><span class="p">}</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10"></a><span class="err">➜</span><span class="w">  </span><span class="nx">cgoTests</span><span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述代码使用 <code>Go</code> 实现了 <code>Add</code> 函数，并在文件最上方添加了 <code>go:build !cgo</code> 和 <code>+build !cgo</code>。这表示在禁用 <code>cgo</code> 时，编译器会编译该文件中的代码。</p>
 <p><code>add_c.go</code>:</p>
-<pre><code class="language-go">//go:build cgo
-// +build cgo
-
-package main
-
-/*
-# include &lt;stdio.h&gt;
-
-int Add(int a,int b) {
-    return a + b + 2;
-}
-*/
-import &quot;C&quot;
-
-func Add(a int, b int) int {
-    cIntA := C.int(a)
-    cintB := C.int(b)
-    cIntAddNum := C.Add(cIntA, cintB)
-
-    return int(cIntAddNum)
-}
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span>
+<span class="normal"><a href="#__codelineno-13-11">11</a></span>
+<span class="normal"><a href="#__codelineno-13-12">12</a></span>
+<span class="normal"><a href="#__codelineno-13-13">13</a></span>
+<span class="normal"><a href="#__codelineno-13-14">14</a></span>
+<span class="normal"><a href="#__codelineno-13-15">15</a></span>
+<span class="normal"><a href="#__codelineno-13-16">16</a></span>
+<span class="normal"><a href="#__codelineno-13-17">17</a></span>
+<span class="normal"><a href="#__codelineno-13-18">18</a></span>
+<span class="normal"><a href="#__codelineno-13-19">19</a></span>
+<span class="normal"><a href="#__codelineno-13-20">20</a></span>
+<span class="normal"><a href="#__codelineno-13-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1">//go:build cgo</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="c1">// +build cgo</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="cm">/*</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="cm"># include &lt;stdio.h&gt;</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="cm">int Add(int a,int b) {</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="cm">    return a + b + 2;</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><span class="cm">}</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12"></a><span class="cm">*/</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;C&quot;</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14"></a>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15"></a><span class="kd">func</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16"></a><span class="w">    </span><span class="nx">cIntA</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nb">int</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17"></a><span class="w">    </span><span class="nx">cintB</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nb">int</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18"></a><span class="w">    </span><span class="nx">cIntAddNum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">cIntA</span><span class="p">,</span><span class="w"> </span><span class="nx">cintB</span><span class="p">)</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19"></a>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="nx">cIntAddNum</span><span class="p">)</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>上述代码使用 <code>C</code> 编写了 <code>Add</code> 函数，并定义了一个 <code>Go</code> 版的 <code>Add</code> 函数来调用 <code>C</code> 代码的 <code>Add</code> 函数。同时，在文件最上方添加了 <code>//go:build cgo</code> 和 <code>// +build cgo</code>，这表示在使用 <code>cgo</code> 编译时，编译器会编译该文件中的代码。</p>
 <p>如上所述，已经有了 <code>C</code> 实现的 <code>Add</code> 函数和 <code>Go</code> 实现的 <code>Add</code> 函数，因此无论是采用静态编译还是动态编译，都可以成功编译。例如：</p>
 <p>禁用<code>cgo</code>编译：</p>
-<pre><code class="language-bash">➜  cgoTests CGO_ENABLED=0 go build -o hello
-➜  cgoTests ./hello 
-Result: 10
-➜  cgoTests ldd hello 
-        not a dynamic executable
-➜  cgoTests 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>hello
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>./hello<span class="w"> </span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>Result:<span class="w"> </span><span class="m">10</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>ldd<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">        </span>not<span class="w"> </span>a<span class="w"> </span>dynamic<span class="w"> </span>executable
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>如上所述，当禁用 <code>cgo</code> 时，程序会执行 <code>Go</code> 编写的 <code>Add</code> 函数，该函数仅将传入的数值相加并返回 <code>10</code>。同时，查看该可执行文件的依赖库时，会发现它是空的。</p>
 <p>启用<code>cgo</code>编译：</p>
-<pre><code class="language-bash">➜  cgoTests go build -o hello 
-➜  cgoTests ./hello 
-Result: 12
-➜  cgoTests ldd hello 
-        linux-vdso.so.1 (0x00007ffcae6b8000)
-        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007fdd3dd5c000)
-        /lib64/ld-linux-x86-64.so.2 (0x00007fdd3df8f000)
-➜  cgoTests 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span>
+<span class="normal"><a href="#__codelineno-15-2">2</a></span>
+<span class="normal"><a href="#__codelineno-15-3">3</a></span>
+<span class="normal"><a href="#__codelineno-15-4">4</a></span>
+<span class="normal"><a href="#__codelineno-15-5">5</a></span>
+<span class="normal"><a href="#__codelineno-15-6">6</a></span>
+<span class="normal"><a href="#__codelineno-15-7">7</a></span>
+<span class="normal"><a href="#__codelineno-15-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-o<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>./hello<span class="w"> </span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a>Result:<span class="w"> </span><span class="m">12</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>ldd<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">        </span>linux-vdso.so.1<span class="w"> </span><span class="o">(</span>0x00007ffcae6b8000<span class="o">)</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">        </span>libc.so.6<span class="w"> </span><span class="o">=</span>&gt;<span class="w"> </span>/lib/x86_64-linux-gnu/libc.so.6<span class="w"> </span><span class="o">(</span>0x00007fdd3dd5c000<span class="o">)</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">        </span>/lib64/ld-linux-x86-64.so.2<span class="w"> </span><span class="o">(</span>0x00007fdd3df8f000<span class="o">)</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>默认情况下，<code>go build</code> 会启用 <code>cgo</code> 进行编译，编译后的结果也正如预期。<code>C</code> 编写的 <code>Add</code> 函数不仅将传入的数值相加，还加了一个 <code>2</code>，因此得到的结果是 <code>12</code>。同时，查看该可执行文件的依赖库时，会发现它并不为空，有动态依赖库。这意味着编译和执行都成功完成。</p>
 <h2 id="_4">完全静态编译</h2>
 <p>上述操作确实比较麻烦，因为需要用 <code>Go</code> 实现与 <code>C</code> 相同的代码逻辑，相当于重写了一遍。其实，直接将 <code>C</code> 编写的代码进行静态编译也是可行的，方法是使用以下命令：</p>
-<pre><code class="language-bash">CGO_ENABLED=1 go build -ldflags '-extldflags &quot;-static&quot;'
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-ldflags<span class="w"> </span><span class="s1">&#39;-extldflags &quot;-static&quot;&#39;</span>
+</span></code></pre></div></td></tr></table></div>
 <p>首先，需要开启 <code>cgo</code> 编译，其次需要指定 <code>extldflags</code> 的值为 <code>static</code>，这表示链接器使用静态链接，避免依赖共享库，从而生成一个完全静态的可执行文件。</p>
 <p>通过这种方式，<code>C</code> 代码会被静态链接到最终的可执行文件中，可以避免用<code>go</code>重写代码逻辑的麻烦。</p>
 <p>例如，回到最开始的问题，假设有如下带有<code>cgo</code>的代码，您需要进行静态编译：</p>
-<pre><code class="language-go">package main
-
-import &quot;fmt&quot;
-
-/*
-# include &lt;stdio.h&gt;
-
-int Add(int a,int b) {
-    return a + b + 2;
-}
-*/
-import &quot;C&quot;
-
-func Add(a int, b int) int {
-    cIntA := C.int(a)
-    cintB := C.int(b)
-    cIntAddNum := C.Add(cIntA, cintB)
-
-    return int(cIntAddNum)
-}
-
-func main() {
-    result := Add(2, 8)
-    fmt.Println(&quot;Result:&quot;, result)
-}
-</code></pre>
+<div class="language-go highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Go</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-17-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-17-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-17-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-17-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-17-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-17-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-17-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-17-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-17-10">10</a></span>
+<span class="normal"><a href="#__codelineno-17-11">11</a></span>
+<span class="normal"><a href="#__codelineno-17-12">12</a></span>
+<span class="normal"><a href="#__codelineno-17-13">13</a></span>
+<span class="normal"><a href="#__codelineno-17-14">14</a></span>
+<span class="normal"><a href="#__codelineno-17-15">15</a></span>
+<span class="normal"><a href="#__codelineno-17-16">16</a></span>
+<span class="normal"><a href="#__codelineno-17-17">17</a></span>
+<span class="normal"><a href="#__codelineno-17-18">18</a></span>
+<span class="normal"><a href="#__codelineno-17-19">19</a></span>
+<span class="normal"><a href="#__codelineno-17-20">20</a></span>
+<span class="normal"><a href="#__codelineno-17-21">21</a></span>
+<span class="normal"><a href="#__codelineno-17-22">22</a></span>
+<span class="normal"><a href="#__codelineno-17-23">23</a></span>
+<span class="normal"><a href="#__codelineno-17-24">24</a></span>
+<span class="normal"><a href="#__codelineno-17-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;fmt&quot;</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="cm">/*</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="cm"># include &lt;stdio.h&gt;</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7"></a>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="cm">int Add(int a,int b) {</span>
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9"></a><span class="cm">    return a + b + 2;</span>
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10"></a><span class="cm">}</span>
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11"></a><span class="cm">*/</span>
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12"></a><span class="kn">import</span><span class="w"> </span><span class="s">&quot;C&quot;</span>
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13"></a>
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14"></a><span class="kd">func</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="nx">a</span><span class="w"> </span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="kt">int</span><span class="p">)</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15"></a><span class="w">    </span><span class="nx">cIntA</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nb">int</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16"></a><span class="w">    </span><span class="nx">cintB</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nb">int</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17"></a><span class="w">    </span><span class="nx">cIntAddNum</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">C</span><span class="p">.</span><span class="nx">Add</span><span class="p">(</span><span class="nx">cIntA</span><span class="p">,</span><span class="w"> </span><span class="nx">cintB</span><span class="p">)</span>
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18"></a>
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="nx">cIntAddNum</span><span class="p">)</span>
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20"></a><span class="p">}</span>
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21"></a>
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22"></a><span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23"></a><span class="w">    </span><span class="nx">result</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">Add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24"></a><span class="w">    </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="s">&quot;Result:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">result</span><span class="p">)</span>
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>可以使用 <code>-extldflags "-static"</code> 进行静态编译，例如：</p>
-<pre><code class="language-bash">➜  cgoTests CGO_ENABLED=1 go build -ldflags '-extldflags &quot;-static&quot;' -o hello
-➜  cgoTests ./hello 
-Result: 12
-➜  cgoTests ldd hello 
-        not a dynamic executable
-➜  cgoTests 
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span>
+<span class="normal"><a href="#__codelineno-18-3">3</a></span>
+<span class="normal"><a href="#__codelineno-18-4">4</a></span>
+<span class="normal"><a href="#__codelineno-18-5">5</a></span>
+<span class="normal"><a href="#__codelineno-18-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span><span class="nv">CGO_ENABLED</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>go<span class="w"> </span>build<span class="w"> </span>-ldflags<span class="w"> </span><span class="s1">&#39;-extldflags &quot;-static&quot;&#39;</span><span class="w"> </span>-o<span class="w"> </span>hello
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>./hello<span class="w"> </span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a>Result:<span class="w"> </span><span class="m">12</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>ldd<span class="w"> </span>hello<span class="w"> </span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">        </span>not<span class="w"> </span>a<span class="w"> </span>dynamic<span class="w"> </span>executable
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a>➜<span class="w">  </span>cgoTests<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <p>首先，这里需要开启 <code>cgo</code>，因为静态编译需要借助 <code>gcc</code> 来完成。然后，添加 <code>ldflags</code> 参数，其中 <code>extldflags</code> 的值为 <code>static</code>，即可完成静态编译需求。最后，功能完全实现了，且没有依赖任何动态运行库。</p>
 <h2 id="_5">交叉编译</h2>
 <p>交叉编译的前提是静态编译，只有静态编译的前提下，才能进行交叉编译，而使用交叉编译非常简答，进需要指定<code>GOOS</code>和<code>GOARCH</code>即可，比如：</p>
 <p>交叉编译的前提是静态编译，只有在静态编译的基础上，才能进行交叉编译，否则动态依赖非常难以解决。使用交叉编译非常简单，只需要指定 <code>GOOS</code> 和 <code>GOARCH</code> 环境变量即可。比如：</p>
-<pre><code>GOOS=linux GOARCH=arm64 go build
-</code></pre>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="nv">GOOS</span><span class="o">=</span>linux<span class="w"> </span><span class="nv">GOARCH</span><span class="o">=</span>arm64<span class="w"> </span>go<span class="w"> </span>build
+</span></code></pre></div></td></tr></table></div>
 <p>即可编译<code>linux</code>下的<code>arm64</code>架构的可执行文件。</p>
 <p>目前<code>GOOS</code>和<code>GOARCH</code>支持的值如下：(https://go.dev/doc/install/source#environment)</p>
 <table>
