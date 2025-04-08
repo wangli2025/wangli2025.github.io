@@ -1,0 +1,8 @@
+@font-face {
+  font-family: "maple mono";
+  src: url("./MapleMono-NF-CN-Italic.ttf") format("truetype");
+}
+
+body {
+    font-family: "Maple Mono", sans-serif;
+}
